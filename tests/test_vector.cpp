@@ -45,3 +45,23 @@ TEST(Vector2DTest, SubstractTwoNegative) {
     simulation::Vector2D vec_expected = { 0, -2 };
     EXPECT_EQ(vec1 - vec2, vec_expected);
 }
+
+// ################## Tests Multiplication Scalaire ################## //
+
+TEST(Vector2DTest, MultiplyScalarPositive) {
+    simulation::Vector2D vec1 { 2, 5 };
+    simulation::Vector2D vec_expected = { 4, 10 };
+    EXPECT_EQ(vec1 * 2, vec_expected);
+}
+
+TEST(Vector2DTest, MultiplyScalarNegative) {
+    simulation::Vector2D vec1 { 2, 5 };
+    simulation::Vector2D vec_expected = { -4, -10 };
+    EXPECT_EQ(vec1 * -2, vec_expected);
+}
+
+TEST(Vector2DTest, MultiplyScalarZero) {
+    simulation::Vector2D vec1 { 2, 5 };
+    simulation::Vector2D vec_expected = { 0, 0 };
+    EXPECT_EQ(vec1 * 0, vec_expected);
+}
