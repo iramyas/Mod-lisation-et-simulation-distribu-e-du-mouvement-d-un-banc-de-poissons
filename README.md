@@ -9,4 +9,32 @@ Un problème classique pour aborder la modélisation de systèmes complexes et l
 
 Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagis- sant en temps réel. La simulation devra être codée en C++ ou en Python, et exploitera les principes de modélisation multi-agents et de parallélisation pour garantir de bonnes performances lorsque le nombre de poissons simulés devient important.
 
-## Usage
+## Fonctionnement et déroulement d'implémentation 
+
+**Classe Vector2D.h**
+- Pour gérer les positions et les vitesses.
+
+**Classe Boid.h**
+- Cette classe représente un poisson, c'est-à-dire ses attributs essentiels et l'ensemble des voisins.
+
+**Les 3 règles de Reynolds**
+- Implémentation des règles de "séparation, alignement et cohésion" dans la Classe Boid.
+
+**Classe Flock**
+- Gérer le comportement d'un ensemble de boids (poissons).
+
+**Boucle de simulation main.cpp**
+- On utilisera SFML pour faire les premières simulations en 2D, on testera sur de petites quantités de poissons en faisant varier les forces sur les boids pour vérifier le comportement.
+
+**Faire des tests** 
+- Chaque fonction doit être testée et vérifiée pour avoir une modélisation correcte.
+
+**OpenGL**
+- Cet outil sera utilisé pour faire la modélisation en 3D. Il faut se familiariser d'abord avec SFML pour pouvoir continuer.
+
+**d'autre types de comportement**
+- Il existe d'autre type de comportement d'un Flock de poissons, par exemple "vortex", on peux esseyer egalement de modeliser cela ou simplement comparer!
+
+
+
+
