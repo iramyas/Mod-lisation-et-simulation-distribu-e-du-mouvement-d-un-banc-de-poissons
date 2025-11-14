@@ -16,4 +16,11 @@ set(COMMON_COMPILE_FLAGS
         $<$<CONFIG:Release>:-Wall;-Wextra;-O3;-DNDEBUG;-march=native;-flto>
 )
 
-add_executable(main src/main.cpp)
+add_executable(main_simulation src/main.cpp)
+
+target_include_directories(main_simulation PRIVATE include/)
+target_compile_options(main_simulation PRIVATE ${COMMON_COMPILE_FLAGS})
+
+set_target_properties(main_simulation PROPERTIES 
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
