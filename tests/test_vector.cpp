@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include <cmath>
 #include "vector2D.h"
 
 // ################## Tests Addition ################## //
@@ -64,4 +65,78 @@ TEST(Vector2DTest, MultiplyScalarZero) {
     simulation::Vector2D vec1 { 2, 5 };
     simulation::Vector2D vec_expected = { 0, 0 };
     EXPECT_EQ(vec1 * 0, vec_expected);
+}
+
+// ################## Tests Magnitude ################## //
+
+TEST(Vector2DTest, MagnitudeBase) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    EXPECT_FLOAT_EQ(vec.magnitude(), 5.0f);
+}
+
+TEST(Vector2DTest, MagnitudeZeroVector) {
+    simulation::Vector2D vec { 0.0f, 0.0f };
+    EXPECT_FLOAT_EQ(vec.magnitude(), 0.0f);
+}
+
+TEST(Vector2DTest, MagnitudeNegattiveValues) {
+    simulation::Vector2D vec { -3.0f, -4.0f };
+    EXPECT_FLOAT_EQ(vec.magnitude(), 5.0f);
+}
+
+TEST(Vector2DTest, MagnitudeUnitVector) {
+    simulation::Vector2D vec { 1.0f, 0.0f };
+    EXPECT_FLOAT_EQ(vec.magnitude(), 1.0f);
+}
+
+// ################## Tests Magnitude Squared ################## //
+
+TEST(Vector2DTest, MagnitudeSquaredBase) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    EXPECT_FLOAT_EQ(vec.magnitudeSquared(), 25.0f);
+}
+
+TEST(Vector2DTest, MagnitudeSquaredZeroVector) {
+    simulation::Vector2D vec { 0.0f, 0.0f };
+    EXPECT_FLOAT_EQ(vec.magnitudeSquared(), 0.0f);
+}
+
+TEST(Vector2DTest, MagnitudeSquaredConsistency) {
+    simulation::Vector2D vec { 5.0f, 12.0f };
+    float mag = vec.magnitude();
+    EXPECT_FLOAT_EQ(vec.magnitudeSquared(), mag * mag);
+}
+
+// ################## Tests Angle ################## //
+
+TEST(Vector2DTest, AngleAxisX) {
+    simulation::Vector2D vec { 1.0f, 0.0f };
+    EXPECT_NEAR(vec.angle(), 0.0, 1e-9);
+}
+
+TEST(Vector2DTest, AngleAxisY) {
+    simulation::Vector2D vec { 0.0f, 1.0f};
+    EXPECT_NEAR(vec.angle(), M_PI / 2.0, 1e-6);
+}
+
+TEST(Vector2DTest, AngleAxisNegativeX) {
+    simulation::Vector2D vec { -1.0f, 0.0f };
+    EXPECT_NEAR(vec.angle(), M_PI, 1e-6);
+}
+
+TEST(Vector2DTest, AngleAxisNegativeY) {
+    simulation::Vector2D vec { 0.0f, -1.0f };
+    EXPECT_NEAR(vec.angle(), -M_PI / 2.0, 1e-6);
+}
+
+TEST(Vector2DTest, Angle45Degrees) {
+    simulation::Vector2D vec { 1.0f, 1.0f };
+    EXPECT_NEAR(vec.angle(), M_PI / 4.0, 1e-6);
+}
+
+TEST(Vector2DTest, AngleRange) {
+    simulation::Vector2D vec { -1.0f, -1.0f };
+    double angle = vec.angle();
+    EXPECT_GE(angle, -M_PI);
+    EXPECT_LE(angle, M_PI);
 }

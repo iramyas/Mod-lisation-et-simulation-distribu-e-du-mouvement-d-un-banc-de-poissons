@@ -12,7 +12,7 @@ namespace simulation {
         Vector2D(float x_, float y_) : x(x_), y(y_) {} // Initialise avec les paramètres
         ~Vector2D() = default;
 
-        // Operations arithmétiques (+, -, *, /) 
+        // Operations arithmétiques (+, -, *) 
         Vector2D operator+(const Vector2D& vec2) const { return  Vector2D{ x + vec2.x, y + vec2.y }; }
         Vector2D operator-(const Vector2D& vec2) const { return  Vector2D{ x - vec2.x, y - vec2.y }; }
         Vector2D operator*(float number) const { return Vector2D{ number * x, number * y }; }
@@ -20,12 +20,15 @@ namespace simulation {
         // Opérande de test
         bool operator==(const Vector2D& vec2) const { return std::fabs(x - vec2.x) <= EPSILON && std::fabs(y - vec2.y) <= EPSILON; }
 
-        //operateurs d'affectation +=  
+        //Opérande affectation
 
-        //methodes vectorielles  ^2 normalized 
-
-        //calculer l'angle
-
+        //methodes vectorielles  ^2 normalized
+        float magnitude() const { return std::sqrt(x * x + y * y); }
+        float magnitudeSquared() const { return x * x + y * y; }
+        
+        
+        // Angle (en radians)
+        double angle() const { return std::atan2(y, x); }
 
     };
 }
