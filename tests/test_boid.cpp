@@ -78,7 +78,7 @@ TEST(BoidTest, UpdatePositionFromVelocity) {
     Boid boid(0.0f, 0.0f);  
     boid.velocity = Vector2D(5.0f, 3.0f);
     boid.acceleration = Vector2D(0.0f, 0.0f);
-    
+    boid.maxSpeed= 10.0f;
     boid.update(1.0f);  
     
     EXPECT_FLOAT_EQ(boid.position.x, 5.0f);
@@ -105,6 +105,7 @@ TEST(BoidTest, ApplyForceAffectsAcceleration) {
     Boid boid(0.0f, 0.0f);
     boid.mass = 2.0f;
     boid.acceleration = Vector2D(0.0f, 0.0f);
+    boid.maxForce= 10.0f;
     
     Vector2D force(4.0f, 2.0f);
     boid.applyForce(force); 
