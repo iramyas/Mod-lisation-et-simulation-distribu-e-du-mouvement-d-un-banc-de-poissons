@@ -15,7 +15,6 @@ Boid::Boid()
       maxSpeed(5.0f),
       maxForce(0.5f),
       mass(1.0f) {}
-
 //constructeur avec position
 Boid::Boid(float x, float y)
     : position(x,y),
@@ -38,11 +37,22 @@ Boid::Boid(Vector2D pos, Vector2D vel)
 
 
 void Boid::update(float deltaTime){
-  //to do
+  velocity += acceleration * deltaTime;       //mettre a jour velocity avec aceleration
+
+  if (velocity.magnitude() > maxSpeed) {velocity = velocity.normalized() *maxSpeed;}    //limiter la vitesse a maxSpeed
+
+  position +=velocity *deltaTime;       //mettre a jour la pos avec velocity
+  acceleration = Vector2D(0.0f, 0.0f);    //reinitialisation de l'acceleration a 0
 }  //mise a jour de la vitesse avec l'accélération /position
 
 void Boid::applyForce(const Vector2D& force){
-  //to do
+  //limiter la force à maxForce
+  Vector2D f=force;
+  if(f.magnitude() >maxForce) {
+    f= f.normalized()* maxForce;
+  }
+
+  acceleration += f * (1.0f / mass); 
 }
 
 //get neighbors 
