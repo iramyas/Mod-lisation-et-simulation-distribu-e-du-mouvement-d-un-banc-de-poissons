@@ -207,3 +207,35 @@ TEST(Vector2DTest, NormalizedIdempotent) {
     EXPECT_FLOAT_EQ(norm1.x, norm2.x);
     EXPECT_FLOAT_EQ(norm1.y, norm2.y);
 }
+
+// ################## Tests Dot Product ################## //
+
+TEST(Vector2DTest, DotProductPerpendicular) {
+    simulation::Vector2D vec1 { 1.0f, 0.0f };
+    simulation::Vector2D vec2 { 0.0f, 1.0f };
+    EXPECT_FLOAT_EQ(vec1.dot(vec2), 0.0f);
+}
+
+TEST(Vector2DTest, DotProductParallel) {
+    simulation::Vector2D vec1 { 2.0f, 3.0f };
+    simulation::Vector2D vec2 { 2.0f, 3.0f };
+    EXPECT_FLOAT_EQ(vec1.dot(vec2), 13.0f);
+}
+
+TEST(Vector2DTest, DotProductOpposite) {
+    simulation::Vector2D vec1 { 1.0f, 0.0f };
+    simulation::Vector2D vec2 { -1.0f, 0.0f };
+    EXPECT_FLOAT_EQ(vec1.dot(vec2), -1.0f);
+}
+
+TEST(Vector2DTest, DotProductCommutative) {
+    simulation::Vector2D vec1 { 3.0f, 4.0f };
+    simulation::Vector2D vec2 { 5.0f, 2.0f };
+    EXPECT_FLOAT_EQ(vec1.dot(vec2), vec2.dot(vec1));
+}
+
+TEST(Vector2DTest, DotProductZeroVector) {
+    simulation::Vector2D vec1 { 3.0f, 4.0f };
+    simulation::Vector2D vec2 { 0.0f, 0.0f };
+    EXPECT_FLOAT_EQ(vec1.dot(vec2), 0.0f);
+}

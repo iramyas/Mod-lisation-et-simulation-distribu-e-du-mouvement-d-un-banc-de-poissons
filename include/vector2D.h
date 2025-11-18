@@ -55,6 +55,8 @@ namespace simulation {
             if(mag <= EPSILON) return Vector2D{ 0.0f, 0.0f };
             return Vector2D{ x / mag, y / mag};
         }
+        // Dot
+        float dot(const Vector2D& vec2) const { return x * vec2.x + y * vec2.y; } 
 
         // Angle (en radians)
         double angle() const { return std::atan2(y, x); }
