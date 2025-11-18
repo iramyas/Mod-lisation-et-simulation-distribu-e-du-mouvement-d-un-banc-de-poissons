@@ -140,3 +140,70 @@ TEST(Vector2DTest, AngleRange) {
     EXPECT_GE(angle, -M_PI);
     EXPECT_LE(angle, M_PI);
 }
+
+// ################## Tests Normalized ################## //
+
+TEST(Vector2DTest, NormalizedUnitVector) {
+    simulation::Vector2D vec { 1.0f, 0.0f };
+    simulation::Vector2D norm = vec.normalized();
+    EXPECT_FLOAT_EQ(norm.x, 1.0f);
+    EXPECT_FLOAT_EQ(norm.y, 0.0f);
+    EXPECT_FLOAT_EQ(norm.magnitude(), 1.0f);
+}
+
+TEST(Vector2DTest, NormalizedMagnitudeIsOne) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D norm = vec.normalized();
+    EXPECT_NEAR(norm.magnitude(), 1.0f, 1e-6f);
+}
+
+TEST(Vector2DTest, NormalizedDirection) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D norm = vec.normalized();
+    EXPECT_FLOAT_EQ(norm.x, 0.6f);
+    EXPECT_FLOAT_EQ(norm.y, 0.8f);
+}
+
+TEST(Vector2DTest, NormalizedZeroVector) {
+    simulation::Vector2D vec { 0.0f, 0.0f };
+    simulation::Vector2D norm = vec.normalized();
+    EXPECT_FLOAT_EQ(norm.x, 0.0f);
+    EXPECT_FLOAT_EQ(norm.y, 0.0f);
+}
+
+TEST(Vector2DTest, NormalizedVerySmallVector) {
+    simulation::Vector2D vec { 1e-8f, 1e-8f };
+    simulation::Vector2D norm = vec.normalized();
+    EXPECT_FLOAT_EQ(norm.x, 0.0f);
+    EXPECT_FLOAT_EQ(norm.y, 0.0f);
+}
+
+TEST(Vector2DTest, NormalizedNegativeVector) {
+    simulation::Vector2D vec { -3.0f, -4.0f };
+    simulation::Vector2D norm = vec.normalized();
+    EXPECT_FLOAT_EQ(norm.x, -0.6f);
+    EXPECT_FLOAT_EQ(norm.y, -0.8f);
+    EXPECT_NEAR(norm.magnitude(), 1.0f, 1e-6f);
+}
+
+TEST(Vector2DTest, NormalizedDoesNotModifyOriginal) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D norm = vec.normalized();
+    EXPECT_FLOAT_EQ(vec.x, 3.0f);
+    EXPECT_FLOAT_EQ(vec.y, 4.0f);
+    EXPECT_FLOAT_EQ(vec.magnitude(), 5.0f);
+}
+
+TEST(Vector2DTest, NormalizedAnglePreserved) {
+    simulation::Vector2D vec { 5.0f, 5.0f };
+    simulation::Vector2D norm = vec.normalized();
+    EXPECT_NEAR(vec.angle(), norm.angle(), 1e-6);
+}
+
+TEST(Vector2DTest, NormalizedIdempotent) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D norm1 = vec.normalized();
+    simulation::Vector2D norm2 = norm1.normalized();
+    EXPECT_FLOAT_EQ(norm1.x, norm2.x);
+    EXPECT_FLOAT_EQ(norm1.y, norm2.y);
+}
