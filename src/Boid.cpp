@@ -1,4 +1,4 @@
-#include "gtest/gtest.h"
+//#include "gtest/gtest.h"
 #include <cmath>
 #include <vector>
 #include "Boid.h"
@@ -19,6 +19,7 @@ Boid::Boid()
 Boid::Boid(float x, float y)
     : position(x,y),
       velocity(),
+      
       acceleration(),
       mass(1.0f),
       maxSpeed(5.0f),

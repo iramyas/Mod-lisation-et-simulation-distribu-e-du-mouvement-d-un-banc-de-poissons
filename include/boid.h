@@ -1,22 +1,24 @@
 //definition de l'agent 
-#ifdef BOID_H
+#ifndef BOID_H
 #define BOID_H
 
 #include "vector2D.h"
 #include <vector>
 
+using simulation::Vector2D;
 
 class Boid {
 public:
     Vector2D position;
     Vector2D velocity;
-    Vector2D accelération;
+    Vector2D acceleration;
 
     //parametres physiques
     float mass;
-    float maxspeed;
+    float maxSpeed;
     float maxForce;
 
+    float perceptionRadius;
 
 
     //constructeurs
@@ -26,16 +28,17 @@ public:
     
 
     //methodes de mise a jour
-    void update();
-    void applyForce();
+    void update(float deltaTime);  //mise a jour de la vitesse avec l'accélération /position
+
+    void applyForce(const Vector2D& force);    
 
     //les 3 regles de reynolds
-    Vector2D separate();
-    Vector2D align();
-    Vector2D cohersion();
+    Vector2D separate(const std::vector<Boid*>& boids);
+    Vector2D align(const std::vector<Boid*>& boids);
+    Vector2D cohesion(const std::vector<Boid*>& boids);
 
-    Vector2D seek();
-    Vector2D flee();
+    Vector2D seek(const Vector2D& target);
+    Vector2D flee(const Vector2D& target);
 
     //gestion de bords
     //wraparound()/edges()
