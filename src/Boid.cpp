@@ -1,8 +1,9 @@
+#include "Boid.h"
 //#include "gtest/gtest.h"
 #include <cmath>
 #include <vector>
-#include "Boid.h"
-#include "vector2D.h"
+
+//#include "vector2D.h"
 
 using simulation::Vector2D; 
 
@@ -19,7 +20,7 @@ Boid::Boid()
 Boid::Boid(float x, float y)
     : position(x,y),
       velocity(),
-      
+
       acceleration(),
       mass(1.0f),
       maxSpeed(5.0f),

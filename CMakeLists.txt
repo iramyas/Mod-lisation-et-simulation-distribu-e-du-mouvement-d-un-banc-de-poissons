@@ -19,8 +19,8 @@ set(COMMON_COMPILE_FLAGS
 
 add_executable(main_simulation src/main.cpp)
 add_executable(test_runner tests/test_vector.cpp)
-add_executable(test_boid tests/test_boid.cpp)
-
+add_executable(test_boid tests/test_boid.cpp
+src/Boid.cpp)
 
 target_include_directories(main_simulation PRIVATE include/)
 target_include_directories(test_runner PRIVATE include/)
