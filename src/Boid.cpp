@@ -1,35 +1,69 @@
-#include "Boid.h"
+#include "gtest/gtest.h"
 #include <cmath>
-#include <iostream>
+#include <vector>
+#include "Boid.h"
+#include "vector2D.h"
 
+using simulation::Vector2D; 
+
+//contructeur par default
 Boid::Boid()
-    : position()
-      velocity()
-      acceleration()
-      maxSpeed()
-      maxForce()
-      mass() {}
+    : position(),
+      velocity(),
+      acceleration(),
+      maxSpeed(5.0f),
+      maxForce(0.5f),
+      mass(1.0f) {}
 
+//constructeur avec position
 Boid::Boid(float x, float y)
-    : position(x,y)
-      velocity() {}
-      ///
+    : position(x,y),
+      velocity(),
+      acceleration(),
+      mass(1.0f),
+      maxSpeed(5.0f),
+      maxForce(0.5f),
+      perceptionRadius(50.0f) {}
+//constructeur avec position et velocity
+Boid::Boid(Vector2D pos, Vector2D vel)
+    : position(pos),
+      velocity(vel),
+      acceleration(),
+      mass(1.0f),
+      maxSpeed(5.0f),
+      maxForce(0.5f),
+      perceptionRadius(50.0f) {}
 
 
-void Boid::update(){}  //mise a jour de la vitesse avec l'accélération /position
+void Boid::update(float deltaTime){
+  //to do
+}  //mise a jour de la vitesse avec l'accélération /position
 
-void Boid::applyForce(){}
+void Boid::applyForce(const Vector2D& force){
+  //to do
+}
 
 //get neighbors 
-std::vector<Boid*> Boid::getNeighbors(const std::vector<Boid*>& boids) {}
+std::vector<Boid*> Boid::getNeighbors(const std::vector<Boid*>& boids) {
+  return std::vector<Boid*>();
+}
 
-Vector2D Boid::separate(){}
+Vector2D Boid::separate(const std::vector<Boid*>& boids){
+  return Vector2D();
+}
 
-Vector2D Boid::align(){}
+Vector2D Boid::align(const std::vector<Boid*>& boids){
+  return Vector2D();
+}
 
-Vector2D Boid::cohesion(){}
+Vector2D Boid::cohesion(const std::vector<Boid*>& boids){
+  return Vector2D();
+}
 
-Vector2D Boid::seek(){}
-Vector2D Boid::flee(){}
-
-//rajouter warp around et rebondir? 
+Vector2D Boid::seek(const Vector2D& target) {
+    return Vector2D();  // TODO
+}
+Vector2D Boid::flee(const Vector2D& target) {
+    return Vector2D();  // todo
+}
+//rajouter warp around et rebondir
