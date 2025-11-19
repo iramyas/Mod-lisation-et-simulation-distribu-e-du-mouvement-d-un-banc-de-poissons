@@ -43,6 +43,9 @@ namespace simulation {
             return *this;
         }
 
+        // Opération de négation
+        Vector2D operator-() const { return Vector2D{ -x, -y }; }
+
         // Opérations vectorielles de base 
 
         // Norme
@@ -57,6 +60,12 @@ namespace simulation {
         }
         // Dot
         float dot(const Vector2D& vec2) const { return x * vec2.x + y * vec2.y; } 
+
+        // Distance euclidienne
+        float distance(const Vector2D& vec2) const { return (*this - vec2).magnitude(); }
+
+        // Distance au carrée
+        float distanceSquared(const Vector2D& vec2) const { return (*this - vec2).magnitudeSquared(); }
 
         // Angle (en radians)
         double angle() const { return std::atan2(y, x); }

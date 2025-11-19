@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include <cmath>
 #include <vector>
-#include "Boid.h"
+#include "boid.h"
 #include "vector2D.h"
 
 using simulation::Vector2D;

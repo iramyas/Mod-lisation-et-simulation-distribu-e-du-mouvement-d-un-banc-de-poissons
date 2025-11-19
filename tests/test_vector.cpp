@@ -239,3 +239,131 @@ TEST(Vector2DTest, DotProductZeroVector) {
     simulation::Vector2D vec2 { 0.0f, 0.0f };
     EXPECT_FLOAT_EQ(vec1.dot(vec2), 0.0f);
 }
+
+// ################## Tests Distance ################## //
+
+TEST(Vector2DTest, DistanceSamePoint) {
+    simulation::Vector2D vec1 { 3.0f, 4.0f };
+    simulation::Vector2D vec2 { 3.0f, 4.0f };
+    EXPECT_FLOAT_EQ(vec1.distance(vec2), 0.0f);
+}
+
+TEST(Vector2DTest, DistanceHorizontal) {
+    simulation::Vector2D vec1 { 0.0f, 0.0f };
+    simulation::Vector2D vec2 { 5.0f, 0.0f };
+    EXPECT_FLOAT_EQ(vec1.distance(vec2), 5.0f);
+}
+
+TEST(Vector2DTest, DistanceVertical) {
+    simulation::Vector2D vec1 { 0.0f, 0.0f };
+    simulation::Vector2D vec2 { 0.0f, 12.0f };
+    EXPECT_FLOAT_EQ(vec1.distance(vec2), 12.0f);
+}
+
+TEST(Vector2DTest, DistancePythagorean) {
+    simulation::Vector2D vec1 { 3.0f, 0.0f };
+    simulation::Vector2D vec2 { 0.0f, 4.0f };
+    EXPECT_FLOAT_EQ(vec1.distance(vec2), 5.0f);
+}
+
+TEST(Vector2DTest, DistanceSymmetric) {
+    simulation::Vector2D vec1 { 1.0f, 2.0f };
+    simulation::Vector2D vec2 { 4.0f, 6.0f };
+    EXPECT_FLOAT_EQ(vec1.distance(vec2), vec2.distance(vec1));
+}
+
+TEST(Vector2DTest, DistanceNegativeCoordinates) {
+    simulation::Vector2D vec1 { -2.0f, -3.0f };
+    simulation::Vector2D vec2 { 1.0f, 1.0f };
+    EXPECT_FLOAT_EQ(vec1.distance(vec2), 5.0f);
+}
+
+// ################## Tests Distance Squared ################## //
+
+TEST(Vector2DTest, DistanceSquaredSamePoint) {
+    simulation::Vector2D vec1 { 3.0f, 4.0f };
+    simulation::Vector2D vec2 { 3.0f, 4.0f };
+    EXPECT_FLOAT_EQ(vec1.distanceSquared(vec2), 0.0f);
+}
+
+TEST(Vector2DTest, DistanceSquaredPythagorean) {
+    simulation::Vector2D vec1 { 3.0f, 0.0f };
+    simulation::Vector2D vec2 { 0.0f, 4.0f };
+    EXPECT_FLOAT_EQ(vec1.distanceSquared(vec2), 25.0f);
+}
+
+TEST(Vector2DTest, DistanceSquaredConsistency) {
+    simulation::Vector2D vec1 { 1.0f, 2.0f };
+    simulation::Vector2D vec2 { 4.0f, 6.0f };
+    float dist = vec1.distance(vec2);
+    EXPECT_FLOAT_EQ(vec1.distanceSquared(vec2), dist * dist);
+}
+
+TEST(Vector2DTest, DistanceSquaredSymmetric) {
+    simulation::Vector2D vec1 { 2.0f, 3.0f };
+    simulation::Vector2D vec2 { 5.0f, 7.0f };
+    EXPECT_FLOAT_EQ(vec1.distanceSquared(vec2), vec2.distanceSquared(vec1));
+}
+
+TEST(Vector2DTest, DistanceSquaredNegativeCoordinates) {
+    simulation::Vector2D vec1 { 2.0f, -1.0f };
+    simulation::Vector2D vec2 { -1.0f, 3.0f };
+    EXPECT_FLOAT_EQ(vec1.distanceSquared(vec2), 25.0f);
+}
+
+// ################## Tests Négation ################## //
+
+TEST(Vector2DTest, NegationBase) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D neg = -vec;
+    EXPECT_FLOAT_EQ(neg.x, -3.0f);
+    EXPECT_FLOAT_EQ(neg.y, -4.0f);
+}
+
+TEST(Vector2DTest, NegationZeroVector) {
+    simulation::Vector2D vec { 0.0f, 0.0f };
+    simulation::Vector2D neg = -vec;
+    EXPECT_FLOAT_EQ(neg.x, 0.0f);
+    EXPECT_FLOAT_EQ(neg.y, 0.0f);
+}
+
+TEST(Vector2DTest, NegationNegativeValues) {
+    simulation::Vector2D vec { -5.0f, -2.0f };
+    simulation::Vector2D neg = -vec;
+    EXPECT_FLOAT_EQ(neg.x, 5.0f);
+    EXPECT_FLOAT_EQ(neg.y, 2.0f);
+}
+
+TEST(Vector2DTest, NegationMixedValues) {
+    simulation::Vector2D vec { 3.0f, -7.0f };
+    simulation::Vector2D neg = -vec;
+    EXPECT_FLOAT_EQ(neg.x, -3.0f);
+    EXPECT_FLOAT_EQ(neg.y, 7.0f);
+}
+
+TEST(Vector2DTest, NegationDoesNotModifyOriginal) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D neg = -vec;
+    EXPECT_FLOAT_EQ(vec.x, 3.0f);
+    EXPECT_FLOAT_EQ(vec.y, 4.0f);
+}
+
+TEST(Vector2DTest, NegationDoubleNegation) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D doubleNeg = -(-vec);
+    EXPECT_FLOAT_EQ(doubleNeg.x, vec.x);
+    EXPECT_FLOAT_EQ(doubleNeg.y, vec.y);
+}
+
+TEST(Vector2DTest, NegationMagnitudePreserved) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D neg = -vec;
+    EXPECT_FLOAT_EQ(vec.magnitude(), neg.magnitude());
+}
+
+TEST(Vector2DTest, NegationAdditionCancels) {
+    simulation::Vector2D vec { 5.0f, 3.0f };
+    simulation::Vector2D result = vec + (-vec);
+    EXPECT_FLOAT_EQ(result.x, 0.0f);
+    EXPECT_FLOAT_EQ(result.y, 0.0f);
+}
