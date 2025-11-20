@@ -33,7 +33,7 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 - Gérer le comportement d'un ensemble de boids (poissons).
 
 **Boucle de simulation main.cpp**
-- On utilisera SFML pour faire les premières simulations en 2D, on testera sur de petites quantités de poissons en faisant varier les forces sur les boids pour vérifier le comportement.
+- On utilisera SFML (Simple and Fast Multimedia Library) pour faire les premières simulations en 2D, on testera sur de petites quantités de poissons en faisant varier les forces sur les boids pour vérifier le comportement.
 
 **Faire des tests** 
 - Chaque fonction doit être testée et vérifiée pour avoir une modélisation correcte.

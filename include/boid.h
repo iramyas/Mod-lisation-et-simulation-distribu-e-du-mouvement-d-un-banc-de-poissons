@@ -7,6 +7,8 @@
 
 using simulation::Vector2D;
 
+//class BoidTest;
+
 class Boid {
 public:
     Vector2D position;
@@ -43,9 +45,12 @@ public:
     //gestion de bords
     //wraparound()/edges()
 
-private:
+
+    //friend class BoidTest;
+//private:  //pour le test
     //prendre en agruments un vecteur de pointeurs vers les objets boid pour trouver et renvoyer la liste des voisins
     std::vector<Boid*> getNeighbors(const std::vector<Boid*>& boids);
+    
 };
 
 

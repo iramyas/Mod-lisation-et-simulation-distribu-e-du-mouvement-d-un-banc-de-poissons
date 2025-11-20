@@ -129,11 +129,28 @@ TEST(BoidTest, ApplyForceRespectMaxForce) {
     EXPECT_LE(accelerationMag, boid.maxForce / boid.mass);
 }
 
-/*
+
 //############## Tests de separation ##############//
 TEST(BoidTest, SeparateNoNeighbors) { // sans voisins la force de séparation doit etre nulle
-    //to do
+    Boid boid(0.0f, 0.0f); 
+    std::vector<Boid*> flock;
+    Vector2D force= boid.separate(flock);
+
+    EXPECT_FLOAT_EQ(force.x, 0.0f);
+    EXPECT_FLOAT_EQ(force.y, 0.0f);
 }
+
+TEST(BoidTest, SeparateOneNeighborOnRight) {//la force de separation le pousse vers la gauche
+    Boid boid(0.0f, 0.0f);
+    Boid neighbor(1.0f, 0.0f); 
+
+    std::vector<Boid*> flock;
+    flock.push_back(&neighbor);
+    Vector2D force= boid.separate(flock);
+    EXPECT_LT(force.x, 0.0f);
+}
+
+/*
 TEST(BoidTest, SeparateOneBoidTooClose) {//retourne un vecteur qui pointe a l'opposé
     //
 }
@@ -144,9 +161,12 @@ TEST(BoidTest, SeparateMultipleBoids) {
 
 }
 TEST(BoidTest, SeparateIgnoreDistance) {}
-*/
-//############## Tests d'Alignement ##############//
 
+//############## Tests d'Alignement ##############//
+TEST(BoidTest, AligneNoNeighbors) { // sans voisins la force de séparation doit etre nulle
+    //to do
+}
+*/
 //############## Tests de Cohésion ##############//
 
 //tests de detection des voisins
