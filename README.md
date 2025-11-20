@@ -1,5 +1,8 @@
 # Modélisation-et-simulation-distribuée-du-mouvement-d-un-banc-de-poissons
-Projet M1 chps. 
+Projet M1 chps.
+
+## Membres du projet
+
 
 ## Installation
 

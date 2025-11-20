@@ -367,3 +367,60 @@ TEST(Vector2DTest, NegationAdditionCancels) {
     EXPECT_FLOAT_EQ(result.x, 0.0f);
     EXPECT_FLOAT_EQ(result.y, 0.0f);
 }
+
+// ################## Tests Division ################## //
+
+TEST(Vector2DTest, DivideScalarPositive) {
+    simulation::Vector2D vec { 10.0f, 20.0f };
+    simulation::Vector2D result = vec / 2.0f;
+    EXPECT_FLOAT_EQ(result.x, 5.0f);
+    EXPECT_FLOAT_EQ(result.y, 10.0f);
+}
+
+TEST(Vector2DTest, DivideScalarNegative) {
+    simulation::Vector2D vec { 10.0f, 20.0f };
+    simulation::Vector2D result = vec / -2.0f;
+    EXPECT_FLOAT_EQ(result.x, -5.0f);
+    EXPECT_FLOAT_EQ(result.y, -10.0f);
+}
+
+TEST(Vector2DTest, DivideScalarOne) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D result = vec / 1.0f;
+    EXPECT_FLOAT_EQ(result.x, 3.0f);
+    EXPECT_FLOAT_EQ(result.y, 4.0f);
+}
+
+TEST(Vector2DTest, DivideScalarFraction) {
+    simulation::Vector2D vec { 1.0f, 2.0f };
+    simulation::Vector2D result = vec / 0.5f;
+    EXPECT_FLOAT_EQ(result.x, 2.0f);
+    EXPECT_FLOAT_EQ(result.y, 4.0f);
+}
+
+TEST(Vector2DTest, DivideNegativeVector) {
+    simulation::Vector2D vec { -6.0f, -9.0f };
+    simulation::Vector2D result = vec / 3.0f;
+    EXPECT_FLOAT_EQ(result.x, -2.0f);
+    EXPECT_FLOAT_EQ(result.y, -3.0f);
+}
+
+TEST(Vector2DTest, DivideNotModifyOriginal) {
+    simulation::Vector2D vec { 10.0f, 20.0f };
+    simulation::Vector2D result = vec / 2.0f;
+    EXPECT_FLOAT_EQ(vec.x, 10.0f);
+    EXPECT_FLOAT_EQ(vec.y, 20.0f);
+}
+
+TEST(Vector2DTest, DivideByZero) {
+    simulation::Vector2D vec { 10.0f, 20.0f };
+    simulation::Vector2D result = vec / 0.0f;
+    EXPECT_FLOAT_EQ(result.x, 0.0f);
+    EXPECT_FLOAT_EQ(result.y, 0.0f);
+}
+TEST(Vector2DTest, DivideByVerySmallNumber) {
+    simulation::Vector2D vec { 10.0f, 20.0f };
+    simulation::Vector2D result = vec / 1e-10f;
+    EXPECT_FLOAT_EQ(result.x, 0.0f);
+    EXPECT_FLOAT_EQ(result.y, 0.0f);
+}

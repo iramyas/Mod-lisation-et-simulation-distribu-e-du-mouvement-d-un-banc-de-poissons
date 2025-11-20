@@ -13,11 +13,17 @@ namespace simulation {
         Vector2D(float x_, float y_) : x(x_), y(y_) {} // Initialise avec les paramètres
         ~Vector2D() = default;
 
-        // Operations arithmétiques (+, -, *)
+        // Operations arithmétiques (+, -, *, /)
 
         Vector2D operator+(const Vector2D& vec2) const { return  Vector2D{ x + vec2.x, y + vec2.y }; }
         Vector2D operator-(const Vector2D& vec2) const { return  Vector2D{ x - vec2.x, y - vec2.y }; }
         Vector2D operator*(float number) const { return Vector2D{ number * x, number * y }; }
+        Vector2D operator/(float number) const { 
+            if(std::fabs(number) <= EPSILON) {
+                return Vector2D{ 0.0f, 0.0f };
+            }
+            return Vector2D{ x / number, y / number };
+        }
 
         // Opérande de test
 
