@@ -1,8 +1,9 @@
 #include "gtest/gtest.h"
 #include <cmath>
 #include <vector>
-#include "boid.h"
 #include "vector2D.h"
+
+#include "boid.h"
 
 using simulation::Vector2D;
 
@@ -128,14 +129,31 @@ TEST(BoidTest, ApplyForceRespectMaxForce) {
     EXPECT_LE(accelerationMag, boid.maxForce / boid.mass);
 }
 
+/*
+//############## Tests de separation ##############//
+TEST(BoidTest, SeparateNoNeighbors) { // sans voisins la force de séparation doit etre nulle
+    //to do
+}
+TEST(BoidTest, SeparateOneBoidTooClose) {//retourne un vecteur qui pointe a l'opposé
+    //
+}
+TEST(BoidTest, SeparateTowBoidsOppositeDirection) { 
 
-//Tests de la régle de separation 
+}
+TEST(BoidTest, SeparateMultipleBoids) { 
 
+}
+TEST(BoidTest, SeparateIgnoreDistance) {}
+*/
+//############## Tests d'Alignement ##############//
 
-//test de la regle d'alignement
-
-//test de la regle de cohesion 
+//############## Tests de Cohésion ##############//
 
 //tests de detection des voisins
-
+TEST(BoidTEST, GetNeighborsEmptyFlock){
+    Boid boid(0.0f, 0.0f);
+    std::vector<Boid*> emptyFlock;
+    std::vector<Boid*> neighbors= boid.getNeighbors(emptyFlock);
+    EXPECT_EQ(neighbors.size(), 0); 
+}
 //edge test ()
