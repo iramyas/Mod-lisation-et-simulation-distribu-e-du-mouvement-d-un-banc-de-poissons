@@ -9,7 +9,7 @@ Un problème classique pour aborder la modélisation de systèmes complexes et l
 
 Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagis- sant en temps réel. La simulation devra être codée en C++ ou en Python, et exploitera les principes de modélisation multi-agents et de parallélisation pour garantir de bonnes performances lorsque le nombre de poissons simulés devient important.
 
-## Fonctionnement et déroulement d'implémentation 
+## Fonctionnement et déroulement de l'implémentation 
 
 **Classe Vector2D.h**
 - Pour gérer les positions et les vitesses.
