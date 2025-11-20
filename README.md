@@ -12,7 +12,7 @@ Un problème classique pour aborder la modélisation de systèmes complexes et l
 
 Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagis- sant en temps réel. La simulation devra être codée en C++ ou en Python, et exploitera les principes de modélisation multi-agents et de parallélisation pour garantir de bonnes performances lorsque le nombre de poissons simulés devient important.
 
-## Fonctionnement et déroulement d'implémentation 
+## Fonctionnement et déroulement de l'implémentation 
 
 **Classe Vector2D.h**
 - Pour gérer les positions et les vitesses.
@@ -23,11 +23,20 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 **Les 3 règles de Reynolds**
 - Implémentation des règles de "séparation, alignement et cohésion" dans la Classe Boid.
 
+*Séparation*
+- Les boids s'éloignent des voisins trop proches pour éviter les collisions. Chaque boid calcule un vecteur de répulsion basé sur la distance aux voisins dans sa zone de perception.
+
+*Alignement*
+- Les boids ajustent leur vitesse pour correspondre à la vitesse moyenne de leurs voisins locaux. Cela crée une synchronisation des mouvements au sein du groupe.
+
+*Cohésion*
+- Les boids se dirigent vers le centre de masse (position moyenne) de leurs voisins locaux. Cette règle maintient la cohésion du groupe
+
 **Classe Flock**
 - Gérer le comportement d'un ensemble de boids (poissons).
 
 **Boucle de simulation main.cpp**
-- On utilisera SFML pour faire les premières simulations en 2D, on testera sur de petites quantités de poissons en faisant varier les forces sur les boids pour vérifier le comportement.
+- On utilisera SFML (Simple and Fast Multimedia Library) pour faire les premières simulations en 2D, on testera sur de petites quantités de poissons en faisant varier les forces sur les boids pour vérifier le comportement.
 
 **Faire des tests** 
 - Chaque fonction doit être testée et vérifiée pour avoir une modélisation correcte.
