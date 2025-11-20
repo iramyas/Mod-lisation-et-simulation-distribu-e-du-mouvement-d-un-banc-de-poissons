@@ -3,8 +3,41 @@ Projet M1 chps.
 
 ## Membres du projet
 
-
 ## Installation
+
+### Dépendances
+```bash
+sudo apt update
+sudo apt install \
+    libx11-dev \
+    libxrandr-dev \
+    libxcursor-dev \
+    libxi-dev \
+    libudev-dev \
+    libgl1-mesa-dev \
+    libfreetype6-dev \
+    libgtest-dev \
+    cmake \
+    build-essential
+```
+
+### Compilation
+```
+mkdir -p build && cd build
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+cmake --build .
+
+```
+
+### Lancer la simulation
+```bash
+./bin/main_simulation.bin
+```
+
+### Lancer les tests
+```bash
+ctest --output-on-failure
+```
 
 ## Objectifs
 

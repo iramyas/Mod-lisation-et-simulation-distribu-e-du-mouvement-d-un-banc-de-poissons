@@ -1,13 +1,16 @@
-#include <SFML/Graphics.hpp>
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
 int main() {
-    sf::VideoMode mode({800u, 600u});
-    sf::RenderWindow window(mode, "Hello, banc de poisson");
+    // Création de la fenêtre principale
+    sf::VideoMode mode({800, 600});
+    sf::RenderWindow window(mode, "Banc de poisson");
 
+    // Main loop pour l'affichage
     while (window.isOpen()) {
-        while (auto event = window.pollEvent()) {
-            if (event->is<sf::Event::Closed>()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
@@ -15,6 +18,5 @@ int main() {
         window.display();
     }
 
-    std::cout << "Fenetre SFML FERME AVEC SUCCES.." << std::endl;
-    return 0;
+    return EXIT_SUCCESS;
 }
