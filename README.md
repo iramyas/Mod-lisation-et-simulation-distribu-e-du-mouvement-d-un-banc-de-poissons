@@ -47,11 +47,17 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 
 ## Fonctionnement et déroulement de l'implémentation 
 
+### **Phase 1 : Fondations** (fin novembre)
+
 **Classe Vector2D.h**
-- Pour gérer les positions et les vitesses.
+- Gestion des positions, des vitesses et accélérations
+- Opérations : addition, soustraction, normalisation, distance, rotation
+- **Tests unitaires** : Valider toutes les opérations
 
 **Classe Boid.h**
-- Cette classe représente un poisson, c'est-à-dire ses attributs essentiels et l'ensemble des voisins.
+- Représentation d'un poissonavec : position, vitesse, accélération
+
+### **Phase 2 : Règles de Reynolds** (début décembre)
 
 **Les 3 règles de Reynolds**
 - Implémentation des règles de "séparation, alignement et cohésion" dans la Classe Boid.
@@ -65,8 +71,12 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 *Cohésion*
 - Les boids se dirigent vers le centre de masse (position moyenne) de leurs voisins locaux. Cette règle maintient la cohésion du groupe
 
+### **Phase 3 : Gestion collective**(mi décembre)
+
 **Classe Flock**
 - Gérer le comportement d'un ensemble de boids (poissons).
+
+### **Phase 4 : Simulation visuelle**(mi décembre)
 
 **Boucle de simulation main.cpp**
 - On utilisera SFML (Simple and Fast Multimedia Library) pour faire les premières simulations en 2D, on testera sur de petites quantités de poissons en faisant varier les forces sur les boids pour vérifier le comportement.
@@ -74,6 +84,8 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 **Faire des tests** 
 - Chaque fonction doit être testée et vérifiée pour avoir une modélisation correcte.
 
+
+### **Phase 5 : Extensions** (Bonus)
 **OpenGL**
 - Cet outil sera utilisé pour faire la modélisation en 3D. Il faut se familiariser d'abord avec SFML pour pouvoir continuer.
 
