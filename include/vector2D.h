@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <iostream>
 
 namespace simulation {
     inline constexpr float EPSILON = 1e-6f;
@@ -15,10 +16,11 @@ namespace simulation {
 
         // Operations arithmétiques (+, -, *, /)
 
-        Vector2D operator+(const Vector2D& vec2) const { return  Vector2D{ x + vec2.x, y + vec2.y }; }
-        Vector2D operator-(const Vector2D& vec2) const { return  Vector2D{ x - vec2.x, y - vec2.y }; }
-        Vector2D operator*(float number) const { return Vector2D{ number * x, number * y }; }
-        Vector2D operator/(float number) const { 
+        Vector2D operator+(const Vector2D& vec2) const noexcept { return  Vector2D{ x + vec2.x, y + vec2.y }; }
+        Vector2D operator-(const Vector2D& vec2) const noexcept { return  Vector2D{ x - vec2.x, y - vec2.y }; }
+        Vector2D operator*(float number) const noexcept { return Vector2D{ number * x, number * y }; }
+        friend inline Vector2D operator*(float number, const Vector2D& vec) noexcept { return vec * number; }
+        Vector2D operator/(float number) const noexcept { 
             if(std::fabs(number) <= EPSILON) {
                 return Vector2D{ 0.0f, 0.0f };
             }
@@ -27,54 +29,67 @@ namespace simulation {
 
         // Opérande de test
 
-        bool operator==(const Vector2D& vec2) const { return std::fabs(x - vec2.x) <= EPSILON && std::fabs(y - vec2.y) <= EPSILON; }
+        bool operator==(const Vector2D& vec2) const noexcept { return std::fabs(x - vec2.x) <= EPSILON && std::fabs(y - vec2.y) <= EPSILON; }
 
         // Opérande affectation
 
-        Vector2D& operator+=(const Vector2D& vec2) {
+        Vector2D& operator+=(const Vector2D& vec2) noexcept {
             x += vec2.x;
             y += vec2.y;
             return *this;
         }
 
-        Vector2D& operator-=(const Vector2D& vec2) {
+        Vector2D& operator-=(const Vector2D& vec2) noexcept {
             x -= vec2.x;
             y -= vec2.y;
             return *this;
         }
 
-        Vector2D& operator*=(float scalar) {
+        Vector2D& operator*=(float scalar) noexcept {
             x *= scalar;
             y *= scalar;
             return *this;
         }
 
         // Opération de négation
-        Vector2D operator-() const { return Vector2D{ -x, -y }; }
+        Vector2D operator-() const noexcept { return Vector2D{ -x, -y }; }
 
         // Opérations vectorielles de base 
 
         // Norme
-        float magnitude() const { return std::sqrt(x * x + y * y); }
+        float magnitude() const noexcept { return std::sqrt(x * x + y * y); }
         // Norme au carrée
-        float magnitudeSquared() const { return x * x + y * y; }
+        float magnitudeSquared() const noexcept { return x * x + y * y; }
         // Vecteur Normalisé
-        Vector2D normalized() const {
+        Vector2D normalized() const noexcept {
             float mag = magnitude();
             if(mag <= EPSILON) return Vector2D{ 0.0f, 0.0f };
             return Vector2D{ x / mag, y / mag};
         }
         // Dot
-        float dot(const Vector2D& vec2) const { return x * vec2.x + y * vec2.y; } 
+        float dot(const Vector2D& vec2) const noexcept { return x * vec2.x + y * vec2.y; } 
 
         // Distance euclidienne
-        float distance(const Vector2D& vec2) const { return (*this - vec2).magnitude(); }
+        float distance(const Vector2D& vec2) const noexcept { return (*this - vec2).magnitude(); }
 
         // Distance au carrée
-        float distanceSquared(const Vector2D& vec2) const { return (*this - vec2).magnitudeSquared(); }
+        float distanceSquared(const Vector2D& vec2) const noexcept { return (*this - vec2).magnitudeSquared(); }
 
         // Angle (en radians)
-        double angle() const { return std::atan2(y, x); }
+        double angle() const noexcept { return std::atan2(y, x); }
+
+        // Rotation du vecteur par un angle (en radian)
+        Vector2D rotated(float theta) const noexcept {
+            float cos_a = std::cos(theta);
+            float sin_a = std::sin(theta);
+            return Vector2D{ x * cos_a - y * sin_a, x * sin_a + y * cos_a};
+        }
+
+        // Opérateur chevron << pour sortie debug
+        friend inline std::ostream& operator<<(std::ostream& os, const Vector2D& vec){
+            os << "(" << vec.x << ", " << vec.y << ")";
+            return os;
+        }
 
     };
 }

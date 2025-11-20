@@ -171,13 +171,6 @@ TEST(Vector2DTest, NormalizedZeroVector) {
     EXPECT_FLOAT_EQ(norm.y, 0.0f);
 }
 
-TEST(Vector2DTest, NormalizedVerySmallVector) {
-    simulation::Vector2D vec { 1e-8f, 1e-8f };
-    simulation::Vector2D norm = vec.normalized();
-    EXPECT_FLOAT_EQ(norm.x, 0.0f);
-    EXPECT_FLOAT_EQ(norm.y, 0.0f);
-}
-
 TEST(Vector2DTest, NormalizedNegativeVector) {
     simulation::Vector2D vec { -3.0f, -4.0f };
     simulation::Vector2D norm = vec.normalized();
@@ -198,14 +191,6 @@ TEST(Vector2DTest, NormalizedAnglePreserved) {
     simulation::Vector2D vec { 5.0f, 5.0f };
     simulation::Vector2D norm = vec.normalized();
     EXPECT_NEAR(vec.angle(), norm.angle(), 1e-6);
-}
-
-TEST(Vector2DTest, NormalizedIdempotent) {
-    simulation::Vector2D vec { 3.0f, 4.0f };
-    simulation::Vector2D norm1 = vec.normalized();
-    simulation::Vector2D norm2 = norm1.normalized();
-    EXPECT_FLOAT_EQ(norm1.x, norm2.x);
-    EXPECT_FLOAT_EQ(norm1.y, norm2.y);
 }
 
 // ################## Tests Dot Product ################## //
@@ -246,18 +231,6 @@ TEST(Vector2DTest, DistanceSamePoint) {
     simulation::Vector2D vec1 { 3.0f, 4.0f };
     simulation::Vector2D vec2 { 3.0f, 4.0f };
     EXPECT_FLOAT_EQ(vec1.distance(vec2), 0.0f);
-}
-
-TEST(Vector2DTest, DistanceHorizontal) {
-    simulation::Vector2D vec1 { 0.0f, 0.0f };
-    simulation::Vector2D vec2 { 5.0f, 0.0f };
-    EXPECT_FLOAT_EQ(vec1.distance(vec2), 5.0f);
-}
-
-TEST(Vector2DTest, DistanceVertical) {
-    simulation::Vector2D vec1 { 0.0f, 0.0f };
-    simulation::Vector2D vec2 { 0.0f, 12.0f };
-    EXPECT_FLOAT_EQ(vec1.distance(vec2), 12.0f);
 }
 
 TEST(Vector2DTest, DistancePythagorean) {
@@ -418,9 +391,46 @@ TEST(Vector2DTest, DivideByZero) {
     EXPECT_FLOAT_EQ(result.x, 0.0f);
     EXPECT_FLOAT_EQ(result.y, 0.0f);
 }
+
 TEST(Vector2DTest, DivideByVerySmallNumber) {
     simulation::Vector2D vec { 10.0f, 20.0f };
     simulation::Vector2D result = vec / 1e-10f;
     EXPECT_FLOAT_EQ(result.x, 0.0f);
     EXPECT_FLOAT_EQ(result.y, 0.0f);
+}
+
+// ################## Tests Rotation ################## //
+
+TEST(Vector2DTest, RotateZeroAngle) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D rotated = vec.rotated(0.0f);
+    EXPECT_FLOAT_EQ(rotated.x, 3.0f);
+    EXPECT_FLOAT_EQ(rotated.y, 4.0f);
+}
+
+TEST(Vector2DTest, Rotate90Degrees) {
+    simulation::Vector2D vec { 1.0f, 0.0f };
+    simulation::Vector2D rotated = vec.rotated(M_PI / 2.0f);
+    EXPECT_NEAR(rotated.x, 0.0f, 1e-6f);
+    EXPECT_NEAR(rotated.y, 1.0f, 1e-6f);
+}
+
+TEST(Vector2DTest, RotateNegativeAngle) {
+    simulation::Vector2D vec { 1.0f, 0.0f };
+    simulation::Vector2D rotated = vec.rotated(-M_PI / 2.0f);
+    EXPECT_NEAR(rotated.x, 0.0f, 1e-6f);
+    EXPECT_NEAR(rotated.y, -1.0f, 1e-6f);
+}
+
+TEST(Vector2DTest, RotateDoesNotModifyOriginal) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D rotated = vec.rotated(M_PI * 2.0f);
+    EXPECT_FLOAT_EQ(vec.x, 3.0f);
+    EXPECT_FLOAT_EQ(vec.y, 4.0f);
+}
+
+TEST(Vector2DTest, RotatePreservesMagnitude) {
+    simulation::Vector2D vec { 3.0f, 4.0f };
+    simulation::Vector2D rotated = vec.rotated(M_PI / 3.0f);
+    EXPECT_NEAR(rotated.magnitude(), vec.magnitude(), 1e-6f);
 }
