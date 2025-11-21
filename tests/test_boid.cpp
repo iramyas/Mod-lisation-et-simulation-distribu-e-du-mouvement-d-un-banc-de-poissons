@@ -150,23 +150,111 @@ TEST(BoidTest, SeparateOneNeighborOnRight) {//la force de separation le pousse v
     EXPECT_LT(force.x, 0.0f);
 }
 
-/*
-TEST(BoidTest, SeparateOneBoidTooClose) {//retourne un vecteur qui pointe a l'opposé
-    //
-}
-TEST(BoidTest, SeparateTowBoidsOppositeDirection) { 
 
+TEST(BoidTest, SeparateOneBoidTooClose) {
+    Boid boid1(0.0f, 0.0f);
+    Boid boid2(1.0f, 0.0f); // Très proche
+    
+    std::vector<Boid*> flock = { &boid2 };
+    Vector2D separationForce = boid1.separate(flock);
+    
+    // Force devrait pointer dans la direction opposée à boid2 (vers la gauche)
+    EXPECT_LT(separationForce.x, 0.0f); // Direction -x
 }
-TEST(BoidTest, SeparateMultipleBoids) { 
+TEST(BoidTest, SeparateTwoBoidsOppositeDirections) {
+    Boid boid1(0.0f, 0.0f);
+    Boid boid2(-1.0f, 0.0f); // À gauche
+    Boid boid3(1.0f, 0.0f);  // À droite
+    
+    std::vector<Boid*> flock = { &boid2, &boid3 };
+    Vector2D separationForce = boid1.separate(flock);
+    
+    // Forces devraient s'annuler (ou être proches de zéro)
+    EXPECT_NEAR(separationForce.x, 0.0f, 0.5f);
+}
 
+TEST(BoidTest, SeparateMultipleBoids) {
+    Boid boid1(0.0f, 0.0f);
+    Boid boid2(1.0f, 1.0f);
+    Boid boid3(1.0f, -1.0f);
+    Boid boid4(2.0f, 0.0f);
+    
+    std::vector<Boid*> flock = { &boid2, &boid3, &boid4 };
+    Vector2D separationForce = boid1.separate(flock);
+    
+    // Force devrait s'éloigner du centre de masse (vers -x)
+    EXPECT_LT(separationForce.x, 0.0f);
 }
-TEST(BoidTest, SeparateIgnoreDistance) {}
+
+TEST(BoidTest, SeparateIgnoresDistantBoids) {
+    Boid boid1(0.0f, 0.0f);
+    boid1.perceptionRadius = 5.0f;
+    Boid boid2(100.0f, 100.0f); // Très loin
+    
+    std::vector<Boid*> flock = { &boid2 };
+    Vector2D separationForce = boid1.separate(flock);
+    
+    // Boid trop loin ne devrait pas affecter
+    EXPECT_FLOAT_EQ(separationForce.magnitude(), 0.0f);
+}
 
 //############## Tests d'Alignement ##############//
-TEST(BoidTest, AligneNoNeighbors) { // sans voisins la force de séparation doit etre nulle
-    //to do
+TEST(BoidTest, AlignNoNeighbors) {
+    Boid boid(0.0f, 0.0f);
+    std::vector<Boid*> emptyFlock;
+    
+    Vector2D alignForce = boid.align(emptyFlock);
+    
+    EXPECT_FLOAT_EQ(alignForce.x, 0.0f);
+    EXPECT_FLOAT_EQ(alignForce.y, 0.0f);
 }
-*/
+
+TEST(BoidTest, AlignWithSameVelocity) {
+    Boid boid1(0.0f, 0.0f);
+    boid1.velocity = Vector2D(2.0f, 2.0f);
+    
+    Boid boid2(5.0f, 5.0f);
+    boid2.velocity = Vector2D(2.0f, 2.0f);
+    
+    std::vector<Boid*> flock = { &boid2 };
+    Vector2D alignForce = boid1.align(flock);
+    
+    // Déjà aligné, force devrait être nulle ou très faible
+    EXPECT_NEAR(alignForce.magnitude(), 0.0f, 0.1f);
+}
+
+TEST(BoidTest, AlignTowardsNeighborVelocity) {
+    Boid boid1(0.0f, 0.0f);
+    boid1.velocity = Vector2D(0.0f, 0.0f);
+    
+    Boid boid2(5.0f, 5.0f);
+    boid2.velocity = Vector2D(3.0f, 0.0f);
+    
+    std::vector<Boid*> flock = { &boid2 };
+    Vector2D alignForce = boid1.align(flock);
+    
+    // Force devrait pointer vers la droite (direction de boid2)
+    EXPECT_GT(alignForce.x, 0.0f);
+}
+
+TEST(BoidTest, AlignAveragesMultipleVelocities) {
+    Boid boid1(0.0f, 0.0f);
+    boid1.velocity = Vector2D(0.0f, 0.0f);
+    
+    Boid boid2(5.0f, 0.0f);
+    boid2.velocity = Vector2D(2.0f, 0.0f);
+    
+    Boid boid3(-5.0f, 0.0f);
+    boid3.velocity = Vector2D(-2.0f, 0.0f);
+    
+    std::vector<Boid*> flock = { &boid2, &boid3 };
+    Vector2D alignForce = boid1.align(flock);
+    
+    // Moyenne des velocities est (0, 0), donc force devrait être proche de zéro
+    EXPECT_NEAR(alignForce.x, 0.0f, 0.1f);
+}
+
+
 //############## Tests de Cohésion ##############//
 
 //tests de detection des voisins
