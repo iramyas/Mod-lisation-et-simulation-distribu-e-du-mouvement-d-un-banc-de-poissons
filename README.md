@@ -28,6 +28,7 @@ cmake -DCMAKE_BUILD_TYPE=Debug ..
 cmake --build .
 
 ```
+* Le ( -Werror ) dans le CMakeLists bloque la compilation de mon coté.
 
 ### Lancer la simulation
 ```bash
@@ -115,3 +116,5 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 - [SFML Documentation](https://www.sfml-dev.org/documentation/)
 - [GoogleTest](https://google.github.io/googletest/)
 - [Doxygen](https://www.doxygen.nl/)
+
+
