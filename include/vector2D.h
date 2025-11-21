@@ -13,11 +13,11 @@ namespace simulation {
      */
     class Vector2D {
     public:
-        float x; ///< Coordonnées X du vecteur
-        float y; ///< Coordonnées Y du vecteur
-
-        // Constructeur et destructeur
+        float x; ///< Coordonnée X du vecteur
+        float y; ///< Coordonnée Y du vecteur
         
+        // Constructeurs et Destructeur
+
         /**
          * @brief Constructeur par défaut (initialisation à 0)
          */
@@ -61,7 +61,7 @@ namespace simulation {
         /**
          * @brief Multiplication par un scalaire à gauche
          * @param number Coefficient multiplicateur
-         * @param vec Vecteur à multiplié
+         * @param vec Vecteur à multiplier
          * @return Nouveau vecteur multiplié
          */
         friend inline Vector2D operator*(float number, const Vector2D& vec) noexcept { return vec * number; }
@@ -83,7 +83,7 @@ namespace simulation {
         /**
          * @brief Comparaison d'égalité avec tolérance
          * @param vec2 Vecteur à comparer
-         * @return true si es vecteurs sont égaux à EPSILON près
+         * @return true si les vecteurs sont égaux à EPSILON près
          */
         bool operator==(const Vector2D& vec2) const noexcept { return std::fabs(x - vec2.x) <= EPSILON && std::fabs(y - vec2.y) <= EPSILON; }
 
@@ -111,7 +111,7 @@ namespace simulation {
 
         /**
          * @brief Multiplication-assignation (modifie le vecteur)
-         * @param scalar Scalaire à multiplié
+         * @param scalar Scalaire à multiplier
          * @return Référence au vecteur modifié
          */
         Vector2D& operator*=(float scalar) noexcept {
@@ -146,7 +146,7 @@ namespace simulation {
         /**
          * @brief Retourne un vecteur unitaire dans la même direction
          * @return Vecteur normalisé (norme = 1) ou (0, 0) si division par 0
-         * @note Protection contre division par zéro avec ESPILON
+         * @note Protection contre division par zéro avec EPSILON
          */
         Vector2D normalized() const noexcept {
             float mag = magnitude();
@@ -181,14 +181,14 @@ namespace simulation {
         float distanceSquared(const Vector2D& vec2) const noexcept { return (*this - vec2).magnitudeSquared(); }
 
         /**
-         * @brief Calculle l'angle du vecteur par rapport à l'axe X
+         * @brief Calcule l'angle du vecteur par rapport à l'axe X
          * @return Angle en radian [-pi, pi]
          * @note Peut provoquer des erreurs de l'ordre de 1e-6f
          */
         double angle() const noexcept { return std::atan2(y, x); }
 
         /**
-         * @brief Rotation du vecteur par un angle donnée
+         * @brief Rotation du vecteur par un angle donné
          * @param theta Angle de rotation (en radians)
          * @return Nouveau vecteur tourné
          * @note Préserve la magnitude du vecteur.
