@@ -35,8 +35,17 @@ cmake --build .
 ```
 
 ### Lancer les tests
+
+**Tous les tests :**
 ```bash
+cd build
 ctest --output-on-failure
+```
+
+**Tests individuels :**
+```bash
+./bin/test_vector.bin   # Tests Vector2D 
+./bin/test_boid.bin     # Tests Boid
 ```
 
 ## Objectifs
@@ -52,23 +61,27 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 **Classe Vector2D.h**
 - Gestion des positions, des vitesses et accélérations
 - Opérations : addition, soustraction, normalisation, distance, rotation
-- **Tests unitaires** : Valider toutes les opérations
+- **Tests unitaires** : `tests/test_vector.cpp`
+- **Statut** : Terminé (21/11/2025)
 
 **Classe Boid.h**
-- Représentation d'un poissonavec : position, vitesse, accélération
+- Représentation d'un poisson avec : position, vitesse, accélération
+- Méthodes : `update()`, `applyForce()`, règles de Reynolds
+- **Tests unitaires** : `tests/test_boid.cpp`
+- **Statut** : En cours
 
 ### **Phase 2 : Règles de Reynolds** (début décembre)
 
 **Les 3 règles de Reynolds**
 - Implémentation des règles de "séparation, alignement et cohésion" dans la Classe Boid.
 
-*Séparation*
+**Séparation**
 - Les boids s'éloignent des voisins trop proches pour éviter les collisions. Chaque boid calcule un vecteur de répulsion basé sur la distance aux voisins dans sa zone de perception.
 
-*Alignement*
+**Alignement**
 - Les boids ajustent leur vitesse pour correspondre à la vitesse moyenne de leurs voisins locaux. Cela crée une synchronisation des mouvements au sein du groupe.
 
-*Cohésion*
+**Cohésion**
 - Les boids se dirigent vers le centre de masse (position moyenne) de leurs voisins locaux. Cette règle maintient la cohésion du groupe
 
 ### **Phase 3 : Gestion collective**(mi décembre)
@@ -90,8 +103,15 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 - Cet outil sera utilisé pour faire la modélisation en 3D. Il faut se familiariser d'abord avec SFML pour pouvoir continuer.
 
 **d'autre types de comportement**
-- Il existe d'autre type de comportement d'un Flock de poissons, par exemple "vortex", on peux esseyer egalement de modeliser cela ou simplement comparer!
+- Il existe d'autres type de comportement d'un Flock de poissons, par exemple "vortex", on peut essayer également de modéliser cela ou simplement comparer!
 
+## Références
 
+**Modèle de Boids (Craig Reynolds, 1987)**
+- [Article original](https://www.red3d.com/cwr/boids/)
+- Reynolds, C. W. (1987). "Flocks, herds and schools: A distributed behavioral model"
 
-
+**Bibliothèques**
+- [SFML Documentation](https://www.sfml-dev.org/documentation/)
+- [GoogleTest](https://google.github.io/googletest/)
+- [Doxygen](https://www.doxygen.nl/)
