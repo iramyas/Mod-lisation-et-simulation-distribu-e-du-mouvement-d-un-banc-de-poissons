@@ -88,17 +88,58 @@ Vector2D Boid::separate(const std::vector<Boid*>& boids){
   return steering;
 }
 
+
+
 Vector2D Boid::align(const std::vector<Boid*>& boids){
-  return Vector2D();
+  Vector2D steering(0.0f, 0.0f);
+  int count=0;
+  for (Boid*other :boids) {
+    if(other==this) continue;
+    float distance =(other->position -position).magnitude();
+    if(distance >0.0f &&distance < perceptionRadius){
+      steering +=other->velocity;
+      ++count; 
+    }
+  }
+  if (count>0) {
+    steering= steering /static_cast<float>(count);
+
+    if (steering.magnitude()>0.0f) {
+      steering= steering.normalized()*maxSpeed;
+    }
+    steering-=velocity;
+    if (steering.magnitude() > maxForce){
+      steering =steering.normalized() * maxForce; 
+    }
+  }
+  return steering;
 }
+
+
+
 
 Vector2D Boid::cohesion(const std::vector<Boid*>& boids){
   return Vector2D();
 }
 
+
+
 Vector2D Boid::seek(const Vector2D& target) {
-    return Vector2D();  // TODO
+  Vector2D desired =target - position;
+  if (desired.magnitude()==0.0f){
+    return Vector2D(0.0f, 0.0f);
+  }
+  desired = desired.normalized() *maxSpeed;
+  Vector2D steering= desired - velocity;
+
+  if (steering.magnitude() > maxForce){
+    steering= steering.normalized() * maxForce;
+  }
+  return steering;
 }
+
+
+
 Vector2D Boid::flee(const Vector2D& target) {
     return Vector2D();  // todo
 }
