@@ -12,8 +12,8 @@ Boid::Boid()
     : position(),
       velocity(),
       acceleration(),
-      maxSpeed(5.0f),
       mass(1.0f),
+      maxSpeed(5.0f),
       maxForce(0.5f) {}
 //constructeur avec position
 Boid::Boid(float x, float y)
@@ -119,17 +119,34 @@ Vector2D Boid::align(const std::vector<Boid*>& boids){
 
 
 Vector2D Boid::cohesion(const std::vector<Boid*>& boids){
-  return Vector2D();
+  Vector2D center(0.0f,0.0f);
+  int count = 0;
+   
+  for (Boid* other :boids) {
+    if (other == this) continue;
+    float distance = (other->position - position).magnitude();
+    if (distance >0.0f && distance < perceptionRadius) {
+      center += other->position;
+      ++count;
+    }
+  }
+  if (count==0){
+    return Vector2D(0.0f, 0.0f);
+  }
+  center= center /static_cast<float>(count);
+
+  return seek(center);      //utiliser seek pour aller vers le centre
 }
 
 
 
 Vector2D Boid::seek(const Vector2D& target) {
   Vector2D desired =target - position;
+
   if (desired.magnitude()==0.0f){
     return Vector2D(0.0f, 0.0f);
   }
-  desired = desired.normalized() *maxSpeed;
+  desired = desired.normalized() * maxSpeed;
   Vector2D steering= desired - velocity;
 
   if (steering.magnitude() > maxForce){
@@ -141,6 +158,16 @@ Vector2D Boid::seek(const Vector2D& target) {
 
 
 Vector2D Boid::flee(const Vector2D& target) {
-    return Vector2D();  // todo
+  Vector2D desired = position - target;
+  if (desired.magnitude() == 0.0f) {
+    return Vector2D(0.0f, 0.0f);
+  }
+  desired = desired.normalized() * maxSpeed;
+  Vector2D steering = desired - velocity;
+
+  if (steering.magnitude() > maxForce) {
+    steering = steering.normalized() * maxForce; 
+  }
+  return steering; 
 }
 //rajouter warp around et rebondir
