@@ -131,6 +131,7 @@ TEST(BoidTest, ApplyForceRespectMaxForce) {
 
 
 //############## Tests de separation ##############//
+
 TEST(BoidTest, SeparateNoNeighbors) { // sans voisins la force de séparation doit etre nulle
     Boid boid(0.0f, 0.0f); 
     std::vector<Boid*> flock;
@@ -199,6 +200,7 @@ TEST(BoidTest, SeparateIgnoresDistantBoids) {
 }
 
 //############## Tests d'Alignement ##############//
+
 TEST(BoidTest, AlignNoNeighbors) {
     Boid boid(0.0f, 0.0f);
     std::vector<Boid*> emptyFlock;
@@ -260,6 +262,15 @@ TEST(BoidTest, AlignAveragesMultipleVelocities) {
 
 //############## Tests de Cohésion ##############//
 
+TEST(BoidTest, CohesionEmptyFlock){
+    Boid boid(0.0f, 0.0f);
+    std::vector<Boid*> emptyFlock;
+
+    Vector2D cohesionForce= boid.cohesion(emptyFlock);
+
+    EXPECT_EQ(cohesionForce.x, 0.0f);
+    EXPECT_EQ(cohesionForce.y, 0.0f);
+}
 //tests de detection des voisins
 TEST(BoidTEST, GetNeighborsEmptyFlock){
     Boid boid(0.0f, 0.0f);
