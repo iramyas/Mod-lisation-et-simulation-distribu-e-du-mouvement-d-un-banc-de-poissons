@@ -210,17 +210,20 @@ TEST(BoidTest, AlignNoNeighbors) {
 }
 
 TEST(BoidTest, AlignWithSameVelocity) {
+    float s= 5.0f /std::sqrt(2.0f);
+    Vector2D direction(s,s);    //norme de 5.0f puisque le maxSpeed = 5.0f
+
     Boid boid1(0.0f, 0.0f);
-    boid1.velocity = Vector2D(2.0f, 2.0f);
+    boid1.velocity = direction;
     
     Boid boid2(5.0f, 5.0f);
-    boid2.velocity = Vector2D(2.0f, 2.0f);
+    boid2.velocity = direction;
     
     std::vector<Boid*> flock = { &boid2 };
     Vector2D alignForce = boid1.align(flock);
     
     // Déjà aligné, force devrait être nulle ou très faible
-    EXPECT_NEAR(alignForce.magnitude(), 0.0f, 0.1f);
+    EXPECT_NEAR(alignForce.magnitude(), 0.0f, 1e-5f);
 }
 
 TEST(BoidTest, AlignTowardsNeighborVelocity) {
