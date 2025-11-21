@@ -271,7 +271,65 @@ TEST(BoidTest, CohesionEmptyFlock){
     EXPECT_EQ(cohesionForce.x, 0.0f);
     EXPECT_EQ(cohesionForce.y, 0.0f);
 }
-//tests de detection des voisins
+
+
+//########### Tests de Seek ##############//
+TEST(BoidTest, SeekTowardsTarget) {
+    Boid boid(0.0f,0.0f);
+    boid.velocity = Vector2D( 0.0f, 0.0f);
+    boid.maxSpeed= 5.0f;
+    boid.maxForce= 0.5f;
+
+    Vector2D target(10.0f, 0.0f);
+    Vector2D force= boid.seek(target);
+
+    EXPECT_GT(force.x, 0.0f);
+    EXPECT_LE(force.magnitude(), boid.maxForce + 1e-5f); 
+}
+
+TEST(BoidTest, SeekTargetGivesZeroForce) {
+    Boid boid(5.0f, 5.0f);
+    boid.velocity= Vector2D(1.0f, 0.0f);
+    Vector2D target(5.0f, 5.0f);
+
+    Vector2D force =boid.seek(target);
+
+    EXPECT_FLOAT_EQ(force.x , 0.0f);
+    EXPECT_FLOAT_EQ(force.y , 0.0f);
+}
+TEST(BoidTest, SeekRespectsMaxForce){
+    Boid boid(0.0f, 0.0f);
+    boid.velocity= Vector2D(0.0f, 0.0f);
+    boid.maxSpeed= 5.0f;
+    boid.maxForce= 0.5f;
+
+    Vector2D target(100.0f, 0.0f);
+    Vector2D force= boid.seek(target);
+
+    EXPECT_LE(force.magnitude(), boid.maxForce + 1e-5f);
+}
+
+TEST(BoidTest, SeekTakesCurrentVelocityIntoAccount){
+    Boid boid(0.0f, 0.0f);
+    boid.velocity= Vector2D(2.0f, 0.0f);
+    boid.maxSpeed= 5.0f;
+    boid.maxForce= 0.5f;
+
+    Vector2D target(10.0f, 0.0f);
+    Vector2D force= boid.seek(target);
+
+    EXPECT_GT(force.x, 0.0f);
+    EXPECT_LE(force.magnitude(), boid.maxForce + 1e-5f);
+}
+
+
+
+//########### Tests de flee ##############//
+
+
+
+
+//############## tests de detection des voisins ##############//
 TEST(BoidTEST, GetNeighborsEmptyFlock){
     Boid boid(0.0f, 0.0f);
     std::vector<Boid*> emptyFlock;
