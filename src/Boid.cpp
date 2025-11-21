@@ -13,16 +13,16 @@ Boid::Boid()
       velocity(),
       acceleration(),
       mass(1.0f),
-      maxSpeed(5.0f),
-      maxForce(0.5f) {}
+      maxSpeed(30.0f),
+      maxForce(2.5f) {}
 //constructeur avec position
 Boid::Boid(float x, float y)
     : position(x,y),
       velocity(),
       acceleration(),
       mass(1.0f),
-      maxSpeed(5.0f),
-      maxForce(0.5f),
+      maxSpeed(30.0f),
+      maxForce(2.5f),
       perceptionRadius(50.0f) {}
 //constructeur avec position et velocity
 Boid::Boid(Vector2D pos, Vector2D vel)
@@ -30,8 +30,8 @@ Boid::Boid(Vector2D pos, Vector2D vel)
       velocity(vel),
       acceleration(),
       mass(1.0f),
-      maxSpeed(5.0f),
-      maxForce(0.5f),
+      maxSpeed(30.0f),
+      maxForce(2.5f),
       perceptionRadius(50.0f) {}
 
 
@@ -84,7 +84,15 @@ Vector2D Boid::separate(const std::vector<Boid*>& boids){
       count++;
     }
   }
-  if (count > 0){steering = steering /static_cast<float>(count);}  //moyenne  
+  if (count > 0){steering = steering /static_cast<float>(count);}//moyenne 
+  else { return Vector2D(0.0f, 0.0f);}
+  if (steering.magnitude() > 0.0f){
+    steering = steering.normalized() *maxSpeed;
+    steering -=velocity;
+    if (steering.magnitude() > maxForce) {
+      steering = steering.normalized() *maxForce;
+    }
+  }
   return steering;
 }
 
