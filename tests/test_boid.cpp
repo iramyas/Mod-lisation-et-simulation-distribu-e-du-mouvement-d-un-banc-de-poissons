@@ -272,6 +272,18 @@ TEST(BoidTest, CohesionEmptyFlock){
     EXPECT_EQ(cohesionForce.y, 0.0f);
 }
 
+TEST(BoidTest, CohesionSingleNeighborRight) {
+    Boid boid(0.0f, 0.0f);
+    boid.perceptionRadius = 50.0f;
+    boid.velocity = Vector2D(0.0f, 0.0f);
+
+    Boid neighbor(10.0f, 0.0f);
+    std::vector<Boid*> flock = { &neighbor };
+
+    Vector2D cohesionForce = boid.cohesion(flock);
+
+    EXPECT_GT(cohesionForce.x, 0.0f); // doit aller vers +x
+}
 
 //########### Tests de Seek ##############//
 TEST(BoidTest, SeekTowardsTarget) {
@@ -325,8 +337,38 @@ TEST(BoidTest, SeekTakesCurrentVelocityIntoAccount){
 
 
 //########### Tests de flee ##############//
+TEST(BoidTest, FleePointsAwayFromThreat){
+    Boid boid(0.0f, 0.0f);
+    boid.velocity = Vector2D(0.0f, 0.0f);
+    boid.maxSpeed= 5.0f;
+    boid.maxForce= 0.5f;
 
+    Vector2D threat(100.0f, 0.0f);
+    Vector2D force = boid.flee(threat);
+    EXPECT_LT(force.x, 0.0f); 
+}
 
+TEST(BoidTest, FleeRespectsMaxForce) {
+    Boid boid(0.0f, 0.0f);
+    boid.velocity= Vector2D(0.0f, 0.0f);
+    boid.maxSpeed= 5.0f;
+    boid.maxForce =0.5f;
+
+    Vector2D threat(100.0f, 0.0f);
+    Vector2D force =boid.flee(threat);
+
+    EXPECT_LE(force.magnitude(), boid.maxForce + 1e-5f);
+}
+
+TEST(BoidTest, FleeZeroWhenOnThreat) {
+    Boid boid(2.0f, 3.0f);
+    Vector2D threat(2.0f, 3.0f);
+
+    Vector2D force = boid.flee(threat);
+
+    EXPECT_FLOAT_EQ(force.x, 0.0f);
+    EXPECT_FLOAT_EQ(force.y, 0.0f);
+}
 
 
 //############## tests de detection des voisins ##############//
