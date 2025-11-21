@@ -75,7 +75,7 @@ Vector2D Boid::separate(const std::vector<Boid*>& boids){
   Vector2D steering(0.0f, 0.0f);
   int count=0;   //compte le nombre de voisins et sers pour faire la moyenne a la fin
   for (Boid* other :boids){  //boucle sur chaque pointeur other dans le vecteur boids
-    if (other != this) continue; 
+    if (other == this) continue; 
     Vector2D diff= position -other->position;         //calcule le vecteur diff allant de l'autre boid vers celui ci
     float d= diff.magnitude();      //calcule la distance entre 2 boids 
     if (d> 0.0f && d < perceptionRadius){  //distance strict positive . si  un boid est trop loin ca n'influence pas la separation
