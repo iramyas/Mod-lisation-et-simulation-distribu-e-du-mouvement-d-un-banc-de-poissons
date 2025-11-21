@@ -107,12 +107,12 @@ Vector2D Boid::align(const std::vector<Boid*>& boids){
     if (steering.magnitude()>0.0f) {
       steering= steering.normalized()*maxSpeed;
     }
-    steering-=velocity;
-    if (steering.magnitude() > maxForce){
+    steering -= velocity;     // le boid doit s'ajuster a la meeme vitesse que ses voisins 
+    if (steering.magnitude() > maxForce){  // mais ils ont deja la meme vitesse donc 0 diff a part si on ajoute des tailles differentes 
       steering =steering.normalized() * maxForce; 
     }
   }
-  return steering;
+  return steering;   //retourne le vecteur (force d'alignement)
 }
 
 
