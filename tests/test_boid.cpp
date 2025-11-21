@@ -285,6 +285,36 @@ TEST(BoidTest, CohesionSingleNeighborRight) {
     EXPECT_GT(cohesionForce.x, 0.0f); // doit aller vers +x
 }
 
+TEST(BoidTest, CohesionMultipleNeighborsTowardsCenter) {
+    Boid boid(0.0f, 0.0f);
+    boid.perceptionRadius = 50.0f;
+    boid.velocity = Vector2D(0.0f, 0.0f);
+
+    Boid n1(10.0f, 0.0f);   
+    Boid n2(0.0f, 10.0f);   
+    std::vector<Boid*> flock = { &n1, &n2 };
+
+    Vector2D cohesionForce = boid.cohesion(flock);
+
+    // Le centre de masse est autour de (5,5), donc la force doit avoir x>0 et y>0
+    EXPECT_GT(cohesionForce.x, 0.0f);
+    EXPECT_GT(cohesionForce.y, 0.0f);
+}
+
+TEST(BoidTest, CohesionIgnoresDistantBoids) { // que les boids proche (whithin perception radius)
+    Boid boid(0.0f, 0.0f);
+    boid.perceptionRadius = 5.0f;     // trés petit
+    boid.velocity = Vector2D(0.0f, 0.0f);
+
+    Boid farBoid(100.0f, 0.0f);
+    std::vector<Boid*> flock = { &farBoid };
+
+    Vector2D cohesionForce = boid.cohesion(flock);
+
+    EXPECT_FLOAT_EQ(cohesionForce.x, 0.0f);
+    EXPECT_FLOAT_EQ(cohesionForce.y, 0.0f);
+}
+
 //########### Tests de Seek ##############//
 TEST(BoidTest, SeekTowardsTarget) {
     Boid boid(0.0f,0.0f);
