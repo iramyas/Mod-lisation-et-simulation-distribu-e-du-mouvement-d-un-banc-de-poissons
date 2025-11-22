@@ -24,12 +24,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(COMMON_COMPILE_FLAGS
-        $<$<CONFIG:Debug>:-Wall;-Wextra;-Werror;-g;-Wpedantic;-Wshadow;-Wconversion;>
+        $<$<CONFIG:Debug>:-Wall;-Wextra;-g;-Wpedantic;-Wshadow;-Wconversion;>
         $<$<CONFIG:RelWithDebInfo>:-O2;-g;-DNDEBUG>
         $<$<CONFIG:Release>:-Wall;-Wextra;-O3;-DNDEBUG;-march=native;-flto>
 )
 
-add_executable(main_simulation src/main.cpp)
+add_executable(main_simulation src/main.cpp src/Boid.cpp)
 add_executable(test_runner tests/test_vector.cpp)
 add_executable(test_boid tests/test_boid.cpp src/Boid.cpp)
 

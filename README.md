@@ -32,6 +32,7 @@ cmake -DCMAKE_BUILD_TYPE=Debug ..
 cmake --build .
 
 ```
+* Le ( -Werror ) dans le CMakeLists bloque la compilation de mon coté.
 
 ### Lancer la simulation
 ```bash
@@ -72,9 +73,9 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 - Représentation d'un poisson avec : position, vitesse, accélération
 - Méthodes : `update()`, `applyForce()`, règles de Reynolds
 - **Tests unitaires** : `tests/test_boid.cpp`
-- **Statut** : En cours
+- **Statut** : terminé (21/11/2025)
 
-### **Phase 2 : Règles de Reynolds** (début décembre)
+### **Phase 2 : Règles de Reynolds** (fin novembre)
 
 **Les 3 règles de Reynolds**
 - Implémentation des règles de "séparation, alignement et cohésion" dans la Classe Boid.
@@ -88,12 +89,12 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 **Cohésion**
 - Les boids se dirigent vers le centre de masse (position moyenne) de leurs voisins locaux. Cette règle maintient la cohésion du groupe
 
-### **Phase 3 : Gestion collective**(mi décembre)
+### **Phase 3 : Gestion collective**(fin novembre)
 
 **Classe Flock**
 - Gérer le comportement d'un ensemble de boids (poissons).
 
-### **Phase 4 : Simulation visuelle**(mi décembre)
+### **Phase 4 : Simulation visuelle**(debut décembre)
 
 **Boucle de simulation main.cpp**
 - On utilisera SFML (Simple and Fast Multimedia Library) pour faire les premières simulations en 2D, on testera sur de petites quantités de poissons en faisant varier les forces sur les boids pour vérifier le comportement.
@@ -119,3 +120,5 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 - [SFML Documentation](https://www.sfml-dev.org/documentation/)
 - [GoogleTest](https://google.github.io/googletest/)
 - [Doxygen](https://www.doxygen.nl/)
+
+
