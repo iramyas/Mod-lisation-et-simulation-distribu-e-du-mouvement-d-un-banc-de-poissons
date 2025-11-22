@@ -2,6 +2,10 @@
 Projet M1 chps.
 
 ## Membres du projet
+- Yohann Front-Reignier
+- 
+- 
+- 
 
 ## Installation
 
