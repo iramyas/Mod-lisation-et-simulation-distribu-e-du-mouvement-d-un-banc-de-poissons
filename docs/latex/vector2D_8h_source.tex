@@ -1,96 +1,96 @@
 \doxysection{vector2\+D.\+h}
 \hypertarget{vector2D_8h_source}{}\label{vector2D_8h_source}\index{include/vector2D.h@{include/vector2D.h}}
-
+\mbox{\hyperlink{vector2D_8h}{Aller à la documentation de ce fichier.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <cmath>}}
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
 \DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }simulation\ \{}
-\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ EPSILON\ =\ 1e-\/6f;}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}};\ }
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}};\ }
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructeurs\ et\ Destructeur}}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a204f4c4216bb494178f8d30db11475c7}{Vector2D}}()\ :\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}(0.0f),\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}(0.0f)\ \{\}}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a4c795eb04a3a69668d9efb4695ef6333}{Vector2D}}(\textcolor{keywordtype}{float}\ x\_,\ \textcolor{keywordtype}{float}\ y\_)\ :\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}(x\_),\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}(y\_)\ \{\}}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a76775e76dad0148231d83d140f7a01ad}{\string~Vector2D}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Operations\ arithmétiques\ (+,\ -\/,\ *,\ /)}}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a520d54c30b3e3b1267cb25a0a86f2f71}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ +\ vec2.\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}},\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ +\ vec2.y\ \};\ \}}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_af7cefd0cc42143ab813a9455d434d6a3}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ -\/\ vec2.\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}},\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ -\/\ vec2.y\ \};\ \}}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a89bf956a32b189be286d3b7a5d2d04e8}{operator*}}(\textcolor{keywordtype}{float}\ number)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ number\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}},\ number\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ \};\ \}}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a291b7a792ded1296a552eef3d2db5331}{operator*}}(\textcolor{keywordtype}{float}\ number,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec)\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ vec\ *\ number;\ \}}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a7e681852d54993e862e5d6b9de3cc8ed}{operator/}}(\textcolor{keywordtype}{float}\ number)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ }
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::fabs(number)\ <=\ EPSILON)\ \{}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ 0.0f,\ 0.0f\ \};}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ /\ number,\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ /\ number\ \};}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_ac892043b2d2ac0bae0d03462857969bb}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ std::fabs(\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ -\/\ vec2.x)\ <=\ EPSILON\ \&\&\ std::fabs(\mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ -\/\ vec2.y)\ <=\ EPSILON;\ \}}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ \mbox{\hyperlink{classsimulation_1_1Vector2D_ac09549363be8ba1d66ec353b3dd3a7ee}{operator+=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{noexcept}\ \{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ +=\ vec2.\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}};}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ +=\ vec2.y;}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a67731c1fce26ed9e417b2630fb1baa10}{operator-\/=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{noexcept}\ \{}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ -\/=\ vec2.\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}};}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ -\/=\ vec2.y;}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a50a548adc4ff084e7de4f007cdbf8352}{operator*=}}(\textcolor{keywordtype}{float}\ scalar)\ \textcolor{keyword}{noexcept}\ \{}
-\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *=\ scalar;}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *=\ scalar;}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_af5e527fe0f1c720bb34aab234faa8f34}{operator-\/}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ -\/\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}},\ -\/\mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ \};\ \}}
-\DoxyCodeLine{00129\ }
-\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_ab46c08e7dae0b3aac744660953aaabf0}{magnitude}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ std::sqrt(\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ +\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}});\ \}}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a5bc33080b1761d5fc7bc72830e11d970}{magnitudeSquared}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ +\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}};\ \}}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_aa786fc44f0ae3f740467680d51d8cfb3}{normalized}}()\ const\ noexcept\ \{}
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ mag\ =\ \mbox{\hyperlink{classsimulation_1_1Vector2D_ab46c08e7dae0b3aac744660953aaabf0}{magnitude}}();}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mag\ <=\ EPSILON)\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ 0.0f,\ 0.0f\ \};}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ /\ mag,\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ /\ mag\};}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a6743b23dc66b09a7b0a5a9d2be42ae60}{dot}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *\ vec2.x\ +\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *\ vec2.y;\ \}\ }
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a9d871aef4d3796d3cd2ed388d6418462}{distance}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this}\ -\/\ vec2).magnitude();\ \}}
-\DoxyCodeLine{00174\ }
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a387a4317139380a2aaf04199c8d4f19a}{distanceSquared}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this}\ -\/\ vec2).magnitudeSquared();\ \}}
-\DoxyCodeLine{00182\ }
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_aeb5fdc1b34a96d5e27591c5489850d46}{angle}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ std::atan2(\mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}},\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}});\ \}}
-\DoxyCodeLine{00189\ }
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_aa28082498730c11d5ca3eb1b50d244b6}{rotated}}(\textcolor{keywordtype}{float}\ theta)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ cos\_a\ =\ std::cos(theta);}
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ sin\_a\ =\ std::sin(theta);}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *\ cos\_a\ -\/\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *\ sin\_a,\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *\ sin\_a\ +\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *\ cos\_a\};}
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00202\ }
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a3042faf2fa1b8228cc82456632e02532}{operator<<}}(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec)\{}
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ vec.\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ vec.\mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ <<\ \textcolor{stringliteral}{"{})"{}};}
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00213\ }
-\DoxyCodeLine{00214\ \ \ \ \ \};}
-\DoxyCodeLine{00215\ \}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesimulation}{simulation}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacesimulation_a4746bcd09a7bb59b1796fa6d031948d0}{EPSILON}}\ =\ 1e-\/6f;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}};\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}};\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructeurs\ et\ Destructeur}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a204f4c4216bb494178f8d30db11475c7}{Vector2D}}()\ :\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}(0.0f),\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}(0.0f)\ \{\}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a4c795eb04a3a69668d9efb4695ef6333}{Vector2D}}(\textcolor{keywordtype}{float}\ x\_,\ \textcolor{keywordtype}{float}\ y\_)\ :\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}(x\_),\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}(y\_)\ \{\}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a76775e76dad0148231d83d140f7a01ad}{\string~Vector2D}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Operations\ arithmétiques\ (+,\ -\/,\ *,\ /)}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a520d54c30b3e3b1267cb25a0a86f2f71}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ +\ vec2.\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}},\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ +\ vec2.y\ \};\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_af7cefd0cc42143ab813a9455d434d6a3}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ -\/\ vec2.\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}},\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ -\/\ vec2.y\ \};\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a89bf956a32b189be286d3b7a5d2d04e8}{operator*}}(\textcolor{keywordtype}{float}\ number)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ number\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}},\ number\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ \};\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a291b7a792ded1296a552eef3d2db5331}{operator*}}(\textcolor{keywordtype}{float}\ number,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec)\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ vec\ *\ number;\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a7e681852d54993e862e5d6b9de3cc8ed}{operator/}}(\textcolor{keywordtype}{float}\ number)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(std::fabs(number)\ <=\ \mbox{\hyperlink{namespacesimulation_a4746bcd09a7bb59b1796fa6d031948d0}{EPSILON}})\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ 0.0f,\ 0.0f\ \};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ /\ number,\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ /\ number\ \};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_ac892043b2d2ac0bae0d03462857969bb}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ std::fabs(\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ -\/\ vec2.x)\ <=\ \mbox{\hyperlink{namespacesimulation_a4746bcd09a7bb59b1796fa6d031948d0}{EPSILON}}\ \&\&\ std::fabs(\mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ -\/\ vec2.y)\ <=\ \mbox{\hyperlink{namespacesimulation_a4746bcd09a7bb59b1796fa6d031948d0}{EPSILON}};\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ \mbox{\hyperlink{classsimulation_1_1Vector2D_ac09549363be8ba1d66ec353b3dd3a7ee}{operator+=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ +=\ vec2.\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ +=\ vec2.y;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a67731c1fce26ed9e417b2630fb1baa10}{operator-\/=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ -\/=\ vec2.\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ -\/=\ vec2.y;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a50a548adc4ff084e7de4f007cdbf8352}{operator*=}}(\textcolor{keywordtype}{float}\ scalar)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *=\ scalar;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *=\ scalar;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_af5e527fe0f1c720bb34aab234faa8f34}{operator-\/}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ -\/\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}},\ -\/\mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ \};\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_ab46c08e7dae0b3aac744660953aaabf0}{magnitude}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ std::sqrt(\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ +\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}});\ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a5bc33080b1761d5fc7bc72830e11d970}{magnitudeSquared}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ +\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}};\ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_aa786fc44f0ae3f740467680d51d8cfb3}{normalized}}()\ const\ noexcept\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ mag\ =\ \mbox{\hyperlink{classsimulation_1_1Vector2D_ab46c08e7dae0b3aac744660953aaabf0}{magnitude}}();}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mag\ <=\ \mbox{\hyperlink{namespacesimulation_a4746bcd09a7bb59b1796fa6d031948d0}{EPSILON}})\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ 0.0f,\ 0.0f\ \};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ /\ mag,\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ /\ mag\};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a6743b23dc66b09a7b0a5a9d2be42ae60}{dot}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *\ vec2.x\ +\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *\ vec2.y;\ \}\ }
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a9d871aef4d3796d3cd2ed388d6418462}{distance}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this}\ -\/\ vec2).magnitude();\ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a387a4317139380a2aaf04199c8d4f19a}{distanceSquared}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec2)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{\ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this}\ -\/\ vec2).magnitudeSquared();\ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_aeb5fdc1b34a96d5e27591c5489850d46}{angle}}()\ const\ noexcept\ \{\ \textcolor{keywordflow}{return}\ std::atan2(\mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}},\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}});\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Vector2D_aa28082498730c11d5ca3eb1b50d244b6}{rotated}}(\textcolor{keywordtype}{float}\ theta)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ cos\_a\ =\ std::cos(theta);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ sin\_a\ =\ std::sin(theta);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\{\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *\ cos\_a\ -\/\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *\ sin\_a,\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ *\ sin\_a\ +\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ *\ cos\_a\};}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{classsimulation_1_1Vector2D_a3042faf2fa1b8228cc82456632e02532}{operator<<}}(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ vec)\{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ vec.\mbox{\hyperlink{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}{x}}\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ vec.\mbox{\hyperlink{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}{y}}\ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \};}
+\DoxyCodeLine{00219\ \}}
 
 \end{DoxyCode}

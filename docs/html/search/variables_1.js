@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_0',['y',['../classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a',1,'simulation::Vector2D']]]
+  ['epsilon_0',['EPSILON',['../namespacesimulation.html#a4746bcd09a7bb59b1796fa6d031948d0',1,'simulation']]]
 ];

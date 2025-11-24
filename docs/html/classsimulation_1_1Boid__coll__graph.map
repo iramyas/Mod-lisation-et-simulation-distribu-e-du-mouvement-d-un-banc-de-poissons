@@ -1,0 +1,5 @@
+<map id="simulation::Boid" name="simulation::Boid">
+<area shape="rect" id="Node000001" title="Représenation d&#39;un boid (agent autonome du banc de poisson)" alt="" coords="21,123,149,148"/>
+<area shape="rect" id="Node000002" href="$classsimulation_1_1Vector2D.html" title="Représentation d&#39;un vecteur en 2 dimension pour simuler des comportements physiques." alt="" coords="5,5,164,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,44,87,123,82,123,82,44"/>
+</map>

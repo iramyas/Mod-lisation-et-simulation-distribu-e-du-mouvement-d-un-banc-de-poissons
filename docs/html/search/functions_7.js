@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7evector2d_0',['~Vector2D',['../classsimulation_1_1Vector2D.html#a76775e76dad0148231d83d140f7a01ad',1,'simulation::Vector2D']]]
+  ['normalized_0',['normalized',['../classsimulation_1_1Vector2D.html#aa786fc44f0ae3f740467680d51d8cfb3',1,'simulation::Vector2D']]]
 ];

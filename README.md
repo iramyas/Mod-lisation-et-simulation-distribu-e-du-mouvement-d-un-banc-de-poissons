@@ -82,7 +82,7 @@ ctest --verbose
 ### Générer la documentation
 ```bash
 doxygen Doxyfile
-firefox docs/html/index.html # Ouvrir dans le navigateur
+firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 ```
 
 ## Fonctionnement et déroulement de l'implémentation 
@@ -100,7 +100,6 @@ firefox docs/html/index.html # Ouvrir dans le navigateur
 - Méthodes : `update()`, `applyForce()`, règles de Reynolds
 - **Tests unitaires** : `tests/test_boid.cpp`
 - **Statut** : Terminé (22/11/2025)
-- **Note** : Il manque la documentation doxygen
 
 ### **Phase 2 : Règles de Reynolds** (Terminée)
 
@@ -115,7 +114,6 @@ firefox docs/html/index.html # Ouvrir dans le navigateur
 
 - **Test unitaires** : `tests/test_boid.cpp` (on créera sûrement un fichier à part pour améliorer la lisibilité)
 - **Statut** : Terminé (22/11/2025)
-- **Note** : Il manque la documentation doxygen
 
 ### **Phase 3 : Gestion collective**(fin novembre)
 

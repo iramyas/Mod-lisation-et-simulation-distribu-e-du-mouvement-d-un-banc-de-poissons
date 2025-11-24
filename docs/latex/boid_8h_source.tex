@@ -1,63 +1,51 @@
 \doxysection{boid.\+h}
 \hypertarget{boid_8h_source}{}\label{boid_8h_source}\index{include/boid.h@{include/boid.h}}
-
+\mbox{\hyperlink{boid_8h}{Aller à la documentation de ce fichier.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{comment}{//definition\ de\ l'agent\ }}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ BOID\_H}}
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ BOID\_H}}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector2D_8h}{vector2D.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
 \DoxyCodeLine{00004\ }
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vector2D.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsimulation_1_1Vector2D}{simulation::Vector2D}};}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{comment}{//class\ BoidTest;}}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBoid}{Boid}}\ \{}
-\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ position;}
-\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ velocity;}
-\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ acceleration;}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//parametres\ physiques}}
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ mass;}
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{float}\ maxSpeed;}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ maxForce;}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ perceptionRadius;}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//constructeurs}}
-\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classBoid}{Boid}}();}
-\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classBoid}{Boid}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y);}
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classBoid}{Boid}}(\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ pos,\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ vel);}
-\DoxyCodeLine{00030\ \ \ \ \ }
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//methodes\ de\ mise\ a\ jour}}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{float}\ deltaTime);\ \ \textcolor{comment}{//mise\ a\ jour\ de\ la\ vitesse\ avec\ l'accélération\ /position}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesimulation}{simulation}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsimulation_1_1Boid}{Boid}}}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Boid_a7b4ec877d18f38188f9c8c2f69d230a7}{position}};\ \ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Boid_af0b5c99b6bcb758ad6ec771a62d62f61}{velocity}};\ \ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Boid_aee29610759103a4835a111afb03e9130}{acceleration}};\ \ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ parametres\ physiques}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Boid_a0fd81a0582489e6955e0a1d1104c272e}{mass}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Boid_afcb9c9efdb3b3bdc35a365fab5d170e6}{maxSpeed}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Boid_a6cdeaa9b3d4fcbaef2508d9e62574e2b}{maxForce}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classsimulation_1_1Boid_a1a92dc1e670ef2acdbc2009d9cd40967}{perceptionRadius}};\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Boid_aa857d5931b606e6e3e807adbcebc39c2}{Boid}}();}
 \DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ applyForce(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ force);\ \ \ \ }
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//les\ 3\ regles\ de\ reynolds}}
-\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ separate(\textcolor{keyword}{const}\ std::vector<Boid*>\&\ boids);}
-\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ align(\textcolor{keyword}{const}\ std::vector<Boid*>\&\ boids);}
-\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ cohesion(\textcolor{keyword}{const}\ std::vector<Boid*>\&\ boids);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Boid_aa857d5931b606e6e3e807adbcebc39c2}{Boid}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y);}
 \DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ seek(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ target);}
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ flee(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\&\ target);}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//gestion\ de\ bords}}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//wraparound()/edges()}}
-\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Boid_aa857d5931b606e6e3e807adbcebc39c2}{Boid}}(\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ pos,\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ vel);}
 \DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//friend\ class\ BoidTest;}}
-\DoxyCodeLine{00050\ \textcolor{comment}{//private:\ \ //pour\ le\ test}}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//prendre\ en\ agruments\ un\ vecteur\ de\ pointeurs\ vers\ les\ objets\ boid\ pour\ trouver\ et\ renvoyer\ la\ liste\ des\ voisins}}
-\DoxyCodeLine{00052\ \ \ \ \ std::vector<Boid*>\ getNeighbors(\textcolor{keyword}{const}\ std::vector<Boid*>\&\ boids);}
-\DoxyCodeLine{00053\ \ \ \ \ }
-\DoxyCodeLine{00054\ \};}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsimulation_1_1Boid_a2fa3f68c378c0975920dc3ef74745b53}{update}}(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsimulation_1_1Boid_a3387418e0e32585decb43ec24b092a64}{applyForce}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \&force);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ les\ 3\ regles\ de\ reynolds}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Boid_a73d8add816755957593dfb4f5810626c}{separate}}(\textcolor{keyword}{const}\ std::vector<Boid\ *>\ \&boids);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Boid_a88c4fd88e4ce03afca6497c34b0fbdbe}{align}}(\textcolor{keyword}{const}\ std::vector<Boid\ *>\ \&boids);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Boid_a1f3997c5fce39ae86b2a7e74e9fcef33}{cohesion}}(\textcolor{keyword}{const}\ std::vector<Boid\ *>\ \&boids);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Boid_a4ba17bbf35ec1d72acfedfc18ebfe4ce}{seek}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \&target);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \mbox{\hyperlink{classsimulation_1_1Boid_ad2f680621bd68cbc948ed4897e451b77}{flee}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}\ \&target);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ std::vector<Boid\ *>\ \mbox{\hyperlink{classsimulation_1_1Boid_ac13d15b43712a734b4c41796e72fb20c}{getNeighbors}}(\textcolor{keyword}{const}\ std::vector<Boid\ *>\ \&boids);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Ajouter\ la\ gestion\ des\ bords\ (wraparound/edges)}}
+\DoxyCodeLine{00109\ \ \ \ \ \};}
+\DoxyCodeLine{00110\ \}}
 
 \end{DoxyCode}

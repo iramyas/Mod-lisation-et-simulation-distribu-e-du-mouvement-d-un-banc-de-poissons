@@ -2,8 +2,11 @@
 \hypertarget{classBoid}{}\label{classBoid}\index{Boid@{Boid}}
 
 
-Graphe de collaboration de Boid\+:
-\nopagebreak
+{\ttfamily \#include $<$boid.\+h$>$}
+
+
+
+Graphe de collaboration de Boid\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -13,63 +16,165 @@ Graphe de collaboration de Boid\+:
 \doxysubsubsection*{Fonctions membres publiques}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classBoid_a61c7081f12c16ba99dc4b3c094195bb2}\label{classBoid_a61c7081f12c16ba99dc4b3c094195bb2} 
-{\bfseries Boid} (float x, float y)
+\mbox{\hyperlink{classBoid_a5a0e15d769fc6831b6ad5c36135d7a83}{Boid}} ()
 \item 
-\Hypertarget{classBoid_a9ed1fe855c78049b0e7dbf52277d4d67}\label{classBoid_a9ed1fe855c78049b0e7dbf52277d4d67} 
-{\bfseries Boid} (\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} pos, \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} vel)
+\mbox{\hyperlink{classBoid_a61c7081f12c16ba99dc4b3c094195bb2}{Boid}} (float x, float y)
 \item 
-\Hypertarget{classBoid_abacc5b57737ab72b8fd0c2f6521d8f42}\label{classBoid_abacc5b57737ab72b8fd0c2f6521d8f42} 
-void {\bfseries update} (float delta\+Time)
+\mbox{\hyperlink{classBoid_a9ed1fe855c78049b0e7dbf52277d4d67}{Boid}} (\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} pos, \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} vel)
 \item 
-\Hypertarget{classBoid_ac72a8d7d3401af3905ef4915b9f97dd3}\label{classBoid_ac72a8d7d3401af3905ef4915b9f97dd3} 
-void {\bfseries apply\+Force} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&force)
+void \mbox{\hyperlink{classBoid_abacc5b57737ab72b8fd0c2f6521d8f42}{update}} (float delta\+Time)
 \item 
-\Hypertarget{classBoid_a6dcddfeb4eb06b0622b2be00e638da46}\label{classBoid_a6dcddfeb4eb06b0622b2be00e638da46} 
-\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries separate} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+void \mbox{\hyperlink{classBoid_ac72a8d7d3401af3905ef4915b9f97dd3}{apply\+Force}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&force)
 \item 
-\Hypertarget{classBoid_a5bdcb61f0afb2fe7fccc0be9b37b3369}\label{classBoid_a5bdcb61f0afb2fe7fccc0be9b37b3369} 
-\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries align} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classBoid_a6dcddfeb4eb06b0622b2be00e638da46}{separate}} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
 \item 
-\Hypertarget{classBoid_ab350f6d0409c1931cefddea46b709ca9}\label{classBoid_ab350f6d0409c1931cefddea46b709ca9} 
-\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries cohesion} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classBoid_a5bdcb61f0afb2fe7fccc0be9b37b3369}{align}} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
 \item 
-\Hypertarget{classBoid_a733b3b3770795b36244fb440ef60df16}\label{classBoid_a733b3b3770795b36244fb440ef60df16} 
-\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries seek} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&target)
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classBoid_ab350f6d0409c1931cefddea46b709ca9}{cohesion}} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
 \item 
-\Hypertarget{classBoid_a9a632ea2b9ee45b2d16b57966e0dc837}\label{classBoid_a9a632ea2b9ee45b2d16b57966e0dc837} 
-\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries flee} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&target)
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classBoid_a733b3b3770795b36244fb440ef60df16}{seek}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&target)
 \item 
-\Hypertarget{classBoid_af31300d19fa1607228e289a1c872925d}\label{classBoid_af31300d19fa1607228e289a1c872925d} 
-std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+Neighbors} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classBoid_a9a632ea2b9ee45b2d16b57966e0dc837}{flee}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&target)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classBoid_af31300d19fa1607228e289a1c872925d}{get\+Neighbors}} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Attributs publics}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classBoid_a82d038660c602c7b09743714e12246e9}\label{classBoid_a82d038660c602c7b09743714e12246e9} 
-\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries position}
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classBoid_a82d038660c602c7b09743714e12246e9}{position}}
 \item 
-\Hypertarget{classBoid_a3d0d4c02c6c97d38c148d43ff53a918c}\label{classBoid_a3d0d4c02c6c97d38c148d43ff53a918c} 
-\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries velocity}
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classBoid_a3d0d4c02c6c97d38c148d43ff53a918c}{velocity}}
 \item 
-\Hypertarget{classBoid_acd6746f6f11d977a8abcfdc4ca49fb00}\label{classBoid_acd6746f6f11d977a8abcfdc4ca49fb00} 
-\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries acceleration}
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classBoid_acd6746f6f11d977a8abcfdc4ca49fb00}{acceleration}}
 \item 
-\Hypertarget{classBoid_aa396631c9af49b53ef888923d2d94446}\label{classBoid_aa396631c9af49b53ef888923d2d94446} 
-float {\bfseries mass}
+float \mbox{\hyperlink{classBoid_aa396631c9af49b53ef888923d2d94446}{mass}}
 \item 
-\Hypertarget{classBoid_ac57e1058fb698a542990405ecfd1d88b}\label{classBoid_ac57e1058fb698a542990405ecfd1d88b} 
-float {\bfseries max\+Speed}
+float \mbox{\hyperlink{classBoid_ac57e1058fb698a542990405ecfd1d88b}{max\+Speed}}
 \item 
-\Hypertarget{classBoid_a2a6d579118276efaeac7ba0e4b872afd}\label{classBoid_a2a6d579118276efaeac7ba0e4b872afd} 
-float {\bfseries max\+Force}
+float \mbox{\hyperlink{classBoid_a2a6d579118276efaeac7ba0e4b872afd}{max\+Force}}
 \item 
-\Hypertarget{classBoid_a92c077931c9e88ebff33f3ccdfe1dd0c}\label{classBoid_a92c077931c9e88ebff33f3ccdfe1dd0c} 
-float {\bfseries perception\+Radius}
+float \mbox{\hyperlink{classBoid_a92c077931c9e88ebff33f3ccdfe1dd0c}{perception\+Radius}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classBoid_a5a0e15d769fc6831b6ad5c36135d7a83}\label{classBoid_a5a0e15d769fc6831b6ad5c36135d7a83} 
+\index{Boid@{Boid}!Boid@{Boid}}
+\index{Boid@{Boid}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{Boid()}{Boid()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Boid\+::\+Boid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classBoid_a61c7081f12c16ba99dc4b3c094195bb2}\label{classBoid_a61c7081f12c16ba99dc4b3c094195bb2} 
+\index{Boid@{Boid}!Boid@{Boid}}
+\index{Boid@{Boid}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{Boid()}{Boid()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Boid\+::\+Boid (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+\Hypertarget{classBoid_a9ed1fe855c78049b0e7dbf52277d4d67}\label{classBoid_a9ed1fe855c78049b0e7dbf52277d4d67} 
+\index{Boid@{Boid}!Boid@{Boid}}
+\index{Boid@{Boid}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{Boid()}{Boid()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Boid\+::\+Boid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}}]{pos,  }\item[{\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}}]{vel }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classBoid_a5bdcb61f0afb2fe7fccc0be9b37b3369}\label{classBoid_a5bdcb61f0afb2fe7fccc0be9b37b3369} 
+\index{Boid@{Boid}!align@{align}}
+\index{align@{align}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{align()}{align()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} Boid\+::align (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&}]{boids }\end{DoxyParamCaption})}
+
+\Hypertarget{classBoid_ac72a8d7d3401af3905ef4915b9f97dd3}\label{classBoid_ac72a8d7d3401af3905ef4915b9f97dd3} 
+\index{Boid@{Boid}!applyForce@{applyForce}}
+\index{applyForce@{applyForce}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{applyForce()}{applyForce()}}
+{\footnotesize\ttfamily void Boid\+::apply\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{force }\end{DoxyParamCaption})}
+
+\Hypertarget{classBoid_ab350f6d0409c1931cefddea46b709ca9}\label{classBoid_ab350f6d0409c1931cefddea46b709ca9} 
+\index{Boid@{Boid}!cohesion@{cohesion}}
+\index{cohesion@{cohesion}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{cohesion()}{cohesion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} Boid\+::cohesion (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&}]{boids }\end{DoxyParamCaption})}
+
+\Hypertarget{classBoid_a9a632ea2b9ee45b2d16b57966e0dc837}\label{classBoid_a9a632ea2b9ee45b2d16b57966e0dc837} 
+\index{Boid@{Boid}!flee@{flee}}
+\index{flee@{flee}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{flee()}{flee()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} Boid\+::flee (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{target }\end{DoxyParamCaption})}
+
+\Hypertarget{classBoid_af31300d19fa1607228e289a1c872925d}\label{classBoid_af31300d19fa1607228e289a1c872925d} 
+\index{Boid@{Boid}!getNeighbors@{getNeighbors}}
+\index{getNeighbors@{getNeighbors}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{getNeighbors()}{getNeighbors()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ Boid\+::get\+Neighbors (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&}]{boids }\end{DoxyParamCaption})}
+
+\Hypertarget{classBoid_a733b3b3770795b36244fb440ef60df16}\label{classBoid_a733b3b3770795b36244fb440ef60df16} 
+\index{Boid@{Boid}!seek@{seek}}
+\index{seek@{seek}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{seek()}{seek()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} Boid\+::seek (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{target }\end{DoxyParamCaption})}
+
+\Hypertarget{classBoid_a6dcddfeb4eb06b0622b2be00e638da46}\label{classBoid_a6dcddfeb4eb06b0622b2be00e638da46} 
+\index{Boid@{Boid}!separate@{separate}}
+\index{separate@{separate}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{separate()}{separate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} Boid\+::separate (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&}]{boids }\end{DoxyParamCaption})}
+
+\Hypertarget{classBoid_abacc5b57737ab72b8fd0c2f6521d8f42}\label{classBoid_abacc5b57737ab72b8fd0c2f6521d8f42} 
+\index{Boid@{Boid}!update@{update}}
+\index{update@{update}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Boid\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classBoid_acd6746f6f11d977a8abcfdc4ca49fb00}\label{classBoid_acd6746f6f11d977a8abcfdc4ca49fb00} 
+\index{Boid@{Boid}!acceleration@{acceleration}}
+\index{acceleration@{acceleration}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{acceleration}{acceleration}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} Boid\+::acceleration}
+
+\Hypertarget{classBoid_aa396631c9af49b53ef888923d2d94446}\label{classBoid_aa396631c9af49b53ef888923d2d94446} 
+\index{Boid@{Boid}!mass@{mass}}
+\index{mass@{mass}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{mass}{mass}}
+{\footnotesize\ttfamily float Boid\+::mass}
+
+\Hypertarget{classBoid_a2a6d579118276efaeac7ba0e4b872afd}\label{classBoid_a2a6d579118276efaeac7ba0e4b872afd} 
+\index{Boid@{Boid}!maxForce@{maxForce}}
+\index{maxForce@{maxForce}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{maxForce}{maxForce}}
+{\footnotesize\ttfamily float Boid\+::max\+Force}
+
+\Hypertarget{classBoid_ac57e1058fb698a542990405ecfd1d88b}\label{classBoid_ac57e1058fb698a542990405ecfd1d88b} 
+\index{Boid@{Boid}!maxSpeed@{maxSpeed}}
+\index{maxSpeed@{maxSpeed}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{maxSpeed}{maxSpeed}}
+{\footnotesize\ttfamily float Boid\+::max\+Speed}
+
+\Hypertarget{classBoid_a92c077931c9e88ebff33f3ccdfe1dd0c}\label{classBoid_a92c077931c9e88ebff33f3ccdfe1dd0c} 
+\index{Boid@{Boid}!perceptionRadius@{perceptionRadius}}
+\index{perceptionRadius@{perceptionRadius}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{perceptionRadius}{perceptionRadius}}
+{\footnotesize\ttfamily float Boid\+::perception\+Radius}
+
+\Hypertarget{classBoid_a82d038660c602c7b09743714e12246e9}\label{classBoid_a82d038660c602c7b09743714e12246e9} 
+\index{Boid@{Boid}!position@{position}}
+\index{position@{position}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} Boid\+::position}
+
+\Hypertarget{classBoid_a3d0d4c02c6c97d38c148d43ff53a918c}\label{classBoid_a3d0d4c02c6c97d38c148d43ff53a918c} 
+\index{Boid@{Boid}!velocity@{velocity}}
+\index{velocity@{velocity}!Boid@{Boid}}
+\doxysubsubsection{\texorpdfstring{velocity}{velocity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} Boid\+::velocity}
+
 
 
 La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
 \item 
-include/boid.\+h\item 
-src/Boid.\+cpp\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{boid_8h}{boid.\+h}}\item 
+src/\mbox{\hyperlink{Boid_8cpp}{Boid.\+cpp}}\end{DoxyCompactItemize}

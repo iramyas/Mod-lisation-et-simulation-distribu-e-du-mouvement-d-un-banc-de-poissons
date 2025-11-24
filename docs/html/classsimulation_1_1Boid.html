@@ -1,0 +1,600 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons: Référence de la classe simulation::Boid</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.1.9</span>
+   </div>
+   <div id="projectbrief">Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagissant en temps réel.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacesimulation.html">simulation</a></li><li class="navelem"><a class="el" href="classsimulation_1_1Boid.html">Boid</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-attribs">Attributs publics</a> &#124;
+<a href="classsimulation_1_1Boid-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle"><div class="title">Référence de la classe simulation::Boid</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Représenation d'un boid (agent autonome du banc de poisson)  
+ <a href="classsimulation_1_1Boid.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="boid_8h_source.html">boid.h</a>&gt;</code></p>
+<div class="dynheader">
+Graphe de collaboration de simulation::Boid:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsimulation_1_1Boid__coll__graph.png" border="0" usemap="#asimulation_1_1Boid_coll__map" alt="Collaboration graph"/></div>
+<map name="asimulation_1_1Boid_coll__map" id="asimulation_1_1Boid_coll__map">
+<area shape="rect" title="Représenation d&#39;un boid (agent autonome du banc de poisson)" alt="" coords="21,123,149,148"/>
+<area shape="rect" href="classsimulation_1_1Vector2D.html" title="Représentation d&#39;un vecteur en 2 dimension pour simuler des comportements physiques." alt="" coords="5,5,164,31"/>
+<area shape="poly" title=" " alt="" coords="87,44,87,123,82,123,82,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:aa857d5931b606e6e3e807adbcebc39c2" id="r_aa857d5931b606e6e3e807adbcebc39c2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#aa857d5931b606e6e3e807adbcebc39c2">Boid</a> ()</td></tr>
+<tr class="memdesc:aa857d5931b606e6e3e807adbcebc39c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur par défaut.  <br /></td></tr>
+<tr class="separator:aa857d5931b606e6e3e807adbcebc39c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcd462d2073166ad94fec8c29b9d4d43" id="r_afcd462d2073166ad94fec8c29b9d4d43"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#afcd462d2073166ad94fec8c29b9d4d43">Boid</a> (float x, float y)</td></tr>
+<tr class="memdesc:afcd462d2073166ad94fec8c29b9d4d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur avec coordonnées initiales.  <br /></td></tr>
+<tr class="separator:afcd462d2073166ad94fec8c29b9d4d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a588000df221d8e0560e43beedba16c07" id="r_a588000df221d8e0560e43beedba16c07"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a588000df221d8e0560e43beedba16c07">Boid</a> (<a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> pos, <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> vel)</td></tr>
+<tr class="memdesc:a588000df221d8e0560e43beedba16c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur avec position et vitesse initiales.  <br /></td></tr>
+<tr class="separator:a588000df221d8e0560e43beedba16c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa3f68c378c0975920dc3ef74745b53" id="r_a2fa3f68c378c0975920dc3ef74745b53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a2fa3f68c378c0975920dc3ef74745b53">update</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a2fa3f68c378c0975920dc3ef74745b53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour la position et la vitesse du boid en fonction de son accélération.  <br /></td></tr>
+<tr class="separator:a2fa3f68c378c0975920dc3ef74745b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3387418e0e32585decb43ec24b092a64" id="r_a3387418e0e32585decb43ec24b092a64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a3387418e0e32585decb43ec24b092a64">applyForce</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;force)</td></tr>
+<tr class="memdesc:a3387418e0e32585decb43ec24b092a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applique une force à l'accélération du boid.  <br /></td></tr>
+<tr class="separator:a3387418e0e32585decb43ec24b092a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73d8add816755957593dfb4f5810626c" id="r_a73d8add816755957593dfb4f5810626c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a73d8add816755957593dfb4f5810626c">separate</a> (const std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt; &amp;boids)</td></tr>
+<tr class="memdesc:a73d8add816755957593dfb4f5810626c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule la force de répulsion pour éviter les collisions.  <br /></td></tr>
+<tr class="separator:a73d8add816755957593dfb4f5810626c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88c4fd88e4ce03afca6497c34b0fbdbe" id="r_a88c4fd88e4ce03afca6497c34b0fbdbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a88c4fd88e4ce03afca6497c34b0fbdbe">align</a> (const std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt; &amp;boids)</td></tr>
+<tr class="memdesc:a88c4fd88e4ce03afca6497c34b0fbdbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule la vitesse moyenne des voisins pour s'aligner dessus.  <br /></td></tr>
+<tr class="separator:a88c4fd88e4ce03afca6497c34b0fbdbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f3997c5fce39ae86b2a7e74e9fcef33" id="r_a1f3997c5fce39ae86b2a7e74e9fcef33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a1f3997c5fce39ae86b2a7e74e9fcef33">cohesion</a> (const std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt; &amp;boids)</td></tr>
+<tr class="memdesc:a1f3997c5fce39ae86b2a7e74e9fcef33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule le centre de la masse des voisins.  <br /></td></tr>
+<tr class="separator:a1f3997c5fce39ae86b2a7e74e9fcef33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ba17bbf35ec1d72acfedfc18ebfe4ce" id="r_a4ba17bbf35ec1d72acfedfc18ebfe4ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a4ba17bbf35ec1d72acfedfc18ebfe4ce">seek</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;target)</td></tr>
+<tr class="memdesc:a4ba17bbf35ec1d72acfedfc18ebfe4ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule la force pour se diriger vers une cible.  <br /></td></tr>
+<tr class="separator:a4ba17bbf35ec1d72acfedfc18ebfe4ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2f680621bd68cbc948ed4897e451b77" id="r_ad2f680621bd68cbc948ed4897e451b77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#ad2f680621bd68cbc948ed4897e451b77">flee</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;target)</td></tr>
+<tr class="memdesc:ad2f680621bd68cbc948ed4897e451b77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule la force pour fuire la cible.  <br /></td></tr>
+<tr class="separator:ad2f680621bd68cbc948ed4897e451b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac13d15b43712a734b4c41796e72fb20c" id="r_ac13d15b43712a734b4c41796e72fb20c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#ac13d15b43712a734b4c41796e72fb20c">getNeighbors</a> (const std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt; &amp;boids)</td></tr>
+<tr class="memdesc:ac13d15b43712a734b4c41796e72fb20c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renvoie la liste des voisins dans le rayon de perception.  <br /></td></tr>
+<tr class="separator:ac13d15b43712a734b4c41796e72fb20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Attributs publics</h2></td></tr>
+<tr class="memitem:a7b4ec877d18f38188f9c8c2f69d230a7" id="r_a7b4ec877d18f38188f9c8c2f69d230a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a7b4ec877d18f38188f9c8c2f69d230a7">position</a></td></tr>
+<tr class="memdesc:a7b4ec877d18f38188f9c8c2f69d230a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position actuelle du boid dans l'espace.  <br /></td></tr>
+<tr class="separator:a7b4ec877d18f38188f9c8c2f69d230a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0b5c99b6bcb758ad6ec771a62d62f61" id="r_af0b5c99b6bcb758ad6ec771a62d62f61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#af0b5c99b6bcb758ad6ec771a62d62f61">velocity</a></td></tr>
+<tr class="memdesc:af0b5c99b6bcb758ad6ec771a62d62f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vitesse actuelle du boid.  <br /></td></tr>
+<tr class="separator:af0b5c99b6bcb758ad6ec771a62d62f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee29610759103a4835a111afb03e9130" id="r_aee29610759103a4835a111afb03e9130"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#aee29610759103a4835a111afb03e9130">acceleration</a></td></tr>
+<tr class="memdesc:aee29610759103a4835a111afb03e9130"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accélération du boid.  <br /></td></tr>
+<tr class="separator:aee29610759103a4835a111afb03e9130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fd81a0582489e6955e0a1d1104c272e" id="r_a0fd81a0582489e6955e0a1d1104c272e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a0fd81a0582489e6955e0a1d1104c272e">mass</a></td></tr>
+<tr class="memdesc:a0fd81a0582489e6955e0a1d1104c272e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Masse du boid.  <br /></td></tr>
+<tr class="separator:a0fd81a0582489e6955e0a1d1104c272e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcb9c9efdb3b3bdc35a365fab5d170e6" id="r_afcb9c9efdb3b3bdc35a365fab5d170e6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#afcb9c9efdb3b3bdc35a365fab5d170e6">maxSpeed</a></td></tr>
+<tr class="memdesc:afcb9c9efdb3b3bdc35a365fab5d170e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vitesse maximale du boid.  <br /></td></tr>
+<tr class="separator:afcb9c9efdb3b3bdc35a365fab5d170e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cdeaa9b3d4fcbaef2508d9e62574e2b" id="r_a6cdeaa9b3d4fcbaef2508d9e62574e2b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a6cdeaa9b3d4fcbaef2508d9e62574e2b">maxForce</a></td></tr>
+<tr class="memdesc:a6cdeaa9b3d4fcbaef2508d9e62574e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Force maxiamle appliquée.  <br /></td></tr>
+<tr class="separator:a6cdeaa9b3d4fcbaef2508d9e62574e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a92dc1e670ef2acdbc2009d9cd40967" id="r_a1a92dc1e670ef2acdbc2009d9cd40967"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Boid.html#a1a92dc1e670ef2acdbc2009d9cd40967">perceptionRadius</a></td></tr>
+<tr class="memdesc:a1a92dc1e670ef2acdbc2009d9cd40967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rayon de perception pour détecter les voisins.  <br /></td></tr>
+<tr class="separator:a1a92dc1e670ef2acdbc2009d9cd40967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Représenation d'un boid (agent autonome du banc de poisson) </p>
+<p>Un boid possède une position, une vitesse, une accélération et des paramètres physiques. Il applique les trois règles de Reynolds (séparation, alignement, cohésion) pour simuler le comportement collectif. </p>
+</div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="aa857d5931b606e6e3e807adbcebc39c2" name="aa857d5931b606e6e3e807adbcebc39c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa857d5931b606e6e3e807adbcebc39c2">&#9670;&#160;</a></span>Boid() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">simulation::Boid::Boid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur par défaut. </p>
+
+</div>
+</div>
+<a id="afcd462d2073166ad94fec8c29b9d4d43" name="afcd462d2073166ad94fec8c29b9d4d43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd462d2073166ad94fec8c29b9d4d43">&#9670;&#160;</a></span>Boid() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">simulation::Boid::Boid </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur avec coordonnées initiales. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Position initiale X </td></tr>
+    <tr><td class="paramname">y</td><td>Position initiale Y </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a588000df221d8e0560e43beedba16c07" name="a588000df221d8e0560e43beedba16c07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a588000df221d8e0560e43beedba16c07">&#9670;&#160;</a></span>Boid() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">simulation::Boid::Boid </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td>
+          <td class="paramname"><em>vel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur avec position et vitesse initiales. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Position initiale </td></tr>
+    <tr><td class="paramname">vel</td><td>Vitesse initiale </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a88c4fd88e4ce03afca6497c34b0fbdbe" name="a88c4fd88e4ce03afca6497c34b0fbdbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88c4fd88e4ce03afca6497c34b0fbdbe">&#9670;&#160;</a></span>align()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">simulation::Vector2D</a> simulation::Boid::align </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>boids</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcule la vitesse moyenne des voisins pour s'aligner dessus. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boids</td><td>Liste des autres boids </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur de steering pour modifier la direction pour s'aligner avec la vitesse des autres boids </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Limite la force à <a class="el" href="classsimulation_1_1Boid.html#a6cdeaa9b3d4fcbaef2508d9e62574e2b">maxForce</a> </dd></dl>
+
+</div>
+</div>
+<a id="a3387418e0e32585decb43ec24b092a64" name="a3387418e0e32585decb43ec24b092a64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3387418e0e32585decb43ec24b092a64">&#9670;&#160;</a></span>applyForce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::Boid::applyForce </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>force</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applique une force à l'accélération du boid. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">force</td><td>Vecteur force à appliquer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1f3997c5fce39ae86b2a7e74e9fcef33" name="a1f3997c5fce39ae86b2a7e74e9fcef33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f3997c5fce39ae86b2a7e74e9fcef33">&#9670;&#160;</a></span>cohesion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">simulation::Vector2D</a> simulation::Boid::cohesion </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>boids</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcule le centre de la masse des voisins. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boids</td><td>Liste des autres boids </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur de steering pour la cohésion </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Utilise la méthode </dd></dl>
+<dl class="section see"><dt>Voir également</dt><dd><a class="el" href="classsimulation_1_1Boid.html#a4ba17bbf35ec1d72acfedfc18ebfe4ce" title="Calcule la force pour se diriger vers une cible.">seek()</a> pour se diriger vers le centre </dd></dl>
+
+</div>
+</div>
+<a id="ad2f680621bd68cbc948ed4897e451b77" name="ad2f680621bd68cbc948ed4897e451b77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2f680621bd68cbc948ed4897e451b77">&#9670;&#160;</a></span>flee()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">simulation::Vector2D</a> simulation::Boid::flee </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcule la force pour fuire la cible. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>Position à fuir </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur de steering opposé à la cible </dd></dl>
+
+</div>
+</div>
+<a id="ac13d15b43712a734b4c41796e72fb20c" name="ac13d15b43712a734b4c41796e72fb20c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac13d15b43712a734b4c41796e72fb20c">&#9670;&#160;</a></span>getNeighbors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">simulation::Boid</a> * &gt; simulation::Boid::getNeighbors </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>boids</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renvoie la liste des voisins dans le rayon de perception. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boids</td><td>Liste de tous les boids </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Liste des pointeurs vers les boids voisins </dd></dl>
+
+</div>
+</div>
+<a id="a4ba17bbf35ec1d72acfedfc18ebfe4ce" name="a4ba17bbf35ec1d72acfedfc18ebfe4ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ba17bbf35ec1d72acfedfc18ebfe4ce">&#9670;&#160;</a></span>seek()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">simulation::Vector2D</a> simulation::Boid::seek </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcule la force pour se diriger vers une cible. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>Position cible </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur de steering pour atteindre la cible </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Limite la force à <a class="el" href="classsimulation_1_1Boid.html#a6cdeaa9b3d4fcbaef2508d9e62574e2b">maxForce</a> </dd></dl>
+
+</div>
+</div>
+<a id="a73d8add816755957593dfb4f5810626c" name="a73d8add816755957593dfb4f5810626c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73d8add816755957593dfb4f5810626c">&#9670;&#160;</a></span>separate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">simulation::Vector2D</a> simulation::Boid::separate </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>boids</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calcule la force de répulsion pour éviter les collisions. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boids</td><td>Liste des autres boids </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur de steering pour modifier la direction pour éviter les autres boids </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Limite la force à <a class="el" href="classsimulation_1_1Boid.html#a6cdeaa9b3d4fcbaef2508d9e62574e2b">maxForce</a> </dd></dl>
+
+</div>
+</div>
+<a id="a2fa3f68c378c0975920dc3ef74745b53" name="a2fa3f68c378c0975920dc3ef74745b53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fa3f68c378c0975920dc3ef74745b53">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::Boid::update </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Met à jour la position et la vitesse du boid en fonction de son accélération. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>Pas pour le temps de la simulation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des données membres</h2>
+<a id="aee29610759103a4835a111afb03e9130" name="aee29610759103a4835a111afb03e9130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee29610759103a4835a111afb03e9130">&#9670;&#160;</a></span>acceleration</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> simulation::Boid::acceleration</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Accélération du boid. </p>
+
+</div>
+</div>
+<a id="a0fd81a0582489e6955e0a1d1104c272e" name="a0fd81a0582489e6955e0a1d1104c272e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fd81a0582489e6955e0a1d1104c272e">&#9670;&#160;</a></span>mass</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Boid::mass</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Masse du boid. </p>
+
+</div>
+</div>
+<a id="a6cdeaa9b3d4fcbaef2508d9e62574e2b" name="a6cdeaa9b3d4fcbaef2508d9e62574e2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cdeaa9b3d4fcbaef2508d9e62574e2b">&#9670;&#160;</a></span>maxForce</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Boid::maxForce</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Force maxiamle appliquée. </p>
+
+</div>
+</div>
+<a id="afcb9c9efdb3b3bdc35a365fab5d170e6" name="afcb9c9efdb3b3bdc35a365fab5d170e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcb9c9efdb3b3bdc35a365fab5d170e6">&#9670;&#160;</a></span>maxSpeed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Boid::maxSpeed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vitesse maximale du boid. </p>
+
+</div>
+</div>
+<a id="a1a92dc1e670ef2acdbc2009d9cd40967" name="a1a92dc1e670ef2acdbc2009d9cd40967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a92dc1e670ef2acdbc2009d9cd40967">&#9670;&#160;</a></span>perceptionRadius</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Boid::perceptionRadius</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rayon de perception pour détecter les voisins. </p>
+
+</div>
+</div>
+<a id="a7b4ec877d18f38188f9c8c2f69d230a7" name="a7b4ec877d18f38188f9c8c2f69d230a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b4ec877d18f38188f9c8c2f69d230a7">&#9670;&#160;</a></span>position</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> simulation::Boid::position</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Position actuelle du boid dans l'espace. </p>
+
+</div>
+</div>
+<a id="af0b5c99b6bcb758ad6ec771a62d62f61" name="af0b5c99b6bcb758ad6ec771a62d62f61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0b5c99b6bcb758ad6ec771a62d62f61">&#9670;&#160;</a></span>velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> simulation::Boid::velocity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vitesse actuelle du boid. </p>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
+<li>include/<a class="el" href="boid_8h_source.html">boid.h</a></li>
+<li>src/<a class="el" href="Boid_8cpp.html">Boid.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

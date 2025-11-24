@@ -1,0 +1,349 @@
+\doxysection{Référence de la classe simulation\+::Boid}
+\hypertarget{classsimulation_1_1Boid}{}\label{classsimulation_1_1Boid}\index{simulation::Boid@{simulation::Boid}}
+
+
+Représenation d\textquotesingle{}un boid (agent autonome du banc de poisson)  
+
+
+
+
+{\ttfamily \#include $<$boid.\+h$>$}
+
+
+
+Graphe de collaboration de simulation\+::Boid\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{classsimulation_1_1Boid__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsimulation_1_1Boid_aa857d5931b606e6e3e807adbcebc39c2}{Boid}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur par défaut. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Boid_afcd462d2073166ad94fec8c29b9d4d43}{Boid}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em Constructeur avec coordonnées initiales. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Boid_a588000df221d8e0560e43beedba16c07}{Boid}} (\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} pos, \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} vel)
+\begin{DoxyCompactList}\small\item\em Constructeur avec position et vitesse initiales. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Boid_a2fa3f68c378c0975920dc3ef74745b53}{update}} (float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Met à jour la position et la vitesse du boid en fonction de son accélération. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Boid_a3387418e0e32585decb43ec24b092a64}{apply\+Force}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&force)
+\begin{DoxyCompactList}\small\item\em Applique une force à l\textquotesingle{}accélération du boid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Boid_a73d8add816755957593dfb4f5810626c}{separate}} (const std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\begin{DoxyCompactList}\small\item\em Calcule la force de répulsion pour éviter les collisions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Boid_a88c4fd88e4ce03afca6497c34b0fbdbe}{align}} (const std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\begin{DoxyCompactList}\small\item\em Calcule la vitesse moyenne des voisins pour s\textquotesingle{}aligner dessus. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Boid_a1f3997c5fce39ae86b2a7e74e9fcef33}{cohesion}} (const std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\begin{DoxyCompactList}\small\item\em Calcule le centre de la masse des voisins. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Boid_a4ba17bbf35ec1d72acfedfc18ebfe4ce}{seek}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&target)
+\begin{DoxyCompactList}\small\item\em Calcule la force pour se diriger vers une cible. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Boid_ad2f680621bd68cbc948ed4897e451b77}{flee}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&target)
+\begin{DoxyCompactList}\small\item\em Calcule la force pour fuire la cible. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classsimulation_1_1Boid_ac13d15b43712a734b4c41796e72fb20c}{get\+Neighbors}} (const std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\begin{DoxyCompactList}\small\item\em Renvoie la liste des voisins dans le rayon de perception. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Boid_a7b4ec877d18f38188f9c8c2f69d230a7}{position}}
+\begin{DoxyCompactList}\small\item\em Position actuelle du boid dans l\textquotesingle{}espace. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Boid_af0b5c99b6bcb758ad6ec771a62d62f61}{velocity}}
+\begin{DoxyCompactList}\small\item\em Vitesse actuelle du boid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Boid_aee29610759103a4835a111afb03e9130}{acceleration}}
+\begin{DoxyCompactList}\small\item\em Accélération du boid. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classsimulation_1_1Boid_a0fd81a0582489e6955e0a1d1104c272e}{mass}}
+\begin{DoxyCompactList}\small\item\em Masse du boid. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classsimulation_1_1Boid_afcb9c9efdb3b3bdc35a365fab5d170e6}{max\+Speed}}
+\begin{DoxyCompactList}\small\item\em Vitesse maximale du boid. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classsimulation_1_1Boid_a6cdeaa9b3d4fcbaef2508d9e62574e2b}{max\+Force}}
+\begin{DoxyCompactList}\small\item\em Force maxiamle appliquée. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classsimulation_1_1Boid_a1a92dc1e670ef2acdbc2009d9cd40967}{perception\+Radius}}
+\begin{DoxyCompactList}\small\item\em Rayon de perception pour détecter les voisins. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Représenation d\textquotesingle{}un boid (agent autonome du banc de poisson) 
+
+Un boid possède une position, une vitesse, une accélération et des paramètres physiques. Il applique les trois règles de Reynolds (séparation, alignement, cohésion) pour simuler le comportement collectif. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classsimulation_1_1Boid_aa857d5931b606e6e3e807adbcebc39c2}\label{classsimulation_1_1Boid_aa857d5931b606e6e3e807adbcebc39c2} 
+\index{simulation::Boid@{simulation::Boid}!Boid@{Boid}}
+\index{Boid@{Boid}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{Boid()}{Boid()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily simulation\+::\+Boid\+::\+Boid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur par défaut. 
+
+\Hypertarget{classsimulation_1_1Boid_afcd462d2073166ad94fec8c29b9d4d43}\label{classsimulation_1_1Boid_afcd462d2073166ad94fec8c29b9d4d43} 
+\index{simulation::Boid@{simulation::Boid}!Boid@{Boid}}
+\index{Boid@{Boid}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{Boid()}{Boid()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily simulation\+::\+Boid\+::\+Boid (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+Constructeur avec coordonnées initiales. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & Position initiale X \\
+\hline
+{\em y} & Position initiale Y \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsimulation_1_1Boid_a588000df221d8e0560e43beedba16c07}\label{classsimulation_1_1Boid_a588000df221d8e0560e43beedba16c07} 
+\index{simulation::Boid@{simulation::Boid}!Boid@{Boid}}
+\index{Boid@{Boid}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{Boid()}{Boid()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily simulation\+::\+Boid\+::\+Boid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}}]{pos,  }\item[{\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}}}]{vel }\end{DoxyParamCaption})}
+
+
+
+Constructeur avec position et vitesse initiales. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em pos} & Position initiale \\
+\hline
+{\em vel} & Vitesse initiale \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classsimulation_1_1Boid_a88c4fd88e4ce03afca6497c34b0fbdbe}\label{classsimulation_1_1Boid_a88c4fd88e4ce03afca6497c34b0fbdbe} 
+\index{simulation::Boid@{simulation::Boid}!align@{align}}
+\index{align@{align}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{align()}{align()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{simulation\+::\+Vector2D}} simulation\+::\+Boid\+::align (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&}]{boids }\end{DoxyParamCaption})}
+
+
+
+Calcule la vitesse moyenne des voisins pour s\textquotesingle{}aligner dessus. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em boids} & Liste des autres boids \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Vecteur de steering pour modifier la direction pour s\textquotesingle{}aligner avec la vitesse des autres boids 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Limite la force à \doxylink{classsimulation_1_1Boid_a6cdeaa9b3d4fcbaef2508d9e62574e2b}{max\+Force} 
+\end{DoxyNote}
+\Hypertarget{classsimulation_1_1Boid_a3387418e0e32585decb43ec24b092a64}\label{classsimulation_1_1Boid_a3387418e0e32585decb43ec24b092a64} 
+\index{simulation::Boid@{simulation::Boid}!applyForce@{applyForce}}
+\index{applyForce@{applyForce}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{applyForce()}{applyForce()}}
+{\footnotesize\ttfamily void simulation\+::\+Boid\+::apply\+Force (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{force }\end{DoxyParamCaption})}
+
+
+
+Applique une force à l\textquotesingle{}accélération du boid. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em force} & Vecteur force à appliquer \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsimulation_1_1Boid_a1f3997c5fce39ae86b2a7e74e9fcef33}\label{classsimulation_1_1Boid_a1f3997c5fce39ae86b2a7e74e9fcef33} 
+\index{simulation::Boid@{simulation::Boid}!cohesion@{cohesion}}
+\index{cohesion@{cohesion}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{cohesion()}{cohesion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{simulation\+::\+Vector2D}} simulation\+::\+Boid\+::cohesion (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&}]{boids }\end{DoxyParamCaption})}
+
+
+
+Calcule le centre de la masse des voisins. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em boids} & Liste des autres boids \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Vecteur de steering pour la cohésion 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Utilise la méthode 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{Voir également}
+\doxylink{classsimulation_1_1Boid_a4ba17bbf35ec1d72acfedfc18ebfe4ce}{seek()} pour se diriger vers le centre 
+\end{DoxySeeAlso}
+\Hypertarget{classsimulation_1_1Boid_ad2f680621bd68cbc948ed4897e451b77}\label{classsimulation_1_1Boid_ad2f680621bd68cbc948ed4897e451b77} 
+\index{simulation::Boid@{simulation::Boid}!flee@{flee}}
+\index{flee@{flee}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{flee()}{flee()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{simulation\+::\+Vector2D}} simulation\+::\+Boid\+::flee (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{target }\end{DoxyParamCaption})}
+
+
+
+Calcule la force pour fuire la cible. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em target} & Position à fuir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Vecteur de steering opposé à la cible 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Boid_ac13d15b43712a734b4c41796e72fb20c}\label{classsimulation_1_1Boid_ac13d15b43712a734b4c41796e72fb20c} 
+\index{simulation::Boid@{simulation::Boid}!getNeighbors@{getNeighbors}}
+\index{getNeighbors@{getNeighbors}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{getNeighbors()}{getNeighbors()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{simulation\+::\+Boid}} \texorpdfstring{$\ast$}{*} $>$ simulation\+::\+Boid\+::get\+Neighbors (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&}]{boids }\end{DoxyParamCaption})}
+
+
+
+Renvoie la liste des voisins dans le rayon de perception. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em boids} & Liste de tous les boids \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Liste des pointeurs vers les boids voisins 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Boid_a4ba17bbf35ec1d72acfedfc18ebfe4ce}\label{classsimulation_1_1Boid_a4ba17bbf35ec1d72acfedfc18ebfe4ce} 
+\index{simulation::Boid@{simulation::Boid}!seek@{seek}}
+\index{seek@{seek}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{seek()}{seek()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{simulation\+::\+Vector2D}} simulation\+::\+Boid\+::seek (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{target }\end{DoxyParamCaption})}
+
+
+
+Calcule la force pour se diriger vers une cible. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em target} & Position cible \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Vecteur de steering pour atteindre la cible 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Limite la force à \doxylink{classsimulation_1_1Boid_a6cdeaa9b3d4fcbaef2508d9e62574e2b}{max\+Force} 
+\end{DoxyNote}
+\Hypertarget{classsimulation_1_1Boid_a73d8add816755957593dfb4f5810626c}\label{classsimulation_1_1Boid_a73d8add816755957593dfb4f5810626c} 
+\index{simulation::Boid@{simulation::Boid}!separate@{separate}}
+\index{separate@{separate}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{separate()}{separate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{simulation\+::\+Vector2D}} simulation\+::\+Boid\+::separate (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&}]{boids }\end{DoxyParamCaption})}
+
+
+
+Calcule la force de répulsion pour éviter les collisions. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em boids} & Liste des autres boids \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Vecteur de steering pour modifier la direction pour éviter les autres boids 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Limite la force à \doxylink{classsimulation_1_1Boid_a6cdeaa9b3d4fcbaef2508d9e62574e2b}{max\+Force} 
+\end{DoxyNote}
+\Hypertarget{classsimulation_1_1Boid_a2fa3f68c378c0975920dc3ef74745b53}\label{classsimulation_1_1Boid_a2fa3f68c378c0975920dc3ef74745b53} 
+\index{simulation::Boid@{simulation::Boid}!update@{update}}
+\index{update@{update}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void simulation\+::\+Boid\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Met à jour la position et la vitesse du boid en fonction de son accélération. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em delta\+Time} & Pas pour le temps de la simulation \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classsimulation_1_1Boid_aee29610759103a4835a111afb03e9130}\label{classsimulation_1_1Boid_aee29610759103a4835a111afb03e9130} 
+\index{simulation::Boid@{simulation::Boid}!acceleration@{acceleration}}
+\index{acceleration@{acceleration}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{acceleration}{acceleration}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} simulation\+::\+Boid\+::acceleration}
+
+
+
+Accélération du boid. 
+
+\Hypertarget{classsimulation_1_1Boid_a0fd81a0582489e6955e0a1d1104c272e}\label{classsimulation_1_1Boid_a0fd81a0582489e6955e0a1d1104c272e} 
+\index{simulation::Boid@{simulation::Boid}!mass@{mass}}
+\index{mass@{mass}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{mass}{mass}}
+{\footnotesize\ttfamily float simulation\+::\+Boid\+::mass}
+
+
+
+Masse du boid. 
+
+\Hypertarget{classsimulation_1_1Boid_a6cdeaa9b3d4fcbaef2508d9e62574e2b}\label{classsimulation_1_1Boid_a6cdeaa9b3d4fcbaef2508d9e62574e2b} 
+\index{simulation::Boid@{simulation::Boid}!maxForce@{maxForce}}
+\index{maxForce@{maxForce}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{maxForce}{maxForce}}
+{\footnotesize\ttfamily float simulation\+::\+Boid\+::max\+Force}
+
+
+
+Force maxiamle appliquée. 
+
+\Hypertarget{classsimulation_1_1Boid_afcb9c9efdb3b3bdc35a365fab5d170e6}\label{classsimulation_1_1Boid_afcb9c9efdb3b3bdc35a365fab5d170e6} 
+\index{simulation::Boid@{simulation::Boid}!maxSpeed@{maxSpeed}}
+\index{maxSpeed@{maxSpeed}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{maxSpeed}{maxSpeed}}
+{\footnotesize\ttfamily float simulation\+::\+Boid\+::max\+Speed}
+
+
+
+Vitesse maximale du boid. 
+
+\Hypertarget{classsimulation_1_1Boid_a1a92dc1e670ef2acdbc2009d9cd40967}\label{classsimulation_1_1Boid_a1a92dc1e670ef2acdbc2009d9cd40967} 
+\index{simulation::Boid@{simulation::Boid}!perceptionRadius@{perceptionRadius}}
+\index{perceptionRadius@{perceptionRadius}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{perceptionRadius}{perceptionRadius}}
+{\footnotesize\ttfamily float simulation\+::\+Boid\+::perception\+Radius}
+
+
+
+Rayon de perception pour détecter les voisins. 
+
+\Hypertarget{classsimulation_1_1Boid_a7b4ec877d18f38188f9c8c2f69d230a7}\label{classsimulation_1_1Boid_a7b4ec877d18f38188f9c8c2f69d230a7} 
+\index{simulation::Boid@{simulation::Boid}!position@{position}}
+\index{position@{position}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} simulation\+::\+Boid\+::position}
+
+
+
+Position actuelle du boid dans l\textquotesingle{}espace. 
+
+\Hypertarget{classsimulation_1_1Boid_af0b5c99b6bcb758ad6ec771a62d62f61}\label{classsimulation_1_1Boid_af0b5c99b6bcb758ad6ec771a62d62f61} 
+\index{simulation::Boid@{simulation::Boid}!velocity@{velocity}}
+\index{velocity@{velocity}!simulation::Boid@{simulation::Boid}}
+\doxysubsubsection{\texorpdfstring{velocity}{velocity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} simulation\+::\+Boid\+::velocity}
+
+
+
+Vitesse actuelle du boid. 
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{boid_8h}{boid.\+h}}\item 
+src/\mbox{\hyperlink{Boid_8cpp}{Boid.\+cpp}}\end{DoxyCompactItemize}
