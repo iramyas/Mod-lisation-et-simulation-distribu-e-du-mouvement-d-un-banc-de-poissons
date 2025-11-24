@@ -122,7 +122,10 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 - Chaque fonction doit être testée et vérifiée pour avoir une modélisation correcte.
 
 
-### **Phase 5 : Extensions** (Bonus)
+### **Phase 5 : Préparation des benchmarks** (mi-décembre)
+- Lancer la simulation et mesurer le temps d'éxecution de certains événements (Penser à bien faire un document pour donner les stats de la machine + mettre les métriques pour chaque mesure)
+
+### **Phase 6 : Extensions**
 **OpenGL**
 - Cet outil sera utilisé pour faire la modélisation en 3D. Il faut se familiariser d'abord avec SFML pour pouvoir continuer.
 
