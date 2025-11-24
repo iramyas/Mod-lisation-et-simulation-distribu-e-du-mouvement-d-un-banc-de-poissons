@@ -86,6 +86,12 @@ ctest --output-on-failure
 ctest --verbose
 ```
 
+### Générer la documentation
+```bash
+doxygen Doxyfile
+firefox docs/html/index.html
+```
+
 ## Fonctionnement et déroulement de l'implémentation 
 
 ### **Phase 1 : Fondations** (Terminée)
