@@ -1,0 +1,469 @@
+\doxysection{Référence de la classe simulation\+::Vector2D}
+\hypertarget{classsimulation_1_1Vector2D}{}\label{classsimulation_1_1Vector2D}\index{simulation::Vector2D@{simulation::Vector2D}}
+
+
+Représentation d\textquotesingle{}un vecteur en 2 dimension pour simuler des comportements physiques.  
+
+
+
+
+{\ttfamily \#include $<$vector2\+D.\+h$>$}
+
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsimulation_1_1Vector2D_a204f4c4216bb494178f8d30db11475c7}\label{classsimulation_1_1Vector2D_a204f4c4216bb494178f8d30db11475c7} 
+{\bfseries Vector2D} ()
+\begin{DoxyCompactList}\small\item\em Constructeur par défaut (initialisation à 0) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D_a4c795eb04a3a69668d9efb4695ef6333}{Vector2D}} (float x\+\_\+, float y\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructeur avec coordonnées à sa création. \end{DoxyCompactList}\item 
+\Hypertarget{classsimulation_1_1Vector2D_a76775e76dad0148231d83d140f7a01ad}\label{classsimulation_1_1Vector2D_a76775e76dad0148231d83d140f7a01ad} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Vector2D} ()=default
+\begin{DoxyCompactList}\small\item\em Destructeur par défaut. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Vector2D_a520d54c30b3e3b1267cb25a0a86f2f71}{operator+}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&vec2) const noexcept
+\begin{DoxyCompactList}\small\item\em Addition de 2 vecteurs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Vector2D_af7cefd0cc42143ab813a9455d434d6a3}{operator-\/}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&vec2) const noexcept
+\begin{DoxyCompactList}\small\item\em Soustraction de 2 vecteurs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Vector2D_a89bf956a32b189be286d3b7a5d2d04e8}{operator\texorpdfstring{$\ast$}{*}}} (float number) const noexcept
+\begin{DoxyCompactList}\small\item\em Multiplication par un scalaire. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Vector2D_a7e681852d54993e862e5d6b9de3cc8ed}{operator/}} (float number) const noexcept
+\begin{DoxyCompactList}\small\item\em Division par un scalaire. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsimulation_1_1Vector2D_ac892043b2d2ac0bae0d03462857969bb}{operator==}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&vec2) const noexcept
+\begin{DoxyCompactList}\small\item\em Comparaison d\textquotesingle{}égalité avec tolérance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \& \mbox{\hyperlink{classsimulation_1_1Vector2D_ac09549363be8ba1d66ec353b3dd3a7ee}{operator+=}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&vec2) noexcept
+\begin{DoxyCompactList}\small\item\em Addition-\/assignation (modifie le vecteur) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \& \mbox{\hyperlink{classsimulation_1_1Vector2D_a67731c1fce26ed9e417b2630fb1baa10}{operator-\/=}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&vec2) noexcept
+\begin{DoxyCompactList}\small\item\em Soustraction-\/assignation (modifie le vecteur) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \& \mbox{\hyperlink{classsimulation_1_1Vector2D_a50a548adc4ff084e7de4f007cdbf8352}{operator\texorpdfstring{$\ast$}{*}=}} (float scalar) noexcept
+\begin{DoxyCompactList}\small\item\em Multiplication-\/assignation (modifie le vecteur) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Vector2D_af5e527fe0f1c720bb34aab234faa8f34}{operator-\/}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Négation unaire. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classsimulation_1_1Vector2D_ab46c08e7dae0b3aac744660953aaabf0}{magnitude}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Calcule la norme du vecteur. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classsimulation_1_1Vector2D_a5bc33080b1761d5fc7bc72830e11d970}{magnitude\+Squared}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Calcule la norme au carré du vecteur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Vector2D_aa786fc44f0ae3f740467680d51d8cfb3}{normalized}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Retourne un vecteur unitaire dans la même direction. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classsimulation_1_1Vector2D_a6743b23dc66b09a7b0a5a9d2be42ae60}{dot}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&vec2) const noexcept
+\begin{DoxyCompactList}\small\item\em Calcule le produit scalaire avec un autre vecteur. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classsimulation_1_1Vector2D_a9d871aef4d3796d3cd2ed388d6418462}{distance}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&vec2) const noexcept
+\begin{DoxyCompactList}\small\item\em Calcule la distance euclidienne entre 2 vecteurs. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classsimulation_1_1Vector2D_a387a4317139380a2aaf04199c8d4f19a}{distance\+Squared}} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&vec2) const noexcept
+\begin{DoxyCompactList}\small\item\em Calcule la distance au carrée entre 2 vecteur. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classsimulation_1_1Vector2D_aeb5fdc1b34a96d5e27591c5489850d46}{angle}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Calcule l\textquotesingle{}angle du vecteur par rapport à l\textquotesingle{}axe X. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Vector2D_aa28082498730c11d5ca3eb1b50d244b6}{rotated}} (float theta) const noexcept
+\begin{DoxyCompactList}\small\item\em Rotation du vecteur par un angle donné \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b}\label{classsimulation_1_1Vector2D_a199f8631e332964a4471d0c72ac6c72b} 
+float {\bfseries x}
+\begin{DoxyCompactList}\small\item\em Coordonnée X du vecteur. \end{DoxyCompactList}\item 
+\Hypertarget{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a}\label{classsimulation_1_1Vector2D_a2e6929ca342852e1a01b71bbef90f62a} 
+float {\bfseries y}
+\begin{DoxyCompactList}\small\item\em Coordonnée Y du vecteur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \mbox{\hyperlink{classsimulation_1_1Vector2D_a291b7a792ded1296a552eef3d2db5331}{operator\texorpdfstring{$\ast$}{*}}} (float number, const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&vec) noexcept
+\begin{DoxyCompactList}\small\item\em Multiplication par un scalaire à gauche. \end{DoxyCompactList}\item 
+std\+::ostream \& \mbox{\hyperlink{classsimulation_1_1Vector2D_a3042faf2fa1b8228cc82456632e02532}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&vec)
+\begin{DoxyCompactList}\small\item\em Opérateur de flux pour affichage de debug. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Représentation d\textquotesingle{}un vecteur en 2 dimension pour simuler des comportements physiques. 
+
+Cette classe gère les positions, vitesses et accélérations dans un espace 2D. Elle fournit toutes les opérations mathématiques pour la simulation de boids. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classsimulation_1_1Vector2D_a4c795eb04a3a69668d9efb4695ef6333}\label{classsimulation_1_1Vector2D_a4c795eb04a3a69668d9efb4695ef6333} 
+\index{simulation::Vector2D@{simulation::Vector2D}!Vector2D@{Vector2D}}
+\index{Vector2D@{Vector2D}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{Vector2D()}{Vector2D()}}
+{\footnotesize\ttfamily simulation\+::\+Vector2\+D\+::\+Vector2D (\begin{DoxyParamCaption}\item[{float}]{x\+\_\+,  }\item[{float}]{y\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructeur avec coordonnées à sa création. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x\+\_\+} & Coordonnées initiale X \\
+\hline
+{\em y\+\_\+} & Coordonnées initiale Y \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classsimulation_1_1Vector2D_aeb5fdc1b34a96d5e27591c5489850d46}\label{classsimulation_1_1Vector2D_aeb5fdc1b34a96d5e27591c5489850d46} 
+\index{simulation::Vector2D@{simulation::Vector2D}!angle@{angle}}
+\index{angle@{angle}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{angle()}{angle()}}
+{\footnotesize\ttfamily double simulation\+::\+Vector2\+D\+::angle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Calcule l\textquotesingle{}angle du vecteur par rapport à l\textquotesingle{}axe X. 
+
+\begin{DoxyReturn}{Renvoie}
+Angle en radian \mbox{[}-\/pi, pi\mbox{]} 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Peut provoquer des erreurs de l\textquotesingle{}ordre de 1e-\/6f 
+\end{DoxyNote}
+\Hypertarget{classsimulation_1_1Vector2D_a9d871aef4d3796d3cd2ed388d6418462}\label{classsimulation_1_1Vector2D_a9d871aef4d3796d3cd2ed388d6418462} 
+\index{simulation::Vector2D@{simulation::Vector2D}!distance@{distance}}
+\index{distance@{distance}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily float simulation\+::\+Vector2\+D\+::distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{vec2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Calcule la distance euclidienne entre 2 vecteurs. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em vec2} & Vecteur de destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Utilise \doxylink{classsimulation_1_1Vector2D_ab46c08e7dae0b3aac744660953aaabf0}{magnitude()} qui est assez coûteuse. Préférer \doxylink{classsimulation_1_1Vector2D_a387a4317139380a2aaf04199c8d4f19a}{distance\+Squared()} si on peut se permettre de travailler avec le carré de la norme. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Renvoie}
+Distance en unités flottantes 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{Voir également}
+\doxylink{classsimulation_1_1Vector2D_a387a4317139380a2aaf04199c8d4f19a}{distance\+Squared()} pour comparaison plus rapide 
+\end{DoxySeeAlso}
+\Hypertarget{classsimulation_1_1Vector2D_a387a4317139380a2aaf04199c8d4f19a}\label{classsimulation_1_1Vector2D_a387a4317139380a2aaf04199c8d4f19a} 
+\index{simulation::Vector2D@{simulation::Vector2D}!distanceSquared@{distanceSquared}}
+\index{distanceSquared@{distanceSquared}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{distanceSquared()}{distanceSquared()}}
+{\footnotesize\ttfamily float simulation\+::\+Vector2\+D\+::distance\+Squared (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{vec2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Calcule la distance au carrée entre 2 vecteur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em vec2} & Vecteur de destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Carré de la distance 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Moins coûteux que \doxylink{classsimulation_1_1Vector2D_a9d871aef4d3796d3cd2ed388d6418462}{distance()} pour comparaisons de distances 
+\end{DoxyNote}
+\Hypertarget{classsimulation_1_1Vector2D_a6743b23dc66b09a7b0a5a9d2be42ae60}\label{classsimulation_1_1Vector2D_a6743b23dc66b09a7b0a5a9d2be42ae60} 
+\index{simulation::Vector2D@{simulation::Vector2D}!dot@{dot}}
+\index{dot@{dot}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily float simulation\+::\+Vector2\+D\+::dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{vec2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Calcule le produit scalaire avec un autre vecteur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em vec2} & Vecteur avec lequel calculer le dot product \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Produit scalaire (x1 \texorpdfstring{$\ast$}{*} x2 + y1 \texorpdfstring{$\ast$}{*} y2) 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Retourne 0 si vecteurs perpendiculaires, positif et avec la même direction 
+\end{DoxyNote}
+\Hypertarget{classsimulation_1_1Vector2D_ab46c08e7dae0b3aac744660953aaabf0}\label{classsimulation_1_1Vector2D_ab46c08e7dae0b3aac744660953aaabf0} 
+\index{simulation::Vector2D@{simulation::Vector2D}!magnitude@{magnitude}}
+\index{magnitude@{magnitude}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{magnitude()}{magnitude()}}
+{\footnotesize\ttfamily float simulation\+::\+Vector2\+D\+::magnitude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Calcule la norme du vecteur. 
+
+\begin{DoxyReturn}{Renvoie}
+La norme du vecteur 2D. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Utilise sqrt() qui est assez coûteuse. Préférer \doxylink{classsimulation_1_1Vector2D_a5bc33080b1761d5fc7bc72830e11d970}{magnitude\+Squared()} si on peut se permettre de travailler avec le carré de la norme. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{Voir également}
+\doxylink{classsimulation_1_1Vector2D_a5bc33080b1761d5fc7bc72830e11d970}{magnitude\+Squared()} pour comparaison plus rapide 
+\end{DoxySeeAlso}
+\Hypertarget{classsimulation_1_1Vector2D_a5bc33080b1761d5fc7bc72830e11d970}\label{classsimulation_1_1Vector2D_a5bc33080b1761d5fc7bc72830e11d970} 
+\index{simulation::Vector2D@{simulation::Vector2D}!magnitudeSquared@{magnitudeSquared}}
+\index{magnitudeSquared@{magnitudeSquared}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{magnitudeSquared()}{magnitudeSquared()}}
+{\footnotesize\ttfamily float simulation\+::\+Vector2\+D\+::magnitude\+Squared (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Calcule la norme au carré du vecteur. 
+
+\begin{DoxyReturn}{Renvoie}
+Le carré de la norme (x² + y²) 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Moins coûteux que \doxylink{classsimulation_1_1Vector2D_ab46c08e7dae0b3aac744660953aaabf0}{magnitude()} pour comparaisons de distances 
+\end{DoxyNote}
+\Hypertarget{classsimulation_1_1Vector2D_aa786fc44f0ae3f740467680d51d8cfb3}\label{classsimulation_1_1Vector2D_aa786fc44f0ae3f740467680d51d8cfb3} 
+\index{simulation::Vector2D@{simulation::Vector2D}!normalized@{normalized}}
+\index{normalized@{normalized}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{normalized()}{normalized()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} simulation\+::\+Vector2\+D\+::normalized (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Retourne un vecteur unitaire dans la même direction. 
+
+\begin{DoxyReturn}{Renvoie}
+Vecteur normalisé (norme = 1) ou (0, 0) si division par 0 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Protection contre division par zéro avec EPSILON 
+\end{DoxyNote}
+\Hypertarget{classsimulation_1_1Vector2D_a89bf956a32b189be286d3b7a5d2d04e8}\label{classsimulation_1_1Vector2D_a89bf956a32b189be286d3b7a5d2d04e8} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} simulation\+::\+Vector2\+D\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{float}]{number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Multiplication par un scalaire. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em number} & Coefficient multiplicateur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nouveau vecteur multiplié 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Vector2D_a50a548adc4ff084e7de4f007cdbf8352}\label{classsimulation_1_1Vector2D_a50a548adc4ff084e7de4f007cdbf8352} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}}
+\index{operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}=()}{operator*=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \& simulation\+::\+Vector2\+D\+::operator\texorpdfstring{$\ast$}{*}= (\begin{DoxyParamCaption}\item[{float}]{scalar }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Multiplication-\/assignation (modifie le vecteur) 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em scalar} & Scalaire à multiplier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Référence au vecteur modifié 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Vector2D_a520d54c30b3e3b1267cb25a0a86f2f71}\label{classsimulation_1_1Vector2D_a520d54c30b3e3b1267cb25a0a86f2f71} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator+@{operator+}}
+\index{operator+@{operator+}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} simulation\+::\+Vector2\+D\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{vec2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Addition de 2 vecteurs. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em vec2} & Vecteur à ajouter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Vecteur résultant de l\textquotesingle{}addition 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Vector2D_ac09549363be8ba1d66ec353b3dd3a7ee}\label{classsimulation_1_1Vector2D_ac09549363be8ba1d66ec353b3dd3a7ee} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \& simulation\+::\+Vector2\+D\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{vec2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Addition-\/assignation (modifie le vecteur) 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em vec2} & Vecteur à ajouter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Référence au vecteur modifié 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Vector2D_af5e527fe0f1c720bb34aab234faa8f34}\label{classsimulation_1_1Vector2D_af5e527fe0f1c720bb34aab234faa8f34} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} simulation\+::\+Vector2\+D\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Négation unaire. 
+
+\begin{DoxyReturn}{Renvoie}
+Vecteur opposé 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Inverse la direction 
+\end{DoxyNote}
+\Hypertarget{classsimulation_1_1Vector2D_af7cefd0cc42143ab813a9455d434d6a3}\label{classsimulation_1_1Vector2D_af7cefd0cc42143ab813a9455d434d6a3} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} simulation\+::\+Vector2\+D\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{vec2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Soustraction de 2 vecteurs. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em vec2} & Vecteur à soustraire \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Vecteur résultant de la soustraction 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Vector2D_a67731c1fce26ed9e417b2630fb1baa10}\label{classsimulation_1_1Vector2D_a67731c1fce26ed9e417b2630fb1baa10} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \& simulation\+::\+Vector2\+D\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{vec2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Soustraction-\/assignation (modifie le vecteur) 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em vec2} & Vecteur à soustraire \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Référence au vecteur modifié 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Vector2D_a7e681852d54993e862e5d6b9de3cc8ed}\label{classsimulation_1_1Vector2D_a7e681852d54993e862e5d6b9de3cc8ed} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator/@{operator/}}
+\index{operator/@{operator/}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} simulation\+::\+Vector2\+D\+::operator/ (\begin{DoxyParamCaption}\item[{float}]{number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Division par un scalaire. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em number} & Diviseur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nouveau vecteur divisé 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Protection contre la division par zéro 
+
+Retourne (0, 0) si division par 0 
+\end{DoxyNote}
+\Hypertarget{classsimulation_1_1Vector2D_ac892043b2d2ac0bae0d03462857969bb}\label{classsimulation_1_1Vector2D_ac892043b2d2ac0bae0d03462857969bb} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator==@{operator==}}
+\index{operator==@{operator==}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool simulation\+::\+Vector2\+D\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{vec2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Comparaison d\textquotesingle{}égalité avec tolérance. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em vec2} & Vecteur à comparer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+true si les vecteurs sont égaux à EPSILON près 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Vector2D_aa28082498730c11d5ca3eb1b50d244b6}\label{classsimulation_1_1Vector2D_aa28082498730c11d5ca3eb1b50d244b6} 
+\index{simulation::Vector2D@{simulation::Vector2D}!rotated@{rotated}}
+\index{rotated@{rotated}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{rotated()}{rotated()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} simulation\+::\+Vector2\+D\+::rotated (\begin{DoxyParamCaption}\item[{float}]{theta }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Rotation du vecteur par un angle donné 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em theta} & Angle de rotation (en radians) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nouveau vecteur tourné 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Préserve la magnitude du vecteur. 
+
+Angle positif = rotation antihoraire 
+\end{DoxyNote}
+
+
+\doxysubsection{Documentation des fonctions amies et associées}
+\Hypertarget{classsimulation_1_1Vector2D_a291b7a792ded1296a552eef3d2db5331}\label{classsimulation_1_1Vector2D_a291b7a792ded1296a552eef3d2db5331} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}}{operator*}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{float}]{number,  }\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Multiplication par un scalaire à gauche. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em number} & Coefficient multiplicateur \\
+\hline
+{\em vec} & Vecteur à multiplier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Nouveau vecteur multiplié 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Vector2D_a3042faf2fa1b8228cc82456632e02532}\label{classsimulation_1_1Vector2D_a3042faf2fa1b8228cc82456632e02532} 
+\index{simulation::Vector2D@{simulation::Vector2D}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!simulation::Vector2D@{simulation::Vector2D}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Opérateur de flux pour affichage de debug. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em os} & Flux de sortie \\
+\hline
+{\em vec} & Vecteur à afficher \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Référence au flux (permet chaînage) 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+include/vector2\+D.\+h\end{DoxyCompactItemize}

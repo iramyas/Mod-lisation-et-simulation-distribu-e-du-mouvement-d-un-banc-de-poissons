@@ -1,0 +1,75 @@
+\doxysection{Référence de la classe Boid}
+\hypertarget{classBoid}{}\label{classBoid}\index{Boid@{Boid}}
+
+
+Graphe de collaboration de Boid\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{classBoid__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBoid_a61c7081f12c16ba99dc4b3c094195bb2}\label{classBoid_a61c7081f12c16ba99dc4b3c094195bb2} 
+{\bfseries Boid} (float x, float y)
+\item 
+\Hypertarget{classBoid_a9ed1fe855c78049b0e7dbf52277d4d67}\label{classBoid_a9ed1fe855c78049b0e7dbf52277d4d67} 
+{\bfseries Boid} (\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} pos, \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} vel)
+\item 
+\Hypertarget{classBoid_abacc5b57737ab72b8fd0c2f6521d8f42}\label{classBoid_abacc5b57737ab72b8fd0c2f6521d8f42} 
+void {\bfseries update} (float delta\+Time)
+\item 
+\Hypertarget{classBoid_ac72a8d7d3401af3905ef4915b9f97dd3}\label{classBoid_ac72a8d7d3401af3905ef4915b9f97dd3} 
+void {\bfseries apply\+Force} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&force)
+\item 
+\Hypertarget{classBoid_a6dcddfeb4eb06b0622b2be00e638da46}\label{classBoid_a6dcddfeb4eb06b0622b2be00e638da46} 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries separate} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\item 
+\Hypertarget{classBoid_a5bdcb61f0afb2fe7fccc0be9b37b3369}\label{classBoid_a5bdcb61f0afb2fe7fccc0be9b37b3369} 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries align} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\item 
+\Hypertarget{classBoid_ab350f6d0409c1931cefddea46b709ca9}\label{classBoid_ab350f6d0409c1931cefddea46b709ca9} 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries cohesion} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\item 
+\Hypertarget{classBoid_a733b3b3770795b36244fb440ef60df16}\label{classBoid_a733b3b3770795b36244fb440ef60df16} 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries seek} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&target)
+\item 
+\Hypertarget{classBoid_a9a632ea2b9ee45b2d16b57966e0dc837}\label{classBoid_a9a632ea2b9ee45b2d16b57966e0dc837} 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries flee} (const \mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} \&target)
+\item 
+\Hypertarget{classBoid_af31300d19fa1607228e289a1c872925d}\label{classBoid_af31300d19fa1607228e289a1c872925d} 
+std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+Neighbors} (const std\+::vector$<$ \mbox{\hyperlink{classBoid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \&boids)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBoid_a82d038660c602c7b09743714e12246e9}\label{classBoid_a82d038660c602c7b09743714e12246e9} 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries position}
+\item 
+\Hypertarget{classBoid_a3d0d4c02c6c97d38c148d43ff53a918c}\label{classBoid_a3d0d4c02c6c97d38c148d43ff53a918c} 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries velocity}
+\item 
+\Hypertarget{classBoid_acd6746f6f11d977a8abcfdc4ca49fb00}\label{classBoid_acd6746f6f11d977a8abcfdc4ca49fb00} 
+\mbox{\hyperlink{classsimulation_1_1Vector2D}{Vector2D}} {\bfseries acceleration}
+\item 
+\Hypertarget{classBoid_aa396631c9af49b53ef888923d2d94446}\label{classBoid_aa396631c9af49b53ef888923d2d94446} 
+float {\bfseries mass}
+\item 
+\Hypertarget{classBoid_ac57e1058fb698a542990405ecfd1d88b}\label{classBoid_ac57e1058fb698a542990405ecfd1d88b} 
+float {\bfseries max\+Speed}
+\item 
+\Hypertarget{classBoid_a2a6d579118276efaeac7ba0e4b872afd}\label{classBoid_a2a6d579118276efaeac7ba0e4b872afd} 
+float {\bfseries max\+Force}
+\item 
+\Hypertarget{classBoid_a92c077931c9e88ebff33f3ccdfe1dd0c}\label{classBoid_a92c077931c9e88ebff33f3ccdfe1dd0c} 
+float {\bfseries perception\+Radius}
+\end{DoxyCompactItemize}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+include/boid.\+h\item 
+src/Boid.\+cpp\end{DoxyCompactItemize}

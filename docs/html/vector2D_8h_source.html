@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons:  Fichier source de include/vector2D.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.1.9</span>
+   </div>
+   <div id="projectbrief">Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagissant en temps réel.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">vector2D.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span>simulation {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    <span class="keyword">inline</span> <span class="keyword">constexpr</span> <span class="keywordtype">float</span> EPSILON = 1e-6f;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html">   14</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">   16</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a>; </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">   17</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a>; </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="comment">// Constructeurs et Destructeur</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a204f4c4216bb494178f8d30db11475c7">   24</a></span>        <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a204f4c4216bb494178f8d30db11475c7">Vector2D</a>() : <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a>(0.0f), <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a>(0.0f) {}</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a4c795eb04a3a69668d9efb4695ef6333">   31</a></span>        <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a4c795eb04a3a69668d9efb4695ef6333">Vector2D</a>(<span class="keywordtype">float</span> x_, <span class="keywordtype">float</span> y_) : <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a>(x_), <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a>(y_) {}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a76775e76dad0148231d83d140f7a01ad">   36</a></span>        <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a76775e76dad0148231d83d140f7a01ad">~Vector2D</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="comment">// Operations arithmétiques (+, -, *, /)</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a520d54c30b3e3b1267cb25a0a86f2f71">   45</a></span>        <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a520d54c30b3e3b1267cb25a0a86f2f71">operator+</a>(<span class="keyword">const</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; vec2) <span class="keyword">const</span> <span class="keyword">noexcept</span> { <span class="keywordflow">return</span>  <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>{ <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> + vec2.<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a>, <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> + vec2.y }; }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#af7cefd0cc42143ab813a9455d434d6a3">   52</a></span>        <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#af7cefd0cc42143ab813a9455d434d6a3">operator-</a>(<span class="keyword">const</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; vec2) <span class="keyword">const</span> <span class="keyword">noexcept</span> { <span class="keywordflow">return</span>  <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>{ <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> - vec2.<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a>, <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> - vec2.y }; }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a89bf956a32b189be286d3b7a5d2d04e8">   59</a></span>        <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a89bf956a32b189be286d3b7a5d2d04e8">operator*</a>(<span class="keywordtype">float</span> number) <span class="keyword">const</span> <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>{ number * <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a>, number * <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> }; }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a291b7a792ded1296a552eef3d2db5331">   67</a></span>        <span class="keyword">friend</span> <span class="keyword">inline</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a> <a class="code hl_friend" href="classsimulation_1_1Vector2D.html#a291b7a792ded1296a552eef3d2db5331">operator*</a>(<span class="keywordtype">float</span> number, <span class="keyword">const</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; vec) <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> vec * number; }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a7e681852d54993e862e5d6b9de3cc8ed">   76</a></span>        <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a7e681852d54993e862e5d6b9de3cc8ed">operator/</a>(<span class="keywordtype">float</span> number) <span class="keyword">const</span> <span class="keyword">noexcept</span> { </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">if</span>(std::fabs(number) &lt;= EPSILON) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                <span class="keywordflow">return</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>{ 0.0f, 0.0f };</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">return</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>{ <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> / number, <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> / number };</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        }</div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#ac892043b2d2ac0bae0d03462857969bb">   88</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#ac892043b2d2ac0bae0d03462857969bb">operator==</a>(<span class="keyword">const</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; vec2) <span class="keyword">const</span> <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> std::fabs(<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> - vec2.x) &lt;= EPSILON &amp;&amp; std::fabs(<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> - vec2.y) &lt;= EPSILON; }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="foldopen" id="foldopen00095" data-start="{" data-end="}">
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#ac09549363be8ba1d66ec353b3dd3a7ee">   95</a></span>        <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; <a class="code hl_function" href="classsimulation_1_1Vector2D.html#ac09549363be8ba1d66ec353b3dd3a7ee">operator+=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; vec2) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> += vec2.<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> += vec2.y;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        }</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a67731c1fce26ed9e417b2630fb1baa10">  106</a></span>        <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a67731c1fce26ed9e417b2630fb1baa10">operator-=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; vec2) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> -= vec2.<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> -= vec2.y;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        }</div>
+</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a50a548adc4ff084e7de4f007cdbf8352">  117</a></span>        <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a50a548adc4ff084e7de4f007cdbf8352">operator*=</a>(<span class="keywordtype">float</span> scalar) <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> *= scalar;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> *= scalar;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        }</div>
+</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#af5e527fe0f1c720bb34aab234faa8f34">  128</a></span>        <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#af5e527fe0f1c720bb34aab234faa8f34">operator-</a>() const noexcept { <span class="keywordflow">return</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>{ -<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a>, -<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> }; }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#ab46c08e7dae0b3aac744660953aaabf0">  137</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#ab46c08e7dae0b3aac744660953aaabf0">magnitude</a>() const noexcept { <span class="keywordflow">return</span> std::sqrt(<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> * <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> + <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> * <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a>); }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a5bc33080b1761d5fc7bc72830e11d970">  144</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a5bc33080b1761d5fc7bc72830e11d970">magnitudeSquared</a>() const noexcept { <span class="keywordflow">return</span> <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> * <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> + <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> * <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a>; }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        </div>
+<div class="foldopen" id="foldopen00151" data-start="{" data-end="}">
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#aa786fc44f0ae3f740467680d51d8cfb3">  151</a></span>        <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#aa786fc44f0ae3f740467680d51d8cfb3">normalized</a>() const noexcept {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <span class="keywordtype">float</span> mag = <a class="code hl_function" href="classsimulation_1_1Vector2D.html#ab46c08e7dae0b3aac744660953aaabf0">magnitude</a>();</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>            <span class="keywordflow">if</span>(mag &lt;= EPSILON) <span class="keywordflow">return</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>{ 0.0f, 0.0f };</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            <span class="keywordflow">return</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>{ <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> / mag, <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> / mag};</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        }</div>
+</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a6743b23dc66b09a7b0a5a9d2be42ae60">  163</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a6743b23dc66b09a7b0a5a9d2be42ae60">dot</a>(<span class="keyword">const</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; vec2) <span class="keyword">const</span> <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> * vec2.x + <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> * vec2.y; } </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a9d871aef4d3796d3cd2ed388d6418462">  173</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a9d871aef4d3796d3cd2ed388d6418462">distance</a>(<span class="keyword">const</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; vec2) <span class="keyword">const</span> <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> (*<span class="keyword">this</span> - vec2).magnitude(); }</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a387a4317139380a2aaf04199c8d4f19a">  181</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#a387a4317139380a2aaf04199c8d4f19a">distanceSquared</a>(<span class="keyword">const</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; vec2) <span class="keyword">const</span> <span class="keyword">noexcept</span> { <span class="keywordflow">return</span> (*<span class="keyword">this</span> - vec2).magnitudeSquared(); }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#aeb5fdc1b34a96d5e27591c5489850d46">  188</a></span>        <span class="keywordtype">double</span> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#aeb5fdc1b34a96d5e27591c5489850d46">angle</a>() const noexcept { <span class="keywordflow">return</span> std::atan2(<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a>, <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a>); }</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="foldopen" id="foldopen00197" data-start="{" data-end="}">
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#aa28082498730c11d5ca3eb1b50d244b6">  197</a></span>        <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a> <a class="code hl_function" href="classsimulation_1_1Vector2D.html#aa28082498730c11d5ca3eb1b50d244b6">rotated</a>(<span class="keywordtype">float</span> theta) <span class="keyword">const</span> <span class="keyword">noexcept</span> {</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <span class="keywordtype">float</span> cos_a = std::cos(theta);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            <span class="keywordtype">float</span> sin_a = std::sin(theta);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            <span class="keywordflow">return</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>{ <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> * cos_a - <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> * sin_a, <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> * sin_a + <a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> * cos_a};</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        }</div>
+</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="foldopen" id="foldopen00209" data-start="{" data-end="};">
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classsimulation_1_1Vector2D.html#a3042faf2fa1b8228cc82456632e02532">  209</a></span>        <span class="keyword">friend</span> <span class="keyword">inline</span> std::ostream&amp; <a class="code hl_friend" href="classsimulation_1_1Vector2D.html#a3042faf2fa1b8228cc82456632e02532">operator&lt;&lt;</a>(std::ostream&amp; os, <span class="keyword">const</span> <a class="code hl_class" href="classsimulation_1_1Vector2D.html">Vector2D</a>&amp; vec){</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>            os &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; vec.<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">x</a> &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; vec.<a class="code hl_variable" href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">y</a> &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            <span class="keywordflow">return</span> os;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        }</div>
+</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    };</div>
+</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>}</div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html"><div class="ttname"><a href="classsimulation_1_1Vector2D.html">simulation::Vector2D</a></div><div class="ttdoc">Représentation d'un vecteur en 2 dimension pour simuler des comportements physiques.</div><div class="ttdef"><b>Definition</b> vector2D.h:14</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a199f8631e332964a4471d0c72ac6c72b"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a199f8631e332964a4471d0c72ac6c72b">simulation::Vector2D::x</a></div><div class="ttdeci">float x</div><div class="ttdoc">Coordonnée X du vecteur.</div><div class="ttdef"><b>Definition</b> vector2D.h:16</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a204f4c4216bb494178f8d30db11475c7"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a204f4c4216bb494178f8d30db11475c7">simulation::Vector2D::Vector2D</a></div><div class="ttdeci">Vector2D()</div><div class="ttdoc">Constructeur par défaut (initialisation à 0)</div><div class="ttdef"><b>Definition</b> vector2D.h:24</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a291b7a792ded1296a552eef3d2db5331"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a291b7a792ded1296a552eef3d2db5331">simulation::Vector2D::operator*</a></div><div class="ttdeci">friend Vector2D operator*(float number, const Vector2D &amp;vec) noexcept</div><div class="ttdoc">Multiplication par un scalaire à gauche.</div><div class="ttdef"><b>Definition</b> vector2D.h:67</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a2e6929ca342852e1a01b71bbef90f62a"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a2e6929ca342852e1a01b71bbef90f62a">simulation::Vector2D::y</a></div><div class="ttdeci">float y</div><div class="ttdoc">Coordonnée Y du vecteur.</div><div class="ttdef"><b>Definition</b> vector2D.h:17</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a3042faf2fa1b8228cc82456632e02532"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a3042faf2fa1b8228cc82456632e02532">simulation::Vector2D::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Vector2D &amp;vec)</div><div class="ttdoc">Opérateur de flux pour affichage de debug.</div><div class="ttdef"><b>Definition</b> vector2D.h:209</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a387a4317139380a2aaf04199c8d4f19a"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a387a4317139380a2aaf04199c8d4f19a">simulation::Vector2D::distanceSquared</a></div><div class="ttdeci">float distanceSquared(const Vector2D &amp;vec2) const noexcept</div><div class="ttdoc">Calcule la distance au carrée entre 2 vecteur.</div><div class="ttdef"><b>Definition</b> vector2D.h:181</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a4c795eb04a3a69668d9efb4695ef6333"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a4c795eb04a3a69668d9efb4695ef6333">simulation::Vector2D::Vector2D</a></div><div class="ttdeci">Vector2D(float x_, float y_)</div><div class="ttdoc">Constructeur avec coordonnées à sa création.</div><div class="ttdef"><b>Definition</b> vector2D.h:31</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a50a548adc4ff084e7de4f007cdbf8352"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a50a548adc4ff084e7de4f007cdbf8352">simulation::Vector2D::operator*=</a></div><div class="ttdeci">Vector2D &amp; operator*=(float scalar) noexcept</div><div class="ttdoc">Multiplication-assignation (modifie le vecteur)</div><div class="ttdef"><b>Definition</b> vector2D.h:117</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a520d54c30b3e3b1267cb25a0a86f2f71"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a520d54c30b3e3b1267cb25a0a86f2f71">simulation::Vector2D::operator+</a></div><div class="ttdeci">Vector2D operator+(const Vector2D &amp;vec2) const noexcept</div><div class="ttdoc">Addition de 2 vecteurs.</div><div class="ttdef"><b>Definition</b> vector2D.h:45</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a5bc33080b1761d5fc7bc72830e11d970"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a5bc33080b1761d5fc7bc72830e11d970">simulation::Vector2D::magnitudeSquared</a></div><div class="ttdeci">float magnitudeSquared() const noexcept</div><div class="ttdoc">Calcule la norme au carré du vecteur.</div><div class="ttdef"><b>Definition</b> vector2D.h:144</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a6743b23dc66b09a7b0a5a9d2be42ae60"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a6743b23dc66b09a7b0a5a9d2be42ae60">simulation::Vector2D::dot</a></div><div class="ttdeci">float dot(const Vector2D &amp;vec2) const noexcept</div><div class="ttdoc">Calcule le produit scalaire avec un autre vecteur.</div><div class="ttdef"><b>Definition</b> vector2D.h:163</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a67731c1fce26ed9e417b2630fb1baa10"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a67731c1fce26ed9e417b2630fb1baa10">simulation::Vector2D::operator-=</a></div><div class="ttdeci">Vector2D &amp; operator-=(const Vector2D &amp;vec2) noexcept</div><div class="ttdoc">Soustraction-assignation (modifie le vecteur)</div><div class="ttdef"><b>Definition</b> vector2D.h:106</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a76775e76dad0148231d83d140f7a01ad"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a76775e76dad0148231d83d140f7a01ad">simulation::Vector2D::~Vector2D</a></div><div class="ttdeci">~Vector2D()=default</div><div class="ttdoc">Destructeur par défaut.</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a7e681852d54993e862e5d6b9de3cc8ed"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a7e681852d54993e862e5d6b9de3cc8ed">simulation::Vector2D::operator/</a></div><div class="ttdeci">Vector2D operator/(float number) const noexcept</div><div class="ttdoc">Division par un scalaire.</div><div class="ttdef"><b>Definition</b> vector2D.h:76</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a89bf956a32b189be286d3b7a5d2d04e8"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a89bf956a32b189be286d3b7a5d2d04e8">simulation::Vector2D::operator*</a></div><div class="ttdeci">Vector2D operator*(float number) const noexcept</div><div class="ttdoc">Multiplication par un scalaire.</div><div class="ttdef"><b>Definition</b> vector2D.h:59</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_a9d871aef4d3796d3cd2ed388d6418462"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#a9d871aef4d3796d3cd2ed388d6418462">simulation::Vector2D::distance</a></div><div class="ttdeci">float distance(const Vector2D &amp;vec2) const noexcept</div><div class="ttdoc">Calcule la distance euclidienne entre 2 vecteurs.</div><div class="ttdef"><b>Definition</b> vector2D.h:173</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_aa28082498730c11d5ca3eb1b50d244b6"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#aa28082498730c11d5ca3eb1b50d244b6">simulation::Vector2D::rotated</a></div><div class="ttdeci">Vector2D rotated(float theta) const noexcept</div><div class="ttdoc">Rotation du vecteur par un angle donné</div><div class="ttdef"><b>Definition</b> vector2D.h:197</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_aa786fc44f0ae3f740467680d51d8cfb3"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#aa786fc44f0ae3f740467680d51d8cfb3">simulation::Vector2D::normalized</a></div><div class="ttdeci">Vector2D normalized() const noexcept</div><div class="ttdoc">Retourne un vecteur unitaire dans la même direction.</div><div class="ttdef"><b>Definition</b> vector2D.h:151</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_ab46c08e7dae0b3aac744660953aaabf0"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#ab46c08e7dae0b3aac744660953aaabf0">simulation::Vector2D::magnitude</a></div><div class="ttdeci">float magnitude() const noexcept</div><div class="ttdoc">Calcule la norme du vecteur.</div><div class="ttdef"><b>Definition</b> vector2D.h:137</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_ac09549363be8ba1d66ec353b3dd3a7ee"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#ac09549363be8ba1d66ec353b3dd3a7ee">simulation::Vector2D::operator+=</a></div><div class="ttdeci">Vector2D &amp; operator+=(const Vector2D &amp;vec2) noexcept</div><div class="ttdoc">Addition-assignation (modifie le vecteur)</div><div class="ttdef"><b>Definition</b> vector2D.h:95</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_ac892043b2d2ac0bae0d03462857969bb"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#ac892043b2d2ac0bae0d03462857969bb">simulation::Vector2D::operator==</a></div><div class="ttdeci">bool operator==(const Vector2D &amp;vec2) const noexcept</div><div class="ttdoc">Comparaison d'égalité avec tolérance.</div><div class="ttdef"><b>Definition</b> vector2D.h:88</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_aeb5fdc1b34a96d5e27591c5489850d46"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#aeb5fdc1b34a96d5e27591c5489850d46">simulation::Vector2D::angle</a></div><div class="ttdeci">double angle() const noexcept</div><div class="ttdoc">Calcule l'angle du vecteur par rapport à l'axe X.</div><div class="ttdef"><b>Definition</b> vector2D.h:188</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_af5e527fe0f1c720bb34aab234faa8f34"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#af5e527fe0f1c720bb34aab234faa8f34">simulation::Vector2D::operator-</a></div><div class="ttdeci">Vector2D operator-() const noexcept</div><div class="ttdoc">Négation unaire.</div><div class="ttdef"><b>Definition</b> vector2D.h:128</div></div>
+<div class="ttc" id="aclasssimulation_1_1Vector2D_html_af7cefd0cc42143ab813a9455d434d6a3"><div class="ttname"><a href="classsimulation_1_1Vector2D.html#af7cefd0cc42143ab813a9455d434d6a3">simulation::Vector2D::operator-</a></div><div class="ttdeci">Vector2D operator-(const Vector2D &amp;vec2) const noexcept</div><div class="ttdoc">Soustraction de 2 vecteurs.</div><div class="ttdef"><b>Definition</b> vector2D.h:52</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,904 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons: Référence de la classe simulation::Vector2D</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.1.9</span>
+   </div>
+   <div id="projectbrief">Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagissant en temps réel.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>simulation</b></li><li class="navelem"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-attribs">Attributs publics</a> &#124;
+<a href="#friends">Amis</a> &#124;
+<a href="classsimulation_1_1Vector2D-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle"><div class="title">Référence de la classe simulation::Vector2D</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Représentation d'un vecteur en 2 dimension pour simuler des comportements physiques.  
+ <a href="classsimulation_1_1Vector2D.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="vector2D_8h_source.html">vector2D.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a204f4c4216bb494178f8d30db11475c7" id="r_a204f4c4216bb494178f8d30db11475c7"><td class="memItemLeft" align="right" valign="top"><a id="a204f4c4216bb494178f8d30db11475c7" name="a204f4c4216bb494178f8d30db11475c7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Vector2D</b> ()</td></tr>
+<tr class="memdesc:a204f4c4216bb494178f8d30db11475c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur par défaut (initialisation à 0) <br /></td></tr>
+<tr class="separator:a204f4c4216bb494178f8d30db11475c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c795eb04a3a69668d9efb4695ef6333" id="r_a4c795eb04a3a69668d9efb4695ef6333"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a4c795eb04a3a69668d9efb4695ef6333">Vector2D</a> (float x_, float y_)</td></tr>
+<tr class="memdesc:a4c795eb04a3a69668d9efb4695ef6333"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur avec coordonnées à sa création.  <br /></td></tr>
+<tr class="separator:a4c795eb04a3a69668d9efb4695ef6333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76775e76dad0148231d83d140f7a01ad" id="r_a76775e76dad0148231d83d140f7a01ad"><td class="memItemLeft" align="right" valign="top"><a id="a76775e76dad0148231d83d140f7a01ad" name="a76775e76dad0148231d83d140f7a01ad"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~Vector2D</b> ()=default</td></tr>
+<tr class="memdesc:a76775e76dad0148231d83d140f7a01ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur par défaut. <br /></td></tr>
+<tr class="separator:a76775e76dad0148231d83d140f7a01ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a520d54c30b3e3b1267cb25a0a86f2f71" id="r_a520d54c30b3e3b1267cb25a0a86f2f71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a520d54c30b3e3b1267cb25a0a86f2f71">operator+</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;vec2) const noexcept</td></tr>
+<tr class="memdesc:a520d54c30b3e3b1267cb25a0a86f2f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addition de 2 vecteurs.  <br /></td></tr>
+<tr class="separator:a520d54c30b3e3b1267cb25a0a86f2f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7cefd0cc42143ab813a9455d434d6a3" id="r_af7cefd0cc42143ab813a9455d434d6a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#af7cefd0cc42143ab813a9455d434d6a3">operator-</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;vec2) const noexcept</td></tr>
+<tr class="memdesc:af7cefd0cc42143ab813a9455d434d6a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Soustraction de 2 vecteurs.  <br /></td></tr>
+<tr class="separator:af7cefd0cc42143ab813a9455d434d6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89bf956a32b189be286d3b7a5d2d04e8" id="r_a89bf956a32b189be286d3b7a5d2d04e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a89bf956a32b189be286d3b7a5d2d04e8">operator*</a> (float number) const noexcept</td></tr>
+<tr class="memdesc:a89bf956a32b189be286d3b7a5d2d04e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplication par un scalaire.  <br /></td></tr>
+<tr class="separator:a89bf956a32b189be286d3b7a5d2d04e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e681852d54993e862e5d6b9de3cc8ed" id="r_a7e681852d54993e862e5d6b9de3cc8ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a7e681852d54993e862e5d6b9de3cc8ed">operator/</a> (float number) const noexcept</td></tr>
+<tr class="memdesc:a7e681852d54993e862e5d6b9de3cc8ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Division par un scalaire.  <br /></td></tr>
+<tr class="separator:a7e681852d54993e862e5d6b9de3cc8ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac892043b2d2ac0bae0d03462857969bb" id="r_ac892043b2d2ac0bae0d03462857969bb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#ac892043b2d2ac0bae0d03462857969bb">operator==</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;vec2) const noexcept</td></tr>
+<tr class="memdesc:ac892043b2d2ac0bae0d03462857969bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparaison d'égalité avec tolérance.  <br /></td></tr>
+<tr class="separator:ac892043b2d2ac0bae0d03462857969bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac09549363be8ba1d66ec353b3dd3a7ee" id="r_ac09549363be8ba1d66ec353b3dd3a7ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#ac09549363be8ba1d66ec353b3dd3a7ee">operator+=</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;vec2) noexcept</td></tr>
+<tr class="memdesc:ac09549363be8ba1d66ec353b3dd3a7ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addition-assignation (modifie le vecteur)  <br /></td></tr>
+<tr class="separator:ac09549363be8ba1d66ec353b3dd3a7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67731c1fce26ed9e417b2630fb1baa10" id="r_a67731c1fce26ed9e417b2630fb1baa10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a67731c1fce26ed9e417b2630fb1baa10">operator-=</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;vec2) noexcept</td></tr>
+<tr class="memdesc:a67731c1fce26ed9e417b2630fb1baa10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Soustraction-assignation (modifie le vecteur)  <br /></td></tr>
+<tr class="separator:a67731c1fce26ed9e417b2630fb1baa10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50a548adc4ff084e7de4f007cdbf8352" id="r_a50a548adc4ff084e7de4f007cdbf8352"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a50a548adc4ff084e7de4f007cdbf8352">operator*=</a> (float scalar) noexcept</td></tr>
+<tr class="memdesc:a50a548adc4ff084e7de4f007cdbf8352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplication-assignation (modifie le vecteur)  <br /></td></tr>
+<tr class="separator:a50a548adc4ff084e7de4f007cdbf8352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5e527fe0f1c720bb34aab234faa8f34" id="r_af5e527fe0f1c720bb34aab234faa8f34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#af5e527fe0f1c720bb34aab234faa8f34">operator-</a> () const noexcept</td></tr>
+<tr class="memdesc:af5e527fe0f1c720bb34aab234faa8f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Négation unaire.  <br /></td></tr>
+<tr class="separator:af5e527fe0f1c720bb34aab234faa8f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab46c08e7dae0b3aac744660953aaabf0" id="r_ab46c08e7dae0b3aac744660953aaabf0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#ab46c08e7dae0b3aac744660953aaabf0">magnitude</a> () const noexcept</td></tr>
+<tr class="memdesc:ab46c08e7dae0b3aac744660953aaabf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule la norme du vecteur.  <br /></td></tr>
+<tr class="separator:ab46c08e7dae0b3aac744660953aaabf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bc33080b1761d5fc7bc72830e11d970" id="r_a5bc33080b1761d5fc7bc72830e11d970"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a5bc33080b1761d5fc7bc72830e11d970">magnitudeSquared</a> () const noexcept</td></tr>
+<tr class="memdesc:a5bc33080b1761d5fc7bc72830e11d970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule la norme au carré du vecteur.  <br /></td></tr>
+<tr class="separator:a5bc33080b1761d5fc7bc72830e11d970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa786fc44f0ae3f740467680d51d8cfb3" id="r_aa786fc44f0ae3f740467680d51d8cfb3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#aa786fc44f0ae3f740467680d51d8cfb3">normalized</a> () const noexcept</td></tr>
+<tr class="memdesc:aa786fc44f0ae3f740467680d51d8cfb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne un vecteur unitaire dans la même direction.  <br /></td></tr>
+<tr class="separator:aa786fc44f0ae3f740467680d51d8cfb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6743b23dc66b09a7b0a5a9d2be42ae60" id="r_a6743b23dc66b09a7b0a5a9d2be42ae60"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a6743b23dc66b09a7b0a5a9d2be42ae60">dot</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;vec2) const noexcept</td></tr>
+<tr class="memdesc:a6743b23dc66b09a7b0a5a9d2be42ae60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule le produit scalaire avec un autre vecteur.  <br /></td></tr>
+<tr class="separator:a6743b23dc66b09a7b0a5a9d2be42ae60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d871aef4d3796d3cd2ed388d6418462" id="r_a9d871aef4d3796d3cd2ed388d6418462"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a9d871aef4d3796d3cd2ed388d6418462">distance</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;vec2) const noexcept</td></tr>
+<tr class="memdesc:a9d871aef4d3796d3cd2ed388d6418462"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule la distance euclidienne entre 2 vecteurs.  <br /></td></tr>
+<tr class="separator:a9d871aef4d3796d3cd2ed388d6418462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a387a4317139380a2aaf04199c8d4f19a" id="r_a387a4317139380a2aaf04199c8d4f19a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a387a4317139380a2aaf04199c8d4f19a">distanceSquared</a> (const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;vec2) const noexcept</td></tr>
+<tr class="memdesc:a387a4317139380a2aaf04199c8d4f19a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule la distance au carrée entre 2 vecteur.  <br /></td></tr>
+<tr class="separator:a387a4317139380a2aaf04199c8d4f19a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb5fdc1b34a96d5e27591c5489850d46" id="r_aeb5fdc1b34a96d5e27591c5489850d46"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#aeb5fdc1b34a96d5e27591c5489850d46">angle</a> () const noexcept</td></tr>
+<tr class="memdesc:aeb5fdc1b34a96d5e27591c5489850d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule l'angle du vecteur par rapport à l'axe X.  <br /></td></tr>
+<tr class="separator:aeb5fdc1b34a96d5e27591c5489850d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa28082498730c11d5ca3eb1b50d244b6" id="r_aa28082498730c11d5ca3eb1b50d244b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#aa28082498730c11d5ca3eb1b50d244b6">rotated</a> (float theta) const noexcept</td></tr>
+<tr class="memdesc:aa28082498730c11d5ca3eb1b50d244b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotation du vecteur par un angle donné  <br /></td></tr>
+<tr class="separator:aa28082498730c11d5ca3eb1b50d244b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Attributs publics</h2></td></tr>
+<tr class="memitem:a199f8631e332964a4471d0c72ac6c72b" id="r_a199f8631e332964a4471d0c72ac6c72b"><td class="memItemLeft" align="right" valign="top"><a id="a199f8631e332964a4471d0c72ac6c72b" name="a199f8631e332964a4471d0c72ac6c72b"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
+<tr class="memdesc:a199f8631e332964a4471d0c72ac6c72b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordonnée X du vecteur. <br /></td></tr>
+<tr class="separator:a199f8631e332964a4471d0c72ac6c72b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e6929ca342852e1a01b71bbef90f62a" id="r_a2e6929ca342852e1a01b71bbef90f62a"><td class="memItemLeft" align="right" valign="top"><a id="a2e6929ca342852e1a01b71bbef90f62a" name="a2e6929ca342852e1a01b71bbef90f62a"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
+<tr class="memdesc:a2e6929ca342852e1a01b71bbef90f62a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordonnée Y du vecteur. <br /></td></tr>
+<tr class="separator:a2e6929ca342852e1a01b71bbef90f62a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Amis</h2></td></tr>
+<tr class="memitem:a291b7a792ded1296a552eef3d2db5331" id="r_a291b7a792ded1296a552eef3d2db5331"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a291b7a792ded1296a552eef3d2db5331">operator*</a> (float number, const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;vec) noexcept</td></tr>
+<tr class="memdesc:a291b7a792ded1296a552eef3d2db5331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplication par un scalaire à gauche.  <br /></td></tr>
+<tr class="separator:a291b7a792ded1296a552eef3d2db5331"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3042faf2fa1b8228cc82456632e02532" id="r_a3042faf2fa1b8228cc82456632e02532"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Vector2D.html#a3042faf2fa1b8228cc82456632e02532">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;vec)</td></tr>
+<tr class="memdesc:a3042faf2fa1b8228cc82456632e02532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opérateur de flux pour affichage de debug.  <br /></td></tr>
+<tr class="separator:a3042faf2fa1b8228cc82456632e02532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Représentation d'un vecteur en 2 dimension pour simuler des comportements physiques. </p>
+<p>Cette classe gère les positions, vitesses et accélérations dans un espace 2D. Elle fournit toutes les opérations mathématiques pour la simulation de boids. </p>
+</div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="a4c795eb04a3a69668d9efb4695ef6333" name="a4c795eb04a3a69668d9efb4695ef6333"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c795eb04a3a69668d9efb4695ef6333">&#9670;&#160;</a></span>Vector2D()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">simulation::Vector2D::Vector2D </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y_</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructeur avec coordonnées à sa création. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_</td><td>Coordonnées initiale X </td></tr>
+    <tr><td class="paramname">y_</td><td>Coordonnées initiale Y </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="aeb5fdc1b34a96d5e27591c5489850d46" name="aeb5fdc1b34a96d5e27591c5489850d46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb5fdc1b34a96d5e27591c5489850d46">&#9670;&#160;</a></span>angle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double simulation::Vector2D::angle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcule l'angle du vecteur par rapport à l'axe X. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Angle en radian [-pi, pi] </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Peut provoquer des erreurs de l'ordre de 1e-6f </dd></dl>
+
+</div>
+</div>
+<a id="a9d871aef4d3796d3cd2ed388d6418462" name="a9d871aef4d3796d3cd2ed388d6418462"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d871aef4d3796d3cd2ed388d6418462">&#9670;&#160;</a></span>distance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Vector2D::distance </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec2</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcule la distance euclidienne entre 2 vecteurs. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec2</td><td>Vecteur de destination </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Utilise <a class="el" href="classsimulation_1_1Vector2D.html#ab46c08e7dae0b3aac744660953aaabf0" title="Calcule la norme du vecteur.">magnitude()</a> qui est assez coûteuse. Préférer <a class="el" href="classsimulation_1_1Vector2D.html#a387a4317139380a2aaf04199c8d4f19a" title="Calcule la distance au carrée entre 2 vecteur.">distanceSquared()</a> si on peut se permettre de travailler avec le carré de la norme. </dd></dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en unités flottantes </dd></dl>
+<dl class="section see"><dt>Voir également</dt><dd><a class="el" href="classsimulation_1_1Vector2D.html#a387a4317139380a2aaf04199c8d4f19a" title="Calcule la distance au carrée entre 2 vecteur.">distanceSquared()</a> pour comparaison plus rapide </dd></dl>
+
+</div>
+</div>
+<a id="a387a4317139380a2aaf04199c8d4f19a" name="a387a4317139380a2aaf04199c8d4f19a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a387a4317139380a2aaf04199c8d4f19a">&#9670;&#160;</a></span>distanceSquared()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Vector2D::distanceSquared </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec2</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcule la distance au carrée entre 2 vecteur. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec2</td><td>Vecteur de destination </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Carré de la distance </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Moins coûteux que <a class="el" href="classsimulation_1_1Vector2D.html#a9d871aef4d3796d3cd2ed388d6418462" title="Calcule la distance euclidienne entre 2 vecteurs.">distance()</a> pour comparaisons de distances </dd></dl>
+
+</div>
+</div>
+<a id="a6743b23dc66b09a7b0a5a9d2be42ae60" name="a6743b23dc66b09a7b0a5a9d2be42ae60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6743b23dc66b09a7b0a5a9d2be42ae60">&#9670;&#160;</a></span>dot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Vector2D::dot </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec2</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcule le produit scalaire avec un autre vecteur. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec2</td><td>Vecteur avec lequel calculer le dot product </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Produit scalaire (x1 * x2 + y1 * y2) </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Retourne 0 si vecteurs perpendiculaires, positif et avec la même direction </dd></dl>
+
+</div>
+</div>
+<a id="ab46c08e7dae0b3aac744660953aaabf0" name="ab46c08e7dae0b3aac744660953aaabf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab46c08e7dae0b3aac744660953aaabf0">&#9670;&#160;</a></span>magnitude()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Vector2D::magnitude </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcule la norme du vecteur. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>La norme du vecteur 2D. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Utilise sqrt() qui est assez coûteuse. Préférer <a class="el" href="classsimulation_1_1Vector2D.html#a5bc33080b1761d5fc7bc72830e11d970" title="Calcule la norme au carré du vecteur.">magnitudeSquared()</a> si on peut se permettre de travailler avec le carré de la norme. </dd></dl>
+<dl class="section see"><dt>Voir également</dt><dd><a class="el" href="classsimulation_1_1Vector2D.html#a5bc33080b1761d5fc7bc72830e11d970" title="Calcule la norme au carré du vecteur.">magnitudeSquared()</a> pour comparaison plus rapide </dd></dl>
+
+</div>
+</div>
+<a id="a5bc33080b1761d5fc7bc72830e11d970" name="a5bc33080b1761d5fc7bc72830e11d970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bc33080b1761d5fc7bc72830e11d970">&#9670;&#160;</a></span>magnitudeSquared()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Vector2D::magnitudeSquared </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcule la norme au carré du vecteur. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Le carré de la norme (x² + y²) </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Moins coûteux que <a class="el" href="classsimulation_1_1Vector2D.html#ab46c08e7dae0b3aac744660953aaabf0" title="Calcule la norme du vecteur.">magnitude()</a> pour comparaisons de distances </dd></dl>
+
+</div>
+</div>
+<a id="aa786fc44f0ae3f740467680d51d8cfb3" name="aa786fc44f0ae3f740467680d51d8cfb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa786fc44f0ae3f740467680d51d8cfb3">&#9670;&#160;</a></span>normalized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> simulation::Vector2D::normalized </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retourne un vecteur unitaire dans la même direction. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur normalisé (norme = 1) ou (0, 0) si division par 0 </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Protection contre division par zéro avec EPSILON </dd></dl>
+
+</div>
+</div>
+<a id="a89bf956a32b189be286d3b7a5d2d04e8" name="a89bf956a32b189be286d3b7a5d2d04e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89bf956a32b189be286d3b7a5d2d04e8">&#9670;&#160;</a></span>operator*()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> simulation::Vector2D::operator* </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>number</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Multiplication par un scalaire. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">number</td><td>Coefficient multiplicateur </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Nouveau vecteur multiplié </dd></dl>
+
+</div>
+</div>
+<a id="a50a548adc4ff084e7de4f007cdbf8352" name="a50a548adc4ff084e7de4f007cdbf8352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50a548adc4ff084e7de4f007cdbf8352">&#9670;&#160;</a></span>operator*=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp; simulation::Vector2D::operator*= </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scalar</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Multiplication-assignation (modifie le vecteur) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scalar</td><td>Scalaire à multiplier </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Référence au vecteur modifié </dd></dl>
+
+</div>
+</div>
+<a id="a520d54c30b3e3b1267cb25a0a86f2f71" name="a520d54c30b3e3b1267cb25a0a86f2f71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a520d54c30b3e3b1267cb25a0a86f2f71">&#9670;&#160;</a></span>operator+()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> simulation::Vector2D::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec2</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Addition de 2 vecteurs. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec2</td><td>Vecteur à ajouter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur résultant de l'addition </dd></dl>
+
+</div>
+</div>
+<a id="ac09549363be8ba1d66ec353b3dd3a7ee" name="ac09549363be8ba1d66ec353b3dd3a7ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac09549363be8ba1d66ec353b3dd3a7ee">&#9670;&#160;</a></span>operator+=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp; simulation::Vector2D::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec2</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Addition-assignation (modifie le vecteur) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec2</td><td>Vecteur à ajouter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Référence au vecteur modifié </dd></dl>
+
+</div>
+</div>
+<a id="af5e527fe0f1c720bb34aab234faa8f34" name="af5e527fe0f1c720bb34aab234faa8f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5e527fe0f1c720bb34aab234faa8f34">&#9670;&#160;</a></span>operator-() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> simulation::Vector2D::operator- </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Négation unaire. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur opposé </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Inverse la direction </dd></dl>
+
+</div>
+</div>
+<a id="af7cefd0cc42143ab813a9455d434d6a3" name="af7cefd0cc42143ab813a9455d434d6a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7cefd0cc42143ab813a9455d434d6a3">&#9670;&#160;</a></span>operator-() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> simulation::Vector2D::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec2</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Soustraction de 2 vecteurs. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec2</td><td>Vecteur à soustraire </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur résultant de la soustraction </dd></dl>
+
+</div>
+</div>
+<a id="a67731c1fce26ed9e417b2630fb1baa10" name="a67731c1fce26ed9e417b2630fb1baa10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67731c1fce26ed9e417b2630fb1baa10">&#9670;&#160;</a></span>operator-=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp; simulation::Vector2D::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec2</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Soustraction-assignation (modifie le vecteur) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec2</td><td>Vecteur à soustraire </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Référence au vecteur modifié </dd></dl>
+
+</div>
+</div>
+<a id="a7e681852d54993e862e5d6b9de3cc8ed" name="a7e681852d54993e862e5d6b9de3cc8ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e681852d54993e862e5d6b9de3cc8ed">&#9670;&#160;</a></span>operator/()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> simulation::Vector2D::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>number</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Division par un scalaire. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">number</td><td>Diviseur </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Nouveau vecteur divisé </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Protection contre la division par zéro </dd>
+<dd>
+Retourne (0, 0) si division par 0 </dd></dl>
+
+</div>
+</div>
+<a id="ac892043b2d2ac0bae0d03462857969bb" name="ac892043b2d2ac0bae0d03462857969bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac892043b2d2ac0bae0d03462857969bb">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool simulation::Vector2D::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec2</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Comparaison d'égalité avec tolérance. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec2</td><td>Vecteur à comparer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>true si les vecteurs sont égaux à EPSILON près </dd></dl>
+
+</div>
+</div>
+<a id="aa28082498730c11d5ca3eb1b50d244b6" name="aa28082498730c11d5ca3eb1b50d244b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa28082498730c11d5ca3eb1b50d244b6">&#9670;&#160;</a></span>rotated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> simulation::Vector2D::rotated </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>theta</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Rotation du vecteur par un angle donné </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">theta</td><td>Angle de rotation (en radians) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Nouveau vecteur tourné </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Préserve la magnitude du vecteur. </dd>
+<dd>
+Angle positif = rotation antihoraire </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions amies et associées</h2>
+<a id="a291b7a792ded1296a552eef3d2db5331" name="a291b7a792ded1296a552eef3d2db5331"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a291b7a792ded1296a552eef3d2db5331">&#9670;&#160;</a></span>operator*</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> operator* </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>number</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Multiplication par un scalaire à gauche. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">number</td><td>Coefficient multiplicateur </td></tr>
+    <tr><td class="paramname">vec</td><td>Vecteur à multiplier </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Nouveau vecteur multiplié </dd></dl>
+
+</div>
+</div>
+<a id="a3042faf2fa1b8228cc82456632e02532" name="a3042faf2fa1b8228cc82456632e02532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3042faf2fa1b8228cc82456632e02532">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Vector2D.html">Vector2D</a> &amp;&#160;</td>
+          <td class="paramname"><em>vec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Opérateur de flux pour affichage de debug. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>Flux de sortie </td></tr>
+    <tr><td class="paramname">vec</td><td>Vecteur à afficher </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Référence au flux (permet chaînage) </dd></dl>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>include/<a class="el" href="vector2D_8h_source.html">vector2D.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
