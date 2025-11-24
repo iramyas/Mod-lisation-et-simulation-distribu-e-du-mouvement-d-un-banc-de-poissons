@@ -18,13 +18,13 @@ int main() {
     float cohWeight = 3.0f;  // cohésion
 
     // Création d'un banc de boids
-    std::vector<Boid> boids;
+    std::vector<simulation::Boid> boids;
     const int N = 60;
     for (int i = 0; i < N; ++i) {
         float x = static_cast<float>(std::rand() % WIDTH);
         float y = static_cast<float>(std::rand() % HEIGHT);
 
-        Boid b(x, y);  // constructeur (position)
+        simulation::Boid b(x, y);  // constructeur (position)
 
         // Vitesse initiale aléatoire
         float angle = static_cast<float>(std::rand()) / RAND_MAX * 2.f * 3.14159f;
@@ -60,7 +60,7 @@ int main() {
 
         // ------------------- Mise à jour boids -------------------
         // Construire le vecteur de pointeurs pour les règles
-        std::vector<Boid*> flock;
+        std::vector<simulation::Boid*> flock;
         flock.reserve(boids.size());
         for (auto &b : boids) flock.push_back(&b);
 

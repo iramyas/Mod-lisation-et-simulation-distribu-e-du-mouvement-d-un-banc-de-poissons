@@ -1,14 +1,12 @@
 #include "boid.h"
-//#include "gtest/gtest.h"
 #include <cmath>
 #include <vector>
 
 #include "vector2D.h"
 
-using simulation::Vector2D; 
 
 //contructeur par default
-Boid::Boid()
+simulation::Boid::Boid()
     : position(),
       velocity(),
       acceleration(),
@@ -16,7 +14,7 @@ Boid::Boid()
       maxSpeed(30.0f),
       maxForce(2.5f) {}
 //constructeur avec position
-Boid::Boid(float x, float y)
+simulation::Boid::Boid(float x, float y)
     : position(x,y),
       velocity(),
       acceleration(),
@@ -25,7 +23,7 @@ Boid::Boid(float x, float y)
       maxForce(2.5f),
       perceptionRadius(50.0f) {}
 //constructeur avec position et velocity
-Boid::Boid(Vector2D pos, Vector2D vel)
+simulation::Boid::Boid(Vector2D pos, Vector2D vel)
     : position(pos),
       velocity(vel),
       acceleration(),
@@ -35,7 +33,7 @@ Boid::Boid(Vector2D pos, Vector2D vel)
       perceptionRadius(50.0f) {}
 
 
-void Boid::update(float deltaTime){
+void simulation::Boid::update(float deltaTime){
   velocity += acceleration * deltaTime;       //mettre a jour velocity avec aceleration
 
   if (velocity.magnitude() > maxSpeed) {velocity = velocity.normalized() *maxSpeed;}    //limiter la vitesse a maxSpeed
@@ -44,7 +42,7 @@ void Boid::update(float deltaTime){
   acceleration = Vector2D(0.0f, 0.0f);    //reinitialisation de l'acceleration a 0
 }  //mise a jour de la vitesse avec l'accélération /position
 
-void Boid::applyForce(const Vector2D& force){
+void simulation::Boid::applyForce(const Vector2D& force){
   //limiter la force à maxForce
   Vector2D f=force;
   if(f.magnitude() >maxForce) {
@@ -57,7 +55,7 @@ void Boid::applyForce(const Vector2D& force){
 
 
 //get neighbors 
-std::vector<Boid*> Boid::getNeighbors(const std::vector<Boid*>& boids) {
+std::vector<simulation::Boid*> simulation::Boid::getNeighbors(const std::vector<Boid*>& boids) {
   std::vector<Boid*> neighbors;
 
   for (Boid* other : boids){
@@ -71,7 +69,7 @@ std::vector<Boid*> Boid::getNeighbors(const std::vector<Boid*>& boids) {
   return neighbors;
 }
 
-Vector2D Boid::separate(const std::vector<Boid*>& boids){
+simulation::Vector2D simulation::Boid::separate(const std::vector<Boid*>& boids){
   Vector2D steering(0.0f, 0.0f);
   int count=0;   //compte le nombre de voisins et sers pour faire la moyenne a la fin
   for (Boid* other :boids){  //boucle sur chaque pointeur other dans le vecteur boids
@@ -98,7 +96,7 @@ Vector2D Boid::separate(const std::vector<Boid*>& boids){
 
 
 
-Vector2D Boid::align(const std::vector<Boid*>& boids){
+simulation::Vector2D simulation::Boid::align(const std::vector<Boid*>& boids){
   Vector2D steering(0.0f, 0.0f);
   int count=0;
   for (Boid*other :boids) {
@@ -126,7 +124,7 @@ Vector2D Boid::align(const std::vector<Boid*>& boids){
 
 
 
-Vector2D Boid::cohesion(const std::vector<Boid*>& boids){
+simulation::Vector2D simulation::Boid::cohesion(const std::vector<Boid*>& boids){
   Vector2D center(0.0f,0.0f);
   int count = 0;
    
@@ -148,7 +146,7 @@ Vector2D Boid::cohesion(const std::vector<Boid*>& boids){
 
 
 
-Vector2D Boid::seek(const Vector2D& target) {
+simulation::Vector2D simulation::Boid::seek(const Vector2D& target) {
   Vector2D desired =target - position;
 
   if (desired.magnitude()==0.0f){
@@ -165,7 +163,7 @@ Vector2D Boid::seek(const Vector2D& target) {
 
 
 
-Vector2D Boid::flee(const Vector2D& target) {
+simulation::Vector2D simulation::Boid::flee(const Vector2D& target) {
   Vector2D desired = position - target;
   if (desired.magnitude() == 0.0f) {
     return Vector2D(0.0f, 0.0f);
