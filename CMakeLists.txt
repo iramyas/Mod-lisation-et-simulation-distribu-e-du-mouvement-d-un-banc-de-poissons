@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(Modelisation-et-Simulation-distribuee-du-mouvement-d'un-banc-de-poissons
-        VERSION 0.1.0
+        VERSION 0.1.9
         HOMEPAGE_URL "https://github.com/iramyas/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons"
         LANGUAGES CXX)
 

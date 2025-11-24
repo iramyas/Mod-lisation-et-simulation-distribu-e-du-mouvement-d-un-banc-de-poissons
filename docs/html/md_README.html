@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons: Modélisation-et-simulation-distribuée-du-mouvement-d-un-banc-de-poissons</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.1.9</span>
+   </div>
+   <div id="projectbrief">Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagissant en temps réel.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div><div class="header">
+  <div class="headertitle"><div class="title">Modélisation-et-simulation-distribuée-du-mouvement-d-un-banc-de-poissons</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a>Projet M1 chps.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Membres du projet</h1>
+<ul>
+<li>Yohann FRONT-REIGNIER</li>
+<li>Iram MADANI-FOUATIH</li>
+<li></li>
+<li></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Description</h1>
+<p>Un problème classique pour aborder la modélisation de systèmes complexes et le calcul parallèle est la simulation du comportement collectif dans la nature. L’étude du mouvement d’un banc de poissons constitue un excellent cas d’application : il s’agit d’un système multi-agents où chaque individu suit des règles locales simples (évitement des collisions, alignement, cohésion) qui produisent un comportement collectif émergent.</p>
+<p>Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagissant en temps réel. La simulation sera codée en C++, et exploitera les principes de modélisation multi-agents et de parallélisation pour garantir de bonnes performances lorsque le nombre de poissons simulés devient important.</p>
+<p><b>Premier semestre (6 octobre - 19 décembre)</b></p><ul>
+<li>Implémentation d'un simulateur séquentiel fonctionnel</li>
+<li>Application des trois règles de Reynolds (séparation, alignement, cohésion)</li>
+<li>Visualisation 2D en temps réel avec SFML</li>
+<li>Validation qualitative du comportement collectif</li>
+</ul>
+<p><b>Second semestre</b></p><ul>
+<li>Parallélisation avec OpenMP</li>
+<li>Parallélisation distribuée avec MPI</li>
+<li>Analyse des performnces et mesures comparatives</li>
+<li>Extensions possibles (obstacles, prédateurs, 3D)</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md4"></a>
+Installation</h1>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Prérequis</h2>
+<ul>
+<li><b>Système d'exploitation :</b> Linux et MacOS (pas testé sur Windows)</li>
+<li><b>Compilateur :</b> GCC/Clang avec version C++20</li>
+<li><b>CMake :</b> Version 3.20+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Dépendances</h2>
+<p><b>Ubuntu :</b> </p><div class="fragment"><div class="line">sudo apt update</div>
+<div class="line">sudo apt install \</div>
+<div class="line">    libx11-dev \</div>
+<div class="line">    libxrandr-dev \</div>
+<div class="line">    libxcursor-dev \</div>
+<div class="line">    libxi-dev \</div>
+<div class="line">    libudev-dev \</div>
+<div class="line">    libgl1-mesa-dev \</div>
+<div class="line">    libfreetype6-dev \</div>
+<div class="line">    libgtest-dev \</div>
+<div class="line">    cmake \</div>
+<div class="line">    doxygen \</div>
+<div class="line">    build-essential</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
+Compilation</h2>
+<div class="fragment"><div class="line">mkdir -p build &amp;&amp; cd build</div>
+<div class="line">cmake -DCMAKE_BUILD_TYPE=Debug ..</div>
+<div class="line">cmake --build .</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
+Utilisation</h1>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Lancer la simulation</h2>
+<div class="fragment"><div class="line">./bin/main_simulation.bin</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
+Lancer les tests</h2>
+<p><b>Tous les tests :</b> </p><div class="fragment"><div class="line">cd build</div>
+<div class="line">ctest --output-on-failure</div>
+</div><!-- fragment --><p><b>Tests individuels :</b> </p><div class="fragment"><div class="line">./bin/test_vector.bin   # Tests Vector2D </div>
+<div class="line">./bin/test_boid.bin     # Tests Boid</div>
+</div><!-- fragment --><p><b>Tests avec verbose (faciliter le debuggage)</b> </p><div class="fragment"><div class="line">ctest --verbose</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
+Fonctionnement et déroulement de l'implémentation</h1>
+<h2><a class="anchor" id="autotoc_md12"></a>
+&lt;strong&gt;Phase 1 : Fondations&lt;/strong&gt; (Terminée)</h2>
+<p><b>Classe <code>Vector2D.h</code></b></p><ul>
+<li>Gestion des positions, des vitesses et accélérations</li>
+<li>Opérations : addition, soustraction, normalisation, distance, rotation</li>
+<li><b>Tests unitaires</b> : <code>tests/test_vector.cpp</code></li>
+<li><b>Statut</b> : Terminé (21/11/2025)</li>
+</ul>
+<p><b>Classe <code>Boid.h</code></b></p><ul>
+<li>Représentation d'un poisson avec : position, vitesse, accélération</li>
+<li>Méthodes : <code>update()</code>, <code>applyForce()</code>, règles de Reynolds</li>
+<li><b>Tests unitaires</b> : <code>tests/test_boid.cpp</code></li>
+<li><b>Statut</b> : Terminé (21/11/2025)</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md13"></a>
+&lt;strong&gt;Phase 2 : Règles de Reynolds&lt;/strong&gt; (fin novembre)</h2>
+<p><b>Séparation</b></p><ul>
+<li>Les boids s'éloignent des voisins trop proches pour éviter les collisions. Chaque boid calcule un vecteur de répulsion basé sur la distance aux voisins dans sa zone de perception.</li>
+</ul>
+<p><b>Alignement</b></p><ul>
+<li>Les boids ajustent leur vitesse pour correspondre à la vitesse moyenne de leurs voisins locaux. Cela crée une synchronisation des mouvements au sein du groupe.</li>
+</ul>
+<p><b>Cohésion</b></p><ul>
+<li>Les boids se dirigent vers le centre de masse (position moyenne) de leurs voisins locaux. Cette règle maintient la cohésion du groupe</li>
+</ul>
+<p><b>Métriques utilisées</b></p><ul>
+<li>Vitesse max : 30.0</li>
+<li>Force max : 2.5</li>
+<li>Poids : 1.0</li>
+<li>Rayon de perception : 50 pixels</li>
+</ul>
+<p><b>Test unitaires</b> : <code>tests/test_boid.cpp</code> (on créera sûrement un fichier à part pour améliorer la lisibilité)</p>
+<h2><a class="anchor" id="autotoc_md14"></a>
+&lt;strong&gt;Phase 3 : Gestion collective&lt;/strong&gt;(fin novembre)</h2>
+<p><b>Classe Flock</b></p><ul>
+<li>Gérer le comportement d'un ensemble de boids (poissons).</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md15"></a>
+&lt;strong&gt;Phase 4 : Simulation visuelle&lt;/strong&gt;(debut décembre)</h2>
+<p><b>Boucle de simulation main.cpp</b></p><ul>
+<li>On utilisera SFML (Simple and Fast Multimedia Library) pour faire les premières simulations en 2D, on testera sur de petites quantités de poissons en faisant varier les forces sur les boids pour vérifier le comportement.</li>
+</ul>
+<p><b>Faire des tests</b></p><ul>
+<li>Chaque fonction doit être testée et vérifiée pour avoir une modélisation correcte.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md16"></a>
+&lt;strong&gt;Phase 5 : Préparation des benchmarks&lt;/strong&gt; (mi-décembre)</h2>
+<ul>
+<li>Lancer la simulation et mesurer le temps d'éxecution de certains événements (Penser à bien faire un document pour donner les stats de la machine + mettre les métriques pour chaque mesure)</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md17"></a>
+&lt;strong&gt;Phase 6 : Extensions&lt;/strong&gt;</h2>
+<p><b>OpenGL</b></p><ul>
+<li>Cet outil sera utilisé pour faire la modélisation en 3D. Il faut se familiariser d'abord avec SFML pour pouvoir continuer.</li>
+</ul>
+<p><b>d'autre types de comportement</b></p><ul>
+<li>Il existe d'autres type de comportement d'un Flock de poissons, par exemple "vortex", on peut essayer également de modéliser cela ou simplement comparer!</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md18"></a>
+Références</h1>
+<p><b>Modèle de Boids (Craig Reynolds, 1987)</b></p><ul>
+<li><a href="https://www.red3d.com/cwr/boids/">Article original</a></li>
+<li>Reynolds, C. W. (1987). "Flocks, herds and schools: A distributed behavioral model"</li>
+</ul>
+<p><b>Bibliothèques</b></p><ul>
+<li><a href="https://www.sfml-dev.org/documentation/">SFML Documentation</a></li>
+<li><a href="https://google.github.io/googletest/">GoogleTest</a></li>
+<li><a href="https://www.doxygen.nl/">Doxygen</a> </li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
