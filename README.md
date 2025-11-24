@@ -1,5 +1,6 @@
-# Modélisation-et-simulation-distribuée-du-mouvement-d-un-banc-de-poissons
-Projet M1 chps.
+# Modélisation et simulation distribuée du mouvement d'un banc de poissons
+
+Projet M1 chps - Université de Versailles Saint-Quentin-en-Yvelines
 
 ## Membres du projet
 - Yohann FRONT-REIGNIER
@@ -30,7 +31,7 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 ## Installation
 
 ### Prérequis
-- **Système d'exploitation :** Linux et MacOS (pas testé sur Windows)
+- **Système d'exploitation :** Linux et MacOS (non sur Windows)
 - **Compilateur :** GCC/Clang avec version C++20
 - **CMake :** Version 3.20+
 
@@ -40,17 +41,9 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 ```bash
 sudo apt update
 sudo apt install \
-    libx11-dev \
-    libxrandr-dev \
-    libxcursor-dev \
-    libxi-dev \
-    libudev-dev \
-    libgl1-mesa-dev \
-    libfreetype6-dev \
-    libgtest-dev \
-    cmake \
-    doxygen \
-    build-essential
+    libx11-dev libxrandr-dev libxcursor-dev libxi-dev \
+    libudev-dev libgl1-mesa-dev libfreetype6-dev libgtest-dev \
+    cmake doxygen build-essential
 ```
 
 ### Compilation
@@ -89,7 +82,7 @@ ctest --verbose
 ### Générer la documentation
 ```bash
 doxygen Doxyfile
-firefox docs/html/index.html
+firefox docs/html/index.html # Ouvrir dans le navigateur
 ```
 
 ## Fonctionnement et déroulement de l'implémentation 
@@ -106,51 +99,46 @@ firefox docs/html/index.html
 - Représentation d'un poisson avec : position, vitesse, accélération
 - Méthodes : `update()`, `applyForce()`, règles de Reynolds
 - **Tests unitaires** : `tests/test_boid.cpp`
-- **Statut** : Terminé (21/11/2025)
+- **Statut** : Terminé (22/11/2025)
+- **Note** : Il manque la documentation doxygen
 
-### **Phase 2 : Règles de Reynolds** (fin novembre)
+### **Phase 2 : Règles de Reynolds** (Terminée)
 
-**Séparation**
-- Les boids s'éloignent des voisins trop proches pour éviter les collisions. Chaque boid calcule un vecteur de répulsion basé sur la distance aux voisins dans sa zone de perception.
+- **Séparation** : Les boids s'éloignent des voisins trop proches pour éviter les collisions. Chaque boid calcule un vecteur de répulsion basé sur la distance aux voisins dans sa zone de perception.
 
 
-**Alignement**
-- Les boids ajustent leur vitesse pour correspondre à la vitesse moyenne de leurs voisins locaux. Cela crée une synchronisation des mouvements au sein du groupe.
+- **Alignement** : Les boids ajustent leur vitesse pour correspondre à la vitesse moyenne de leurs voisins locaux. Cela crée une synchronisation des mouvements au sein du groupe.
 
-**Cohésion**
-- Les boids se dirigent vers le centre de masse (position moyenne) de leurs voisins locaux. Cette règle maintient la cohésion du groupe
+- **Cohésion** : Les boids se dirigent vers le centre de masse (position moyenne) de leurs voisins locaux. Cette règle maintient la cohésion du groupe
 
-**Métriques utilisées**
-- Vitesse max : 30.0
-- Force max : 2.5
-- Poids : 1.0
-- Rayon de perception : 50 pixels
+- **Paramètres principaux** : vitesse max : 30.0, force max : 2.5, poids : 1.0, rayon de perception : 50 pixels
 
-**Test unitaires** : `tests/test_boid.cpp` (on créera sûrement un fichier à part pour améliorer la lisibilité)
-
+- **Test unitaires** : `tests/test_boid.cpp` (on créera sûrement un fichier à part pour améliorer la lisibilité)
+- **Statut** : Terminé (22/11/2025)
+- **Note** : Il manque la documentation doxygen
 
 ### **Phase 3 : Gestion collective**(fin novembre)
 
-**Classe Flock**
-- Gérer le comportement d'un ensemble de boids (poissons).
+**Classe `Flock`** : Gérer le comportement d'un ensemble de boids et leurs interactions.
+
+- **Statut** : A faire
 
 ### **Phase 4 : Simulation visuelle**(debut décembre)
 
-**Boucle de simulation main.cpp**
-- On utilisera SFML (Simple and Fast Multimedia Library) pour faire les premières simulations en 2D, on testera sur de petites quantités de poissons en faisant varier les forces sur les boids pour vérifier le comportement.
+- **Boucle de simulation** : utilisation de SFML pour l'affichage 2D, tests sur différents paramètres et taille de banc.
 
-**Faire des tests** 
-- Chaque fonction doit être testée et vérifiée pour avoir une modélisation correcte.
-
+- **Statut** : A faire
 
 ### **Phase 5 : Préparation des benchmarks** (mi-décembre)
-- Lancer la simulation et mesurer le temps d'éxecution de certains événements (Penser à bien faire un document pour donner les stats de la machine + mettre les métriques pour chaque mesure)
+- Mesure des performances et du temps d'exécution, documentatio des résultats et des configurations matérielles.
+
+- **Statut** : A faire
 
 ### **Phase 6 : Extensions**
 **OpenGL**
 - Cet outil sera utilisé pour faire la modélisation en 3D. Il faut se familiariser d'abord avec SFML pour pouvoir continuer.
 
-**d'autre types de comportement**
+**Comportement avancés**
 - Il existe d'autres type de comportement d'un Flock de poissons, par exemple "vortex", on peut essayer également de modéliser cela ou simplement comparer!
 
 ## Références
@@ -164,4 +152,9 @@ firefox docs/html/index.html
 - [GoogleTest](https://google.github.io/googletest/)
 - [Doxygen](https://www.doxygen.nl/)
 
+## Remarques
 
+- Chaque fonction important est testée pour garantir la robustesse de la modélisation.
+- Les extensions et benchmarks seront détaillés dans la documentation et le rapport final
+
+**Dernière mise à jour : 24/11/2025**
