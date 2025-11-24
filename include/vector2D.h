@@ -2,6 +2,10 @@
 #include <cmath>
 #include <iostream>
 
+/**
+ * @namespace simulation
+ * @brief Contient toutes les classes et fonctions liées à la simulation des boids.
+ */
 namespace simulation {
     inline constexpr float EPSILON = 1e-6f;
 
