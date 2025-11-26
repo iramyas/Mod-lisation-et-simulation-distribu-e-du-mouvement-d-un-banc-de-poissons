@@ -5,7 +5,7 @@ Projet M1 chps - Université de Versailles Saint-Quentin-en-Yvelines
 ## Membres du projet
 - Yohann FRONT-REIGNIER
 - Iram MADANI-FOUATIH
-- 
+- Laurence HUANG
 - 
 
 ## Description
