@@ -72,6 +72,7 @@ ctest --output-on-failure
 ```bash
 ./bin/test_vector.bin   # Tests Vector2D 
 ./bin/test_boid.bin     # Tests Boid
+./bin/test_flock.bin    # Tests Flock
 ```
 
 **Tests avec verbose  (faciliter le debuggage)**

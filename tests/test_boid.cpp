@@ -6,6 +6,7 @@
 #include "boid.h"
 
 using simulation::Vector2D;
+using simulation::Boid;
 
 //########### Tests Constructeur #############//
 
