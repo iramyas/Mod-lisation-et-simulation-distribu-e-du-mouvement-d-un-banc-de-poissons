@@ -1,0 +1,97 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L] {Rapport projet PPN - M1 CHPS}
+\fancyhead[R] {\thepage}
+
+\graphicspath{{/img}}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+
+    {\Huge\bfseries Modélisation et simulation distribuée du mouvement\\ d'un banc de poissons\par}
+    \vspace{2cm}
+
+    {\Large Master 1 - CHPS\\ISTY - UVSQ - Paris Saclay\\Année universitaire 2025-2026\par}
+    \vspace{1cm}
+
+    {\Large PPN - Sujet 7\par}
+    {\vspace{1cm}}
+
+    {\Large \today\par}
+    \vspace{1cm}
+
+    {\Large \textbf{Encadrant:} Soufian BEN AMOR\par}
+    \vspace{1cm}
+
+    {\Large \bfseries Composition de l'équipe :\par}
+    {\itshape Iram MADANI-FOUATIH\par}
+    {\itshape Yohann FRONT-REIGNIER\par}
+    {\itshape Laurence HUANG\par}
+    \vspace{1cm}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/ISTY-logo-2025.jpg}
+        \label{fig:Logo ISTY}
+    \end{figure}
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INTRODUCTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Introduction}
+\subsection{Contexte général}
+Ce projet à pour but de simuler les comportements collectifs d'un banc de poissons. Ce type de simulation est notamment utilisé dans la biologie, les jeux vidéos ou bien dans les projets d'"essaims" d'avions autonomes et est intéressant dans la modélisation de systèmes multi-agents.
+
+Ce projet s'inscrit dans le cadre du Master 1 Calcul Haute Performance et Simulation (CHPS) de l'Université de Versailles Saint-Quentin-en-Yvelines.
+
+L’objectif du premier semestre est de développer une version séquentielle fonctionnelle et visuellement cohérente du modèle, tandis que celui du second semestre est d’optimiser cette simulation par des approches de parallélisation et d’améliorer la ﬁdélité du comportement collectif.
+
+\subsection{Problématiques}
+Une des premières problématiques à laquelle nous avons dû faire face était comment simuler des comportements complexes tels que le mouvement d'un banc de poisson.
+
+Ensuite, nous avons vite remarqué, pendant l'implémentation et la recherche d'algorithmes, que nous allions nous retrouver avec des problèmes de performances évident en fonction du nombre d'agents à simuler et de la taille du rayon de perception de ces derniers.
+
+Enfin, un problème majeur a émergé au moment de l'implémentation des comportements étant comment savoir si notre modèle reproduit bien le comportement naturel.
+
+Les réponses que nous avons trouvées seront détaillées plus tard dans ce rapport.
+
+\subsection{Objectifs du projet}
+Nous nous sommes fixés 3 objectifs principaux:
+\begin{itemize}
+    \item Implémentation des règles de Reynolds
+    \item Création d'une visualisation interactive en 2D
+    \item Validation visuelle des comportements 
+\end{itemize}
+Ce qui nous permet d'avoir une base solide afin de pouvoir après nous lancer dans la partie de parallélisation lors du deuxième semestre avec un code propre et fonctionnel.
+
+Nous nous sommes aussi fixés 2 objectifs secondaires:
+\begin{itemize}
+    \item Création de la visualisation en 3D
+    \item Préparation du code pour la parallélisation
+\end{itemize}
+Ces objectifs secondaires nous permettent de faciliter la transition du modèle séquentiel à un modèle parallèle ainsi que d'aller plus loin dans la simulation et de pouvoir être plus proche de la réalité.
+
+\subsection{Organisation de l'équipe}
+
+\end{document}

@@ -1,2 +1,11 @@
 build
 rapport
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.out
+*.gz
+*.toc
+squelette.txt
+img
