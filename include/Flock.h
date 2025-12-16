@@ -2,6 +2,9 @@
 #include "boid.h"
 #include <vector>
 
+
+namespace sf { class RenderWindow; }
+
 /**
  * @namespace simulation
  * @brief Contient toutes les classes et fonctions liées à la simulation des flocks.
@@ -65,6 +68,11 @@ namespace simulation{
             std::vector<Boid> boids; // Liste des boids de la simulation
             SpatialGrid grid; // SpatialGrid accélérant la recherche de voisins
 
+            // Pondérations des règles (séparation, alignement, cohésion)
+            float sepWeight = 1.0f;
+            float aliWeight = 1.0f;
+            float cohWeight = 1.0f;
+
             /**
              * @brief Constructeur de Flock
              * @param width Largeur totale de la zone de simulation
@@ -80,6 +88,16 @@ namespace simulation{
             void addBoid(const Boid& boid);
 
             /**
+             * @brief Vide la liste de boids
+             */
+            void clear();
+
+            /**
+             * @brief Remplit aléatoirement le flock
+             */
+            void populateRandom(int N);
+
+            /**
              * @brief Récupère les voisins d'un boid via le SpatialGrid
              * @param boid Pointeur vers le boid dont on cherche les voisins
              * @return Liste de pointeurs de boids voisins
@@ -93,9 +111,20 @@ namespace simulation{
             void updateAll(float deltaTime);
 
             /**
-             * @brief 
+             * @brief Régle les poids des règles
+             */
+            void setWeights(float sep, float ali, float coh);
+
+            /**
+             * @brief Change le rayon de voisinage considéré
+             */
+            void setNeighborRadius(float r);
+
+            /**
+             * @brief Rendu (optionnel) supportant SFML
              */
             void render();
+            void render(sf::RenderWindow &window);
 
     };
 
