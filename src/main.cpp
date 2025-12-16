@@ -4,76 +4,134 @@
 #include <cstdlib>
 #include "boid.h"
 #include "vector2D.h"
+#include "Flock.h"
+#include "GUI.h"
 
 int main() {
-    const unsigned int WIDTH  = 800;
-    const unsigned int HEIGHT = 600;
+    // Paramètres fenêtre
+    const unsigned int WIDTH  = 1100;
+    const unsigned int HEIGHT = 700;
 
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Banc de poissons");
     window.setFramerateLimit(60);
 
-    // Poids des forces 
-    float sepWeight = 3.5f;  // séparation
-    float aliWeight = 2.5f;  // alignement
-    float cohWeight = 3.0f;  // cohésion
-
-    // Création d'un banc de boids
-    std::vector<simulation::Boid> boids;
-    const int N = 60;
-    for (int i = 0; i < N; ++i) {
+    // Création du banc
+    const int initialN = 20;
+    simulation::Flock flock(static_cast<float>(WIDTH), static_cast<float>(HEIGHT), 40.f);
+    for (int i = 0; i < initialN; ++i) {
         float x = static_cast<float>(std::rand() % WIDTH);
         float y = static_cast<float>(std::rand() % HEIGHT);
-
-        simulation::Boid b(x, y);  // constructeur (position)
-
-        // Vitesse initiale aléatoire
+        simulation::Boid b(x, y);
         float angle = static_cast<float>(std::rand()) / RAND_MAX * 2.f * 3.14159f;
-        b.velocity = simulation::Vector2D(std::cos(angle) * 50.f,
-                                          std::sin(angle) * 50.f); // px/s 
-        boids.push_back(b);
+        b.velocity = simulation::Vector2D(std::cos(angle) * 50.f, std::sin(angle) * 50.f);
+        flock.addBoid(b);
     }
 
+    // UI: contrôles
     sf::Font font;
+    if(!font.loadFromFile("/System/Library/Fonts/Helvetica.ttc")){
+        // police système non trouvée
+    }
+
+    // Panel layout: compact frame wrapping the controls
+    const float panelWidth = 260.f;
+    const float panelMargin = 12.f;
+    const float sliderWidth = panelWidth - 2.f*panelMargin - 40.f; 
+    const float sliderX = panelMargin + 8.f;
+    const float sliderY0 = panelMargin + 28.f;
+    const float sliderSpacing = 48.f;
+
+    const int numControls = 5; // sep, ali, coh, radius, count
+    float panelHeight = sliderY0 + (numControls) * sliderSpacing + panelMargin + 20.f; 
+    panelHeight = std::clamp(panelHeight, 140.f, 320.f);
+
+    const float panelPosX = 60.f; 
+    const float panelPosY = 8.f;
+    sf::RectangleShape uiPanel(sf::Vector2f(panelWidth, panelHeight));
+    uiPanel.setPosition(panelPosX, panelPosY);
+    uiPanel.setFillColor(sf::Color(20, 20, 20, 220));
+    uiPanel.setOutlineThickness(2.f);
+    uiPanel.setOutlineColor(sf::Color(120, 120, 120));
+
+
+    // sliders for weights et neighbor radius (reduire les forces de sep, cohesion et allignement a 5 pour eviter les comportement explosives)
+    Slider sepSlider(font, "Separation", panelPosX + sliderX, panelPosY + sliderY0 + 0*sliderSpacing, sliderWidth, 0.f, 5.f, 3.5f);
+    Slider aliSlider(font, "Alignment",  panelPosX + sliderX, panelPosY + sliderY0 + 1*sliderSpacing, sliderWidth, 0.f, 5.f, 2.5f);
+    Slider cohSlider(font, "Cohesion",   panelPosX + sliderX, panelPosY + sliderY0 + 2*sliderSpacing, sliderWidth, 0.f, 5.f, 3.0f);
+    Slider radiusSlider(font, "Neighbor radius", panelPosX + sliderX, panelPosY + sliderY0 + 3*sliderSpacing, sliderWidth, 5.f, 200.f, 50.f);
+
+    // Count + apply 
+    Slider countSlider(font, "Count", panelPosX + sliderX, panelPosY + sliderY0 + 4*sliderSpacing, sliderWidth, 10.f, 500.f, static_cast<float>(initialN));
     
+    sf::RectangleShape applyBtn(sf::Vector2f(80.f, 26.f));
+    float applyX = panelPosX + (panelWidth - applyBtn.getSize().x)/2.f; 
+    
+    float applyY = panelPosY + sliderY0 + 4*sliderSpacing + 12.f;
+    applyBtn.setPosition(applyX, applyY);
+    applyBtn.setFillColor(sf::Color(70,130,180));
+    sf::Text applyText("Apply", font, 11);
+    applyText.setFillColor(sf::Color::White);
+    applyText.setPosition(applyX + (applyBtn.getSize().x - applyText.getLocalBounds().width)/2.f - 2.f,
+                          applyY + (applyBtn.getSize().y - applyText.getCharacterSize())/2.f - 2.f);
 
     sf::Clock clock;
 
     while (window.isOpen()) {
-        // ------------------- Événements -------------------
+        // Événements
         sf::Event event;
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
+            if (event.type == sf::Event::Closed) window.close();
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) window.close();
 
-            if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::Num1) sepWeight += 0.1f;
-                if (event.key.code == sf::Keyboard::Num2) sepWeight -= 0.1f;
-                if (event.key.code == sf::Keyboard::Num3) aliWeight += 0.1f;
-                if (event.key.code == sf::Keyboard::Num4) aliWeight -= 0.1f;
-                if (event.key.code == sf::Keyboard::Num5) cohWeight += 0.1f;
-                if (event.key.code == sf::Keyboard::Num6) cohWeight -= 0.1f;
+            // UI events
+            sepSlider.handleEvent(event, window);
+            aliSlider.handleEvent(event, window);
+            cohSlider.handleEvent(event, window);
+            radiusSlider.handleEvent(event, window);
+            countSlider.handleEvent(event, window);
+
+            if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
+                sf::Vector2f p = window.mapPixelToCoords({event.mouseButton.x, event.mouseButton.y});
+                if(applyBtn.getGlobalBounds().contains(p)){
+                    int cnt = static_cast<int>(countSlider.getValue());
+                    flock.boids.clear();
+                    for (int i = 0; i < cnt; ++i) {
+                        float x = static_cast<float>(std::rand() % WIDTH);
+                        float y = static_cast<float>(std::rand() % HEIGHT);
+                        simulation::Boid b(x, y);
+                        float angle = static_cast<float>(std::rand()) / RAND_MAX * 2.f * 3.14159f;
+                        b.velocity = simulation::Vector2D(std::cos(angle) * 50.f,
+                                                          std::sin(angle) * 50.f);
+                        flock.addBoid(b);
+                    }
+                }
             }
         }
 
         float dt = clock.restart().asSeconds();
         if (dt > 0.05f) dt = 0.05f; // évite les gros sauts
 
-        // ------------------- Mise à jour boids -------------------
-        // Construire le vecteur de pointeurs pour les règles
-        std::vector<simulation::Boid*> flock;
-        flock.reserve(boids.size());
-        for (auto &b : boids) flock.push_back(&b);
+        // ------------------- Mise à jour via Flock (spatial grid + weighted rules)
+        // Synchronise le rayon de voisinage
+        flock.neighborRadius = radiusSlider.getValue();
 
-        for (auto &b : boids) {
-            simulation::Vector2D sep = b.separate(flock);
-            simulation::Vector2D ali = b.align(flock);
-            simulation::Vector2D coh = b.cohesion(flock);
+        // Reconstruire la grille spatiale
+        flock.grid.clear();
+        for (auto &b : flock.boids) flock.grid.addBoid(&b);
 
-            b.applyForce(sep * sepWeight);
-            b.applyForce(ali * aliWeight);
-            b.applyForce(coh * cohWeight);
+        // Appliquer règles pondérées et mettre à jour
+        for (auto &b : flock.boids) {
+            auto neighbors = flock.getNeighbors(&b);
 
-            //wrap‑around "a mettre dans boid.cpp maybe"
+            simulation::Vector2D sep = b.separate(neighbors);
+            simulation::Vector2D ali = b.align(neighbors);
+            simulation::Vector2D coh = b.cohesion(neighbors);
+
+            b.applyForce(sep * sepSlider.getValue());
+            b.applyForce(ali * aliSlider.getValue());
+            b.applyForce(coh * cohSlider.getValue());
+
+            //wrap‑around
             if (b.position.x < 0)        b.position.x += WIDTH;
             if (b.position.x > WIDTH)    b.position.x -= WIDTH;
             if (b.position.y < 0)        b.position.y += HEIGHT;
@@ -82,11 +140,10 @@ int main() {
             b.update(dt);  // met à jour position/vitesse 
         }
 
-        // ------------------- Rendu -------------------
+        // Rendu
         window.clear(sf::Color::Black);
-
-        for (auto &b : boids) {
-            // Poisson = triangle orienté selon la vitesse
+        for (auto &b : flock.boids) {
+            // Dessin boid (triangle orienté) 
             sf::ConvexShape fish;
             fish.setPointCount(3);
             fish.setPoint(0, sf::Vector2f(0.f, 0.f));      // nez
@@ -99,6 +156,16 @@ int main() {
             fish.setPosition(b.position.x, b.position.y);
             window.draw(fish);
         }
+
+        // UI
+        window.draw(uiPanel);
+        sepSlider.draw(window);
+        aliSlider.draw(window);
+        cohSlider.draw(window);
+        radiusSlider.draw(window);
+        countSlider.draw(window);
+        window.draw(applyBtn);
+        window.draw(applyText);
 
         window.display();
     }
