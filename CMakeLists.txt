@@ -29,25 +29,29 @@ set(COMMON_COMPILE_FLAGS
         $<$<CONFIG:Release>:-Wall;-Wextra;-O3;-DNDEBUG;-march=native;-flto>
 )
 
-add_executable(main_simulation src/main.cpp src/Boid.cpp)
+add_executable(main_simulation src/main.cpp src/Boid.cpp src/Flock.cpp src/GUI.cpp)
 add_executable(test_vector tests/test_vector.cpp)
 add_executable(test_boid tests/test_boid.cpp src/Boid.cpp)
 add_executable(test_flock tests/test_flock.cpp src/Flock.cpp src/Boid.cpp)
+add_executable(test_ui tests/test_ui.cpp src/Flock.cpp src/Boid.cpp)
 
 target_include_directories(main_simulation PRIVATE include/)
 target_include_directories(test_vector PRIVATE include/)
 target_include_directories(test_boid PRIVATE include/) 
 target_include_directories(test_flock PRIVATE include/)
+target_include_directories(test_ui PRIVATE include/)
 
 target_compile_options(main_simulation PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(test_vector PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(test_boid PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(test_flock PRIVATE ${COMMON_COMPILE_FLAGS})
+target_compile_options(test_ui PRIVATE ${COMMON_COMPILE_FLAGS})
 
 target_link_libraries(main_simulation PRIVATE sfml-graphics sfml-window sfml-system)
 target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main)
 target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main)
 target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main)
+target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main)
 
 set_target_properties(main_simulation PROPERTIES 
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
@@ -65,8 +69,13 @@ set_target_properties(test_flock PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin 
         OUTPUT_NAME "test_flock.bin"
 )
+set_target_properties(test_ui PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin 
+        OUTPUT_NAME "test_ui.bin"
+)
 
 enable_testing()
 gtest_discover_tests(test_vector)
 gtest_discover_tests(test_boid)
 gtest_discover_tests(test_flock)
+gtest_discover_tests(test_ui)

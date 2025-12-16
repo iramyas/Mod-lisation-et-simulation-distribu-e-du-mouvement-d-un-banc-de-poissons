@@ -49,7 +49,7 @@ sudo apt install \
 ### Compilation
 ```bash
 mkdir -p build && cd build
-cmake -DCMAKE_BUILD_TYPE=Debug ..
+mkdir -p build && cd build
 cmake --build .
 ```
 
@@ -59,6 +59,11 @@ cmake --build .
 ```bash
 ./bin/main_simulation.bin
 ```
+
+### Interface interactive (nouveau)
+- Des *sliders* sont disponibles dans la fenêtre pour ajuster en temps réel : **Separation**, **Alignment**, **Cohesion**, **Neighbor radius**.
+- Un *slider* `Count` permet de choisir le nombre de boids et un bouton **Apply** (clic souris) réinitialise la population.
+- Contrôles : glisser-déposer les **sliders** pour ajuster les poids et le rayon ; **Apply** réinitialise la population selon `Count`. Appuyer sur **Échap** ferme la fenêtre.
 
 ### Lancer les tests
 
