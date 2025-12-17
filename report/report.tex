@@ -58,7 +58,6 @@
 % INTRODUCTION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \section{Introduction}
 \subsection{Contexte général}
 Ce projet à pour but de simuler les comportements collectifs d'un banc de poissons. Ce type de simulation est notamment utilisé dans la biologie, les jeux vidéos ou bien dans les projets d'"essaims" d'avions autonomes et est intéressant dans la modélisation de systèmes multi-agents.
@@ -93,5 +92,66 @@ Nous nous sommes aussi fixés 2 objectifs secondaires:
 Ces objectifs secondaires nous permettent de faciliter la transition du modèle séquentiel à un modèle parallèle ainsi que d'aller plus loin dans la simulation et de pouvoir être plus proche de la réalité.
 
 \subsection{Organisation de l'équipe}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ÉTAT DE L'ART
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Etat de l'art}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MÉTHODES ET ARCHITECTURE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Méthodes et architecture}
+\subsection{Architecture générale}
+
+\subsection{Modèle mathématique}
+Afin de représenter au mieux les différents comportements du banc de poisson, nous avons utilisé des formules mathématiques associées aux règles de flocking.
+\subsubsection{Règle 1 : Séparation}
+Le calcul de la séparation est nécessaire pour trouver notre vecteur de répulsion afin d'éviter les collisions. Nous avons utilisé la formule suivante:
+\begin{equation}
+    \vec{s} = \frac{1}{N}\sum_{i = 1}^{N} \frac{\vec{p} - \vec{p}_{i}}{|\vec{p} - \vec{p}_{i}|}
+\end{equation}
+où
+\begin{itemize}
+    \item $\vec{p} : $ position du boid courant
+    \item $\vec{p}_{i} : $ position du voisin $i$
+    \item $N : $ nombre de voisins dans le rayon de perception
+    \item La foce de steering finale : $\vec{F}_{s} = (\hat{s} \cdot v_{max} - \vec{v})$ limité à $F_{max}$ la force maximale
+\end{itemize}
+
+\subsubsection{Règle 2 : Alignement}
+On calcul la vitesse moyenne des voisins afin de suivre la direction des voisins et pouvoir ajuster la vitesse. Nous avons utilisé la formule suivante:
+\begin{equation}
+    \vec{a} = \frac{1}{N}\sum_{i = 1}^{N}\vec{v}_{i}
+\end{equation}
+où
+\begin{itemize}
+    \item $\vec{v}_{i} : $ vélocité du voisin $i$
+    \item $N : $nombre de voisins 
+    \item Force de steering : $\vec{F}_{a} = (\hat{a} \cdot v_{max} - \vec{v})$ limité à $F_{max}$ la force maximale
+\end{itemize}
+
+\subsubsection{Règle 3 : Cohésion}
+On calcul le centre de masse des voisins afin de faire en sorte de diriger l'agent vers le centre de masse 
+\begin{equation}
+    \vec{c} = \frac{1}{N}\sum_{i = 1}^{N}\vec{p}_{i}
+\end{equation}
+où
+\begin{itemize}
+    \item $\vec{t} : $position cible
+    \item $\hat{x} : $vecteur normalisé
+\end{itemize}
+
+\subsubsection{Paramètres clés}
+\begin{itemizeFB}
+    \item perceptionRadius : rayon de détection des voisins
+    \item maxSpeed : vitesse maximale du boid
+    \item maxForce : force maximale applicable
+    \item separationWeight : poids de la règle de séparation
+    \item alignementWeight : poids de la règle d'alignement
+    \item cohesionWeight : poids de la règle de cohésion
+\end{itemizeFB}
 
 \end{document}
