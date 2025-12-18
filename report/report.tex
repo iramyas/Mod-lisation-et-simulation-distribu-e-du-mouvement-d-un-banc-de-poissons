@@ -98,6 +98,42 @@ Ces objectifs secondaires nous permettent de faciliter la transition du modèle 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Etat de l'art}
+\subsection{Historique et travaux fondateurs}
+Nous nous sommes basés sur des travaux réalisés par les travaux de Craig Reynolds en 1987 \textit{"Flocks, Herds, and Schools : A Distributed Behavioral Model"} et \textit{"Novel Type of Phase Transition in a System of Self-Driven Particles"} de Tamas Vicsek, Andras Czirok, Eshel Ben-Jacob, Inon Cohen, and Ofer Shochet.
+
+Les boids sont un élément clé pour cette modélisation d'un banc de poissons. En effet, le modèle des boids nous permet, avec seulement trois règles relativement simple, de simuler des comportements complexes comme celui d'un banc de poisson. Ils sont aussi utilisé dans des domaines tels que les films ou les jeux afin d'avoir des comportements réalistes.
+
+Afin d'aller plus loin, nous pouvons modéliser les boids en 3 dimensions, ajouter des obstacles ou des prédateurs afin d'observer les différents résultats.
+
+\subsection{Approches existantes}
+Il existe déjà un certains nombre d'approches utilisées pour modéliser ce genre de comportements, notamment l'approche 'force-based' et l'approche 'velocity-based'.
+
+L'approche \textbf{'force-based'}, qui est celle de Reynolds, consiste en le calcul de forces de steering (séparation, alignement, cohésion) puis l'application de ces forces qui vont influencer l'accélération.
+
+\textbf{Avantage :} Simulation physique réaliste, comportement émergents naturels
+
+\textbf{Inconvénient :} Coût calculatoire O(n²) pour la détection de voisins
+\\
+L'approche \textbf{'velocity-based'}, quand à elle, fait un travail directement sur les vélocités sans passer par les forces.
+
+\textbf{Avantage :} Calcul plus rapide
+
+\textbf{Inconvénient :} Moins de contrôle fin sur les comportements
+
+Nous avons donc choisi d'utiliser l'approche force-based pour notre simulation afin de pouvoir être au plus proche du réel avec une simulation physique réaliste même si elle est coûteuse, nous avons confiance en nos futures optimisations pour compenser ce problème.
+
+\subsection{Technologies et outils}
+Pour notre implémentation, nous avons choisi d'utiliser \textit{C++20} afin d'avoir des performances optimales et de pouvoir, plus tard, parallélisé plus simplement, pour avoir de meilleurs performances ainsi que le support de la programmation orienté objet et parce que Python n'étais pas autorisé dans ce projet.
+
+Nous avons utilisé \textit{SFML 2.6.1} pour l'implémentation de l'interface graphique pour sa simplicité d'utilisation et la possibilité d'ajouter assez simplement des sliders.
+Nous allons migrer sur OpenGL lors de la mise en 3 dimensions.
+
+Nous avons aussi utilisé le framework de test unitaire \textit{GoogleTest} afin de pouvoir tester toute nos méthodes implémentée.
+
+Nous avons aussi utilisé \textit{CMake 3.20+} afin de pouvoir gérer plus simple les dépendances et les différentes configurations.
+
+Pour finir, nous avons commenté notre code en utilise \textit{Doxygen} qui nous perment de généré automatiquement une documentation complète de notre projet.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MÉTHODES ET ARCHITECTURE
