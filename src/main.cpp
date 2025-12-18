@@ -2,6 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <cstdlib>
+#include <sstream>
 #include "boid.h"
 #include "vector2D.h"
 #include "Flock.h"
@@ -54,10 +55,10 @@ int main() {
     uiPanel.setOutlineColor(sf::Color(120, 120, 120));
 
 
-    // sliders for weights et neighbor radius (reduire les forces de sep, cohesion et allignement a 5 pour eviter les comportement explosives)
-    Slider sepSlider(font, "Separation", panelPosX + sliderX, panelPosY + sliderY0 + 0*sliderSpacing, sliderWidth, 0.f, 5.f, 3.5f);
-    Slider aliSlider(font, "Alignment",  panelPosX + sliderX, panelPosY + sliderY0 + 1*sliderSpacing, sliderWidth, 0.f, 5.f, 2.5f);
-    Slider cohSlider(font, "Cohesion",   panelPosX + sliderX, panelPosY + sliderY0 + 2*sliderSpacing, sliderWidth, 0.f, 5.f, 3.0f);
+    // sliders for weights et neighbor radius (reduire les forces de sep, cohesion et allignement a 10 pour eviter les comportement explosives)
+    Slider sepSlider(font, "Separation", panelPosX + sliderX, panelPosY + sliderY0 + 0*sliderSpacing, sliderWidth, 0.f, 10.f, 3.5f);
+    Slider aliSlider(font, "Alignment",  panelPosX + sliderX, panelPosY + sliderY0 + 1*sliderSpacing, sliderWidth, 0.f, 10.f, 2.5f);
+    Slider cohSlider(font, "Cohesion",   panelPosX + sliderX, panelPosY + sliderY0 + 2*sliderSpacing, sliderWidth, 0.f, 10.f, 3.0f);
     Slider radiusSlider(font, "Neighbor radius", panelPosX + sliderX, panelPosY + sliderY0 + 3*sliderSpacing, sliderWidth, 5.f, 200.f, 50.f);
 
     // Count + apply 
@@ -73,6 +74,15 @@ int main() {
     applyText.setFillColor(sf::Color::White);
     applyText.setPosition(applyX + (applyBtn.getSize().x - applyText.getLocalBounds().width)/2.f - 2.f,
                           applyY + (applyBtn.getSize().y - applyText.getCharacterSize())/2.f - 2.f);
+
+    // FPS text
+    sf::Text fpsText;
+    fpsText.setFont(font);
+    fpsText.setCharacterSize(10);
+    fpsText.setFillColor(sf::Color::White);
+    fpsText.setPosition(8.f, 8.f);
+    float fpsSmoothed = 60.f;
+    const float fpsAlpha = 0.10f; // 0.05..0.2 selon la rapidité voulue
 
     sf::Clock clock;
 
@@ -110,6 +120,14 @@ int main() {
 
         float dt = clock.restart().asSeconds();
         if (dt > 0.05f) dt = 0.05f; // évite les gros sauts
+
+        // Mettre à jour FPS
+        {
+            float fps = dt > 0.f ? 1.f/dt : 0.f;
+            std::ostringstream ss;
+            ss << "FPS: " << static_cast<int>(fps + 0.5f);
+            fpsText.setString(ss.str());
+        }
 
         // ------------------- Mise à jour via Flock (spatial grid + weighted rules)
         // Synchronise le rayon de voisinage
@@ -166,6 +184,7 @@ int main() {
         countSlider.draw(window);
         window.draw(applyBtn);
         window.draw(applyText);
+        window.draw(fpsText);
 
         window.display();
     }

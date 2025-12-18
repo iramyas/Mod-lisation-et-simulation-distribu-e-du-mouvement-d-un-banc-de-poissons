@@ -143,7 +143,7 @@ namespace simulation{
             fish.setFillColor(sf::Color(80, 200, 255));
 
             float deg = std::atan2(b.velocity.y, b.velocity.x) * 180.f / 3.14159f;
-            fish.setRotation(deg); // plain degrees (SFML 2 compatible)
+            fish.setRotation(deg);
             fish.setPosition(sf::Vector2f(b.position.x, b.position.y));
         window.draw(fish);
 
