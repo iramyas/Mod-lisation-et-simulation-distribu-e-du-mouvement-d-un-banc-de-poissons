@@ -31,8 +31,11 @@ int main() {
     // UI: contrôles
     sf::Font font;
     if(!font.loadFromFile("/System/Library/Fonts/Helvetica.ttc")){
-        // police système non trouvée
-    }
+        // police système non trouvée (Mac)
+        if (!font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")) {
+            // police système non trouvée (Linux)
+        }
+    } 
 
     // Panel layout: compact frame wrapping the controls
     const float panelWidth = 260.f;

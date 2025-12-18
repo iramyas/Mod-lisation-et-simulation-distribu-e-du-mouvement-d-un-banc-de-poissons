@@ -1,5 +1,6 @@
 #include "GUI.h"
 #include <iomanip>
+#include <cmath>
 #include <sstream>
 
 // Implementation du Slider

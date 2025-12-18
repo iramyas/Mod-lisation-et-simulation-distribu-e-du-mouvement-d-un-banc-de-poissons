@@ -50,8 +50,8 @@ target_compile_options(test_ui PRIVATE ${COMMON_COMPILE_FLAGS})
 target_link_libraries(main_simulation PRIVATE sfml-graphics sfml-window sfml-system)
 target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main)
 target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main)
-target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main)
-target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main)
+target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system)
+target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system)
 
 set_target_properties(main_simulation PROPERTIES 
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
