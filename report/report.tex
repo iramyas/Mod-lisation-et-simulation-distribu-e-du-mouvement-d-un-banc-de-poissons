@@ -170,6 +170,14 @@ Pour finir, nous avons commenté notre code en utilise \textit{Doxygen} qui nous
 
 \section{Méthodes et architecture}
 \subsection{Architecture générale}
+Nous avons décidé de faire notre simulation en suivant une architecture modulaire en couches où chaque classe à un rôle définie. La figure \ref{fig:architecture} montre les relations entre les différentes classes.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{img/diag_classe.png}
+    \caption{Diagramme de classes UML du système de simulation}
+    \label{fig:architecture}
+\end{figure}
 
 \subsection{Modèle mathématique}
 Afin de représenter au mieux les différents comportements du banc de poisson, nous avons utilisé des formules mathématiques associées aux règles de flocking.
@@ -219,6 +227,85 @@ où
     \item cohesionWeight : poids de la règle de cohésion
 \end{itemizeFB}
 
+\subsection{Choix de conception}
+Afin de faciliter le développement, tout en gardant de bonnes performances et d'assurer la maintenabilité, nous avons pris différentes décisions que nous allons justifier.
+
+\subsubsection{Structure de données pour les boids}
+Pour les boids, nous avons choisi de les stocker directement par 
+
+\subsubsection{Détection des voisins}
+Dans un premier temps, nous avons opté pour une approche naïve avec la méthode \textit{getNeighbors()} qui effectue une recherche exhaustive parmis les boids, ce qui nous donne une complexité en $O(n^{2})$. Cette première approche nous permet d'avoir une première vision sur les différents comportements.
+Par la suite, nous avons implémenté une structure \textit{SpatialGrid} qui divise l'espace en cellules. Chaque boid ne regarde que ses cellules voisines. Cette implémentation nous permet de passer à une complexité de $O(n)$.
+
+\subsubsection{Gestion des bords}
+Actuellement, nous avons choisi de \textbf{téléporter} les boids du côté oppposé de la zone de simulation lorsqu'il rentre en collision d'un bord. Nous avons fait ce choix afin de simplifier nos premières implémentation et avoir une simulation fonctionnelle.
+
+Cependant, nous avons aussi pensé à des alternatives tels que le \textbf{rebond} où on aurait inverser la vitesse aux bords ou le \textbf{steering} où on aurait appliquer une force de répulsion quand le boid s'approche des bords.
+
+\subsubsection{Séparation modulaire Boid/Flock}
+Nous avons choisi de séparer les comportements individuels dans la classe \textit{Boid} et la gestion collective dans la classe \textit{Flock} afin de pouvoir tester chaque classe indépendamment, de pouvoir modifier l'algorithme de rechercher de voisins sans toucher aux règles de Reynolds, de pouvoir ajouter facilement de nouveaux comportements individuels et de pouvoir préparer la parallélisation future lors du semestre 2.
+
+\subsection{Implémentation}
+
+\subsubsection{Structure de données}
+Dans notre implémentation, nous avons choisi quatres structures principales:
+\begin{itemize}
+    \item \textbf{Vector2D} : Classe de base pour les opérations vectorilles 2D (position, vitesse, accélération)
+    \item \textbf{Boid} : Agent autonome avec attributs physiques (mass, maxSpeed, maxForce, perceptionRadius)
+    \item \textbf{Flock} : Gestionnaire d'agent autonome contenant le vecteur de boids et la SpatialGrid
+    \item \textbf{SpatialGrid} : Grille d'accélération avec \textit{std::vector<std::vector<Boid*>>}
+\end{itemize}
+
+\subsubsection{Algorithmes principaux}
+
+\textbf{Boucle de simulation} :
+\begin{verbatim}
+    Pour chaque boid:
+        1. Trouver les voisins (en utilisant SpatialGrid)
+        2. Calculer les forces de séparation, d'alignement et de cohésion
+        3. Appliquer les poids (en utilisant applyForce avec le total des forces)
+        4. Mettre à jour les poisitions (en utilisant update())
+\end{verbatim}
+
+\textbf{SpatialGrid} : Les boids sont repartis dans des cellules en fonction de leur position ce qui permet de regarder les 9 cellules adjacentes afin de trouver les positions des boids proche
+
+\subsubsection{Gestion de la mémoire}
+
+\begin{itemize}
+    \item Pas d'allocation dynamique manuelle de la mémore (en utilisant \textit{new}, \textit{malloc} ou \textit{delete})
+    \item Utilisation de conteneurs de la STL standards (\textit{std::vector})
+    \item Réservation de capacité avec \textit{reserve()} pour éviter les réallocations
+    \item La grille est vidée et construite à chaque frame : \textit{grid.clear()} puis \textit{grid.addBoid()}
+\end{itemize}
+
+\subsubsection{Optimisations appliquées}
+
+\begin{itemize}
+    \item \textbf{Surchage d'opérateurs} pour Vector2D : Permet une syntaxe naturelle (\textit{v1 + v2} ou \textit{v * scalar})
+    \item \textbf{Utilisation de const} : Paramètres passés par référence constante quand nécessaire (\textit{const Vector2D\&})
+    \item \textbf{Utilisation de noexcept} : Utilisée sur les opérations vectorielles afin de laisser le compilateur faire les optimisation nécessaire
+    \item \textbf{Normalisation optimisée} : Calcul de magnitude et de distance au carré afin d'éviter \textit{sqrt()} inutiles
+    \item \textbf{Flags de compilation} : \textit{-O3 -march=native -flto} en mode Release
+\end{itemize}
+
+\subsubsection{Contributions par membres}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|p{4cm}|p{9cm}|}
+        \hline
+        \textbf{Membre} & \textbf{Contributions détailles}\\
+        \hline
+        \textbf{Yohann} & \textbf{Vector 2D} : Toutes les opérations vectorielles (addition, soustraction, multiplication, division), normalisation, magnitude, produit scalaire, rotation. Surchage complète des opérateurs. Tests unitaires des implémentations. \\
+        \hline
+        \textbf{Iram} & \textbf{Boid} : Implémentation des trois règles de Reynolds (separate, align, cohesion), méthodes \textit{update()}, \textit{applyForce()}, \textit{seek()}, \textit{flee()}, \textit{getNeighbors()}. Tests unitaires pour Boid. \textbf{GUI} : Interface graphique avec sliders interactifs et affichage des FPS. \\
+        \hline
+        \textbf{Laurence} & \textbf{Flock} : Structure SpatialGrid complète, gestion de la collection de boids, boucle \textit{updateAll()}, méthodes \textit{populateRandom()}, \textit{setWeights()}, \textit{setNeighborRadius()}. Tests unitaires pour Flock.\\
+        \hline
+    \end{tabular}
+    \caption{Contributions détaillées par membre}
+    \label{tab:contributions_detail}
+\end{table}
 
 
 \end{document}
