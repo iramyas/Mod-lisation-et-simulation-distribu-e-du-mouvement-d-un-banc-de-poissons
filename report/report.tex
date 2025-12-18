@@ -92,6 +92,35 @@ Nous nous sommes aussi fixés 2 objectifs secondaires:
 Ces objectifs secondaires nous permettent de faciliter la transition du modèle séquentiel à un modèle parallèle ainsi que d'aller plus loin dans la simulation et de pouvoir être plus proche de la réalité.
 
 \subsection{Organisation de l'équipe}
+\textbf{Composition et contributions:}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|p{4cm}|p{5cm}|p{4cm}|}
+        \hline
+        \textbf{Membre} & \textbf{Responsabilité} & \textbf{Compétences clés} \\
+        \hline
+        Yohann FRONT-REIGNIER & 
+        Architecture \& Rapport, Vector2D, Documentation & C++, CMake, LaTeX, Doxygen \\
+        \hline
+        Iram MADANI-FOUATIH & 
+        Algorithmes Reynolds, Boid, Flock, GUI &
+        Math, Physique, SFML, UI/UX\\
+        \hline
+        Laurence HUANG &
+        Optimisation \& Tests, Flock, SpatialGrid &
+        Structures donées\\
+        \hline
+    \end{tabular}
+    \caption{Répartition des rôles et compétences au sein de l'équipe}
+    \label{tab:organisation}
+\end{table}
+
+
+Nous avons choisi de nous séparé les tâches en fonctions des classes à implémenter, chaque membre était responsable d'un composant principal et chaque classe implémentée se devait d'être entièrement testée grâce au module GoogleTest.
+
+Comme outils collaboratif nous avons utilisé Github car c'est l'outils que nous maitrisons le mieux. Le code a été mis en commun en utilisant CMake et il a été testé grâce à CTest. La documentation, quand à elle, à été gérée par Doxygen.
+
+Pour les réunions, nous en faisions toute les 2 semaines avec notre encadrant et environ toute les semaines entre nous afin de faire le point sur nos avancées personnels.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ÉTAT DE L'ART
@@ -189,5 +218,7 @@ où
     \item alignementWeight : poids de la règle d'alignement
     \item cohesionWeight : poids de la règle de cohésion
 \end{itemizeFB}
+
+
 
 \end{document}
