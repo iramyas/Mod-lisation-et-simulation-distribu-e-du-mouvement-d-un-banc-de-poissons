@@ -87,25 +87,35 @@ namespace simulation{
 
     std::vector<Boid*> Flock::getNeighbors(Boid* boid){
 
-        auto candidates = grid.queryNeighbors(boid); // Récupère les voisins potentiels
-        std::vector<Boid*> result; 
-        result.reserve(candidates.size());
+        std::vector<Boid*> result;
 
-        // Parcourt tous les voisins potentiels
-        for(Boid* b : candidates){
+        // Parcours des cellules dans un voisinage suffisamment large pour couvrir neighborRadius.
+        const int cx = static_cast<int>(boid->position.x / grid.cellSize);
+        const int cy = static_cast<int>(boid->position.y / grid.cellSize);
 
-            if(b == boid) continue; 
+        const int range = static_cast<int>(std::ceil(neighborRadius / grid.cellSize));
+        const float r2 = neighborRadius * neighborRadius;
 
-            float dx = b->position.x - boid->position.x; // distance X
-            float dy = b->position.y - boid->position.y; // distance Y
+        for(int dy = -range; dy <= range; ++dy){
+            for(int dx = -range; dx <= range; ++dx){
+                const int nx = cx + dx;
+                const int ny = cy + dy;
+                if(nx < 0 || ny < 0 || nx >= grid.gridWidth || ny >= grid.gridHeight) continue;
 
-            // Vérifie si b est dans le rayon
-            if(dx*dx+dy*dy <= neighborRadius * neighborRadius){
+                const std::size_t index = static_cast<std::size_t>(ny) * static_cast<std::size_t>(grid.gridWidth)
+                                        + static_cast<std::size_t>(nx);
+                const auto &cell = grid.cells[index];
 
-                result.push_back(b);
+                for(Boid* b : cell){
+                    if(b == boid) continue;
 
+                    const float dxp = b->position.x - boid->position.x;
+                    const float dyp = b->position.y - boid->position.y;
+                    if(dxp*dxp + dyp*dyp <= r2){
+                        result.push_back(b);
+                    }
+                }
             }
-
         }
 
         return result;
@@ -116,7 +126,11 @@ namespace simulation{
         grid.clear();
         for(Boid &b : boids){ grid.addBoid(&b); }
         for(Boid &b : boids){
-            auto neighbors = grid.queryNeighbors(&b);
+            // Synchronise le rayon utilisé par les forces de Reynolds (Boid) avec le rayon de voisinage (Flock)
+            b.perceptionRadius = neighborRadius;
+
+            auto neighbors = getNeighbors(&b);
+
             // Appliquer règles pondérées
             b.applyForce(b.separate(neighbors) * sepWeight);
             b.applyForce(b.align(neighbors)    * aliWeight);
@@ -143,7 +157,11 @@ namespace simulation{
             fish.setFillColor(sf::Color(80, 200, 255));
 
             float deg = std::atan2(b.velocity.y, b.velocity.x) * 180.f / 3.14159f;
+#if defined(SFML_VERSION_MAJOR) && (SFML_VERSION_MAJOR >= 3)
+            fish.setRotation(sf::degrees(deg));
+#else
             fish.setRotation(deg);
+#endif
             fish.setPosition(sf::Vector2f(b.position.x, b.position.y));
         window.draw(fish);
 
