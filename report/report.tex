@@ -107,12 +107,12 @@ Ces objectifs secondaires nous permettent de faciliter la transition du modèle 
         Architecture \& Rapport, Vector2D, Documentation & C++, CMake, LaTeX, Doxygen \\
         \hline
         Iram MADANI-FOUATIH & 
-        Algorithmes Reynolds, Boid, Flock, GUI &
-        Math, Physique, SFML, UI/UX\\
+        Algorithmes Reynolds, Boid, Flock, GUI, Benchmarks &
+        Math, Physique, SFML, UI/UX, Benchmarks\\
         \hline
         Laurence HUANG &
         Optimisation \& Tests, Flock, SpatialGrid &
-        Structures donées\\
+        Structures de données\\
         \hline
     \end{tabular}
     \caption{Répartition des rôles et compétences au sein de l'équipe}
@@ -275,7 +275,7 @@ où
     \item $\vec{p} : $ position du boid courant
     \item $\vec{p}_{i} : $ position du voisin $i$
     \item $N : $ nombre de voisins dans le rayon de perception
-    \item La foce de steering finale : $\vec{F}_{s} = (\hat{s} \cdot v_{max} - \vec{v})$ limité à $F_{max}$ la force maximale
+    \item La force de steering finale : $\vec{F}_{s} = (\hat{s} \cdot v_{max} - \vec{v})$ limité à $F_{max}$ la force maximale
 \end{itemize}
 
 \subsubsection{Règle 2 : Alignement}
@@ -297,19 +297,21 @@ On calcul le centre de masse des voisins afin de faire en sorte de diriger l'age
 \end{equation}
 où
 \begin{itemize}
-    \item $\vec{t} : $position cible
-    \item $\hat{x} : $vecteur normalisé
+    \item $\vec{c} : $ centre de masse des voisins (position ciblée)
+    \item $\vec{p}_{i} :$ position du boid voisin $i$
+    \item $N : $ nombre de voisins dans le rayon de perception 
+    \item La force de steering finale : $\vec{F}_{c} = (\widehat{\vec{c} - \vec{p}} \cdot v_{max} - \vec{v})$ limité à $F_{max}$ la force maximale
 \end{itemize}
 
 \subsubsection{Paramètres clés}
-\begin{itemizeFB}
+\begin{itemize}
     \item perceptionRadius : rayon de détection des voisins
     \item maxSpeed : vitesse maximale du boid
     \item maxForce : force maximale applicable
     \item separationWeight : poids de la règle de séparation
     \item alignementWeight : poids de la règle d'alignement
     \item cohesionWeight : poids de la règle de cohésion
-\end{itemizeFB}
+\end{itemize}
 
 \subsection{Choix de conception}
 Afin de faciliter le développement, tout en gardant de bonnes performances et d'assurer la maintenabilité, nous avons pris différentes décisions que nous allons justifier.
@@ -448,7 +450,7 @@ En plus des tests unitaires automatisés, nous avons aussi effectué des validat
 \subsubsection{Converture de tests}
 Toutes les méthodes publiques sont testées et les tests sont exécutés à chaque compilation afin de détecter les potentiels bugs pouvait apparaitre pendant le développement. Les résultats de ces tests sont disponibles dans fichiers \textit{build/Testing/Temporary}
 
-\subsection{Répartation des contributions}
+\subsection{Répartition des contributions}
 
 Le tableau \ref{tab:repartition} présente la repartition détaillée des contributions au projet.
 
@@ -464,7 +466,7 @@ Le tableau \ref{tab:repartition} présente la repartition détaillée des contri
         \hline
         Flock & Laurence & Iram (logique simulation) \\
         \hline
-        Benchmark & Laurence & - \\
+        Benchmark & Iram & - \\
         \hline
         GUI & Iram & - \\
         \hline
@@ -472,22 +474,22 @@ Le tableau \ref{tab:repartition} présente la repartition détaillée des contri
         \hline
         Documentation & Yohann & Tous \\
         \hline
-        Rapport & Yohann & Tous (relecture) \\
+        Rapport & Yohann & Iram (benchmarks et relecture) \\
         \hline
     \end{tabular}
-    \caption{Répartation récapitulative des contributions par composante}
+    \caption{Répartition récapitulative des contributions par composante}
     \label{tab:repartition}
 \end{table}
 
 \textbf{Statistiques Git} :
 \begin{itemize}
-    \item Total de commits : 82
-    \item Iram : 38 commits
-    \item Yohann : 36 commits
-    \item Laurence : 8 commits
+    \item Total de commits : 92
+    \item Iram : 50 commits
+    \item Yohann : 40 commits
+    \item Laurence : 2 commits
 \end{itemize}
 
-Tous les membres ont contribué de manière assez égale au projet, il faut cependant noter que Laurence n'a été ajouter au groupe que tardivement ce qui explique son plus petit nombre de commit et les commits réalisés sont plus gros.
+Tous les membres ont contribué de manière assez égale au projet, il faut cependant noter que Laurence n'a été ajouteés au groupe que tardivement ce qui explique son plus petit nombre de commit et les commits réalisés sont plus gros.
 
 \section{Résultats}
 \subsection{Validation comportementale (observations)}

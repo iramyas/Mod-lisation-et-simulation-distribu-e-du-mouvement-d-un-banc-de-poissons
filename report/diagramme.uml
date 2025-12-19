@@ -1,0 +1,128 @@
+@startuml Modelisation et simulation distribuee d'un banc de poisson
+
+title Diagramme de classes - Modélisation et Simulation distribuée d'un banc de poisson
+footer Projet CHPS - 2025
+
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 2
+skinparam linetype ortho
+
+package "simulation" {
+    class Vector2D {
+        + x : float 
+        + y : float
+        --
+        + Vector2D()
+        + Vector2D(x: float,y: float)
+        --
+        + magnitude() : float
+        + magnitudeSquared() : float
+        + normalized() : Vector2D
+        + dot(vec2: Vector2D)  : float
+        + distance(vec2: Vector2D) : float
+        + distanceSquared(vec2: Vector2D) : float
+        + angle() : double
+        + rotated(theta: float) : Vector2D
+    }
+    class Boid{
+        + position : Vector2D
+        + velocity : Vector2D
+        + acceleration : Vector2D
+        + mass : float 
+        + maxSpeed : float 
+        + maxForce : float 
+        + perceptionRadius : float 
+        --
+        + Boid()
+        + Boid(x: float,y: float)
+        + Boid(pos: Vector2D, vel: Vector2D)
+        --
+        + update(deltaTime: float) : void 
+        + applyForce(force: Vector2D) : void
+        --
+        + separate(boids: vector<Boid*>) : Vector2D
+        + align(boids: vector<Boid*>) : Vector2D
+        + cohesion(boids: vector<Boid*>) : Vector2D
+        + seek(target: Vector2D) : Vector2D
+        + flee(target: Vector2D) : Vector2D
+    }
+    class Flock {
+        + neighborRadius : float
+        + boids : vector<Boid>
+        + grid : SpatialGrid
+        + sepWeight : float
+        + aliWeight : float
+        + cohWeight : float
+        --
+        + Flock(width : float, height : float, cellSize : float)
+        --
+        + addBoid(boid: Boid) : void
+        + clear() : void
+        + getNeighbors(boid: Boid) : vector<Boid*>
+        + updateAll(deltaTime: float) : void
+        + setWeights(sep: float, ali: float, coh: float)
+        + setNeighborRadius(r: float) : void
+        + render() : void
+        + render(window: RenderWindow)
+    }
+
+    class SpatialGrid {
+        + cellSize : float
+        + cells : vector<vector<Boid*>>
+        + gridWidth : int 
+        + gridHeight : int 
+        --
+        + SpatialGrid(width: float, height: float, cellSize: float)
+        --
+        + clear() : void
+        + addBoid(boid: Boid*) : void
+        + queryNeighbors(boid: Boid*) : vector<Boid*>
+    }
+}
+
+package "GUI" {
+    class Slider {
+        - bar : RectangleShape
+        - handle : RectangleShape
+        - labelText : Text 
+        - valueText : Text 
+        - minValue : float
+        - maxValue : float 
+        - value : float
+        - dragging : bool 
+        --
+        + Slider()
+        + Slider(font: Font, label: string, x: float, y: float, w: float, min: float, max: float, value: float)
+        --
+        + handleEvent(event: Event, window: RenderWindow)
+        + draw(window: RenderWindow)
+        + getValue() : float
+        + setValue(v: float) : void
+    }
+}
+
+Boid *-- "3" Vector2D : position\nvelocity\nacceleration
+Flock o-- "0..*" Boid : manages
+Flock +-- SpatialGrid
+Flock --> SpatialGrid : grid
+Boid ..> Vector2D : uses
+Slider ..> Flock : controls parameters
+
+note right of Boid
+    Implémente les 3 règles de Reynolds
+end note
+
+note right of SpatialGrid
+    Optimisation spatiale:
+    Complexité O(n) au lieu de O(n²)
+end note
+
+legend right
+    | Symbole | Signification |
+    | *-- | Composition (contient) |
+    | o-- | Agrégation (gère) |
+    | +-- | Classe interne |
+    | ..> | Dépendance (utilise) |
+endlegend
+
+@enduml
