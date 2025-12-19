@@ -142,6 +142,9 @@ int main() {
 
         // Appliquer règles pondérées et mettre à jour
         for (auto &b : flock.boids) {
+            //le slider "Neighbor radius" pilote à la fois la sélection des voisins
+            b.perceptionRadius = flock.neighborRadius;
+
             auto neighbors = flock.getNeighbors(&b);
 
             simulation::Vector2D sep = b.separate(neighbors);
@@ -173,7 +176,11 @@ int main() {
             fish.setFillColor(sf::Color(80, 200, 255));
 
             float angle = std::atan2(b.velocity.y, b.velocity.x) * 180.f / 3.14159f;
+#if defined(SFML_VERSION_MAJOR) && (SFML_VERSION_MAJOR >= 3)
+            fish.setRotation(sf::degrees(angle));
+#else
             fish.setRotation(angle);
+#endif
             fish.setPosition(b.position.x, b.position.y);
             window.draw(fish);
         }
