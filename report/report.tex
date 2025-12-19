@@ -318,8 +318,8 @@ Afin de faciliter le développement, tout en gardant de bonnes performances et d
 Pour les boids, nous avons choisi de les stocker directement dans une liste de pointeurs afin d'éviter les copies inutiles et coûteuses lors des différents appelles dans les fonctions pour faire tourner la simulation.
 
 \subsubsection{Détection des voisins}
-Dans un premier temps, nous avons opté pour une approche naïve avec la méthode \textit{getNeighbors()} qui effectue une recherche exhaustive parmis les boids, ce qui nous donne une complexité en $O(n^{2})$. Cette première approche nous permet d'avoir une première vision sur les différents comportements.
-Par la suite, nous avons implémenté une structure \textit{SpatialGrid} qui divise l'espace en cellules. Chaque boid ne regarde que ses cellules voisines. Cette implémentation nous permet de passer à une complexité de $O(n)$.
+Dans un premier temps, nous avons opté pour une approche naïve avec la méthode \textit{getNeighbors()} qui effectue une recherche exhaustive parmi les boids, ce qui nous donne une complexité en $O(n^{2})$. Cette première approche nous permet d'avoir une première vision sur les différents comportements.
+Par la suite, nous avons implémenté une structure \textit{SpatialGrid} qui divise l'espace en cellules. Pour un boid donné, la recherche est restreinte à un voisinage de cellules couvrant le rayon \textit{neighborRadius} (puis filtrée par la distance euclidienne), ce qui réduit fortement le nombre de comparaisons en pratique. La complexité dépend alors de la densité locale et du rayon, mais devient généralement proche d'un comportement linéaire (cas moyen) au lieu du pire cas quadratique.
 
 \subsubsection{Gestion des bords}
 Actuellement, nous avons choisi de \textbf{téléporter} les boids du côté oppposé de la zone de simulation lorsqu'il rentre en collision d'un bord. Nous avons fait ce choix afin de simplifier nos premières implémentation et avoir une simulation fonctionnelle.
@@ -352,7 +352,7 @@ Dans notre implémentation, nous avons choisi quatres structures principales:
         4. Mettre à jour les poisitions (en utilisant update())
 \end{verbatim}
 
-\textbf{SpatialGrid} : Les boids sont repartis dans des cellules en fonction de leur position ce qui permet de regarder les 9 cellules adjacentes afin de trouver les positions des boids proche
+\textbf{SpatialGrid} : Les boids sont répartis dans des cellules en fonction de leur position. Pour un boid donné, on parcourt l'ensemble des cellules dans un voisinage dépendant du rapport $neighborRadius / cellSize$ (au minimum les cellules adjacentes), puis on ne conserve que les agents à distance $\le neighborRadius$.
 
 \subsubsection{Gestion de la mémoire}
 
@@ -490,8 +490,56 @@ Le tableau \ref{tab:repartition} présente la repartition détaillée des contri
 Tous les membres ont contribué de manière assez égale au projet, il faut cependant noter que Laurence n'a été ajouter au groupe que tardivement ce qui explique son plus petit nombre de commit et les commits réalisés sont plus gros.
 
 \section{Résultats}
+\subsection{Validation comportementale (observations)}
+L'exécution interactive de la simulation met en évidence l'émergence d'un comportement collectif cohérent, produit par l'application des règles locales de Reynolds (séparation, alignement, cohésion) :
+\begin{itemize}
+    \item \textbf{Cohésion :} les agents ont tendance à se regrouper et à maintenir une structure de banc lorsque la pondération de cohésion est suffisamment élevée.
+    \item \textbf{Alignement :} une direction moyenne locale émerge rapidement ; les boids adaptent leur vitesse à celle de leur voisinage.
+    \item \textbf{Séparation :} l'évitement des collisions est globalement observé ; la répulsion locale limite les superpositions persistantes.
+    \item \textbf{Stabilité :} la saturation de la vitesse (\textit{maxSpeed}) et des forces (\textit{maxForce}) évite des accélérations non physiques.
+\end{itemize}
+La simulation implémente en outre une gestion des bords de type \textit{wrap-around} (tore 2D), assurant la continuité du mouvement lorsque les agents sortent de la fenêtre.
+
+\subsection{Exploration de paramètres (retours d'expérience)}
+L'interface graphique permet d'ajuster en temps réel les pondérations \textit{Separation}, \textit{Alignment} et \textit{Cohesion}, ainsi que le rayon de voisinage \textit{Neighbor radius}. Ces réglages mettent en évidence des variations qualitatives du comportement :
+\begin{itemize}
+    \item une séparation trop faible conduit à une concentration excessive et à des quasi-superpositions ;
+    \item une cohésion trop dominante (par rapport à la séparation) condense le banc ;
+    \item un alignement dominant favorise des déplacements collectifs directionnels.
+\end{itemize}
+
+\subsection{Benchmarks (premières mesures)}
+Afin d'illustrer l'impact de l'optimisation de la recherche de voisins, nous avons mesuré le temps moyen par itération de simulation (mise à jour de tous les boids) dans deux cas :
+\begin{itemize}
+    \item \textbf{Naïf :} recherche exhaustive $O(n^{2})$ via \textit{Boid::getNeighbors}.
+    \item \textbf{SpatialGrid :} recherche accélérée par grille uniforme puis filtrage au rayon.
+\end{itemize}
+Les mesures présentées ci-dessous sont indicatives : elles ont été réalisées sur la machine hôte en configuration \textit{Debug} (les valeurs absolues ne constituent donc pas un benchmark final), mais elles permettent de visualiser la tendance et l'intérêt de l'indexation spatiale.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../figures/bench_time_vs_N.png}
+    \caption{Temps moyen par itération en fonction de $N$ (rayon fixé).}
+    \label{fig:bench_time_vs_n}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../figures/bench_time_vs_radius.png}
+    \caption{Temps moyen par itération en fonction du rayon de voisinage (N fixé).}
+    \label{fig:bench_time_vs_radius}
+\end{figure}
 
 \section{Discussion}
+\subsection{Interprétation}
+Les résultats visuels confirment l'adéquation du modèle de Reynolds pour produire un mouvement collectif réaliste à partir de règles locales simples. L'architecture modulaire (\textit{Boid} pour les forces et \textit{Flock/SpatialGrid} pour la gestion collective) facilite l'extension future (nouveaux comportements, parallélisation, changement de structure spatiale).
+
+\subsection{Limites}
+La validation reste principalement qualitative (observation visuelle). Des métriques quantitatives permettraient de caractériser plus objectivement l'état du système : polarisation, distribution du nombre de voisins, mesures d'entropie/densité, etc.
+Concernant la performance, les mesures actuelles incluent des coûts non représentatifs d'un benchmark final (configuration Debug, dépendance à l'environnement). Un mode \textit{headless} et une compilation \textit{Release} seront nécessaires pour obtenir des résultats reproductibles.
+
+\subsection{Perspectives}
+Le second semestre sera consacré à la mise à l'échelle (augmentation de $N$) et à la parallélisation (OpenMP, MPI). Une étude plus poussée des structures de données (quadtree, grilles adaptatives) sera également pertinente pour mieux gérer les zones très denses ou très vides.
 
 \section{Conclusion}
 
