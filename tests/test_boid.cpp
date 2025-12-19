@@ -214,12 +214,14 @@ TEST(BoidTest, AlignNoNeighbors) {
 
 TEST(BoidTest, AlignWithSameVelocity) {
     float s= 5.0f /std::sqrt(2.0f);
-    Vector2D direction(s,s);    //norme de 5.0f puisque le maxSpeed = 5.0f
+    Vector2D direction(s,s);    // norme = 5
 
     Boid boid1(0.0f, 0.0f);
+    boid1.maxSpeed = 5.0f;
     boid1.velocity = direction;
     
     Boid boid2(5.0f, 5.0f);
+    boid2.maxSpeed = 5.0f;
     boid2.velocity = direction;
     
     std::vector<Boid*> flock = { &boid2 };
