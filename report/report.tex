@@ -43,6 +43,10 @@
     {\itshape Laurence HUANG\par}
     \vspace{1cm}
 
+    {\small \textbf{Dépôt GitHub :} \url{https://github.com/iramyas/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons}}
+
+    \vspace{1cm}
+
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.8\textwidth]{img/ISTY-logo-2025.jpg}
@@ -484,5 +488,107 @@ Le tableau \ref{tab:repartition} présente la repartition détaillée des contri
 \end{itemize}
 
 Tous les membres ont contribué de manière assez égale au projet, il faut cependant noter que Laurence n'a été ajouter au groupe que tardivement ce qui explique son plus petit nombre de commit et les commits réalisés sont plus gros.
+
+\section{Résultats}
+
+\section{Discussion}
+
+\section{Conclusion}
+
+\subsection{Synthèse des réalisations}
+
+Ce projet nous a permis d'apprendre à implémenter un système de simulation de boids basé sur les règles de Reynolds. Nous avons pu atteindre nos trois objectifs principaux qui sont : l'implémentation complète des règles de séparation, d'alignement et de cohésion, la création d'une visualisation interactive avec SFML et la validation visuelle des comportements émergents.
+
+Nos choix d'architecture modulaire nous permet d'avoir une base satisfaisante pour les futures extensions prévue. La séparation claire entre les utilités des composantes facilite aussi la maintenance et l'évolution du code. Les tests unitaires automatisés avec GoogleTest nous permettent aussi de garantir la robustesse de chaque module.
+
+L'interface utilisateur avec les sliders nous permettant de mettre à jour dynamiquement les paramètres de la simulation sont un outils très utile pour comprendre les comportements collectifs en fonction de différentes valeurs.
+
+\subsection{Apprentissages}
+
+Ce projet nous a aussi permis de développer des compétences techniques et méthodologiques utile pour de futures projets et pour la continuité de celui ci:
+\textbf{Compétences techniques :}
+\begin{itemize}
+    \item Maîtrise de C++20
+    \item Architecture orientée objet
+    \item Tests unitaires avec GoogleTest
+    \item Visualisation en temps réel avec SFML
+    \item Système de build automatisés avec CMake
+    \item Documentation automatique avec Doxygen
+\end{itemize}
+
+\textbf{Compétences scientifiques :}
+\begin{itemize}
+    \item Compréhension approfondie des système dit "multi-agent"
+    \item Modélisation mathématique des comportements émergents
+    \item Analyse des complexité algorithmique
+\end{itemize}
+
+\textbf{Compétences collaboratives :}
+\begin{itemize}
+    \item Travail d'équipe avec Git
+    \item Communication technique et documentation partagée
+    \item Gestion de projet collaboratif avec respect des deadlines
+\end{itemize}
+
+\subsection{Perspectives futures}
+
+Le second semestre sera consacré à l'optimisation et à la parallélisation du code. Les perspectives actuelles sont :
+\begin{itemize}
+    \item \textbf{Parallélisation OpenMP} : Parallélisation de la boucle \textit{updateAll()} pour utiliser plusieurs coeurs du CPU pour les différents calculs de forces 
+    \item \textbf{Distribution MPI} : Partitionner l'espace de simulation en sous-domaines avec communication des boids aux frontières
+    \item \textbf{Optimisation SpatialGrid} : Remplacement potentiel par Quadtree pour  améliorer encore la complexité 
+\end{itemize}
+
+\textbf{Extensions futures :}
+\begin{itemize}
+    \item Migration vers OpenGL pour une simulation 3D performante
+    \item Ajout d'obstacles statiques et dynamiques avec des algorithmes d'évitement afin d'étudier les comportements des boids 
+    \item Modélisation prédateur-proie pour étudier le comportement des groupes dans ces conditions
+    \item Migration vers GPU avec CUDA pour pouvoir faire des simulations massives (de l'ordre de plus de 10000 boids)
+\end{itemize}
+
+\textbf{Application concrètes possibles :}
+\begin{itemize}
+    \item Simulation de robots en essaim (UAVs ou drones)
+    \item Modélisation de foules pour des études
+    \item Base pour recherche en intelligence collective artificielle
+\end{itemize}
+
+Ce projet constitue donc une fondation solide pour des travaux plus avancés dans différents domaines. Avec la parallélisation, nous serons en mesure de simuler plus fidèlement les comportements collectifs au lieu de passer par une gestion centralisée des agents.
+
+\newpage
+\begin{thebibliography}{99}
+    \bibitem{reynolds1987}
+    Reynolds, C. W. (1987).
+    \textit{Flocks, herds and schools : A distributed behavioral model}.
+
+    \bibitem{vicsek1995}
+    Vicsek, T., Czirók, A., Ben-Jacob, E., Cohen, I., \& Shochet, O. (1995).
+    \textit{Novel type of phase transition in a system of self-driven particles}
+
+    \bibitem{sfml}
+    SFML Development Team
+    \textit{SFML Documentation} \url{https://www.sfml-dev.org/documentation/2.6.1/}
+
+    \bibitem{gtest}
+    GoogleTest. 
+    \textit{GoogleTest Documentation} \url{https://google.github.io/googletest/}
+
+    \bibitem{cmake}
+    CMake. 
+    \textit{CMake Documentation} \url{https://cmake.org/documentation/}
+
+    \bibitem{courspoocs}
+    Cours de POOCS, ISTY, UVSQ (2025)
+    \textit{Cours de C++ de niveau M1}
+
+    \bibitem{cppref}
+    C++20
+    \textit{cppreference} \url{https://en.cppreference.com/index.html}
+
+    \bibitem{doxygen}
+    van Heesch, D.
+    \textit{Doxygen Manual} \url{https://www.doxygen.nl/manual/}
+\end{thebibliography}
 
 \end{document}
