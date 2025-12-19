@@ -179,6 +179,86 @@ Nous avons décidé de faire notre simulation en suivant une architecture modula
     \label{fig:architecture}
 \end{figure}
 
+\subsubsection{Relations entre composants}
+
+\textbf{Dépendances :}
+\begin{itemize}
+    \item \textit{Vector2D} est la classe de base sans dépendance externe 
+    \item \textit{Boid} dépend de \textit{Vector2D} pour répresenter sa position, sa vitesse ainsi que son accélération
+    \item \textit{Flock} utilise une collection de \textit{Boid} 
+    \item \textit{SpatialGrid} est une classe imbriquée dans \textit{Flock}
+    \item \textit{GUI} utilise \textit{Flock} mais n'est pas directement dépendant de celle ci  
+\end{itemize}
+
+\textbf{Multiplicités :}
+\begin{itemize}
+    \item Un \textit{Flock} contient 0 à N \textit{Boid}
+    \item Un \textit{Boid} appartient à 1 seul \textit{Flock}
+    \item Un \textit{Flock} possède 1 seul \textit{SpatialGrid}
+    \item Une cellule de \textit{SpatialGrid} contient entre 0 et N pointeurs vers \textit{Boid}
+\end{itemize}
+
+\subsubsection{Flux de données et contrôle}
+La boucle principale de simulation suit ce cheminement:
+
+\begin{enumerate}
+    \item \textbf{Initialisation} :
+    \begin{itemize}
+        \item Création du \textit{Flock} avec dimensions de la fenêtre
+        \item Population avec \textit{populateRandom(N)}
+    \end{itemize}
+    \item \textbf{À chaque frame} :
+    \begin{itemize}
+        \item \textit{grid.clear()} : Vide la grille spatiale
+        \item Pour chaque boid : \textit{grid.addBoid()} : Insertion dans les cellules correspondante
+        \item \textit{flock.updateAll(deltaTime)} :
+            \begin{itemize}
+                \item Pour chaque boid :
+                \item [-] \textit{getNeighbors()} par \textit{SpatialGrid}
+                \item [-] Calcul des forces : \textit{separate()}, \textit{align()}, \textit{cohesion()}
+                \item [-] Application poids : $F_{total} = w_{sep} \cdot F_{sep} + w_{ali} \cdot F_{ali} + w_{coh} \cdot F_{coh} $
+                \item [-] \textit{applyForce(F\_total)}
+                \item [-] \textit{update(deltaTime)} : Intégration d'Euler
+            \end{itemize}
+        \item \textit{flock.render(window)} :Affichage SFML
+        \item \textit{GUI} : Mise à jour sliders et lecture des valeurs
+    \end{itemize}
+    \item \textbf{Interaction utilisateur} :
+    \begin{itemize}
+        \item Sliders modifient \textit{sepWeight}, \textit{aliWeight}, \textit{cohWeight}, \textit{neighborRadius}
+        \item Bouton "Apply" réinitialise la simulation avec les valeurs des sliders.
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Organisation modulaire et extensibilité}
+Nous avons choisi cette architecture afin de faciliter les futures améliorations:
+\begin{itemize}
+    \item \textbf{Ajout de comportements} : Nouvelles méthodes dans \textit{Boid}
+    \item \textbf{Optimisations spatiales} : Remplacement de \textit{SpatialGrid} par un \textit{Quadtree} par exemple
+    \item \textbf{Parallélisation} :
+    \begin{itemize}
+        \item OpenMP : Paralléliser la boucle dans \textit{updateAll()}
+        \item MPI : Partitionner \textit{Flock} en sous-domaines spatiaux 
+    \end{itemize}
+    \item \textbf{Passer en 3D} : Remplacer \textit{Vector2D} par \textit{Vector3D}, adapter \textit{SpatialGrid} en 3D et utiliser OpenGL
+    \item \textbf{GPU} : Migrer calculs de forces dans le GPU afin d'améliorer la répartition des tâches et avoir moins de calculs sur le processeur (possible gain de temps)
+\end{itemize}
+
+\subsubsection{Pattern de conception utilisé}
+Nous avons choisi de séparer les tâches en quatre:
+\begin{itemize}
+    \item Calcul -> Boid
+    \item Stockage -> Flock
+    \item Optimisation -> SpatialGrid
+    \item Affichage -> GUI
+\end{itemize}
+
+La plus part des attributs sont publics afin de faciliter les appels de fonctions ou la récupération et la modification de valeurs.
+
+Nous avons aussi choisi de ne pas utilisé de hiérarchie complexe d'héritage pour favoriser la flexibilité de notre code.
+
+Enfin, les trois règles de Reynolds sont des stratégies de comportement modulables en utilisant les poids associés.
+
 \subsection{Modèle mathématique}
 Afin de représenter au mieux les différents comportements du banc de poisson, nous avons utilisé des formules mathématiques associées aux règles de flocking.
 \subsubsection{Règle 1 : Séparation}
@@ -231,7 +311,7 @@ où
 Afin de faciliter le développement, tout en gardant de bonnes performances et d'assurer la maintenabilité, nous avons pris différentes décisions que nous allons justifier.
 
 \subsubsection{Structure de données pour les boids}
-Pour les boids, nous avons choisi de les stocker directement par 
+Pour les boids, nous avons choisi de les stocker directement dans une liste de pointeurs afin d'éviter les copies inutiles et coûteuses lors des différents appelles dans les fonctions pour faire tourner la simulation.
 
 \subsubsection{Détection des voisins}
 Dans un premier temps, nous avons opté pour une approche naïve avec la méthode \textit{getNeighbors()} qui effectue une recherche exhaustive parmis les boids, ce qui nous donne une complexité en $O(n^{2})$. Cette première approche nous permet d'avoir une première vision sur les différents comportements.
@@ -249,6 +329,7 @@ Nous avons choisi de séparer les comportements individuels dans la classe \text
 
 \subsubsection{Structure de données}
 Dans notre implémentation, nous avons choisi quatres structures principales:
+
 \begin{itemize}
     \item \textbf{Vector2D} : Classe de base pour les opérations vectorilles 2D (position, vitesse, accélération)
     \item \textbf{Boid} : Agent autonome avec attributs physiques (mass, maxSpeed, maxForce, perceptionRadius)
@@ -307,5 +388,101 @@ Dans notre implémentation, nous avons choisi quatres structures principales:
     \label{tab:contributions_detail}
 \end{table}
 
+\subsection{Tests et validation}
+
+\subsubsection{Stratégie de test}
+Nous avons décidé de tester systématiquement l'intégralité de nos classes avec GoogleTest :
+
+\begin{itemize}
+    \item \textbf{test\_vector.bin} : Tests unitaires pour Vector2D
+    \item \textbf{test\_boid.bin} : Tests unitaires pour Boid
+    \item \textbf{test\_flock.bin} : Tests unitaires pour Flock
+    \item \textbf{test\_ui.bin} : Tests d'intégration du GUI
+\end{itemize}
+
+Tout ces tests sont exécutés automatiquement grâce à la commande de CTest : \textit{ctest --output-on-failure}.
+
+\subsubsection{Tests unitaires par classe}
+
+\textbf{Vector2D} (test\_vector.cpp) : 
+\begin{itemize}
+    \item Opérations arithmétiques : addition, soustraction, multiplication, division
+    \item Magnitude et magnitudeSquared
+    \item Normalisation (avec cas limites tel que le vecteur nul)
+    \item Produit scalaire (dot product)
+    \item Distance entre deux vecteurs
+    \item Rotation
+\end{itemize}
+
+\textbf{Boid} (test\_boid.cpp) :
+\begin{itemize}
+    \item Application de forces : \textit{applyForce()} respecte la limite \textit{maxForce}
+    \item Mise à jour : \textit{update()} limite la vitesse à \textit{maxSpeed}
+    \item Comportements : \textit{seek()}, \textit{flee()}, \textit{separate()}, \textit{align()} et \textit{cohesion()}
+    \item Détection de voisins : \textit{getNeighbors()} dans le rayon \textit{perceptionRadius}
+\end{itemize}
+
+\textbf{Flock} (test\_flock.cpp) :
+\begin{itemize}
+    \item Ajout/suppression de boids : \textit{addBoid()}, \textit{clear()}
+    \item Population aléatoire : \textit{populateRandom(N)}
+    \item SpatialGrid : cohérence des cellules et recherche de voisins 
+    \item Mise à jour collective : \textit{updateAll()} applique bien les règles 
+\end{itemize}
+
+\subsubsection{Validation des comportements émergents}
+En plus des tests unitaires automatisés, nous avons aussi effectué des validations visuelles :
+
+\begin{itemize}
+    \item \textbf{Séparation} : Les boids évitent les collisions (pas de superposition prolongée)
+    \item \textbf{Alignement} : Les boids se déplacent dans la même direction que son voisinage proche (ou au moins essaye de le faire en fonction de la vitesse de steering)
+    \item \textbf{Cohésion} : Le banc reste groupé sans se disperser
+    \item \textbf{Stabilité} : Pas d'explosions ou de vitesses aberrantes
+    \item \textbf{Patterns émergents} : Formation de tourbillons, de vagues et de colonnes
+\end{itemize}
+
+\subsubsection{Converture de tests}
+Toutes les méthodes publiques sont testées et les tests sont exécutés à chaque compilation afin de détecter les potentiels bugs pouvait apparaitre pendant le développement. Les résultats de ces tests sont disponibles dans fichiers \textit{build/Testing/Temporary}
+
+\subsection{Répartation des contributions}
+
+Le tableau \ref{tab:repartition} présente la repartition détaillée des contributions au projet.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|p{3.5cm}|p{2.5cm}|p{4cm}|}
+        \hline
+        \textbf{Composant} & \textbf{Principal} & \textbf{Contributeurs} \\
+        \hline
+        Vector2D & Yohann & Iram (intégration Boid) \\
+        \hline
+        Boid & Iram & Laurence (intégration Flock) \\
+        \hline
+        Flock & Laurence & Iram (logique simulation) \\
+        \hline
+        Benchmark & Laurence & - \\
+        \hline
+        GUI & Iram & - \\
+        \hline
+        Tests unitaire & Tous & Yohann (Vector2D), Iram (Boid), Laurence (Flock) \\
+        \hline
+        Documentation & Yohann & Tous \\
+        \hline
+        Rapport & Yohann & Tous (relecture) \\
+        \hline
+    \end{tabular}
+    \caption{Répartation récapitulative des contributions par composante}
+    \label{tab:repartition}
+\end{table}
+
+\textbf{Statistiques Git} :
+\begin{itemize}
+    \item Total de commits : 82
+    \item Iram : 38 commits
+    \item Yohann : 36 commits
+    \item Laurence : 8 commits
+\end{itemize}
+
+Tous les membres ont contribué de manière assez égale au projet, il faut cependant noter que Laurence n'a été ajouter au groupe que tardivement ce qui explique son plus petit nombre de commit et les commits réalisés sont plus gros.
 
 \end{document}
