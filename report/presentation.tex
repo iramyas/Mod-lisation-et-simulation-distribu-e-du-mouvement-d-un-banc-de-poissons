@@ -1,0 +1,258 @@
+\documentclass[11pt, aspectratio=169]{beamer}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+
+% --- THEME ---
+\usetheme{Madrid}
+\usecolortheme{default}
+\definecolor{UVSQBlue}{RGB}{0, 51, 102}
+\setbeamercolor{structure}{fg=UVSQBlue}
+\setbeamercolor{frametitle}{bg=UVSQBlue, fg=white}
+\setbeamercolor{title}{bg=UVSQBlue, fg=white}
+\setbeamertemplate{navigation symbols}{}
+
+% --- FOOTER ---
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+      \hspace{1em}\tiny Master 1 CHPS%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.34\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \tiny Simulation d'un Banc de Poissons%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+      \tiny Décembre 2025\hspace{1em}%
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+% --- INFOS ---
+\title{Modélisation et Simulation distribuée du mouvement d'un Banc de Poissons}
+\subtitle{Modélisation Multi-Agents avec les Règles de Reynolds}
+\author{Yohann FRONT-REIGNIER \and Iram MADANI-FOUATIH \and Laurence HUANG}
+\institute{Master 1 CHPS -- UVSQ Paris-Saclay}
+%\date{Décembre 2025}
+\titlegraphic{\includegraphics[height=2cm]{ISTY-logo-2025.png}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+% --- SLIDE 2 ---
+\begin{frame}
+\frametitle{Contexte}
+\begin{itemize}
+    \setlength\itemsep{1em}
+    \item Simuler les comportements collectifs émergents
+    \item Bancs de poissons, flocks d'oiseaux
+    \item 3 règles locales simples appliquées à chaque agent
+    \item \textbf{Objectifs S1} : implémentation séquentielle + visualisation 2D
+    \item \textbf{Semestre 2} : parallélisation OpenMP/MPI
+\end{itemize}
+\end{frame}
+
+% --- SLIDE 3 ---
+\begin{frame}
+\frametitle{Les 3 Règles de Reynolds}
+\begin{enumerate}
+    \setlength\itemsep{1em}
+    \item \textbf{Séparation} : Éviter les collisions avec les voisins proches
+    \item \textbf{Alignement} : S'adapter à la vélocité moyenne du groupe local
+    \item \textbf{Cohésion} : Se diriger vers le centre de masse des voisins
+\end{enumerate}
+\vspace{1cm}
+\centering
+\textit{Appliquées localement $\Rightarrow$ comportement global complexe et réaliste}
+\end{frame}
+
+% --- SLIDE 4 ---
+\begin{frame}
+\frametitle{Formulation Mathématique}
+Pour chaque boid $b$, on calcule trois forces :
+\vspace{0.3cm}
+
+\textbf{Séparation :}
+$$\vec{F}_{sep} = -\sum_{i \in N(b)} \frac{\vec{p}_b - \vec{p}_i}{\|\vec{p}_b - \vec{p}_i\|^2}$$
+
+\textbf{Alignement :}
+$$\vec{F}_{ali} = \frac{1}{|N(b)|}\sum_{i \in N(b)} \vec{v}_i - \vec{v}_b$$
+
+\textbf{Cohésion :}
+$$\vec{F}_{coh} = \frac{1}{|N(b)|}\sum_{i \in N(b)} \vec{p}_i - \vec{p}_b$$
+
+\vspace{0.2cm}
+\small
+Mise à jour : $\vec{a} = \vec{F}_{total}/m$, $\vec{v} \leftarrow \vec{v} + \vec{a}\Delta t$, $\vec{p} \leftarrow \vec{p} + \vec{v}\Delta t$
+\end{frame}
+
+% --- SLIDE 5 ---
+\begin{frame}
+\frametitle{Architecture Logicielle}
+\begin{itemize}
+    \setlength\itemsep{0.8em}
+    \item \textbf{Vector2D} : Opérations vectorielles (position, vitesse, accélération)
+    \item \textbf{Boid} : Agent autonome avec les 3 règles Reynolds
+    \item \textbf{Flock} : Gestionnaire de collection de boids
+    \item \textbf{SpatialGrid} : Grille d'accélération pour recherche de voisins
+    \item \textbf{GUI (SFML)} : Interface interactive avec sliders temps réel
+\end{itemize}
+\end{frame}
+
+% --- SLIDE 6  ---
+\begin{frame}
+\frametitle{Optimisation : SpatialGrid}
+
+\vspace{0.5cm}
+
+\textbf{\large 1. Le Problème} \\
+Recherche de voisins naïve = $O(n^2)$ par frame. \textbf{Trop lent.}
+
+\vspace{1cm}
+
+\textbf{\large 2. La Solution : Partitionnement}
+\begin{itemize}
+    \setlength\itemsep{0.5em}
+    \item Partitionner l'espace en cellules = $O(k)$ (où $k$ = boids/cellule)
+    \item \textbf{Implémentation} : Grille 2D de vecteurs \texttt{Boid*}
+    \item \textbf{Gain} : 500 boids $\rightarrow$ 5x plus rapide (50k comparaisons vs 250k)
+\end{itemize}
+
+\end{frame}
+
+% --- SLIDE 7 ---
+\begin{frame}
+\frametitle{Détails d'Implémentation}
+\begin{itemize}
+    \setlength\itemsep{0.8em}
+    \item \textbf{Langage} : C++20 (moderne, performant)
+    \item \textbf{Build} : CMake 3.20+, GCC/Clang avec flags \texttt{-O3}
+    \item \textbf{Graphisme} : SFML 2.6.1 pour visualisation 2D
+    \item \textbf{Tests} : Google Test, CTest automatique
+    \item \textbf{Documentation} : Doxygen
+    \item \textbf{Git} : Gestion de version (82 commits)
+\end{itemize}
+\end{frame}
+
+% --- SLIDE 8 ---
+\begin{frame}
+\frametitle{Résultats Observés}
+\begin{itemize}
+    \setlength\itemsep{0.8em}
+    \item \textbf{Cohésion} : Agents restent groupés, structure maintenue
+    \item \textbf{Alignement} : Direction moyenne émerge rapidement
+    \item \textbf{Séparation} : Collisions évitées efficacement
+    \item \textbf{Patterns} : Tourbillons, colonnes, vagues observés
+    \item \textbf{Performance} : \textbf{60 FPS stable} avec 500 boids
+\end{itemize}
+\end{frame}
+
+% --- SLIDE 9 ---
+\begin{frame}
+\frametitle{Interface Interactive (SFML)}
+\begin{itemize}
+    \setlength\itemsep{0.8em}
+    \item Sliders temps réel : Séparation, Alignement, Cohésion (0-10)
+    \item Rayon de voisinage : 5-200 pixels
+    \item Nombre de boids : 10-500
+    \item Bouton \textit{Apply} pour réinitialiser la simulation
+    \item Affichage des FPS
+\end{itemize}
+\end{frame}
+
+% --- SLIDE 10 ---
+\begin{frame}
+\frametitle{Contributions de l'équipe}
+\begin{columns}[T]
+    \begin{column}{0.33\textwidth}
+        \textbf{Yohann} \\ (36 commits)
+        \footnotesize
+        \begin{itemize}
+            \item Vector2D
+            \item Architecture
+            \item Rapport
+            \item Doc Doxygen
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+        \textbf{Iram} \\ (38 commits)
+        \footnotesize
+        \begin{itemize}
+            \item Boid (Règles)
+            \item GUI SFML
+            \item Tests Boid
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.33\textwidth}
+        \textbf{Laurence} \\ (8 commits)
+        \footnotesize
+        \begin{itemize}
+            \item Flock
+            \item SpatialGrid
+            \item Optimisations
+            \item Benchmarks
+        \end{itemize}
+    \end{column}
+\end{columns}
+\end{frame}
+
+% --- SLIDE 11 ---
+\begin{frame}
+\frametitle{Tests et Validation}
+\textbf{Tests Unitaires (Google Test) :}
+\begin{itemize}
+    \item \texttt{test\_vector.bin} : Opérations, magnitude, normalisation
+    \item \texttt{test\_boid.bin} : Forces, mise à jour, règles Reynolds
+    \item \texttt{test\_flock.bin} : Gestion collection, SpatialGrid
+    \item \texttt{test\_ui.bin} : Intégration GUI
+\end{itemize}
+\vspace{0.5cm}
+\textbf{Validation :}
+\begin{itemize}
+    \item Validation visuelle des 3 règles émergentes
+    \item Tous les tests passent (100\% succès)
+\end{itemize}
+\end{frame}
+
+% --- SLIDE 12 ---
+\begin{frame}
+\frametitle{Perspectives (Semestre 2)}
+\begin{itemize}
+    \setlength\itemsep{1em}
+    \item \textbf{Parallélisation} : OpenMP (threads), MPI (cluster)
+    \item \textbf{Extensions} : 3D (OpenGL), obstacles, prédateurs/proies
+    \item \textbf{Optimisations} : kd-tree, SIMD, calcul sur GPU
+    \item \textbf{Benchmarks} : Scalabilité, performance comparative
+\end{itemize}
+\vspace{0.5cm}
+\textbf{État actuel :} Code propre, testé, prêt pour l'optimisation.
+\end{frame}
+
+% --- SLIDE 13 ---
+\begin{frame}
+\frametitle{Conclusion}
+\begin{itemize}
+    \setlength\itemsep{1em}
+    \item Simulateur complet et fonctionnel (3 règles de Reynolds)
+    \item Architecture modulaire et optimisée (SpatialGrid)
+    \item Visualisation fluide (60 FPS @ 500 agents)
+    \item Compétences acquises : C++ moderne, CMake, Git, Systèmes Multi-Agents
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\centering
+\Large \textcolor{UVSQBlue}{\textbf{Merci de votre attention !}} \\
+\vspace{0.5cm}
+\end{frame}
+
+\end{document}
