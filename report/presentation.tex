@@ -7,6 +7,8 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{lmodern}
+\usepackage{hyperref}
+
 
 % --- THEME ---
 \usetheme{Madrid}
@@ -128,7 +130,32 @@ Recherche de voisins naïve = $O(n^2)$ par frame. \textbf{Trop lent.}
 \end{itemize}
 
 \end{frame}
+% --- SLIDE 7 ---
+\begin{frame}
+\frametitle{Benchmarks de performance}
 
+\begin{itemize}
+\setlength\itemsep{0.8em}
+
+\item \textbf{Temps vs rayon (N = 500)} :
+le SpatialGrid reste nettement plus rapide que l'algorithme naïf,
+et l'écart se creuse lorsque le rayon de voisinage augmente.
+
+\item \textbf{Temps vs nombre de boids (rayon = 50 px)} :
+la courbe naïve suit une croissance quadratique en $N$,
+tandis que le SpatialGrid se rapproche d'une croissance quasi linéaire.
+
+\item Benchmarks obtenus en moyennant le temps par itération
+sur plusieurs centaines de frames, afin de lisser les fluctuations
+et comparer clairement les deux approches.
+\end{itemize}
+
+%\vspace{0.5cm}
+%\centering
+\includegraphics[width=0.42\textwidth]{/Users/nouzhafou/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons/figures/bench_time_vs_radius.png}\hfill
+\includegraphics[width=0.42\textwidth]{/Users/nouzhafou/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons/figures/bench_time_vs_N.png}
+
+\end{frame}
 % --- SLIDE 7 ---
 \begin{frame}
 \frametitle{Détails d'Implémentation}
@@ -139,9 +166,10 @@ Recherche de voisins naïve = $O(n^2)$ par frame. \textbf{Trop lent.}
     \item \textbf{Graphisme} : SFML 2.6.1 pour visualisation 2D
     \item \textbf{Tests} : Google Test, CTest automatique
     \item \textbf{Documentation} : Doxygen
-    \item \textbf{Git} : Gestion de version (82 commits)
+    \item \textbf{Git} : Gestion de version (97 commits)
 \end{itemize}
 \end{frame}
+
 
 % --- SLIDE 8 ---
 \begin{frame}
@@ -237,17 +265,20 @@ Recherche de voisins naïve = $O(n^2)$ par frame. \textbf{Trop lent.}
 \textbf{État actuel :} Code propre, testé, prêt pour l'optimisation.
 \end{frame}
 
-% --- SLIDE 13 ---
 \begin{frame}
 \frametitle{Conclusion}
+
 \begin{itemize}
-    \setlength\itemsep{1em}
-    \item Simulateur complet et fonctionnel (3 règles de Reynolds)
-    \item Architecture modulaire et optimisée (SpatialGrid)
-    \item Visualisation fluide (60 FPS @ 500 agents)
-    \item Compétences acquises : C++ moderne, CMake, Git, Systèmes Multi-Agents
+\setlength\itemsep{1em}
+\item Simulateur complet et fonctionnel (3 règles de Reynolds)
+\item Architecture modulaire et optimisée (SpatialGrid)
+\item Visualisation fluide (60 FPS @ 500 agents)
+\item Compétences acquises : C++ moderne, CMake, Git, Systèmes Multi-Agents
+\item Code source disponible : \href{https://github.com/iramyas/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons.git}{\textcolor{blue}{lien vers GitHub}}
 \end{itemize}
+
 \end{frame}
+
 
 \begin{frame}
 \centering
