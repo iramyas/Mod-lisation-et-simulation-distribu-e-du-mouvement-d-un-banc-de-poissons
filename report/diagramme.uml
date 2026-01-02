@@ -13,7 +13,7 @@ package "simulation" {
         + y : float
         --
         + Vector2D()
-        + Vector2D(x: float,y: float)
+        + Vector2D(x: float, y: float)
         --
         + magnitude() : float
         + magnitudeSquared() : float

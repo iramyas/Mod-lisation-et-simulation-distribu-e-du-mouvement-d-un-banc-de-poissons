@@ -1,7 +1,8 @@
-\documentclass[11pt, aspectratio=169]{beamer}
+\documentclass[aspectratio=169]{beamer}
 
 % --- PACKAGES ---
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[french]{babel}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -11,38 +12,15 @@
 
 
 % --- THEME ---
-\usetheme{Madrid}
-\usecolortheme{default}
-\definecolor{UVSQBlue}{RGB}{0, 51, 102}
-\setbeamercolor{structure}{fg=UVSQBlue}
-\setbeamercolor{frametitle}{bg=UVSQBlue, fg=white}
-\setbeamercolor{title}{bg=UVSQBlue, fg=white}
-\setbeamertemplate{navigation symbols}{}
-
-% --- FOOTER ---
-\setbeamertemplate{footline}{
-  \leavevmode%
-  \hbox{%
-    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
-      \hspace{1em}\tiny Master 1 CHPS%
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.34\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-      \tiny Simulation d'un Banc de Poissons%
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
-      \tiny Décembre 2025\hspace{1em}%
-    \end{beamercolorbox}%
-  }%
-  \vskip0pt%
-}
+\usetheme{metropolis}
 
 % --- INFOS ---
-\title{Modélisation et Simulation distribuée du mouvement d'un Banc de Poissons}
-\subtitle{Modélisation Multi-Agents avec les Règles de Reynolds}
+\title{Modélisation et simulation distribuée du mouvement d'un banc de poissons}
+\subtitle{Rapport du 1er semestre - M1 CHPS}
 \author{Yohann FRONT-REIGNIER \and Iram MADANI-FOUATIH \and Laurence HUANG}
-\institute{Master 1 CHPS -- UVSQ Paris-Saclay}
-%\date{Décembre 2025}
-\titlegraphic{\includegraphics[height=2cm]{ISTY-logo-2025.png}}
+\institute{Encadrant : Soufian BEN AMOR}
+\logo{\includegraphics[width=90pt]{img/ISTY-logo-2025.jpg}}
+\date{\today}
 
 \begin{document}
 
@@ -50,9 +28,14 @@
 \titlepage
 \end{frame}
 
-% --- SLIDE 2 ---
 \begin{frame}
-\frametitle{Contexte}
+    \tableofcontents
+\end{frame}
+
+\section{Partie 1 - Version séquentielle}
+
+% --- SLIDE 2 ---
+\begin{frame}{Contexte}
 \begin{itemize}
     \setlength\itemsep{1em}
     \item Simuler les comportements collectifs émergents
@@ -63,9 +46,9 @@
 \end{itemize}
 \end{frame}
 
+\subsection{Les 3 règles de Reynolds}
 % --- SLIDE 3 ---
-\begin{frame}
-\frametitle{Les 3 Règles de Reynolds}
+\begin{frame}{Les 3 Règles de Reynolds}
 \begin{enumerate}
     \setlength\itemsep{1em}
     \item \textbf{Séparation} : Éviter les collisions avec les voisins proches
@@ -78,8 +61,7 @@
 \end{frame}
 
 % --- SLIDE 4 ---
-\begin{frame}
-\frametitle{Formulation Mathématique}
+\begin{frame}{Formulation Mathématique}
 Pour chaque boid $b$, on calcule trois forces :
 \vspace{0.3cm}
 
@@ -97,9 +79,9 @@ $$\vec{F}_{coh} = \frac{1}{|N(b)|}\sum_{i \in N(b)} \vec{p}_i - \vec{p}_b$$
 Mise à jour : $\vec{a} = \vec{F}_{total}/m$, $\vec{v} \leftarrow \vec{v} + \vec{a}\Delta t$, $\vec{p} \leftarrow \vec{p} + \vec{v}\Delta t$
 \end{frame}
 
+\subsection{Architecture logicielle, optimisation et benchmarks}
 % --- SLIDE 5 ---
-\begin{frame}
-\frametitle{Architecture Logicielle}
+\begin{frame}{Architecture Logicielle}
 \begin{itemize}
     \setlength\itemsep{0.8em}
     \item \textbf{Vector2D} : Opérations vectorielles (position, vitesse, accélération)
@@ -111,8 +93,7 @@ Mise à jour : $\vec{a} = \vec{F}_{total}/m$, $\vec{v} \leftarrow \vec{v} + \vec
 \end{frame}
 
 % --- SLIDE 6  ---
-\begin{frame}
-\frametitle{Optimisation : SpatialGrid}
+\begin{frame}{Optimisation : SpatialGrid}
 
 \vspace{0.5cm}
 
@@ -130,9 +111,9 @@ Recherche de voisins naïve = $O(n^2)$ par frame. \textbf{Trop lent.}
 \end{itemize}
 
 \end{frame}
+
 % --- SLIDE 7 ---
-\begin{frame}
-\frametitle{Benchmarks de performance}
+\begin{frame}{Benchmarks de performance}
 
 \begin{itemize}
 \setlength\itemsep{0.8em}
@@ -152,13 +133,14 @@ et comparer clairement les deux approches.
 
 %\vspace{0.5cm}
 %\centering
-\includegraphics[width=0.42\textwidth]{/Users/nouzhafou/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons/figures/bench_time_vs_radius.png}\hfill
-\includegraphics[width=0.42\textwidth]{/Users/nouzhafou/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons/figures/bench_time_vs_N.png}
+\includegraphics[width=0.4\textwidth]{../figures/bench_time_vs_radius.png}\hfill
+\includegraphics[width=0.4\textwidth]{../figures/bench_time_vs_N.png}
 
 \end{frame}
+
+\subsection{Détails d'implémentation}
 % --- SLIDE 7 ---
-\begin{frame}
-\frametitle{Détails d'Implémentation}
+\begin{frame}{Détails d'Implémentation}
 \begin{itemize}
     \setlength\itemsep{0.8em}
     \item \textbf{Langage} : C++20 (moderne, performant)
@@ -251,18 +233,114 @@ et comparer clairement les deux approches.
 \end{itemize}
 \end{frame}
 
+
+\section{Partie 2 - Perspectives version parallèle}
+\subsection{Motivations}
 % --- SLIDE 12 ---
-\begin{frame}
-\frametitle{Perspectives (Semestre 2)}
-\begin{itemize}
-    \setlength\itemsep{1em}
-    \item \textbf{Parallélisation} : OpenMP (threads), MPI (cluster)
-    \item \textbf{Extensions} : 3D (OpenGL), obstacles, prédateurs/proies
-    \item \textbf{Optimisations} : kd-tree, SIMD, calcul sur GPU
-    \item \textbf{Benchmarks} : Scalabilité, performance comparative
-\end{itemize}
-\vspace{0.5cm}
-\textbf{État actuel :} Code propre, testé, prêt pour l'optimisation.
+\begin{frame}{Pourquoi paralléliser ?}
+\begin{block}{1. Fidélité à la réalité}
+    \begin{itemize}
+        \item Dans la nature : chaque poisson agit \textbf{simultanément}
+        \item Séquentiel : traitement un par un $\rightarrow$ s'éloigne de la réalité
+        \item Parallèle/Distribué : calculs simultanés + synchronisation
+    \end{itemize}
+\end{block}
+
+\begin{block}{2. Complexité algorithmique}
+    \begin{itemize}
+        \item Recherche de voisins : O(n * k) par frame (k = voisins/cellule)
+        \item Pour n = 10000 boids à 60 FPS : calculs intensifs
+        \item Limites du séquentiel : quelques centaines de boids max
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Passage à l'échelle}
+\begin{columns}
+    \column{0.5\textwidth}
+    \textbf{Limites actuelles :}
+    \begin{itemize}
+        \item $\sim$ 500 boids @ 60 FPS 
+        \item SpatialGrid aide mais limité
+        \item Simulations réalistes = 1000-10000+ agents
+    \end{itemize}
+
+    \vspace{0.5cm}
+
+    \textbf{Objectifs parallélisation :}
+    \begin{itemize}
+        \item 10000+ boids temps réel
+        \item Maintenir 60 FPS
+        \item Exploiter architectures modernes
+    \end{itemize}
+
+    \column{0.5\textwidth}
+    \centering
+    \textbf{Speedup attendu :}
+
+    \vspace{0.3cm}
+
+    \begin{tabular}{ll}
+        \hline
+        \textbf{Approche} & \textbf{Gain} \\
+        \hline
+        OpenMP (8 coeurs) & Speedup 4-6x \\
+        MPI (4 noeuds) & Speedup 8-15x \\
+        Hybride & Passage à l'échelle \\
+    \end{tabular}
+
+    \vspace{0.5cm}
+
+    \small
+    \textit{A valider par benchmarks au semestre 2}
+\end{columns}
+\end{frame}
+
+\subsection{Stratégies de parallélisation}
+\begin{frame}{Phase 1 : OpenMP (Mémoire Partagée)}
+    \textbf{Approche :} Parallélisation sur multi-coeurs (CPU)
+    \vspace{0.1cm}
+    \begin{block}{1. Parallélisation de la boucle principale}
+        \begin{itemize}
+            \item Boucle parallèle sur mise à jour des boids
+            \item Chaque thread traite un sous-ensemble de boids
+            \item SpatialGrid partagé en lecture
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{2. Parallélisation du SpatialGrid}
+        \begin{itemize}
+            \item Construction parallèle de la grille
+            \item Recherche de voisins concurrente
+            \item Attention aux accès concurrents
+        \end{itemize}
+    \end{block}
+
+    \vspace{0.1cm}
+    \small
+    \textbf{Complexité :} Faible - Bon point de départ - Speedup linéaire
+\end{frame}
+
+\begin{frame}{Phase 2 : MPI (Mémoire Distribuée)}
+    \textbf{Approche :} Distribution sur plusieurs machines/noeud
+    \vspace{0.1cm}
+    \begin{block}{Décomposition de domaine}
+        \begin{itemize}
+            \item Partitionnement spatail de la zone de simulation
+            \item Chaque processus MPI gère une région
+            \item Boids distribués selon leur position
+        \end{itemize}
+    \end{block}
+    \begin{block}{Communication aux frontières}
+        \begin{itemize}
+            \item Echange des boids proches des frontières
+            \item Synchronisation
+            \item Migration des boids entre processus si changement de région
+        \end{itemize}
+    \end{block}
+    \vspace{0.1cm}
+    \small
+    \textbf{Défi :} Equilibrage de charge + minimiser communications
 \end{frame}
 
 \begin{frame}
@@ -282,7 +360,7 @@ et comparer clairement les deux approches.
 
 \begin{frame}
 \centering
-\Large \textcolor{UVSQBlue}{\textbf{Merci de votre attention !}} \\
+\Large {\textbf{Merci de votre attention !}} \\
 \vspace{0.5cm}
 \end{frame}
 
