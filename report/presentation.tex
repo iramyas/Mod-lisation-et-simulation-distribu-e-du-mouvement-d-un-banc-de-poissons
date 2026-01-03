@@ -232,6 +232,15 @@ et comparer clairement les deux approches.
 \end{itemize}
 \end{frame}
 
+\begin{frame}[standout]
+    \centering
+    \Huge Partie 2
+
+    \vspace{0.5cm}
+    
+    \Large Perspectives : Parallélisation
+\end{frame}
+
 \section{Partie 2 - Perspectives version parallèle}
 \subsection{Motivations}
 % --- SLIDE 12 ---
@@ -259,64 +268,63 @@ et comparer clairement les deux approches.
     \textbf{Limites actuelles :}
     \begin{itemize}
         \item $\sim$ 500 boids @ 60 FPS 
-        \item SpatialGrid aide mais limité
-        \item Simulations réalistes = 1000-10000+ agents
+        \item Architecture séquentielle
+        \item Calcul sur 1 coeur
     \end{itemize}
 
     \vspace{0.5cm}
 
     \textbf{Objectifs parallélisation :}
     \begin{itemize}
-        \item 10000+ boids temps réel
+        \item \textbf{x20 plus d'agents} (10000 boids)
         \item Maintenir 60 FPS
         \item Exploiter architectures modernes
     \end{itemize}
 
     \column{0.5\textwidth}
     \centering
-    \textbf{Speedup attendu :}
+    \textbf{Speedup théorique* :}
 
     \vspace{0.3cm}
 
-    \begin{tabular}{ll}
+    \begin{tabular}{lc}
         \hline
         \textbf{Approche} & \textbf{Gain} \\
         \hline
-        OpenMP (8 coeurs) & Speedup 4-6x \\
-        MPI (4 noeuds) & Speedup 8-15x \\
-        Hybride & Passage à l'échelle \\
+        OpenMP (8 coeurs) & 5-6x \\
+        MPI (4 noeuds x 8 coeurs) & 15-20x \\
     \end{tabular}
 
     \vspace{0.5cm}
 
-    \small
-    \textit{A valider par benchmarks au semestre 2}
+    \footnotesize
+    * Selon loi d'Amdahl avec 90\% du code parallélisable
 \end{columns}
 \end{frame}
 
 \subsection{Stratégies de parallélisation}
 \begin{frame}{Phase 1 : OpenMP (Mémoire Partagée)}
-    \textbf{Approche :} Parallélisation sur multi-coeurs (CPU)
-    \vspace{0.1cm}
-    \begin{block}{1. Parallélisation de la boucle principale}
+    \begin{block}{Pourquoi OpenMP ?}
         \begin{itemize}
-            \item Boucle parallèle sur mise à jour des boids
-            \item Chaque thread traite un sous-ensemble de boids
-            \item SpatialGrid partagé en lecture
+            \item \textbf{Simplicité d'utilisation} : directives simple
+            \item \textbf{Validation rapide} : tester scalabilité
         \end{itemize}
     \end{block}
 
-    \begin{block}{2. Parallélisation du SpatialGrid}
-        \begin{itemize}
-            \item Construction parallèle de la grille
-            \item Recherche de voisins concurrente
-            \item Attention aux accès concurrents
-        \end{itemize}
+    \begin{block}{Stratégie de parallélisation}
+        \begin{enumerate}
+            \item \textbf{Boucle principale}
+            \begin{itemize}
+                \item Indépendance : chaque boid lit les ses voisins
+                \item Race condition : écriture position/vitesse 
+            \end{itemize}
+            \item \textbf{SpatialGrid}
+            \begin{itemize}
+                \item Défi : insertion concurrente
+                \item Alternative : grille locale par thread  + merge
+            \end{itemize}
+        \end{enumerate}
     \end{block}
-
-    \vspace{0.1cm}
-    \small
-    \textbf{Complexité :} Faible - Bon point de départ - Speedup linéaire
 \end{frame}
 
 \begin{frame}{Phase 2 : MPI (Mémoire Distribuée)}
@@ -341,25 +349,50 @@ et comparer clairement les deux approches.
     \textbf{Défi :} Equilibrage de charge + minimiser communications
 \end{frame}
 
-\begin{frame}{Optimisations Prévues}
+\begin{frame}{Optimisations et Défis}
 \begin{enumerate}
     \item \textbf{Load balancing}
     \begin{itemize}
-        \item Rééquilibrage si distribution inégale
-        \item Migration de boid entre processus
+        \item \textbf{Problème} : Distribution inégale des boids
+        \item \textbf{Détection} : Mesurer \# boids/processus chaque 100 frames
+        \item \textbf{Action} : Repartitionnement si écart $>$ 30\%
+        \item \textbf{Coût} : Communication vs gain calcul
     \end{itemize}
-    \item \textbf{Approche Hybride OpenMP + MPI}
+    
+    \vspace{0.3cm}
+
+    \item \textbf{Réduction Communications}
     \begin{itemize}
-        \item MPI entre noeuds
-        \item OpenMP au sein d'un noeuds
-        \item Exploitation de l'architecture 
-    \end{itemize}
-    \item \textbf{Optimisation Mémoire}
-    \begin{itemize}
-        \item Structure of Arrays au lieu d'un Array of Structures
-        \item Meilleur localité pour le cache
+        \item \textbf{Ghost zone adaptative} : largeur = rayon\_max
+        \item \textbf{Communication asynchrone} : Envoi et réception par MPI
+        \item \textbf{Overlap} : calcul pendant transfert
+        \item \textbf{Gain attendu} : 20-30\% temps communication
     \end{itemize}
 \end{enumerate}
+\end{frame}
+
+\begin{frame}{Limitations et Défis Techniques}
+    \begin{alertblock}{Défi identifiés}
+        \begin{enumerate}
+            \item \textbf{Overhead communication} (MPI)
+            \begin{itemize}
+                \item Latence réseau : 1-10 ms/message
+                \item Impact si petit nombre de boids/processus
+                \item \textbf{Seuil minimal} : $\sim$1000 boids pour rentabilité
+            \end{itemize}
+            \item \textbf{Scalabilité limitée}
+            \begin{itemize}
+                \item Loi d'Amdahl : partie séquentielle (init, render)
+                \item \textbf{Efficacité} : 70-80\% attendue
+            \end{itemize}
+
+            \item \textbf{Load imbalance}
+            \begin{itemize}
+                \item Boids non uniformément répartis
+                \item Repartitionnement coûteux
+            \end{itemize}
+        \end{enumerate}
+    \end{alertblock}
 \end{frame}
 
 \subsection{Planning et Livrables S2}
@@ -376,7 +409,8 @@ et comparer clairement les deux approches.
             Phase 3 & Mars - Avril & Hybride + optimisations \\
             Phase 4 & Avril & Benchmarks + analyse \\
             \hline
-            \textbf{Rendu} & \textbf{$\sim$Mai 2025} & \textbf{Rapport}
+            \textbf{Rendu} & \textbf{$\sim$Avril 2025} & \textbf{Rapport} \\
+            \hline
         \end{tabular}
     \end{table}
     \vspace{0.3cm}
@@ -407,15 +441,24 @@ et comparer clairement les deux approches.
 \begin{frame}
 \frametitle{Conclusion}
 
+\begin{block}{Bilan semestre 1}
 \begin{itemize}
 \setlength\itemsep{1em}
-\item \textbf{S1 :} Simulateur complet et fonctionnel (3 règles de Reynolds)
-\item Architecture modulaire et optimisée (SpatialGrid)
-\item Visualisation fluide (60 FPS @ 500 agents)
-\item \textbf{S2 :} Passage à l'échelle via OpenMP/MPI
-\item Objectif : 10000+ boids temps réel
-\item Code source disponible : \href{https://github.com/iramyas/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons.git}{\textcolor{blue}{lien vers GitHub}}
+    \item Simulateur complet et fonctionnel (3 règles de Reynolds)
+    \item Architecture modulaire et optimisée (SpatialGrid)
+    \item Visualisation fluide (60 FPS @ 500 agents)  
 \end{itemize}
+\end{block}
+
+\begin{alertblock}{Objectifs Semestre 2}
+\begin{itemize}
+\setlength\itemsep{1em}
+    \item \textbf{S2 :} Passage à l'échelle via OpenMP/MPI
+    \item Objectif : 10000+ boids temps réel
+    \item Code source disponible : \href{https://github.com/iramyas/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons.git}{\textcolor{blue}{lien vers GitHub}}
+\end{itemize}
+\end{alertblock}
+
 
 \end{frame}
 
