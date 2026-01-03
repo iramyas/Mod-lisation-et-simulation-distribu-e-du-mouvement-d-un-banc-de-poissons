@@ -10,7 +10,6 @@
 \usepackage{lmodern}
 \usepackage{hyperref}
 
-
 % --- THEME ---
 \usetheme{metropolis}
 
@@ -233,7 +232,6 @@ et comparer clairement les deux approches.
 \end{itemize}
 \end{frame}
 
-
 \section{Partie 2 - Perspectives version parallèle}
 \subsection{Motivations}
 % --- SLIDE 12 ---
@@ -326,7 +324,7 @@ et comparer clairement les deux approches.
     \vspace{0.1cm}
     \begin{block}{Décomposition de domaine}
         \begin{itemize}
-            \item Partitionnement spatail de la zone de simulation
+            \item Partitionnement spatial de la zone de simulation
             \item Chaque processus MPI gère une région
             \item Boids distribués selon leur position
         \end{itemize}
@@ -343,24 +341,102 @@ et comparer clairement les deux approches.
     \textbf{Défi :} Equilibrage de charge + minimiser communications
 \end{frame}
 
+\begin{frame}{Optimisations Prévues}
+\begin{enumerate}
+    \item \textbf{Load balancing}
+    \begin{itemize}
+        \item Rééquilibrage si distribution inégale
+        \item Migration de boid entre processus
+    \end{itemize}
+    \item \textbf{Approche Hybride OpenMP + MPI}
+    \begin{itemize}
+        \item MPI entre noeuds
+        \item OpenMP au sein d'un noeuds
+        \item Exploitation de l'architecture 
+    \end{itemize}
+    \item \textbf{Optimisation Mémoire}
+    \begin{itemize}
+        \item Structure of Arrays au lieu d'un Array of Structures
+        \item Meilleur localité pour le cache
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\subsection{Planning et Livrables S2}
+\begin{frame}
+    \begin{table}
+        \centering
+        \small
+        \begin{tabular}{@{}lll@{}}
+            \hline
+            \textbf{Phase} & \textbf{Période} & \textbf{Objectifs} \\
+            \hline
+            Phase 1 & Jan - Fév & OpenMP + tests de performances \\
+            Phase 2 & Fév - Mars & MPI + décomposition domaine \\
+            Phase 3 & Mars - Avril & Hybride + optimisations \\
+            Phase 4 & Avril & Benchmarks + analyse \\
+            \hline
+            \textbf{Rendu} & \textbf{$\sim$Mai 2025} & \textbf{Rapport}
+        \end{tabular}
+    \end{table}
+    \vspace{0.3cm}
+    \begin{block}{Outils et Environnement}
+        \begin{itemize}
+            \item OpenMP 5.0, MPI 4.0
+            \item Machines multi-coeurs locales
+            \item Profiling : gprof, perf, Intel VTune
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Métriques de Performance}
+    \textbf{Métriques importantes :}
+    \vspace{0.3cm}
+    \begin{enumerate}
+        \item \textbf{Speedup} : $S_p = \frac{T_1}{T_p}$ (temps séquentiel / temps parallèle)
+        \item \textbf{Efficacité} : $E_p = \frac{S_p}{p}$ (speedup / nombre de processeurs)
+        \item \textbf{Strong scaling} : Nombre de boid constant, augmenter le nombre de processeurs
+        \item \textbf{Weak scaling} : Charge par processeur constante, augmenter la taille du problème
+        \item \textbf{FPS maintenu} : Objectif 60 FPS avec 10000 boids
+    \end{enumerate}
+    \vspace{0.5cm}
+    \small
+    \textbf{Benchmarks comparatifs :} Séquentiel, OpenMP, MPI, Hybride
+\end{frame}
+
 \begin{frame}
 \frametitle{Conclusion}
 
 \begin{itemize}
 \setlength\itemsep{1em}
-\item Simulateur complet et fonctionnel (3 règles de Reynolds)
+\item \textbf{S1 :} Simulateur complet et fonctionnel (3 règles de Reynolds)
 \item Architecture modulaire et optimisée (SpatialGrid)
 \item Visualisation fluide (60 FPS @ 500 agents)
-\item Compétences acquises : C++ moderne, CMake, Git, Systèmes Multi-Agents
+\item \textbf{S2 :} Passage à l'échelle via OpenMP/MPI
+\item Objectif : 10000+ boids temps réel
 \item Code source disponible : \href{https://github.com/iramyas/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons.git}{\textcolor{blue}{lien vers GitHub}}
 \end{itemize}
 
 \end{frame}
 
+\begin{frame}{Références}
+\small
+\begin{itemize}
+    \item Reynolds, C. W. (1987). \textit{Flocks, herds and schools: A distributed behavioral model}. SIGGRAPH '87.
+    \item Reynolds, C. W. - Red3d Boids: \url{https://www.red3d.com/cwr/boids/}
+    \item SFML Documentation: \url{https://www.sfml-dev.org/documentation/}
+    \item OpenMP Documentation: \url{https://www.openmp.org/}
+    \item MPI Standard: \url{https://www.mpi-forum.org/}
+    \item GoogleTest Framework: \url{https://google.github.io/googletest/}
+\end{itemize}
+\end{frame}
 
-\begin{frame}
+
+\begin{frame}[standout]
 \centering
-\Large {\textbf{Merci de votre attention !}} \\
+\Huge {\textbf{Merci de votre attention !}} \\
+\vspace{1.cm}
+\Large Questions ?
 \vspace{0.5cm}
 \end{frame}
 
