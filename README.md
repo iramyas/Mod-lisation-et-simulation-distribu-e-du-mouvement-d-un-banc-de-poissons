@@ -148,12 +148,72 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - Script de benchmark automatisé : `experiments/benchmark.cpp`
 - **Statut** : Terminé (16/12/2025)
 
-### Phase 6 : Extensions
-**OpenGL**
-- Cet outil sera utilisé pour faire la modélisation en 3D. Il faut se familiariser d'abord avec SFML pour pouvoir continuer.
+## Semestre 2 : Parallélisation et optimisations (en cours)
 
-**Comportement avancés**
-- Il existe d'autres type de comportement d'un Flock de poissons, par exemple "vortex", on peut essayer également de modéliser cela ou simplement comparer!
+### Phase 1 : Analyse et profilage (Janvier 2026)
+
+**Identification des goulots d'étranglement**
+- Profilage avec `gprof`, `perf` ou `Valgrind` de la version séquentielle
+- Mesure du temps passé dans chaque fonction (calcul voisins, règles, affichage)
+- Identation des hot spots : boucle principale, recherche de voisins
+- **Objectif** : Déterminer les parties du code à paralléliser en priorité
+- **Statut** : A faire
+
+### Phase 2 : Parallélisation OpenMP (Janvier - Février 2026)
+
+**Approche mémoire partagée (multi-threads)**
+- Parallélisation de la boucle principale de mise à jour des boids (`#pragma omp parallel for`)
+- Parallélisation de la construction du SpatialGrid
+- Gestion des race conditions et sections critiques
+- **Tests de scalabilité** : Mesurer le speedup avec 2, 4, 8, 16 threads
+- **Objectif** : Atteindre 4000-5000 boids @ 60 FPS sur 8 threads
+- **Statut** : A faire
+
+### Phase 3 : Parallélisation MPI (Février - Mars 2026)
+
+**Approche mémoire distribuée (multi-processus)**
+- Décomposition de domaine : partitionnement spatial de la zone de simulation
+- Communication des ghost zones (boids aux frontières entre processus)
+- Gestion de la migration des boids entre régions
+- Load balancing dynamique pour équilibrer la charge
+- **Tests de scalabilité** : Strong scaling et weak scaling sur 2, 4, 8, 16 processus
+- **Objectif** : Atteindre 10000+ boids @ 60 FPS en distribué
+- **Statut** : A faire
+
+### Phase 4 : Approche hybride (optionnel) (Mars 2026)
+
+**Combinaison OpenMP + MPI**
+- MPI entre noeuds + OpenMP au sein de chaque noeud
+- Optimisation de la communication inter-processus (communication asynchrone)
+- Réduction de l'overhead de communication
+- **Statut** : A faire
+
+### Phase 5 : Benchmarks et analyse de performances (Mars - Avril 2026)
+
+**Mesure comparatives**
+- **Speedup** : $S_p = \frac{T_{seq}}{T_{par}}$ (séquentiel vs parallèle)
+- **Efficacité** : $E_p = \frac{S_p}{p}$ (utilisation des ressources)
+- **Strong scaling** : Temps de calcul vs nombre de processeurs (problème fixe)
+- **Weak scaling** : Efficacité vs taille du problème (charge par processeur fixe)
+- Graphique de scalabilité et tableaux de comparatifs
+- **Statut** : A faire
+
+### Phase 6 : Extensions et amélioration du réalisme (Avril 2026)
+
+**Comportements avancés**
+- Ajout d'obstacles statiques (éviterment de murs)
+- Intégration de prédateurs (comportement de fuite)
+- Environnement dynamique (courants, zone d'attraction/répulsion)
+- Visualisation 3D avec OpenGL (si temps disponible)
+- **Statut** : A faire 
+
+## Livrables finaux (Mai 2026)
+
+- **Code source** : Version séquentielle + version parallèles (OpenMP, MPI, hybride)
+- **Rapport final** : Analyse complète des performances, graphiques, conclusions
+- **Documentation** : Doxygen complète avec guide d'utilisation
+- **Présentation** : Soutenance avec démonstration en direct
+- **Benchmarks** : Scripts reproductibles et données brutes
 
 ## Références
 
@@ -165,6 +225,10 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - [SFML Documentation](https://www.sfml-dev.org/documentation/)
 - [GoogleTest](https://google.github.io/googletest/)
 - [Doxygen](https://www.doxygen.nl/)
+
+**Parallélisation**
+- [OpenMP Documentation](https://www.openmp.org/)
+- [MPI Standard](https://www.mpi-forum.org/)
 
 ## Remarques
 
