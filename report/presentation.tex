@@ -18,7 +18,7 @@
 \subtitle{Rapport du 1er semestre - M1 CHPS}
 \author{Yohann FRONT-REIGNIER \and Iram MADANI-FOUATIH \and Laurence HUANG}
 \institute{Encadrant : Soufian BEN AMOR}
-\logo{\includegraphics[width=90pt]{img/ISTY-logo-2025.jpg}}
+\logo{\includegraphics[width=90pt]{ISTY-logo-2025.png}}
 \date{\today}
 
 \begin{document}
@@ -34,14 +34,26 @@
 \section{Partie 1 - Version séquentielle}
 
 % --- SLIDE 2 ---
-\begin{frame}{Contexte}
+
+
+\begin{frame}{Contexte et objectifs}
+\section*{1.Contexte}
+\subsection*{Contexte}
 \begin{itemize}
-    \setlength\itemsep{1em}
-    \item Simuler les comportements collectifs émergents
-    \item Bancs de poissons, flocks d'oiseaux
-    \item 3 règles locales simples appliquées à chaque agent
-    \item \textbf{Objectifs S1} : implémentation séquentielle + visualisation 2D
-    \item \textbf{Semestre 2} : parallélisation OpenMP/MPI
+  \item Modélisation de systèmes complexes par simulation multi-agents
+  \item Étude d’un comportement collectif émergent à partir de règles locales
+  \item Contraintes fortes de performance lorsque le nombre d’agents augmente
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Contexte et objectifs}
+\section*{2.Objectifs}
+\subsection*{Objectifs}
+\begin{itemize}
+  \item Développer une simulation séquentielle réaliste d’un banc de poissons
+  \item Valider qualitativement le comportement collectif émergent
+  \item Identifier les goulots d’étranglement
+  \item Aller vers une version parallèle et distribuée
 \end{itemize}
 \end{frame}
 
