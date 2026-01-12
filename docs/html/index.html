@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.1.9</span>
+   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.2.0</span>
    </div>
    <div id="projectbrief">Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagissant en temps réel.</div>
   </td>
@@ -79,8 +79,7 @@ Membres du projet</h1>
 <ul>
 <li>Yohann FRONT-REIGNIER</li>
 <li>Iram MADANI-FOUATIH</li>
-<li></li>
-<li></li>
+<li>Laurence HUANG</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Description</h1>
@@ -118,7 +117,6 @@ Dépendances</h2>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
 Compilation</h2>
 <div class="fragment"><div class="line">mkdir -p build &amp;&amp; cd build</div>
-<div class="line">cmake -DCMAKE_BUILD_TYPE=Debug ..</div>
 <div class="line">cmake --build .</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 Utilisation</h1>
@@ -126,20 +124,30 @@ Utilisation</h1>
 Lancer la simulation</h2>
 <div class="fragment"><div class="line">./bin/main_simulation.bin</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
+Interface interactive (nouveau)</h2>
+<ul>
+<li>Des <em>sliders</em> sont disponibles dans la fenêtre pour ajuster en temps réel : <b>Separation</b>, <b>Alignment</b>, <b>Cohesion</b>, <b>Neighbor radius</b>.</li>
+<li>Un <em>slider</em> <code>Count</code> permet de choisir le nombre de boids et un bouton <b>Apply</b> (clic souris) réinitialise la population.</li>
+<li>Contrôles : glisser-déposer les <b>sliders</b> pour ajuster les poids et le rayon ; <b>Apply</b> réinitialise la population selon <code>Count</code>. Appuyer sur <b>Échap</b> ferme la fenêtre.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Lancer les tests</h2>
 <p><b>Tous les tests :</b> </p><div class="fragment"><div class="line">cd build</div>
 <div class="line">ctest --output-on-failure</div>
 </div><!-- fragment --><p><b>Tests individuels :</b> </p><div class="fragment"><div class="line">./bin/test_vector.bin   # Tests Vector2D </div>
 <div class="line">./bin/test_boid.bin     # Tests Boid</div>
+<div class="line">./bin/test_flock.bin    # Tests Flock</div>
 </div><!-- fragment --><p><b>Tests avec verbose (faciliter le debuggage)</b> </p><div class="fragment"><div class="line">ctest --verbose</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
 Générer la documentation</h2>
 <div class="fragment"><div class="line">doxygen Doxyfile</div>
 <div class="line">firefox &quot;$(realpath docs/html/index.html)&quot; # Ouvrir dans le navigateur</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md12"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
 Fonctionnement et déroulement de l'implémentation</h1>
-<h2><a class="anchor" id="autotoc_md13"></a>
-&lt;strong&gt;Phase 1 : Fondations&lt;/strong&gt; (Terminée)</h2>
+<h1><a class="anchor" id="autotoc_md14"></a>
+Semestre 1 : Partie séquentielle (Terminée)</h1>
+<h2><a class="anchor" id="autotoc_md15"></a>
+Phase 1 : Fondations (Terminée)</h2>
 <p><b>Classe <code>Vector2D.h</code></b></p><ul>
 <li>Gestion des positions, des vitesses et accélérations</li>
 <li>Opérations : addition, soustraction, normalisation, distance, rotation</li>
@@ -152,7 +160,7 @@ Fonctionnement et déroulement de l'implémentation</h1>
 <li><b>Tests unitaires</b> : <code>tests/test_boid.cpp</code></li>
 <li><b>Statut</b> : Terminé (22/11/2025)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 &lt;strong&gt;Phase 2 : Règles de Reynolds&lt;/strong&gt; (Terminée)</h2>
 <ul>
 <li><b>Séparation</b> : Les boids s'éloignent des voisins trop proches pour éviter les collisions. Chaque boid calcule un vecteur de répulsion basé sur la distance aux voisins dans sa zone de perception.</li>
@@ -162,33 +170,42 @@ Fonctionnement et déroulement de l'implémentation</h1>
 <li><b>Test unitaires</b> : <code>tests/test_boid.cpp</code> (on créera sûrement un fichier à part pour améliorer la lisibilité)</li>
 <li><b>Statut</b> : Terminé (22/11/2025)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md15"></a>
-&lt;strong&gt;Phase 3 : Gestion collective&lt;/strong&gt;(fin novembre)</h2>
-<p><b>Classe <code>Flock</code></b> : Gérer le comportement d'un ensemble de boids et leurs interactions.</p>
-<ul>
-<li><b>Statut</b> : A faire</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md16"></a>
-&lt;strong&gt;Phase 4 : Simulation visuelle&lt;/strong&gt;(debut décembre)</h2>
-<ul>
-<li><b>Boucle de simulation</b> : utilisation de SFML pour l'affichage 2D, tests sur différents paramètres et taille de banc.</li>
-<li><b>Statut</b> : A faire</li>
-</ul>
 <h2><a class="anchor" id="autotoc_md17"></a>
-&lt;strong&gt;Phase 5 : Préparation des benchmarks&lt;/strong&gt; (mi-décembre)</h2>
-<ul>
-<li>Mesure des performances et du temps d'exécution, documentatio des résultats et des configurations matérielles.</li>
-<li><b>Statut</b> : A faire</li>
+Phase 3 : Gestion collective (Terminée)</h2>
+<p><b>Classe <code>Flock</code></b></p><ul>
+<li>Gestion d'une collection de boids avec ajout et suppression dynamique</li>
+<li>Calcul des interactions entre tous les boids du groupe</li>
+<li><b>Optimisation SpatialGrid</b> : Partitionnement spatial pour accélérer la recherche de voisins (O(n*k) au lieu de O(n²))</li>
+<li><b>Tests unitaires</b> : <code>tests/test_flock.cpp</code></li>
+<li><b>Statut</b> : Terminé (05/12/2025)</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md18"></a>
-&lt;strong&gt;Phase 6 : Extensions&lt;/strong&gt;</h2>
+&lt;strong&gt;Phase 4 : Simulation visuelle&lt;/strong&gt;(Terminée)</h2>
+<p><b>Interface SFML complète</b></p><ul>
+<li>Boucle de simulation temps réel à 60 FPS (500 boids stables)</li>
+<li>Sliders interactifs : Séparation, Alignement, Cohésion, Rayon de voisinage, Nombre de boids</li>
+<li>Bouton Apply pour réinitialisation dynamique de la population</li>
+<li>Affichage FPS en temps réel</li>
+<li><b>Statut</b> : Terminé (16/12/2025)</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md19"></a>
+Phase 5 : Benchmarks et optimisations (Terminée)</h2>
+<p><b>Mesure des performances</b></p><ul>
+<li>Comparaison algorithme naïf vs SpatialGrid : <b>gain de x5</b> (500 boids)</li>
+<li>Benchmarks temps vs rayon de voisinage et temps vs nombre de boids</li>
+<li>Graphique de performance : <code>figures/bench_time_vs_radius.png</code> et <code>figures/bench_time_vs_N.png</code></li>
+<li>Script de benchmark automatisé : <code>experiments/benchmark.cpp</code></li>
+<li><b>Statut</b> : Terminé (16/12/2025)</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md20"></a>
+Phase 6 : Extensions</h2>
 <p><b>OpenGL</b></p><ul>
 <li>Cet outil sera utilisé pour faire la modélisation en 3D. Il faut se familiariser d'abord avec SFML pour pouvoir continuer.</li>
 </ul>
 <p><b>Comportement avancés</b></p><ul>
 <li>Il existe d'autres type de comportement d'un Flock de poissons, par exemple "vortex", on peut essayer également de modéliser cela ou simplement comparer!</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md21"></a>
 Références</h1>
 <p><b>Modèle de Boids (Craig Reynolds, 1987)</b></p><ul>
 <li><a href="https://www.red3d.com/cwr/boids/">Article original</a></li>
@@ -199,13 +216,13 @@ Références</h1>
 <li><a href="https://google.github.io/googletest/">GoogleTest</a></li>
 <li><a href="https://www.doxygen.nl/">Doxygen</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md20"></a>
+<h1><a class="anchor" id="autotoc_md22"></a>
 Remarques</h1>
 <ul>
 <li>Chaque fonction important est testée pour garantir la robustesse de la modélisation.</li>
 <li>Les extensions et benchmarks seront détaillés dans la documentation et le rapport final</li>
 </ul>
-<p><b>Dernière mise à jour : 24/11/2025</b> </p>
+<p><b>Dernière mise à jour : 12/01/2026</b> (Bonne année !) </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->

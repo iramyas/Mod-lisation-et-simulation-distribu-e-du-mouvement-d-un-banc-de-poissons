@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.1.9</span>
+   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.2.0</span>
    </div>
    <div id="projectbrief">Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagissant en temps réel.</div>
   </td>
@@ -83,31 +83,47 @@ $(function() {
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
 <code>#include &quot;<a class="el" href="boid_8h_source.html">boid.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vector2D_8h_source.html">vector2D.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Flock_8h_source.html">Flock.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="GUI_8h_source.html">GUI.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#asrc_2main_8cpp" alt=""/></div>
 <map name="asrc_2main_8cpp" id="asrc_2main_8cpp">
-<area shape="rect" title=" " alt="" coords="222,5,327,31"/>
-<area shape="rect" title=" " alt="" coords="5,79,152,104"/>
-<area shape="poly" title=" " alt="" coords="244,33,124,76,123,71,242,28"/>
-<area shape="rect" title=" " alt="" coords="246,152,309,177"/>
-<area shape="poly" title=" " alt="" coords="275,31,270,64,269,104,274,138,269,139,264,104,265,63,270,30"/>
-<area shape="rect" title=" " alt="" coords="215,225,278,251"/>
-<area shape="poly" title=" " alt="" coords="271,32,248,94,239,135,237,177,243,211,238,212,232,178,233,134,242,92,266,30"/>
-<area shape="rect" title=" " alt="" coords="278,79,343,104"/>
-<area shape="poly" title=" " alt="" coords="283,30,301,65,296,68,278,32"/>
-<area shape="rect" href="boid_8h.html" title=" " alt="" coords="367,79,430,104"/>
-<area shape="poly" title=" " alt="" coords="296,28,368,69,365,74,293,33"/>
-<area shape="rect" href="vector2D_8h.html" title=" " alt="" coords="352,152,445,177"/>
-<area shape="poly" title=" " alt="" coords="328,20,359,26,391,36,421,53,445,77,451,95,447,113,424,144,420,141,442,110,445,95,440,80,418,57,389,41,358,31,327,25"/>
-<area shape="poly" title=" " alt="" coords="381,106,310,147,307,143,378,102"/>
-<area shape="poly" title=" " alt="" coords="401,104,401,138,396,138,396,104"/>
-<area shape="poly" title=" " alt="" coords="375,180,285,222,283,217,373,175"/>
-<area shape="rect" title=" " alt="" coords="359,225,439,251"/>
-<area shape="poly" title=" " alt="" coords="401,178,401,212,396,212,396,178"/>
+<area shape="rect" title=" " alt="" coords="245,5,351,31"/>
+<area shape="rect" title=" " alt="" coords="461,152,607,177"/>
+<area shape="poly" title=" " alt="" coords="337,28,389,48,443,76,484,108,516,140,513,144,480,112,441,81,387,53,335,33"/>
+<area shape="rect" title=" " alt="" coords="36,225,99,251"/>
+<area shape="poly" title=" " alt="" coords="246,28,141,47,94,62,78,71,67,80,58,95,52,112,49,147,53,182,61,211,56,213,48,183,44,147,47,110,53,93,63,77,75,66,92,57,139,42,245,23"/>
+<area shape="rect" title=" " alt="" coords="5,299,68,324"/>
+<area shape="poly" title=" " alt="" coords="245,28,132,47,81,62,62,71,49,81,33,103,23,129,17,157,16,186,21,241,31,285,26,286,16,242,10,186,12,156,18,128,28,101,45,77,59,66,79,57,131,42,244,22"/>
+<area shape="rect" title=" " alt="" coords="171,79,236,104"/>
+<area shape="poly" title=" " alt="" coords="284,33,231,72,228,68,281,29"/>
+<area shape="rect" title=" " alt="" coords="261,79,335,104"/>
+<area shape="poly" title=" " alt="" coords="301,31,301,65,295,65,295,31"/>
+<area shape="rect" href="boid_8h.html" title=" " alt="" coords="133,152,196,177"/>
+<area shape="poly" title=" " alt="" coords="315,29,332,44,347,63,355,84,354,95,349,106,320,133,284,151,246,161,210,165,210,160,245,156,282,146,317,129,345,102,349,94,350,85,342,66,328,48,311,33"/>
+<area shape="rect" href="vector2D_8h.html" title=" " alt="" coords="123,225,217,251"/>
+<area shape="poly" title=" " alt="" coords="321,29,342,43,361,61,373,82,373,93,370,105,339,146,300,179,257,205,218,223,216,218,255,200,297,175,335,143,365,103,368,93,367,83,357,64,338,47,318,33"/>
+<area shape="rect" href="Flock_8h.html" title=" " alt="" coords="77,79,146,104"/>
+<area shape="poly" title=" " alt="" coords="269,33,155,76,154,71,267,28"/>
+<area shape="rect" href="GUI_8h.html" title=" " alt="" coords="587,79,646,104"/>
+<area shape="poly" title=" " alt="" coords="350,28,575,78,573,83,349,33"/>
+<area shape="poly" title=" " alt="" coords="151,180,96,219,93,215,147,175"/>
+<area shape="poly" title=" " alt="" coords="168,177,171,212,165,212,163,178"/>
+<area shape="poly" title=" " alt="" coords="150,253,72,294,69,290,147,248"/>
+<area shape="rect" title=" " alt="" coords="130,299,210,324"/>
+<area shape="poly" title=" " alt="" coords="173,251,173,285,167,285,167,251"/>
+<area shape="poly" title=" " alt="" coords="110,105,77,213,72,211,105,104"/>
+<area shape="poly" title=" " alt="" coords="122,103,150,140,146,143,118,106"/>
+<area shape="poly" title=" " alt="" coords="605,106,560,145,556,141,602,102"/>
+<area shape="rect" title=" " alt="" coords="631,152,690,177"/>
+<area shape="poly" title=" " alt="" coords="626,103,649,139,644,142,622,106"/>
+<area shape="rect" title=" " alt="" coords="714,152,799,177"/>
+<area shape="poly" title=" " alt="" coords="640,102,723,143,721,148,638,106"/>
 </map>
 </div>
 </div><table class="memberdecls">

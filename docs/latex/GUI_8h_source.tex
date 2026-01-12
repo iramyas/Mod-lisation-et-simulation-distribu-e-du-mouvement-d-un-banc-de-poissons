@@ -1,0 +1,37 @@
+\doxysection{GUI.\+h}
+\hypertarget{GUI_8h_source}{}\label{GUI_8h_source}\index{include/GUI.h@{include/GUI.h}}
+\mbox{\hyperlink{GUI_8h}{Aller à la documentation de ce fichier.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Petit\ composant\ Slider\ (UI)}}
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSlider}{Slider}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{classSlider_af1d21bab5ed678de05fa2ba4a75dce8d}{Slider}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{classSlider_af1d21bab5ed678de05fa2ba4a75dce8d}{Slider}}(\textcolor{keyword}{const}\ sf::Font\&\ font,\ \textcolor{keyword}{const}\ std::string\&\ label,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ w,\ \textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max,\ \textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSlider_a2b9e36fc944cd4291871b4e9ef4825ea}{handleEvent}}(\textcolor{keyword}{const}\ sf::Event\&\ event,\ \textcolor{keyword}{const}\ sf::RenderWindow\&\ window);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSlider_a8bcc94829fa9c1546097da4e797665cb}{update}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSlider_a987671ffec0ef4d2e2b3543a7428d82e}{draw}}(sf::RenderWindow\&\ window)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classSlider_a9f5c36c34d9421a610366115d8adfee5}{getValue}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ value;\ \}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSlider_a0507090b7bdc2a03593ef4fd983c8919}{setValue}}(\textcolor{keywordtype}{float}\ v)\ \{\ value\ =\ std::clamp(v,\ minValue,\ maxValue);\ updateHandle();\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ sf::RectangleShape\ bar;}
+\DoxyCodeLine{00019\ \ \ \ \ sf::RectangleShape\ handle;}
+\DoxyCodeLine{00020\ \ \ \ \ sf::Text\ labelText;}
+\DoxyCodeLine{00021\ \ \ \ \ sf::Text\ valueText;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ minValue\ =\ 0.f;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ maxValue\ =\ 1.f;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ value\ =\ 0.f;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{bool}\ dragging\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ updateHandle();}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ handleToValue(\textcolor{keywordtype}{float}\ hx)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \};}
+
+\end{DoxyCode}

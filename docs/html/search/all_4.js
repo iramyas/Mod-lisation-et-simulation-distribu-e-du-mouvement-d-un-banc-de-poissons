@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['5_20_3a_20préparation_20des_20benchmarks_20strong_20mi_20décembre_0',['&lt;strong&gt;Phase 5 : Préparation des benchmarks&lt;/strong&gt; (mi-décembre)',['../index.html#autotoc_md17',1,'']]]
+  ['5_20_3a_20benchmarks_20et_20optimisations_20terminée_0',['Phase 5 : Benchmarks et optimisations (Terminée)',['../index.html#autotoc_md19',1,'']]]
 ];

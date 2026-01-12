@@ -1,15 +1,13 @@
 var searchData=
 [
-  ['perceptionradius_0',['perceptionRadius',['../classsimulation_1_1Boid.html#a1a92dc1e670ef2acdbc2009d9cd40967',1,'simulation::Boid']]],
-  ['phase_201_20_3a_20fondations_20strong_20terminée_1',['&lt;strong&gt;Phase 1 : Fondations&lt;/strong&gt; (Terminée)',['../index.html#autotoc_md13',1,'']]],
-  ['phase_202_20_3a_20règles_20de_20reynolds_20strong_20terminée_2',['&lt;strong&gt;Phase 2 : Règles de Reynolds&lt;/strong&gt; (Terminée)',['../index.html#autotoc_md14',1,'']]],
-  ['phase_203_20_3a_20gestion_20collective_20strong_20fin_20novembre_3',['&lt;strong&gt;Phase 3 : Gestion collective&lt;/strong&gt;(fin novembre)',['../index.html#autotoc_md15',1,'']]],
-  ['phase_204_20_3a_20simulation_20visuelle_20strong_20debut_20décembre_4',['&lt;strong&gt;Phase 4 : Simulation visuelle&lt;/strong&gt;(debut décembre)',['../index.html#autotoc_md16',1,'']]],
-  ['phase_205_20_3a_20préparation_20des_20benchmarks_20strong_20mi_20décembre_5',['&lt;strong&gt;Phase 5 : Préparation des benchmarks&lt;/strong&gt; (mi-décembre)',['../index.html#autotoc_md17',1,'']]],
-  ['phase_206_20_3a_20extensions_20strong_6',['&lt;strong&gt;Phase 6 : Extensions&lt;/strong&gt;',['../index.html#autotoc_md18',1,'']]],
-  ['poissons_7',['Modélisation et simulation distribuée du mouvement d&apos;un banc de poissons',['../index.html',1,'']]],
-  ['position_8',['position',['../classsimulation_1_1Boid.html#a7b4ec877d18f38188f9c8c2f69d230a7',1,'simulation::Boid']]],
-  ['préparation_20des_20benchmarks_20strong_20mi_20décembre_9',['&lt;strong&gt;Phase 5 : Préparation des benchmarks&lt;/strong&gt; (mi-décembre)',['../index.html#autotoc_md17',1,'']]],
-  ['prérequis_10',['Prérequis',['../index.html#autotoc_md5',1,'']]],
-  ['projet_11',['Membres du projet',['../index.html#autotoc_md1',1,'']]]
+  ['operator_2a_0',['operator*',['../classsimulation_1_1Vector2D.html#a89bf956a32b189be286d3b7a5d2d04e8',1,'simulation::Vector2D::operator*(float number) const noexcept'],['../classsimulation_1_1Vector2D.html#a291b7a792ded1296a552eef3d2db5331',1,'simulation::Vector2D::operator*']]],
+  ['operator_2a_3d_1',['operator*=',['../classsimulation_1_1Vector2D.html#a50a548adc4ff084e7de4f007cdbf8352',1,'simulation::Vector2D']]],
+  ['operator_2b_2',['operator+',['../classsimulation_1_1Vector2D.html#a520d54c30b3e3b1267cb25a0a86f2f71',1,'simulation::Vector2D']]],
+  ['operator_2b_3d_3',['operator+=',['../classsimulation_1_1Vector2D.html#ac09549363be8ba1d66ec353b3dd3a7ee',1,'simulation::Vector2D']]],
+  ['operator_2d_4',['operator-',['../classsimulation_1_1Vector2D.html#af7cefd0cc42143ab813a9455d434d6a3',1,'simulation::Vector2D::operator-(const Vector2D &amp;vec2) const noexcept'],['../classsimulation_1_1Vector2D.html#af5e527fe0f1c720bb34aab234faa8f34',1,'simulation::Vector2D::operator-() const noexcept']]],
+  ['operator_2d_3d_5',['operator-=',['../classsimulation_1_1Vector2D.html#a67731c1fce26ed9e417b2630fb1baa10',1,'simulation::Vector2D']]],
+  ['operator_2f_6',['operator/',['../classsimulation_1_1Vector2D.html#a7e681852d54993e862e5d6b9de3cc8ed',1,'simulation::Vector2D']]],
+  ['operator_3c_3c_7',['operator&lt;&lt;',['../classsimulation_1_1Vector2D.html#a3042faf2fa1b8228cc82456632e02532',1,'simulation::Vector2D']]],
+  ['operator_3d_3d_8',['operator==',['../classsimulation_1_1Vector2D.html#ac892043b2d2ac0bae0d03462857969bb',1,'simulation::Vector2D']]],
+  ['optimisations_20terminée_9',['Phase 5 : Benchmarks et optimisations (Terminée)',['../index.html#autotoc_md19',1,'']]]
 ];

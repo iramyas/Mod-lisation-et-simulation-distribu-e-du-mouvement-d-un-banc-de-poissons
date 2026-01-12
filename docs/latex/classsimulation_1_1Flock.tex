@@ -1,0 +1,242 @@
+\doxysection{Référence de la classe simulation\+::Flock}
+\hypertarget{classsimulation_1_1Flock}{}\label{classsimulation_1_1Flock}\index{simulation::Flock@{simulation::Flock}}
+
+
+Classe gérant un ensemble de boids et leur organisation spatiale.  
+
+
+
+
+{\ttfamily \#include $<$Flock.\+h$>$}
+
+
+
+Graphe de collaboration de simulation\+::Flock\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{classsimulation_1_1Flock__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid}{Spatial\+Grid}}
+\begin{DoxyCompactList}\small\item\em Structure interne représentant une grille spatiale d\textquotesingle{}accélération. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsimulation_1_1Flock_a9b213357b9da191d0669bb9419bcaf8d}{Flock}} (float width, float height, float cell\+Size)
+\begin{DoxyCompactList}\small\item\em Constructeur de \doxylink{classsimulation_1_1Flock}{Flock}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Flock_abd041ca7a8728e5e05f68c783ca0ea10}{add\+Boid}} (const \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \&boid)
+\begin{DoxyCompactList}\small\item\em Ajoute un nouveau boid au groupe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Flock_ac5fd23123a754be28d1f9660e0e4db22}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Vide la liste de boids. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Flock_adcf9e492ae3a4b96435f82776d2d3497}{populate\+Random}} (int N)
+\begin{DoxyCompactList}\small\item\em Remplit aléatoirement le flock. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classsimulation_1_1Flock_a63b8c0e882c5cbabe753df4ad444de95}{get\+Neighbors}} (\mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*}boid)
+\begin{DoxyCompactList}\small\item\em Récupère les voisins d\textquotesingle{}un boid via le \doxylink{classsimulation_1_1Flock_1_1SpatialGrid}{Spatial\+Grid}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Flock_a6a138f3bfabf1197decf84e682bea0dc}{update\+All}} (float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Met à jour tous les boids du flock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Flock_af4b359a8265b8b0b69ac21a772977151}{set\+Weights}} (float sep, float ali, float coh)
+\begin{DoxyCompactList}\small\item\em Régle les poids des règles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Flock_a138c85292113bf2fb761b135aaa7f271}{set\+Neighbor\+Radius}} (float r)
+\begin{DoxyCompactList}\small\item\em Change le rayon de voisinage considéré \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Flock_a2d583d72c3760189264ed038fdfd33c0}{render}} ()
+\begin{DoxyCompactList}\small\item\em Rendu (optionnel) supportant SFML. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Flock_a90336c924206edd8aec3c9060c67c8d3}{render}} (sf\+::\+Render\+Window \&window)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classsimulation_1_1Flock_aafe404607ee253e8b94d3fc1a89471e2}{neighbor\+Radius}} = 30.\+0f
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} $>$ \mbox{\hyperlink{classsimulation_1_1Flock_a3f3005af4f3b065a38b0abeed33c69e4}{boids}}
+\item 
+\mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid}{Spatial\+Grid}} \mbox{\hyperlink{classsimulation_1_1Flock_a863ff41a2841e57162fa1c375ebc3e9e}{grid}}
+\item 
+float \mbox{\hyperlink{classsimulation_1_1Flock_a359a38a08d3621fa08e3920437b06e26}{sep\+Weight}} = 1.\+0f
+\item 
+float \mbox{\hyperlink{classsimulation_1_1Flock_af7bd72252d30819568a74108bbdd7cfa}{ali\+Weight}} = 1.\+0f
+\item 
+float \mbox{\hyperlink{classsimulation_1_1Flock_a2519a8a03170268f5622f020334982ca}{coh\+Weight}} = 1.\+0f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Classe gérant un ensemble de boids et leur organisation spatiale. 
+
+Cette classe maintient la liste des boids, ainsi qu\textquotesingle{}une grille spatiale permettant d\textquotesingle{}optimiser la recherche de voisins dans la simulation. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classsimulation_1_1Flock_a9b213357b9da191d0669bb9419bcaf8d}\label{classsimulation_1_1Flock_a9b213357b9da191d0669bb9419bcaf8d} 
+\index{simulation::Flock@{simulation::Flock}!Flock@{Flock}}
+\index{Flock@{Flock}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{Flock()}{Flock()}}
+{\footnotesize\ttfamily simulation\+::\+Flock\+::\+Flock (\begin{DoxyParamCaption}\item[{float}]{width,  }\item[{float}]{height,  }\item[{float}]{cell\+Size }\end{DoxyParamCaption})}
+
+
+
+Constructeur de \doxylink{classsimulation_1_1Flock}{Flock}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em width} & Largeur totale de la zone de simulation \\
+\hline
+{\em height} & Hauteur totale de la zone de simulation \\
+\hline
+{\em cell\+Size} & Taille d\textquotesingle{}une cellule dans le \doxylink{classsimulation_1_1Flock_1_1SpatialGrid}{Spatial\+Grid} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classsimulation_1_1Flock_abd041ca7a8728e5e05f68c783ca0ea10}\label{classsimulation_1_1Flock_abd041ca7a8728e5e05f68c783ca0ea10} 
+\index{simulation::Flock@{simulation::Flock}!addBoid@{addBoid}}
+\index{addBoid@{addBoid}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{addBoid()}{addBoid()}}
+{\footnotesize\ttfamily void simulation\+::\+Flock\+::add\+Boid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \&}]{boid }\end{DoxyParamCaption})}
+
+
+
+Ajoute un nouveau boid au groupe. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em boid} & \doxylink{classsimulation_1_1Boid}{Boid} à ajouter \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsimulation_1_1Flock_ac5fd23123a754be28d1f9660e0e4db22}\label{classsimulation_1_1Flock_ac5fd23123a754be28d1f9660e0e4db22} 
+\index{simulation::Flock@{simulation::Flock}!clear@{clear}}
+\index{clear@{clear}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void simulation\+::\+Flock\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Vide la liste de boids. 
+
+\Hypertarget{classsimulation_1_1Flock_a63b8c0e882c5cbabe753df4ad444de95}\label{classsimulation_1_1Flock_a63b8c0e882c5cbabe753df4ad444de95} 
+\index{simulation::Flock@{simulation::Flock}!getNeighbors@{getNeighbors}}
+\index{getNeighbors@{getNeighbors}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{getNeighbors()}{getNeighbors()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ simulation\+::\+Flock\+::get\+Neighbors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*}}]{boid }\end{DoxyParamCaption})}
+
+
+
+Récupère les voisins d\textquotesingle{}un boid via le \doxylink{classsimulation_1_1Flock_1_1SpatialGrid}{Spatial\+Grid}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em boid} & Pointeur vers le boid dont on cherche les voisins \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Liste de pointeurs de boids voisins 
+\end{DoxyReturn}
+\Hypertarget{classsimulation_1_1Flock_adcf9e492ae3a4b96435f82776d2d3497}\label{classsimulation_1_1Flock_adcf9e492ae3a4b96435f82776d2d3497} 
+\index{simulation::Flock@{simulation::Flock}!populateRandom@{populateRandom}}
+\index{populateRandom@{populateRandom}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{populateRandom()}{populateRandom()}}
+{\footnotesize\ttfamily void simulation\+::\+Flock\+::populate\+Random (\begin{DoxyParamCaption}\item[{int}]{N }\end{DoxyParamCaption})}
+
+
+
+Remplit aléatoirement le flock. 
+
+\Hypertarget{classsimulation_1_1Flock_a2d583d72c3760189264ed038fdfd33c0}\label{classsimulation_1_1Flock_a2d583d72c3760189264ed038fdfd33c0} 
+\index{simulation::Flock@{simulation::Flock}!render@{render}}
+\index{render@{render}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void simulation\+::\+Flock\+::render (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Rendu (optionnel) supportant SFML. 
+
+\Hypertarget{classsimulation_1_1Flock_a90336c924206edd8aec3c9060c67c8d3}\label{classsimulation_1_1Flock_a90336c924206edd8aec3c9060c67c8d3} 
+\index{simulation::Flock@{simulation::Flock}!render@{render}}
+\index{render@{render}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void simulation\+::\+Flock\+::render (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window }\end{DoxyParamCaption})}
+
+\Hypertarget{classsimulation_1_1Flock_a138c85292113bf2fb761b135aaa7f271}\label{classsimulation_1_1Flock_a138c85292113bf2fb761b135aaa7f271} 
+\index{simulation::Flock@{simulation::Flock}!setNeighborRadius@{setNeighborRadius}}
+\index{setNeighborRadius@{setNeighborRadius}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{setNeighborRadius()}{setNeighborRadius()}}
+{\footnotesize\ttfamily void simulation\+::\+Flock\+::set\+Neighbor\+Radius (\begin{DoxyParamCaption}\item[{float}]{r }\end{DoxyParamCaption})}
+
+
+
+Change le rayon de voisinage considéré 
+
+\Hypertarget{classsimulation_1_1Flock_af4b359a8265b8b0b69ac21a772977151}\label{classsimulation_1_1Flock_af4b359a8265b8b0b69ac21a772977151} 
+\index{simulation::Flock@{simulation::Flock}!setWeights@{setWeights}}
+\index{setWeights@{setWeights}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{setWeights()}{setWeights()}}
+{\footnotesize\ttfamily void simulation\+::\+Flock\+::set\+Weights (\begin{DoxyParamCaption}\item[{float}]{sep,  }\item[{float}]{ali,  }\item[{float}]{coh }\end{DoxyParamCaption})}
+
+
+
+Régle les poids des règles. 
+
+\Hypertarget{classsimulation_1_1Flock_a6a138f3bfabf1197decf84e682bea0dc}\label{classsimulation_1_1Flock_a6a138f3bfabf1197decf84e682bea0dc} 
+\index{simulation::Flock@{simulation::Flock}!updateAll@{updateAll}}
+\index{updateAll@{updateAll}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{updateAll()}{updateAll()}}
+{\footnotesize\ttfamily void simulation\+::\+Flock\+::update\+All (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Met à jour tous les boids du flock. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em delta\+Time} & Pas de temps de la simulation \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classsimulation_1_1Flock_af7bd72252d30819568a74108bbdd7cfa}\label{classsimulation_1_1Flock_af7bd72252d30819568a74108bbdd7cfa} 
+\index{simulation::Flock@{simulation::Flock}!aliWeight@{aliWeight}}
+\index{aliWeight@{aliWeight}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{aliWeight}{aliWeight}}
+{\footnotesize\ttfamily float simulation\+::\+Flock\+::ali\+Weight = 1.\+0f}
+
+\Hypertarget{classsimulation_1_1Flock_a3f3005af4f3b065a38b0abeed33c69e4}\label{classsimulation_1_1Flock_a3f3005af4f3b065a38b0abeed33c69e4} 
+\index{simulation::Flock@{simulation::Flock}!boids@{boids}}
+\index{boids@{boids}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{boids}{boids}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classsimulation_1_1Boid}{Boid}}$>$ simulation\+::\+Flock\+::boids}
+
+\Hypertarget{classsimulation_1_1Flock_a2519a8a03170268f5622f020334982ca}\label{classsimulation_1_1Flock_a2519a8a03170268f5622f020334982ca} 
+\index{simulation::Flock@{simulation::Flock}!cohWeight@{cohWeight}}
+\index{cohWeight@{cohWeight}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{cohWeight}{cohWeight}}
+{\footnotesize\ttfamily float simulation\+::\+Flock\+::coh\+Weight = 1.\+0f}
+
+\Hypertarget{classsimulation_1_1Flock_a863ff41a2841e57162fa1c375ebc3e9e}\label{classsimulation_1_1Flock_a863ff41a2841e57162fa1c375ebc3e9e} 
+\index{simulation::Flock@{simulation::Flock}!grid@{grid}}
+\index{grid@{grid}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid}{Spatial\+Grid}} simulation\+::\+Flock\+::grid}
+
+\Hypertarget{classsimulation_1_1Flock_aafe404607ee253e8b94d3fc1a89471e2}\label{classsimulation_1_1Flock_aafe404607ee253e8b94d3fc1a89471e2} 
+\index{simulation::Flock@{simulation::Flock}!neighborRadius@{neighborRadius}}
+\index{neighborRadius@{neighborRadius}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{neighborRadius}{neighborRadius}}
+{\footnotesize\ttfamily float simulation\+::\+Flock\+::neighbor\+Radius = 30.\+0f}
+
+\Hypertarget{classsimulation_1_1Flock_a359a38a08d3621fa08e3920437b06e26}\label{classsimulation_1_1Flock_a359a38a08d3621fa08e3920437b06e26} 
+\index{simulation::Flock@{simulation::Flock}!sepWeight@{sepWeight}}
+\index{sepWeight@{sepWeight}!simulation::Flock@{simulation::Flock}}
+\doxysubsubsection{\texorpdfstring{sepWeight}{sepWeight}}
+{\footnotesize\ttfamily float simulation\+::\+Flock\+::sep\+Weight = 1.\+0f}
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Flock_8h}{Flock.\+h}}\item 
+src/\mbox{\hyperlink{Flock_8cpp}{Flock.\+cpp}}\end{DoxyCompactItemize}

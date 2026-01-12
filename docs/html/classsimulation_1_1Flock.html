@@ -1,0 +1,509 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons: Référence de la classe simulation::Flock</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.2.0</span>
+   </div>
+   <div id="projectbrief">Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagissant en temps réel.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacesimulation.html">simulation</a></li><li class="navelem"><a class="el" href="classsimulation_1_1Flock.html">Flock</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-attribs">Attributs publics</a> &#124;
+<a href="classsimulation_1_1Flock-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle"><div class="title">Référence de la classe simulation::Flock</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Classe gérant un ensemble de boids et leur organisation spatiale.  
+ <a href="classsimulation_1_1Flock.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Flock_8h_source.html">Flock.h</a>&gt;</code></p>
+<div class="dynheader">
+Graphe de collaboration de simulation::Flock:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsimulation_1_1Flock__coll__graph.png" border="0" usemap="#asimulation_1_1Flock_coll__map" alt="Collaboration graph"/></div>
+<map name="asimulation_1_1Flock_coll__map" id="asimulation_1_1Flock_coll__map">
+<area shape="rect" title="Classe gérant un ensemble de boids et leur organisation spatiale." alt="" coords="9,108,144,133"/>
+<area shape="rect" href="classsimulation_1_1Flock_1_1SpatialGrid.html" title="Structure interne représentant une grille spatiale d&#39;accélération." alt="" coords="5,5,148,45"/>
+<area shape="poly" title=" " alt="" coords="79,59,79,108,74,108,74,59"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html">SpatialGrid</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure interne représentant une grille spatiale d'accélération.  <a href="classsimulation_1_1Flock_1_1SpatialGrid.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a9b213357b9da191d0669bb9419bcaf8d" id="r_a9b213357b9da191d0669bb9419bcaf8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#a9b213357b9da191d0669bb9419bcaf8d">Flock</a> (float width, float height, float cellSize)</td></tr>
+<tr class="memdesc:a9b213357b9da191d0669bb9419bcaf8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de <a class="el" href="classsimulation_1_1Flock.html" title="Classe gérant un ensemble de boids et leur organisation spatiale.">Flock</a>.  <br /></td></tr>
+<tr class="separator:a9b213357b9da191d0669bb9419bcaf8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd041ca7a8728e5e05f68c783ca0ea10" id="r_abd041ca7a8728e5e05f68c783ca0ea10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#abd041ca7a8728e5e05f68c783ca0ea10">addBoid</a> (const <a class="el" href="classsimulation_1_1Boid.html">Boid</a> &amp;boid)</td></tr>
+<tr class="memdesc:abd041ca7a8728e5e05f68c783ca0ea10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un nouveau boid au groupe.  <br /></td></tr>
+<tr class="separator:abd041ca7a8728e5e05f68c783ca0ea10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5fd23123a754be28d1f9660e0e4db22" id="r_ac5fd23123a754be28d1f9660e0e4db22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#ac5fd23123a754be28d1f9660e0e4db22">clear</a> ()</td></tr>
+<tr class="memdesc:ac5fd23123a754be28d1f9660e0e4db22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vide la liste de boids.  <br /></td></tr>
+<tr class="separator:ac5fd23123a754be28d1f9660e0e4db22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcf9e492ae3a4b96435f82776d2d3497" id="r_adcf9e492ae3a4b96435f82776d2d3497"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#adcf9e492ae3a4b96435f82776d2d3497">populateRandom</a> (int N)</td></tr>
+<tr class="memdesc:adcf9e492ae3a4b96435f82776d2d3497"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remplit aléatoirement le flock.  <br /></td></tr>
+<tr class="separator:adcf9e492ae3a4b96435f82776d2d3497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63b8c0e882c5cbabe753df4ad444de95" id="r_a63b8c0e882c5cbabe753df4ad444de95"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#a63b8c0e882c5cbabe753df4ad444de95">getNeighbors</a> (<a class="el" href="classsimulation_1_1Boid.html">Boid</a> *boid)</td></tr>
+<tr class="memdesc:a63b8c0e882c5cbabe753df4ad444de95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère les voisins d'un boid via le <a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html" title="Structure interne représentant une grille spatiale d&#39;accélération.">SpatialGrid</a>.  <br /></td></tr>
+<tr class="separator:a63b8c0e882c5cbabe753df4ad444de95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a138f3bfabf1197decf84e682bea0dc" id="r_a6a138f3bfabf1197decf84e682bea0dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#a6a138f3bfabf1197decf84e682bea0dc">updateAll</a> (float deltaTime)</td></tr>
+<tr class="memdesc:a6a138f3bfabf1197decf84e682bea0dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour tous les boids du flock.  <br /></td></tr>
+<tr class="separator:a6a138f3bfabf1197decf84e682bea0dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4b359a8265b8b0b69ac21a772977151" id="r_af4b359a8265b8b0b69ac21a772977151"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#af4b359a8265b8b0b69ac21a772977151">setWeights</a> (float sep, float ali, float coh)</td></tr>
+<tr class="memdesc:af4b359a8265b8b0b69ac21a772977151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Régle les poids des règles.  <br /></td></tr>
+<tr class="separator:af4b359a8265b8b0b69ac21a772977151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a138c85292113bf2fb761b135aaa7f271" id="r_a138c85292113bf2fb761b135aaa7f271"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#a138c85292113bf2fb761b135aaa7f271">setNeighborRadius</a> (float r)</td></tr>
+<tr class="memdesc:a138c85292113bf2fb761b135aaa7f271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change le rayon de voisinage considéré  <br /></td></tr>
+<tr class="separator:a138c85292113bf2fb761b135aaa7f271"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d583d72c3760189264ed038fdfd33c0" id="r_a2d583d72c3760189264ed038fdfd33c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#a2d583d72c3760189264ed038fdfd33c0">render</a> ()</td></tr>
+<tr class="memdesc:a2d583d72c3760189264ed038fdfd33c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rendu (optionnel) supportant SFML.  <br /></td></tr>
+<tr class="separator:a2d583d72c3760189264ed038fdfd33c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90336c924206edd8aec3c9060c67c8d3" id="r_a90336c924206edd8aec3c9060c67c8d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#a90336c924206edd8aec3c9060c67c8d3">render</a> (sf::RenderWindow &amp;window)</td></tr>
+<tr class="separator:a90336c924206edd8aec3c9060c67c8d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Attributs publics</h2></td></tr>
+<tr class="memitem:aafe404607ee253e8b94d3fc1a89471e2" id="r_aafe404607ee253e8b94d3fc1a89471e2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#aafe404607ee253e8b94d3fc1a89471e2">neighborRadius</a> = 30.0f</td></tr>
+<tr class="separator:aafe404607ee253e8b94d3fc1a89471e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f3005af4f3b065a38b0abeed33c69e4" id="r_a3f3005af4f3b065a38b0abeed33c69e4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#a3f3005af4f3b065a38b0abeed33c69e4">boids</a></td></tr>
+<tr class="separator:a3f3005af4f3b065a38b0abeed33c69e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a863ff41a2841e57162fa1c375ebc3e9e" id="r_a863ff41a2841e57162fa1c375ebc3e9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html">SpatialGrid</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#a863ff41a2841e57162fa1c375ebc3e9e">grid</a></td></tr>
+<tr class="separator:a863ff41a2841e57162fa1c375ebc3e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a359a38a08d3621fa08e3920437b06e26" id="r_a359a38a08d3621fa08e3920437b06e26"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#a359a38a08d3621fa08e3920437b06e26">sepWeight</a> = 1.0f</td></tr>
+<tr class="separator:a359a38a08d3621fa08e3920437b06e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7bd72252d30819568a74108bbdd7cfa" id="r_af7bd72252d30819568a74108bbdd7cfa"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#af7bd72252d30819568a74108bbdd7cfa">aliWeight</a> = 1.0f</td></tr>
+<tr class="separator:af7bd72252d30819568a74108bbdd7cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2519a8a03170268f5622f020334982ca" id="r_a2519a8a03170268f5622f020334982ca"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsimulation_1_1Flock.html#a2519a8a03170268f5622f020334982ca">cohWeight</a> = 1.0f</td></tr>
+<tr class="separator:a2519a8a03170268f5622f020334982ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Classe gérant un ensemble de boids et leur organisation spatiale. </p>
+<p>Cette classe maintient la liste des boids, ainsi qu'une grille spatiale permettant d'optimiser la recherche de voisins dans la simulation. </p>
+</div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="a9b213357b9da191d0669bb9419bcaf8d" name="a9b213357b9da191d0669bb9419bcaf8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b213357b9da191d0669bb9419bcaf8d">&#9670;&#160;</a></span>Flock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">simulation::Flock::Flock </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>cellSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur de <a class="el" href="classsimulation_1_1Flock.html" title="Classe gérant un ensemble de boids et leur organisation spatiale.">Flock</a>. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>Largeur totale de la zone de simulation </td></tr>
+    <tr><td class="paramname">height</td><td>Hauteur totale de la zone de simulation </td></tr>
+    <tr><td class="paramname">cellSize</td><td>Taille d'une cellule dans le <a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html" title="Structure interne représentant une grille spatiale d&#39;accélération.">SpatialGrid</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="abd041ca7a8728e5e05f68c783ca0ea10" name="abd041ca7a8728e5e05f68c783ca0ea10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd041ca7a8728e5e05f68c783ca0ea10">&#9670;&#160;</a></span>addBoid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::Flock::addBoid </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsimulation_1_1Boid.html">Boid</a> &amp;&#160;</td>
+          <td class="paramname"><em>boid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ajoute un nouveau boid au groupe. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boid</td><td><a class="el" href="classsimulation_1_1Boid.html" title="Représenation d&#39;un boid (agent autonome du banc de poisson)">Boid</a> à ajouter </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac5fd23123a754be28d1f9660e0e4db22" name="ac5fd23123a754be28d1f9660e0e4db22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5fd23123a754be28d1f9660e0e4db22">&#9670;&#160;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::Flock::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vide la liste de boids. </p>
+
+</div>
+</div>
+<a id="a63b8c0e882c5cbabe753df4ad444de95" name="a63b8c0e882c5cbabe753df4ad444de95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63b8c0e882c5cbabe753df4ad444de95">&#9670;&#160;</a></span>getNeighbors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classsimulation_1_1Boid.html">Boid</a> * &gt; simulation::Flock::getNeighbors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsimulation_1_1Boid.html">Boid</a> *&#160;</td>
+          <td class="paramname"><em>boid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Récupère les voisins d'un boid via le <a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html" title="Structure interne représentant une grille spatiale d&#39;accélération.">SpatialGrid</a>. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">boid</td><td>Pointeur vers le boid dont on cherche les voisins </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Liste de pointeurs de boids voisins </dd></dl>
+
+</div>
+</div>
+<a id="adcf9e492ae3a4b96435f82776d2d3497" name="adcf9e492ae3a4b96435f82776d2d3497"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcf9e492ae3a4b96435f82776d2d3497">&#9670;&#160;</a></span>populateRandom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::Flock::populateRandom </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>N</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remplit aléatoirement le flock. </p>
+
+</div>
+</div>
+<a id="a2d583d72c3760189264ed038fdfd33c0" name="a2d583d72c3760189264ed038fdfd33c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d583d72c3760189264ed038fdfd33c0">&#9670;&#160;</a></span>render() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::Flock::render </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rendu (optionnel) supportant SFML. </p>
+
+</div>
+</div>
+<a id="a90336c924206edd8aec3c9060c67c8d3" name="a90336c924206edd8aec3c9060c67c8d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90336c924206edd8aec3c9060c67c8d3">&#9670;&#160;</a></span>render() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::Flock::render </td>
+          <td>(</td>
+          <td class="paramtype">sf::RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a138c85292113bf2fb761b135aaa7f271" name="a138c85292113bf2fb761b135aaa7f271"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a138c85292113bf2fb761b135aaa7f271">&#9670;&#160;</a></span>setNeighborRadius()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::Flock::setNeighborRadius </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change le rayon de voisinage considéré </p>
+
+</div>
+</div>
+<a id="af4b359a8265b8b0b69ac21a772977151" name="af4b359a8265b8b0b69ac21a772977151"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4b359a8265b8b0b69ac21a772977151">&#9670;&#160;</a></span>setWeights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::Flock::setWeights </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>sep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>ali</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coh</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Régle les poids des règles. </p>
+
+</div>
+</div>
+<a id="a6a138f3bfabf1197decf84e682bea0dc" name="a6a138f3bfabf1197decf84e682bea0dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a138f3bfabf1197decf84e682bea0dc">&#9670;&#160;</a></span>updateAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void simulation::Flock::updateAll </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deltaTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Met à jour tous les boids du flock. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaTime</td><td>Pas de temps de la simulation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des données membres</h2>
+<a id="af7bd72252d30819568a74108bbdd7cfa" name="af7bd72252d30819568a74108bbdd7cfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7bd72252d30819568a74108bbdd7cfa">&#9670;&#160;</a></span>aliWeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Flock::aliWeight = 1.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f3005af4f3b065a38b0abeed33c69e4" name="a3f3005af4f3b065a38b0abeed33c69e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f3005af4f3b065a38b0abeed33c69e4">&#9670;&#160;</a></span>boids</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classsimulation_1_1Boid.html">Boid</a>&gt; simulation::Flock::boids</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2519a8a03170268f5622f020334982ca" name="a2519a8a03170268f5622f020334982ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2519a8a03170268f5622f020334982ca">&#9670;&#160;</a></span>cohWeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Flock::cohWeight = 1.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a863ff41a2841e57162fa1c375ebc3e9e" name="a863ff41a2841e57162fa1c375ebc3e9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a863ff41a2841e57162fa1c375ebc3e9e">&#9670;&#160;</a></span>grid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html">SpatialGrid</a> simulation::Flock::grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aafe404607ee253e8b94d3fc1a89471e2" name="aafe404607ee253e8b94d3fc1a89471e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafe404607ee253e8b94d3fc1a89471e2">&#9670;&#160;</a></span>neighborRadius</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Flock::neighborRadius = 30.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a359a38a08d3621fa08e3920437b06e26" name="a359a38a08d3621fa08e3920437b06e26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a359a38a08d3621fa08e3920437b06e26">&#9670;&#160;</a></span>sepWeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float simulation::Flock::sepWeight = 1.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
+<li>include/<a class="el" href="Flock_8h_source.html">Flock.h</a></li>
+<li>src/<a class="el" href="Flock_8cpp.html">Flock.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

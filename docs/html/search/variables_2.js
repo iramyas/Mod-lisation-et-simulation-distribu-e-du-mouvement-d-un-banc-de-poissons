@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['mass_0',['mass',['../classsimulation_1_1Boid.html#a0fd81a0582489e6955e0a1d1104c272e',1,'simulation::Boid']]],
-  ['maxforce_1',['maxForce',['../classsimulation_1_1Boid.html#a6cdeaa9b3d4fcbaef2508d9e62574e2b',1,'simulation::Boid']]],
-  ['maxspeed_2',['maxSpeed',['../classsimulation_1_1Boid.html#afcb9c9efdb3b3bdc35a365fab5d170e6',1,'simulation::Boid']]]
+  ['cells_0',['cells',['../classsimulation_1_1Flock_1_1SpatialGrid.html#abe3c84a44375c22a71e7adbc1fded473',1,'simulation::Flock::SpatialGrid']]],
+  ['cellsize_1',['cellSize',['../classsimulation_1_1Flock_1_1SpatialGrid.html#a2465bd2e85014f60e384a95891242671',1,'simulation::Flock::SpatialGrid']]],
+  ['cohweight_2',['cohWeight',['../classsimulation_1_1Flock.html#a2519a8a03170268f5622f020334982ca',1,'simulation::Flock']]]
 ];

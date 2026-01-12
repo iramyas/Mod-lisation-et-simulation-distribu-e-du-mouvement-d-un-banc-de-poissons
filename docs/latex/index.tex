@@ -7,8 +7,7 @@
 \begin{DoxyItemize}
 \item Yohann FRONT-\/\+REIGNIER
 \item Iram MADANI-\/\+FOUATIH
-\item 
-\item 
+\item Laurence HUANG
 \end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Description}{Description}}\label{index_autotoc_md2}
 Un problème classique pour aborder la modélisation de systèmes complexes et le calcul parallèle est la simulation du comportement collectif dans la nature. L’étude du mouvement d’un banc de poissons constitue un excellent cas d’application \+: il s’agit d’un système multi-\/agents où chaque individu suit des règles locales simples (évitement des collisions, alignement, cohésion) qui produisent un comportement collectif émergent.
 
@@ -52,7 +51,6 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{mkdir\ -\/p\ build\ \&\&\ cd\ build}
-\DoxyCodeLine{cmake\ -\/DCMAKE\_BUILD\_TYPE=Debug\ ..}
 \DoxyCodeLine{cmake\ -\/-\/build\ .}
 
 \end{DoxyCode}
@@ -63,7 +61,13 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 \DoxyCodeLine{./bin/main\_simulation.bin}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{Lancer les tests}{Lancer les tests}}\label{index_autotoc_md10}
+\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{Interface interactive (nouveau)}{Interface interactive (nouveau)}}\label{index_autotoc_md10}
+
+\begin{DoxyItemize}
+\item Des {\itshape sliders} sont disponibles dans la fenêtre pour ajuster en temps réel \+: {\bfseries{Separation}}, {\bfseries{Alignment}}, {\bfseries{Cohesion}}, {\bfseries{Neighbor radius}}.
+\item Un {\itshape slider} {\ttfamily Count} permet de choisir le nombre de boids et un bouton {\bfseries{Apply}} (clic souris) réinitialise la population.
+\item Contrôles \+: glisser-\/déposer les {\bfseries{sliders}} pour ajuster les poids et le rayon ; {\bfseries{Apply}} réinitialise la population selon {\ttfamily Count}. Appuyer sur {\bfseries{Échap}} ferme la fenêtre.
+\end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsection{\texorpdfstring{Lancer les tests}{Lancer les tests}}\label{index_autotoc_md11}
 {\bfseries{Tous les tests \+:}} 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{cd\ build}
@@ -76,6 +80,7 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 \begin{DoxyCode}{0}
 \DoxyCodeLine{./bin/test\_vector.bin\ \ \ \#\ Tests\ Vector2D\ }
 \DoxyCodeLine{./bin/test\_boid.bin\ \ \ \ \ \#\ Tests\ Boid}
+\DoxyCodeLine{./bin/test\_flock.bin\ \ \ \ \#\ Tests\ Flock}
 
 \end{DoxyCode}
 
@@ -85,15 +90,16 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 \DoxyCodeLine{ctest\ -\/-\/verbose}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md11}{}\doxysubsection{\texorpdfstring{Générer la documentation}{Générer la documentation}}\label{index_autotoc_md11}
+\hypertarget{index_autotoc_md12}{}\doxysubsection{\texorpdfstring{Générer la documentation}{Générer la documentation}}\label{index_autotoc_md12}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{doxygen\ Doxyfile}
 \DoxyCodeLine{firefox\ "{}\$(realpath\ docs/html/index.html)"{}\ \#\ Ouvrir\ dans\ le\ navigateur}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md12}{}\doxysection{\texorpdfstring{Fonctionnement et déroulement de l\textquotesingle{}implémentation}{Fonctionnement et déroulement de l'implémentation}}\label{index_autotoc_md12}
-\hypertarget{index_autotoc_md13}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Phase 1 \+: Fondations$<$/strong$>$ (\+Terminée)}{<strong>Phase 1 : Fondations</strong> (Terminée)}}\label{index_autotoc_md13}
+\hypertarget{index_autotoc_md13}{}\doxysection{\texorpdfstring{Fonctionnement et déroulement de l\textquotesingle{}implémentation}{Fonctionnement et déroulement de l'implémentation}}\label{index_autotoc_md13}
+\hypertarget{index_autotoc_md14}{}\doxysection{\texorpdfstring{Semestre 1 \+: Partie séquentielle (\+Terminée)}{Semestre 1 : Partie séquentielle (Terminée)}}\label{index_autotoc_md14}
+\hypertarget{index_autotoc_md15}{}\doxysubsection{\texorpdfstring{Phase 1 \+: Fondations (\+Terminée)}{Phase 1 : Fondations (Terminée)}}\label{index_autotoc_md15}
 {\bfseries{Classe {\ttfamily Vector2\+D.\+h}}}
 \begin{DoxyItemize}
 \item Gestion des positions, des vitesses et accélérations
@@ -108,7 +114,7 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 \item Méthodes \+: {\ttfamily update()}, {\ttfamily apply\+Force()}, règles de Reynolds
 \item {\bfseries{Tests unitaires}} \+: {\ttfamily tests/test\+\_\+boid.\+cpp}
 \item {\bfseries{Statut}} \+: Terminé (22/11/2025)
-\end{DoxyItemize}\hypertarget{index_autotoc_md14}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Phase 2 \+: Règles de Reynolds$<$/strong$>$ (\+Terminée)}{<strong>Phase 2 : Règles de Reynolds</strong> (Terminée)}}\label{index_autotoc_md14}
+\end{DoxyItemize}\hypertarget{index_autotoc_md16}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Phase 2 \+: Règles de Reynolds$<$/strong$>$ (\+Terminée)}{<strong>Phase 2 : Règles de Reynolds</strong> (Terminée)}}\label{index_autotoc_md16}
 
 \begin{DoxyItemize}
 \item {\bfseries{Séparation}} \+: Les boids s\textquotesingle{}éloignent des voisins trop proches pour éviter les collisions. Chaque boid calcule un vecteur de répulsion basé sur la distance aux voisins dans sa zone de perception.
@@ -117,23 +123,31 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 \item {\bfseries{Paramètres principaux}} \+: vitesse max \+: 30.\+0, force max \+: 2.\+5, poids \+: 1.\+0, rayon de perception \+: 50 pixels
 \item {\bfseries{Test unitaires}} \+: {\ttfamily tests/test\+\_\+boid.\+cpp} (on créera sûrement un fichier à part pour améliorer la lisibilité)
 \item {\bfseries{Statut}} \+: Terminé (22/11/2025)
-\end{DoxyItemize}\hypertarget{index_autotoc_md15}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Phase 3 \+: Gestion collective$<$/strong$>$(fin novembre)}{<strong>Phase 3 : Gestion collective</strong>(fin novembre)}}\label{index_autotoc_md15}
-{\bfseries{Classe {\ttfamily Flock}}} \+: Gérer le comportement d\textquotesingle{}un ensemble de boids et leurs interactions.
-
-
+\end{DoxyItemize}\hypertarget{index_autotoc_md17}{}\doxysubsection{\texorpdfstring{Phase 3 \+: Gestion collective (\+Terminée)}{Phase 3 : Gestion collective (Terminée)}}\label{index_autotoc_md17}
+{\bfseries{Classe {\ttfamily Flock}}}
 \begin{DoxyItemize}
-\item {\bfseries{Statut}} \+: A faire
-\end{DoxyItemize}\hypertarget{index_autotoc_md16}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Phase 4 \+: Simulation visuelle$<$/strong$>$(debut décembre)}{<strong>Phase 4 : Simulation visuelle</strong>(debut décembre)}}\label{index_autotoc_md16}
-
+\item Gestion d\textquotesingle{}une collection de boids avec ajout et suppression dynamique
+\item Calcul des interactions entre tous les boids du groupe
+\item {\bfseries{Optimisation Spatial\+Grid}} \+: Partitionnement spatial pour accélérer la recherche de voisins (O(n\texorpdfstring{$\ast$}{*}k) au lieu de O(n²))
+\item {\bfseries{Tests unitaires}} \+: {\ttfamily tests/test\+\_\+flock.\+cpp}
+\item {\bfseries{Statut}} \+: Terminé (05/12/2025)
+\end{DoxyItemize}\hypertarget{index_autotoc_md18}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Phase 4 \+: Simulation visuelle$<$/strong$>$(\+Terminée)}{<strong>Phase 4 : Simulation visuelle</strong>(Terminée)}}\label{index_autotoc_md18}
+{\bfseries{Interface SFML complète}}
 \begin{DoxyItemize}
-\item {\bfseries{Boucle de simulation}} \+: utilisation de SFML pour l\textquotesingle{}affichage 2D, tests sur différents paramètres et taille de banc.
-\item {\bfseries{Statut}} \+: A faire
-\end{DoxyItemize}\hypertarget{index_autotoc_md17}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Phase 5 \+: Préparation des benchmarks$<$/strong$>$ (mi-\/décembre)}{<strong>Phase 5 : Préparation des benchmarks</strong> (mi-décembre)}}\label{index_autotoc_md17}
-
+\item Boucle de simulation temps réel à 60 FPS (500 boids stables)
+\item Sliders interactifs \+: Séparation, Alignement, Cohésion, Rayon de voisinage, Nombre de boids
+\item Bouton Apply pour réinitialisation dynamique de la population
+\item Affichage FPS en temps réel
+\item {\bfseries{Statut}} \+: Terminé (16/12/2025)
+\end{DoxyItemize}\hypertarget{index_autotoc_md19}{}\doxysubsection{\texorpdfstring{Phase 5 \+: Benchmarks et optimisations (\+Terminée)}{Phase 5 : Benchmarks et optimisations (Terminée)}}\label{index_autotoc_md19}
+{\bfseries{Mesure des performances}}
 \begin{DoxyItemize}
-\item Mesure des performances et du temps d\textquotesingle{}exécution, documentatio des résultats et des configurations matérielles.
-\item {\bfseries{Statut}} \+: A faire
-\end{DoxyItemize}\hypertarget{index_autotoc_md18}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Phase 6 \+: Extensions$<$/strong$>$}{<strong>Phase 6 : Extensions</strong>}}\label{index_autotoc_md18}
+\item Comparaison algorithme naïf vs Spatial\+Grid \+: {\bfseries{gain de x5}} (500 boids)
+\item Benchmarks temps vs rayon de voisinage et temps vs nombre de boids
+\item Graphique de performance \+: {\ttfamily figures/bench\+\_\+time\+\_\+vs\+\_\+radius.\+png} et {\ttfamily figures/bench\+\_\+time\+\_\+vs\+\_\+\+N.\+png}
+\item Script de benchmark automatisé \+: {\ttfamily experiments/benchmark.\+cpp}
+\item {\bfseries{Statut}} \+: Terminé (16/12/2025)
+\end{DoxyItemize}\hypertarget{index_autotoc_md20}{}\doxysubsection{\texorpdfstring{Phase 6 \+: Extensions}{Phase 6 : Extensions}}\label{index_autotoc_md20}
 {\bfseries{Open\+GL}}
 \begin{DoxyItemize}
 \item Cet outil sera utilisé pour faire la modélisation en 3D. Il faut se familiariser d\textquotesingle{}abord avec SFML pour pouvoir continuer.
@@ -142,7 +156,7 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 {\bfseries{Comportement avancés}}
 \begin{DoxyItemize}
 \item Il existe d\textquotesingle{}autres type de comportement d\textquotesingle{}un Flock de poissons, par exemple "{}vortex"{}, on peut essayer également de modéliser cela ou simplement comparer!
-\end{DoxyItemize}\hypertarget{index_autotoc_md19}{}\doxysection{\texorpdfstring{Références}{Références}}\label{index_autotoc_md19}
+\end{DoxyItemize}\hypertarget{index_autotoc_md21}{}\doxysection{\texorpdfstring{Références}{Références}}\label{index_autotoc_md21}
 {\bfseries{Modèle de Boids (Craig Reynolds, 1987)}}
 \begin{DoxyItemize}
 \item \href{https://www.red3d.com/cwr/boids/}{\texttt{ Article original}}
@@ -154,11 +168,11 @@ Le but est de concevoir et de mettre en œuvre un simulateur distribué reprodui
 \item \href{https://www.sfml-dev.org/documentation/}{\texttt{ SFML Documentation}}
 \item \href{https://google.github.io/googletest/}{\texttt{ Google\+Test}}
 \item \href{https://www.doxygen.nl/}{\texttt{ Doxygen}}
-\end{DoxyItemize}\hypertarget{index_autotoc_md20}{}\doxysection{\texorpdfstring{Remarques}{Remarques}}\label{index_autotoc_md20}
+\end{DoxyItemize}\hypertarget{index_autotoc_md22}{}\doxysection{\texorpdfstring{Remarques}{Remarques}}\label{index_autotoc_md22}
 
 \begin{DoxyItemize}
 \item Chaque fonction important est testée pour garantir la robustesse de la modélisation.
 \item Les extensions et benchmarks seront détaillés dans la documentation et le rapport final
 \end{DoxyItemize}
 
-{\bfseries{Dernière mise à jour \+: 24/11/2025}} 
+{\bfseries{Dernière mise à jour \+: 12/01/2026}} (Bonne année !) 

@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.1.9</span>
+   <div id="projectname">Modélisation et simulation distribuée du mouvement d&#39;un banc de poissons<span id="projectnumber">&#160;0.2.0</span>
    </div>
    <div id="projectbrief">Le but est de concevoir et de mettre en œuvre un simulateur distribué reproduisant le mouvement d’un banc de poissons, en s’appuyant sur un modèle d’agents autonomes interagissant en temps réel.</div>
   </td>
@@ -74,7 +74,9 @@ $(function() {
 
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
 <li>acceleration&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#aee29610759103a4835a111afb03e9130">simulation::Boid</a></li>
+<li>addBoid()&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#abd041ca7a8728e5e05f68c783ca0ea10">simulation::Flock</a>, <a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html#a95898ab3404f9086dbd7ce9629744bde">simulation::Flock::SpatialGrid</a></li>
 <li>align()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#a88c4fd88e4ce03afca6497c34b0fbdbe">simulation::Boid</a></li>
+<li>aliWeight&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#af7bd72252d30819568a74108bbdd7cfa">simulation::Flock</a></li>
 <li>angle()&#160;:&#160;<a class="el" href="classsimulation_1_1Vector2D.html#aeb5fdc1b34a96d5e27591c5489850d46">simulation::Vector2D</a></li>
 <li>applyForce()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#a3387418e0e32585decb43ec24b092a64">simulation::Boid</a></li>
 </ul>
@@ -82,11 +84,16 @@ $(function() {
 
 <h3><a id="index_b" name="index_b"></a>- b -</h3><ul>
 <li>Boid()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#aa857d5931b606e6e3e807adbcebc39c2">simulation::Boid</a></li>
+<li>boids&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#a3f3005af4f3b065a38b0abeed33c69e4">simulation::Flock</a></li>
 </ul>
 
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>cells&#160;:&#160;<a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html#abe3c84a44375c22a71e7adbc1fded473">simulation::Flock::SpatialGrid</a></li>
+<li>cellSize&#160;:&#160;<a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html#a2465bd2e85014f60e384a95891242671">simulation::Flock::SpatialGrid</a></li>
+<li>clear()&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#ac5fd23123a754be28d1f9660e0e4db22">simulation::Flock</a>, <a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html#ab287f339e1649da2af02a4b10efff52d">simulation::Flock::SpatialGrid</a></li>
 <li>cohesion()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#a1f3997c5fce39ae86b2a7e74e9fcef33">simulation::Boid</a></li>
+<li>cohWeight&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#a2519a8a03170268f5622f020334982ca">simulation::Flock</a></li>
 </ul>
 
 
@@ -94,16 +101,27 @@ $(function() {
 <li>distance()&#160;:&#160;<a class="el" href="classsimulation_1_1Vector2D.html#a9d871aef4d3796d3cd2ed388d6418462">simulation::Vector2D</a></li>
 <li>distanceSquared()&#160;:&#160;<a class="el" href="classsimulation_1_1Vector2D.html#a387a4317139380a2aaf04199c8d4f19a">simulation::Vector2D</a></li>
 <li>dot()&#160;:&#160;<a class="el" href="classsimulation_1_1Vector2D.html#a6743b23dc66b09a7b0a5a9d2be42ae60">simulation::Vector2D</a></li>
+<li>draw()&#160;:&#160;<a class="el" href="classSlider.html#a987671ffec0ef4d2e2b3543a7428d82e">Slider</a></li>
 </ul>
 
 
 <h3><a id="index_f" name="index_f"></a>- f -</h3><ul>
 <li>flee()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#ad2f680621bd68cbc948ed4897e451b77">simulation::Boid</a></li>
+<li>Flock()&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#a9b213357b9da191d0669bb9419bcaf8d">simulation::Flock</a></li>
 </ul>
 
 
 <h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
-<li>getNeighbors()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#ac13d15b43712a734b4c41796e72fb20c">simulation::Boid</a></li>
+<li>getNeighbors()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#ac13d15b43712a734b4c41796e72fb20c">simulation::Boid</a>, <a class="el" href="classsimulation_1_1Flock.html#a63b8c0e882c5cbabe753df4ad444de95">simulation::Flock</a></li>
+<li>getValue()&#160;:&#160;<a class="el" href="classSlider.html#a9f5c36c34d9421a610366115d8adfee5">Slider</a></li>
+<li>grid&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#a863ff41a2841e57162fa1c375ebc3e9e">simulation::Flock</a></li>
+<li>gridHeight&#160;:&#160;<a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html#af340cec2236d8da4621ea34093288a09">simulation::Flock::SpatialGrid</a></li>
+<li>gridWidth&#160;:&#160;<a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html#a9cd2f2db2f7687879784129fa1bff25d">simulation::Flock::SpatialGrid</a></li>
+</ul>
+
+
+<h3><a id="index_h" name="index_h"></a>- h -</h3><ul>
+<li>handleEvent()&#160;:&#160;<a class="el" href="classSlider.html#a2b9e36fc944cd4291871b4e9ef4825ea">Slider</a></li>
 </ul>
 
 
@@ -117,6 +135,7 @@ $(function() {
 
 
 <h3><a id="index_n" name="index_n"></a>- n -</h3><ul>
+<li>neighborRadius&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#aafe404607ee253e8b94d3fc1a89471e2">simulation::Flock</a></li>
 <li>normalized()&#160;:&#160;<a class="el" href="classsimulation_1_1Vector2D.html#aa786fc44f0ae3f740467680d51d8cfb3">simulation::Vector2D</a></li>
 </ul>
 
@@ -136,11 +155,18 @@ $(function() {
 
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
 <li>perceptionRadius&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#a1a92dc1e670ef2acdbc2009d9cd40967">simulation::Boid</a></li>
+<li>populateRandom()&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#adcf9e492ae3a4b96435f82776d2d3497">simulation::Flock</a></li>
 <li>position&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#a7b4ec877d18f38188f9c8c2f69d230a7">simulation::Boid</a></li>
 </ul>
 
 
+<h3><a id="index_q" name="index_q"></a>- q -</h3><ul>
+<li>queryNeighbors()&#160;:&#160;<a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html#a9e78907600766d9eb24143af643d205b">simulation::Flock::SpatialGrid</a></li>
+</ul>
+
+
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
+<li>render()&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#a2d583d72c3760189264ed038fdfd33c0">simulation::Flock</a></li>
 <li>rotated()&#160;:&#160;<a class="el" href="classsimulation_1_1Vector2D.html#aa28082498730c11d5ca3eb1b50d244b6">simulation::Vector2D</a></li>
 </ul>
 
@@ -148,11 +174,18 @@ $(function() {
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
 <li>seek()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#a4ba17bbf35ec1d72acfedfc18ebfe4ce">simulation::Boid</a></li>
 <li>separate()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#a73d8add816755957593dfb4f5810626c">simulation::Boid</a></li>
+<li>sepWeight&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#a359a38a08d3621fa08e3920437b06e26">simulation::Flock</a></li>
+<li>setNeighborRadius()&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#a138c85292113bf2fb761b135aaa7f271">simulation::Flock</a></li>
+<li>setValue()&#160;:&#160;<a class="el" href="classSlider.html#a0507090b7bdc2a03593ef4fd983c8919">Slider</a></li>
+<li>setWeights()&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#af4b359a8265b8b0b69ac21a772977151">simulation::Flock</a></li>
+<li>Slider()&#160;:&#160;<a class="el" href="classSlider.html#af1d21bab5ed678de05fa2ba4a75dce8d">Slider</a></li>
+<li>SpatialGrid()&#160;:&#160;<a class="el" href="classsimulation_1_1Flock_1_1SpatialGrid.html#a206c6c4b43c686e9138eeb270db21be5">simulation::Flock::SpatialGrid</a></li>
 </ul>
 
 
 <h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
-<li>update()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#a2fa3f68c378c0975920dc3ef74745b53">simulation::Boid</a></li>
+<li>update()&#160;:&#160;<a class="el" href="classsimulation_1_1Boid.html#a2fa3f68c378c0975920dc3ef74745b53">simulation::Boid</a>, <a class="el" href="classSlider.html#a8bcc94829fa9c1546097da4e797665cb">Slider</a></li>
+<li>updateAll()&#160;:&#160;<a class="el" href="classsimulation_1_1Flock.html#a6a138f3bfabf1197decf84e682bea0dc">simulation::Flock</a></li>
 </ul>
 
 

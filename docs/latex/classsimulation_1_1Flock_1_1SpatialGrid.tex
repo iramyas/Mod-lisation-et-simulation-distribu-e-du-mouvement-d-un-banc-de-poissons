@@ -1,0 +1,139 @@
+\doxysection{Référence de la classe simulation\+::Flock\+::Spatial\+Grid}
+\hypertarget{classsimulation_1_1Flock_1_1SpatialGrid}{}\label{classsimulation_1_1Flock_1_1SpatialGrid}\index{simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}}
+
+
+Structure interne représentant une grille spatiale d\textquotesingle{}accélération.  
+
+
+
+
+{\ttfamily \#include $<$Flock.\+h$>$}
+
+\doxysubsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid_a206c6c4b43c686e9138eeb270db21be5}{Spatial\+Grid}} (float width, float height, float \mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid_a2465bd2e85014f60e384a95891242671}{cell\+Size}})
+\begin{DoxyCompactList}\small\item\em Constructeur de \doxylink{classsimulation_1_1Flock_1_1SpatialGrid}{Spatial\+Grid}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid_ab287f339e1649da2af02a4b10efff52d}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Réinitialise la grille en vidant toutes les cellules. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid_a95898ab3404f9086dbd7ce9629744bde}{add\+Boid}} (\mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*}boid)
+\begin{DoxyCompactList}\small\item\em Ajoute un boid dans la cellule correspondant à sa position. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid_a9e78907600766d9eb24143af643d205b}{query\+Neighbors}} (const \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*}boid) const
+\begin{DoxyCompactList}\small\item\em Récupère les boids présents dans les cellules proches d\textquotesingle{}un boid donné \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Attributs publics}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid_a2465bd2e85014f60e384a95891242671}{cell\+Size}}
+\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ $>$ \mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid_abe3c84a44375c22a71e7adbc1fded473}{cells}}
+\item 
+int \mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid_a9cd2f2db2f7687879784129fa1bff25d}{grid\+Width}}
+\item 
+int \mbox{\hyperlink{classsimulation_1_1Flock_1_1SpatialGrid_af340cec2236d8da4621ea34093288a09}{grid\+Height}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Structure interne représentant une grille spatiale d\textquotesingle{}accélération. 
+
+La grille subdivise l\textquotesingle{}espace en cellules afin de réduire la complexité de recherche des voisins. Chaque cellule contient des pointeurs vers les boids situés dans cette région. 
+
+\doxysubsection{Documentation des constructeurs et destructeur}
+\Hypertarget{classsimulation_1_1Flock_1_1SpatialGrid_a206c6c4b43c686e9138eeb270db21be5}\label{classsimulation_1_1Flock_1_1SpatialGrid_a206c6c4b43c686e9138eeb270db21be5} 
+\index{simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}!SpatialGrid@{SpatialGrid}}
+\index{SpatialGrid@{SpatialGrid}!simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}}
+\doxysubsubsection{\texorpdfstring{SpatialGrid()}{SpatialGrid()}}
+{\footnotesize\ttfamily simulation\+::\+Flock\+::\+Spatial\+Grid\+::\+Spatial\+Grid (\begin{DoxyParamCaption}\item[{float}]{width,  }\item[{float}]{height,  }\item[{float}]{cell\+Size }\end{DoxyParamCaption})}
+
+
+
+Constructeur de \doxylink{classsimulation_1_1Flock_1_1SpatialGrid}{Spatial\+Grid}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em width} & Largeur totale de l\textquotesingle{}espace en unités \\
+\hline
+{\em height} & Hauteur totale de l\textquotesingle{}espace en unités \\
+\hline
+{\em cell\+Size} & Taille d\textquotesingle{}une cellule \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\Hypertarget{classsimulation_1_1Flock_1_1SpatialGrid_a95898ab3404f9086dbd7ce9629744bde}\label{classsimulation_1_1Flock_1_1SpatialGrid_a95898ab3404f9086dbd7ce9629744bde} 
+\index{simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}!addBoid@{addBoid}}
+\index{addBoid@{addBoid}!simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}}
+\doxysubsubsection{\texorpdfstring{addBoid()}{addBoid()}}
+{\footnotesize\ttfamily void simulation\+::\+Flock\+::\+Spatial\+Grid\+::add\+Boid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*}}]{boid }\end{DoxyParamCaption})}
+
+
+
+Ajoute un boid dans la cellule correspondant à sa position. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em boid} & Pointeur vers le boid à ajouter \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsimulation_1_1Flock_1_1SpatialGrid_ab287f339e1649da2af02a4b10efff52d}\label{classsimulation_1_1Flock_1_1SpatialGrid_ab287f339e1649da2af02a4b10efff52d} 
+\index{simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}!clear@{clear}}
+\index{clear@{clear}!simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void simulation\+::\+Flock\+::\+Spatial\+Grid\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Réinitialise la grille en vidant toutes les cellules. 
+
+\Hypertarget{classsimulation_1_1Flock_1_1SpatialGrid_a9e78907600766d9eb24143af643d205b}\label{classsimulation_1_1Flock_1_1SpatialGrid_a9e78907600766d9eb24143af643d205b} 
+\index{simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}!queryNeighbors@{queryNeighbors}}
+\index{queryNeighbors@{queryNeighbors}!simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}}
+\doxysubsubsection{\texorpdfstring{queryNeighbors()}{queryNeighbors()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*} $>$ simulation\+::\+Flock\+::\+Spatial\+Grid\+::query\+Neighbors (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classsimulation_1_1Boid}{Boid}} \texorpdfstring{$\ast$}{*}}]{boid }\end{DoxyParamCaption}) const}
+
+
+
+Récupère les boids présents dans les cellules proches d\textquotesingle{}un boid donné 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em boid} & Pointeur vers le boid dont on cherche les voisins \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Liste de pointeurs vers les boids voisins potentiels 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des données membres}
+\Hypertarget{classsimulation_1_1Flock_1_1SpatialGrid_abe3c84a44375c22a71e7adbc1fded473}\label{classsimulation_1_1Flock_1_1SpatialGrid_abe3c84a44375c22a71e7adbc1fded473} 
+\index{simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}!cells@{cells}}
+\index{cells@{cells}!simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}}
+\doxysubsubsection{\texorpdfstring{cells}{cells}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$\mbox{\hyperlink{classsimulation_1_1Boid}{Boid}}\texorpdfstring{$\ast$}{*}$>$ $>$ simulation\+::\+Flock\+::\+Spatial\+Grid\+::cells}
+
+\Hypertarget{classsimulation_1_1Flock_1_1SpatialGrid_a2465bd2e85014f60e384a95891242671}\label{classsimulation_1_1Flock_1_1SpatialGrid_a2465bd2e85014f60e384a95891242671} 
+\index{simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}!cellSize@{cellSize}}
+\index{cellSize@{cellSize}!simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}}
+\doxysubsubsection{\texorpdfstring{cellSize}{cellSize}}
+{\footnotesize\ttfamily float simulation\+::\+Flock\+::\+Spatial\+Grid\+::cell\+Size}
+
+\Hypertarget{classsimulation_1_1Flock_1_1SpatialGrid_af340cec2236d8da4621ea34093288a09}\label{classsimulation_1_1Flock_1_1SpatialGrid_af340cec2236d8da4621ea34093288a09} 
+\index{simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}!gridHeight@{gridHeight}}
+\index{gridHeight@{gridHeight}!simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}}
+\doxysubsubsection{\texorpdfstring{gridHeight}{gridHeight}}
+{\footnotesize\ttfamily int simulation\+::\+Flock\+::\+Spatial\+Grid\+::grid\+Height}
+
+\Hypertarget{classsimulation_1_1Flock_1_1SpatialGrid_a9cd2f2db2f7687879784129fa1bff25d}\label{classsimulation_1_1Flock_1_1SpatialGrid_a9cd2f2db2f7687879784129fa1bff25d} 
+\index{simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}!gridWidth@{gridWidth}}
+\index{gridWidth@{gridWidth}!simulation::Flock::SpatialGrid@{simulation::Flock::SpatialGrid}}
+\doxysubsubsection{\texorpdfstring{gridWidth}{gridWidth}}
+{\footnotesize\ttfamily int simulation\+::\+Flock\+::\+Spatial\+Grid\+::grid\+Width}
+
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Flock_8h}{Flock.\+h}}\item 
+src/\mbox{\hyperlink{Flock_8cpp}{Flock.\+cpp}}\end{DoxyCompactItemize}

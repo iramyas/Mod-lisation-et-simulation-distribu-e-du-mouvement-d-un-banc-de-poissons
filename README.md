@@ -49,7 +49,6 @@ sudo apt install \
 ### Compilation
 ```bash
 mkdir -p build && cd build
-mkdir -p build && cd build
 cmake --build .
 ```
 
@@ -93,7 +92,9 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 
 ## Fonctionnement et déroulement de l'implémentation 
 
-### **Phase 1 : Fondations** (Terminée)
+## Semestre 1 : Partie séquentielle (Terminée)
+
+### Phase 1 : Fondations (Terminée)
 
 **Classe `Vector2D.h`**
 - Gestion des positions, des vitesses et accélérations
@@ -121,24 +122,33 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - **Test unitaires** : `tests/test_boid.cpp` (on créera sûrement un fichier à part pour améliorer la lisibilité)
 - **Statut** : Terminé (22/11/2025)
 
-### **Phase 3 : Gestion collective**(fin novembre)
+### Phase 3 : Gestion collective (Terminée)
 
-**Classe `Flock`** : Gérer le comportement d'un ensemble de boids et leurs interactions.
+**Classe `Flock`**
+- Gestion d'une collection de boids avec ajout et suppression dynamique
+- Calcul des interactions entre tous les boids du groupe
+- **Optimisation SpatialGrid** : Partitionnement spatial pour accélérer la recherche de voisins (O(n*k) au lieu de O(n²))
+- **Tests unitaires** : `tests/test_flock.cpp`
+- **Statut** : Terminé (05/12/2025)
 
-- **Statut** : A faire
+### **Phase 4 : Simulation visuelle**(Terminée)
 
-### **Phase 4 : Simulation visuelle**(debut décembre)
+**Interface SFML complète**
+- Boucle de simulation temps réel à 60 FPS (500 boids stables)
+- Sliders interactifs : Séparation, Alignement, Cohésion, Rayon de voisinage, Nombre de boids
+- Bouton Apply pour réinitialisation dynamique de la population
+- Affichage FPS en temps réel
+- **Statut** : Terminé (16/12/2025)
 
-- **Boucle de simulation** : utilisation de SFML pour l'affichage 2D, tests sur différents paramètres et taille de banc.
+### Phase 5 : Benchmarks et optimisations (Terminée)
+**Mesure des performances**
+- Comparaison algorithme naïf vs SpatialGrid : **gain de x5** (500 boids)
+- Benchmarks temps vs rayon de voisinage et temps vs nombre de boids
+- Graphique de performance : `figures/bench_time_vs_radius.png` et `figures/bench_time_vs_N.png`
+- Script de benchmark automatisé : `experiments/benchmark.cpp`
+- **Statut** : Terminé (16/12/2025)
 
-- **Statut** : A faire
-
-### **Phase 5 : Préparation des benchmarks** (mi-décembre)
-- Mesure des performances et du temps d'exécution, documentatio des résultats et des configurations matérielles.
-
-- **Statut** : A faire
-
-### **Phase 6 : Extensions**
+### Phase 6 : Extensions
 **OpenGL**
 - Cet outil sera utilisé pour faire la modélisation en 3D. Il faut se familiariser d'abord avec SFML pour pouvoir continuer.
 
@@ -161,4 +171,4 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - Chaque fonction important est testée pour garantir la robustesse de la modélisation.
 - Les extensions et benchmarks seront détaillés dans la documentation et le rapport final
 
-**Dernière mise à jour : 24/11/2025**
+**Dernière mise à jour : 12/01/2026** (Bonne année !)
