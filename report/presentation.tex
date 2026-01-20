@@ -31,182 +31,243 @@
     \tableofcontents
 \end{frame}
 
+% ===================== PARTIE 1 : VERSION SÉQUENTIELLE =====================
 \section{Partie 1 - Version séquentielle}
 
-% --- SLIDE 2 ---
 
+\subsection{Contexte et objectifs}
 
-\begin{frame}{Contexte et objectifs}
-\section*{1.Contexte}
-\subsection*{Contexte}
-\begin{itemize}
-  \item Modélisation de systèmes complexes par simulation multi-agents
-  \item Étude d’un comportement collectif émergent à partir de règles locales
-  \item Contraintes fortes de performance lorsque le nombre d’agents augmente
-\end{itemize}
+\begin{frame}{Contexte}
+  \begin{itemize}
+    \item Modélisation d'un \textbf{système multi-agents} : un banc de poissons 2D.
+    \item Aucun leader : chaque poisson suit uniquement ses voisins immédiats.
+    \item Ordre global (\emph{flocking}) qui apparaît à partir de règles locales simples.
+    \item Applications : finance, trafic, jeux vidéo, robotique, etc.
+  \end{itemize}
+  \vspace{0.4cm}
+  \textbf{Référence} : modèle de flocking de Craig Reynolds (1987).
 \end{frame}
 
-\begin{frame}{Contexte et objectifs}
-\section*{2.Objectifs}
-\subsection*{Objectifs}
-\begin{itemize}
-  \item Développer une simulation séquentielle réaliste d’un banc de poissons
-  \item Valider qualitativement le comportement collectif émergent
-  \item Identifier les goulots d’étranglement
-  \item Aller vers une version parallèle et distribuée
-\end{itemize}
+\begin{frame}{Objectifs du semestre 1}
+  \begin{itemize}
+    \item Implémenter en C++ une simulation réaliste basée sur les \textbf{3 règles de Reynolds}.
+    \item Vérifier que le comportement collectif émerge visuellement (banc cohérent).
+    \item Atteindre le temps réel : viser \textbf{60 FPS} avec plusieurs centaines de boids.
+    \item Préparer une base propre pour la version \textbf{parallèle / distribuée} du semestre 2.
+  \end{itemize}
+  \vspace{0.4cm}
+  \textit{Environ 110 commits répartis entre Yohann, moi et Laurence.}
 \end{frame}
 
+% -------------------------------------------------------------------------
 \subsection{Les 3 règles de Reynolds}
-% --- SLIDE 3 ---
-\begin{frame}{Les 3 Règles de Reynolds}
-\begin{enumerate}
-    \setlength\itemsep{1em}
-    \item \textbf{Séparation} : Éviter les collisions avec les voisins proches
-    \item \textbf{Alignement} : S'adapter à la vélocité moyenne du groupe local
-    \item \textbf{Cohésion} : Se diriger vers le centre de masse des voisins
-\end{enumerate}
-\vspace{1cm}
-\centering
-\textit{Appliquées localement $\Rightarrow$ comportement global complexe et réaliste}
+
+\begin{frame}{Les 3 règles de Reynolds}
+  \begin{enumerate}
+    \setlength\itemsep{0.7em}
+    \item \textbf{Séparation} : éviter les collisions avec les voisins trop proches.
+    \item \textbf{Alignement} : s'adapter à la vitesse moyenne du groupe local.
+    \item \textbf{Cohésion} : se diriger vers le centre de masse des voisins.
+  \end{enumerate}
+  \vspace{0.5cm}
+  \centering
+  \textit{Règles purement locales $\Rightarrow$ comportement global émergent.}
 \end{frame}
 
-% --- SLIDE 4 ---
-\begin{frame}{Formulation Mathématique}
-Pour chaque boid $b$, on calcule trois forces :
-\vspace{0.3cm}
+\begin{frame}{Formulation mathématique des forces}
+  Pour un boid $b$ de position $\vec{p}_b$ et de vitesse $\vec{v}_b$, avec ensemble de voisins $N(b)$ :
 
-\textbf{Séparation :}
-$$\vec{F}_{sep} = -\sum_{i \in N(b)} \frac{\vec{p}_b - \vec{p}_i}{\|\vec{p}_b - \vec{p}_i\|^2}$$
+  \vspace{0.3cm}
+  \textbf{Séparation (éviter les collisions)} :
+  \[
+    \vec{F}_{sep} = - \sum_{i \in N(b)} \frac{\vec{p}_b - \vec{p}_i}{\|\vec{p}_b - \vec{p}_i\|^2}
+  \]
 
-\textbf{Alignement :}
-$$\vec{F}_{ali} = \frac{1}{|N(b)|}\sum_{i \in N(b)} \vec{v}_i - \vec{v}_b$$
+  \textbf{Alignement (synchroniser la direction)} :
+  \[
+    \vec{F}_{ali} = \frac{1}{|N(b)|}\sum_{i \in N(b)} \vec{v}_i - \vec{v}_b
+  \]
 
-\textbf{Cohésion :}
-$$\vec{F}_{coh} = \frac{1}{|N(b)|}\sum_{i \in N(b)} \vec{p}_i - \vec{p}_b$$
+  \textbf{Cohésion (rejoindre le groupe)} :
+  \[
+    \vec{F}_{coh} = \frac{1}{|N(b)|}\sum_{i \in N(b)} \vec{p}_i - \vec{p}_b
+  \]
 
-\vspace{0.2cm}
-\small
-Mise à jour : $\vec{a} = \vec{F}_{total}/m$, $\vec{v} \leftarrow \vec{v} + \vec{a}\Delta t$, $\vec{p} \leftarrow \vec{p} + \vec{v}\Delta t$
+  \small Mise à jour : on applique la force totale, on limite par \texttt{maxForce}, puis on met à jour
+  la vitesse (limitée par \texttt{maxSpeed}) et la position.
 \end{frame}
 
-\subsection{Architecture logicielle, optimisation et benchmarks}
-% --- SLIDE 5 ---
-\begin{frame}{Architecture Logicielle}
-\begin{itemize}
-    \setlength\itemsep{0.8em}
-    \item \textbf{Vector2D} : Opérations vectorielles (position, vitesse, accélération)
-    \item \textbf{Boid} : Agent autonome avec les 3 règles Reynolds
-    \item \textbf{Flock} : Gestionnaire de collection de boids
-    \item \textbf{SpatialGrid} : Grille d'accélération pour recherche de voisins
-    \item \textbf{GUI (SFML)} : Interface interactive avec sliders temps réel
-\end{itemize}
+\begin{frame}{Combinaison des 3 règles}
+  À chaque frame, pour chaque boid :
+  \begin{enumerate}
+    \item On récupère ses voisins dans un \textbf{rayon de perception} (30–50 px suivant le paramètre).
+    \item On calcule les trois forces : $\vec{F}_{sep}$, $\vec{F}_{ali}$, $\vec{F}_{coh}$.
+    \item On les pondère par les poids de la GUI : $w_{sep}$, $w_{ali}$, $w_{coh}$.
+    \item On applique la force résultante via \texttt{applyForce} puis \texttt{update}.
+  \end{enumerate}
+
+  %\vspace{0.1cm}
+  \[
+    \vec{F}_{total} =
+    w_{sep}\,\vec{F}_{sep} +
+    w_{ali}\,\vec{F}_{ali} +
+    w_{coh}\,\vec{F}_{coh}
+  \]
+
+  \vspace{0.1cm}
+  Les poids viennent directement des \textbf{sliders SFML} 
+  %: on peut voir en temps réel
+  %un banc très lâche (séparation forte) ou au contraire très compact (cohésion forte).
 \end{frame}
 
-% --- SLIDE 6  ---
-\begin{frame}{Optimisation : SpatialGrid}
+% -------------------------------------------------------------------------
+\subsection{Architecture et implémentation}
 
-\vspace{0.5cm}
-
-\textbf{\large 1. Le Problème} \\
-Recherche de voisins naïve = $O(n^2)$ par frame. \textbf{Trop lent.}
-
-\vspace{1cm}
-
-\textbf{\large 2. La Solution : Partitionnement}
-\begin{itemize}
-    \setlength\itemsep{0.5em}
-    \item Partitionner l'espace en cellules = $O(k)$ (où $k$ = boids/cellule)
-    \item \textbf{Implémentation} : Grille 2D de vecteurs \texttt{Boid*}
-    \item \textbf{Gain} : 500 boids $\rightarrow$ 5x plus rapide (50k comparaisons vs 250k)
-\end{itemize}
-
-\end{frame}
-%%%%%%%%%%%%%%
-% --- SLIDE 7 ---
-\begin{frame}{Benchmark 1 : Temps vs Rayon de Voisinage (N = 500)}
-
-\begin{columns}[T]
-
-% Colonne gauche : explication
-\column{0.45\textwidth}
-\begin{itemize}
-    \setlength\itemsep{0.6em}
-    \item \textbf{Courbe verte (Naïf O(n²))} : monte progressivement de 4 ms à 6.3 ms
-    \item \textbf{Courbe violette (SpatialGrid)} : reste quasi-plate autour 0.5-0.6 ms
-    \item \textbf{Point clé :} SpatialGrid échelonne parfaitement en rayon. À 50 px (notre valeur), confortable pour les deux approches
-\end{itemize}
-
-% Colonne droite : graphe
-\column{0.55\textwidth}
-\centering
-\includegraphics[width=1.0\textwidth]{../figures/bench_time_vs_radius.png}
-
-\end{columns}
-
+\begin{frame}{Architecture logicielle (C++20)}
+  \begin{itemize}
+    \item \textbf{Vector2D} : toutes les opérations vectorielles (position, vitesse, forces).
+    \item \textbf{Boid} : état d’un agent + implémentation des règles (séparation, alignement, cohésion).
+    \item \textbf{Flock} : contient le vecteur de \texttt{Boid} et une \texttt{SpatialGrid}.
+    \item \textbf{SpatialGrid} : grille 2D de cellules stockant des pointeurs sur les boids.
+    \item \textbf{GUI (SFML)} : création/suppression de boids, sliders pour les poids et le rayon, affichage.
+  \end{itemize}
+  \vspace{0.1cm}
+  La méthode centrale est \texttt{Flock::updateAll(dt)} qui orchestre une itération complète de la simulation.
 \end{frame}
 
+\begin{frame}{Classes \texttt{Boid} et \texttt{Flock}}
+  \textbf{Boid} :
+  \begin{itemize}
+    \item Attributs : \texttt{position}, \texttt{velocity}, \texttt{acceleration},
+          \texttt{mass}, \texttt{maxSpeed = 30}, \texttt{maxForce = 2.5},
+          \texttt{perceptionRadius}.
+    \item Méthodes : \texttt{getNeighbors}, \texttt{separate}, \texttt{align},
+          \texttt{cohesion}, \texttt{seek}, \texttt{flee}, \texttt{update}.
+  \end{itemize}
 
-\begin{frame}{Benchmark 2 : Temps vs Nombre de Boids (rayon = 50 px)}
-
-\begin{columns}[T]
-
-% Colonne gauche : explication
-\column{0.45\textwidth}
-\begin{itemize}
-    \setlength\itemsep{0.6em}
-    \item \textbf{Courbe verte (Naïf O(n²))} : parabola exponentielle, monte très vite
-    \item \textbf{Courbe violette (SpatialGrid)} : ligne quasi-droite (O(n)), croissance linéaire
-    \item \textbf{Ratio final :} 50 ms (naïf) / 9 ms (SpatialGrid) = \textbf{5.5× speedup}
-    \item \textbf{Conclusion :} SpatialGrid permettra 2500-3000 boids @ 60 FPS. Naïf : impossible au-delà 500
-\end{itemize}
-
-% Colonne droite : graphe
-\column{0.55\textwidth}
-\centering
-\includegraphics[width=1.0\textwidth]{../figures/bench_time_vs_N.png}
-
-\end{columns}
-
+  \vspace{0.3cm}
+  \textbf{Flock} :
+  \begin{itemize}
+    \item Attributs : \texttt{std::vector<Boid> boids}, \texttt{SpatialGrid grid},
+          \texttt{neighborRadius}, \texttt{sepWeight}, \texttt{aliWeight}, \texttt{cohWeight}.
+    \item Méthodes : \texttt{populateRandom}, \texttt{setNeighborRadius}, \texttt{setWeights},   
+    \\{updateAll}.
+  \end{itemize}
 \end{frame}
 
+% -------------------------------------------------------------------------
+\subsection{Optimisation et benchmarks}
 
-%\begin{frame}{Méthodologie des Benchmarks}
-%\item Benchmarks obtenus en moyennant le temps par itération
-%sur plusieurs centaines de frames, afin de lisser les fluctuations
-%et comparer clairement les deux approches.
-%\end{itemize}
+\begin{frame}{Limite de l'approche naïve}
+  \textbf{Recherche de voisins sans grille} :
+  \begin{itemize}
+    \item Pour chaque boid, on parcourt \textbf{tous} les autres boids.
+    \item Complexité : \(O(n^2)\) comparaisons par itération.
+  \end{itemize}
 
-\begin{frame}{Données Numériques : Synthèse}
+  \vspace{0.4cm}
+  \textbf{Conséquence pratique} (mesurée dans \texttt{benchmark.cpp}, sans affichage) :
+  \begin{itemize}
+    \item À rayon = 50 px :
+    \begin{itemize}
+      \item 100 boids : \(\approx 0{,}19\) ms par itération.
+      \item 400 boids : \(\approx 2{,}84\) ms.
+      \item 800 boids : \(\approx 10{,}33\) ms.
+    \end{itemize}
+    \item La courbe est clairement \textbf{quadratique} quand on augmente \(n\).
+  \end{itemize}
+\end{frame}
 
-\begin{table}[h]
-\centering
-\resizebox{0.95\textwidth}{!}{%
-\begin{tabular}{|c|c|c|c|}
-\hline
-\textbf{Paramètre} & \textbf{Naïf (ms)} & \textbf{SpatialGrid (ms)} & \textbf{Ratio} \\
-\hline
-N=500, rayon=10px & 4.0 & 0.5 & 8× \\
-N=500, rayon=50px & 4.8 & 0.6 & 8× \\
-N=500, rayon=100px & 6.3 & 0.6 & 10.5× \\
-\hline
-N=100, rayon=50px & 0.3 & 0.15 & 2× \\
-N=300, rayon=50px & 2.5 & 0.45 & 5.5× \\
-N=500, rayon=50px (profiling) & 50 & 9 & 5.5× \\
-N=1000, rayon=50px (estimé) & 40+ & 8 & $\sim$5× \\
-\hline
-\end{tabular}
-}
-\end{table}
+\begin{frame}{SpatialGrid : principe}
+  \textbf{Idée} : réduire la recherche de voisins à l'environnement local.
+  \begin{itemize}
+    \item L'espace de simulation est découpé en cellules carrées de taille \texttt{cellSize}.
+    \item Chaque cellule contient les pointeurs vers les boids qui s’y trouvent.
+    \item Pour un boid donné, on ne regarde que sa cellule et les 8 voisines.
+  \end{itemize}
 
-\vspace{0.5cm}
+  \vspace{0.4cm}
+  \textbf{Complexité obtenue} :
+  \begin{itemize}
+    \item Insertion des boids dans la grille : \(O(n)\).
+    \item Recherche des voisins : \(O(n \cdot k)\) avec \(k\) = nombre moyen de boids par cellule (petit).
+    \item En pratique : proche d’un comportement \textbf{linéaire} en \(n\).
+  \end{itemize}
+\end{frame}
 
-\textbf{Key insights :}
-\begin{itemize}
-    \item Naïf = O(n²) : doubler N multiplie temps par 4
-    \item SpatialGrid = O(n) : doubler N multiplie temps par 2
-\end{itemize}
+\begin{frame}{Benchmark 1 : coût vs rayon (N = 500)}
+  \begin{columns}[T]
+    \column{0.45\textwidth}
+      \small
+      Mesure du temps moyen par itération en faisant varier le \textbf{rayon de voisinage},
+      pour un flock de 500 boids (binaire de benchmark, sans rendu).
+      \vspace{0.3cm}
+      \begin{itemize}
+        \item Naïf : de \(\approx 4{,}0\) ms (rayon 10) à \(\approx 6{,}3\) ms (rayon 100).
+        \item SpatialGrid : de \(\approx 0{,}43\) ms (rayon 10) à \(\approx 2{,}69\) ms (rayon 100),
+              puis \(\approx 6{,}0\) ms pour les très grands rayons.
+        \item La grille reste utilisable même quand le rayon augmente fortement.
+      \end{itemize}
 
+    \column{0.55\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{/Users/nouzhafou/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons/figures/bench_time_vs_N.png} % adapter le chemin 
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Benchmark 2 : coût vs nombre de boids (rayon = 50 px)}
+  \begin{columns}[T]
+    \column{0.45\textwidth}
+      \small
+      Temps moyen par itération en faisant varier \textbf{N}, rayon de voisinage fixé à 50 px.
+      \vspace{0.3cm}
+      \begin{itemize}
+        \item Naïf :
+          \begin{itemize}
+            \item 100 boids : \(\approx 0{,}19\) ms.
+            \item 400 boids : \(\approx 2{,}84\) ms.
+            \item 800 boids : \(\approx 10{,}33\) ms.
+          \end{itemize}
+        \item SpatialGrid :
+          \begin{itemize}
+            \item 100 boids : \(\approx 0{,}13\) ms.
+            \item 400 boids : \(\approx 0{,}84\) ms.
+            \item 800 boids : \(\approx 2{,}21\) ms.
+            \item 1200 boids : \(\approx 4{,}04\) ms.
+          \end{itemize}
+      \end{itemize}
+
+    \column{0.55\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{../figures/bench_time_vs_radius.png} 
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Synthèse des benchmarks}
+  \begin{center}
+    \small
+    \begin{tabular}{|c|c|c|}
+      \hline
+      \textbf{Configuration} & \textbf{Naïf (ms/it)} & \textbf{Grid (ms/it)} \\
+      \hline
+      N = 100, rayon = 50 & 0.19 & 0.13 \\
+      N = 400, rayon = 50 & 2.84 & 0.84 \\
+      N = 800, rayon = 50 & 10.33 & 2.21 \\
+      \hline
+      N = 500, rayon = 10 & 4.01 & 0.43 \\
+      N = 500, rayon = 50 & 4.69 & 0.81 \\
+      N = 500, rayon = 100 & 6.29 & 2.69 \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+  \vspace{0.4cm}
+  \textbf{Conclusion} :
+  \begin{itemize}
+    \item La méthode naïve suit bien une croissance \(O(n^2)\).
+    \item La grille spatiale a un comportement quasi linéaire,
+    \\ce qui ouvre la voie à plusieurs milliers de boids en temps réel.
+  \end{itemize}
 \end{frame}
 
 \subsection{Détails d'implémentation}
