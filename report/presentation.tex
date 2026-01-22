@@ -211,7 +211,7 @@
 
     \column{0.55\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{/Users/nouzhafou/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons/figures/bench_time_vs_N.png} % adapter le chemin 
+      \includegraphics[width=\textwidth]{img/bench_time_vs_N.png} % adapter le chemin 
   \end{columns}
 \end{frame}
 
@@ -439,8 +439,8 @@
 \begin{frame}{Phase 1 : OpenMP (Mémoire Partagée)}
     \begin{block}{Pourquoi OpenMP ?}
         \begin{itemize}
-            \item \textbf{Simplicité d'utilisation} : directives simple
-            \item \textbf{Validation rapide} : tester scalabilité
+            \item \textbf{Simplicité d'utilisation} : directives simples
+            \item \textbf{Validation rapide} : tester scalabilité sur une macine
         \end{itemize}
     \end{block}
 
@@ -454,14 +454,14 @@
             \item \textbf{SpatialGrid}
             \begin{itemize}
                 \item Défi : insertion concurrente
-                \item Alternative : grille locale par thread  + merge
+                \item Alternative : grille locale par thread  + fusion finale
             \end{itemize}
         \end{enumerate}
     \end{block}
 \end{frame}
 
 \begin{frame}{Phase 2 : MPI (Mémoire Distribuée)}
-    \textbf{Approche :} Distribution sur plusieurs machines/noeud
+    \textbf{Approche :} Distribution sur plusieurs machines
     \vspace{0.1cm}
     \begin{block}{Décomposition de domaine}
         \begin{itemize}
@@ -480,6 +480,22 @@
     \vspace{0.1cm}
     \small
     \textbf{Défi :} Equilibrage de charge + minimiser communications
+\end{frame}
+
+\begin{frame}{Phase 3 : Approche Hybride MPI + OpenMP}
+  \begin{itemize}
+    \item \textbf{MPI} : Gère la décomposition spatiale (grille distribuée)
+    \begin{itemize}
+      \item Chaque processus MPI = une région de l'espace
+      \item Communication inter-processus pour les frontières
+    \end{itemize}
+    \item \textbf{OpenMP} : Parallélise les boids au sein de chaque région
+    \begin{itemize}
+      \item Threads multiples par processus MPI
+      \item Traitement parallèle des boids locaux
+    \end{itemize}
+  \end{itemize}
+  
 \end{frame}
 
 \begin{frame}{Optimisations et Défis}
@@ -595,25 +611,23 @@
 
 \end{frame}
 
-\begin{frame}{Références}
-\small
-\begin{itemize}
-    \item Reynolds, C. W. (1987). \textit{Flocks, herds and schools: A distributed behavioral model}. SIGGRAPH '87.
-    \item Reynolds, C. W. - Red3d Boids: \url{https://www.red3d.com/cwr/boids/}
-    \item SFML Documentation: \url{https://www.sfml-dev.org/documentation/}
-    \item OpenMP Documentation: \url{https://www.openmp.org/}
-    \item MPI Standard: \url{https://www.mpi-forum.org/}
-    \item GoogleTest Framework: \url{https://google.github.io/googletest/}
-\end{itemize}
-\end{frame}
-
-
 \begin{frame}[standout]
 \centering
 \Huge {\textbf{Merci de votre attention !}} \\
 \vspace{1.cm}
 \Large Questions ?
 \vspace{0.5cm}
+\end{frame}
+
+\begin{frame}{Références}
+\small
+\begin{itemize}
+    \item Reynolds, C. W. (1987). \textit{Flocks, herds and schools: A distributed behavioral model}. SIGGRAPH.
+    \item Vicsek, T. et al. (1995) \textit{Novel type of phase transition in a system of self-driven
+particles. Phys. Rev. Lett. 75}
+    \item Couzin, I. D. et al. (2002) \textit{Collective memory and spatial sorting in animal
+groups. Journal of Theoretical Biology}
+\end{itemize}
 \end{frame}
 
 \end{document}
