@@ -27,7 +27,7 @@
 \titlepage
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Plan de la présentation}
     \tableofcontents
 \end{frame}
 
@@ -47,7 +47,7 @@
 \section{Partie 1 - Version séquentielle}
 
 
-\subsection{Objectifs}
+\subsection{Objectifs et règles de Reynolds}
 
 \begin{frame}{Objectifs du semestre 1}
   \begin{itemize}
@@ -61,7 +61,6 @@
 \end{frame}
 
 % -------------------------------------------------------------------------
-\subsection{Les 3 règles de Reynolds}
 
 \begin{frame}{Les 3 règles de Reynolds}
   \begin{enumerate}
@@ -136,25 +135,26 @@
   La méthode centrale est \texttt{Flock::updateAll(dt)} qui orchestre une itération complète de la simulation.
 \end{frame}
 
-\begin{frame}{Classes \texttt{Boid} et \texttt{Flock}}
-  \textbf{Boid} :
-  \begin{itemize}
-    \item Attributs : \texttt{position}, \texttt{velocity}, \texttt{acceleration},
-          \texttt{mass}, \texttt{maxSpeed = 30}, \texttt{maxForce = 2.5},
-          \texttt{perceptionRadius}.
-    \item Méthodes : \texttt{getNeighbors}, \texttt{separate}, \texttt{align},
-          \texttt{cohesion}, \texttt{seek}, \texttt{flee}, \texttt{update}.
-  \end{itemize}
 
-  \vspace{0.3cm}
-  \textbf{Flock} :
-  \begin{itemize}
-    \item Attributs : \texttt{std::vector<Boid> boids}, \texttt{SpatialGrid grid},
-          \texttt{neighborRadius}, \texttt{sepWeight}, \texttt{aliWeight}, \texttt{cohWeight}.
-    \item Méthodes : \texttt{populateRandom}, \texttt{setNeighborRadius}, \texttt{setWeights},   
-    \\{updateAll}.
-  \end{itemize}
-\end{frame}
+% \begin{frame}{Classes \texttt{Boid} et \texttt{Flock}}
+%   \textbf{Boid} :
+%   \begin{itemize}
+%     \item Attributs : \texttt{position}, \texttt{velocity}, \texttt{acceleration},
+%           \texttt{mass}, \texttt{maxSpeed = 30}, \texttt{maxForce = 2.5},
+%           \texttt{perceptionRadius}.
+%     \item Méthodes : \texttt{getNeighbors}, \texttt{separate}, \texttt{align},
+%           \texttt{cohesion}, \texttt{seek}, \texttt{flee}, \texttt{update}.
+%   \end{itemize}
+% 
+%   \vspace{0.3cm}
+%   \textbf{Flock} :
+%   \begin{itemize}
+%     \item Attributs : \texttt{std::vector<Boid> boids}, \texttt{SpatialGrid grid},
+%           \texttt{neighborRadius}, \texttt{sepWeight}, \texttt{aliWeight}, \texttt{cohWeight}.
+%     \item Méthodes : \texttt{populateRandom}, \texttt{setNeighborRadius}, \texttt{setWeights},   
+%     \\{updateAll}.
+%   \end{itemize}
+% \end{frame}
 
 % -------------------------------------------------------------------------
 \subsection{Optimisation et benchmarks}
@@ -175,7 +175,7 @@
       \item 400 boids : \(\approx 2{,}84\) ms.
       \item 800 boids : \(\approx 10{,}33\) ms.
     \end{itemize}
-    \item La courbe est clairement \textbf{quadratique} quand on augmente \(n\).
+    % \item La courbe est clairement \textbf{quadratique} quand on augmente \(n\).
   \end{itemize}
 \end{frame}
 
@@ -271,84 +271,6 @@
   \end{itemize}
 \end{frame}
 
-\subsection{Détails d'implémentation}
-% --- SLIDE 7 ---
-\begin{frame}{Détails d'Implémentation}
-\begin{itemize}
-    \setlength\itemsep{0.8em}
-    \item \textbf{Langage} : C++20 (moderne, performant)
-    \item \textbf{Build} : CMake 3.20+, GCC/Clang avec flags \texttt{-O3}
-    \item \textbf{Graphisme} : SFML 2.6.1 pour visualisation 2D
-    \item \textbf{Tests} : Google Test, CTest automatique
-    \item \textbf{Documentation} : Doxygen
-    \item \textbf{Git} : Gestion de version (97 commits)
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Interface Interactive (SFML)}
-\begin{itemize}
-    \setlength\itemsep{0.8em}
-    \item Sliders temps réel : Séparation, Alignement, Cohésion (0-10)
-    \item Rayon de voisinage : 5-200 pixels
-    \item Nombre de boids : 10-500
-    \item Bouton \textit{Apply} pour réinitialiser la simulation
-    \item Affichage des FPS
-\end{itemize}
-\end{frame}
-% --- SLIDE 8 ---
-\begin{frame}
-\frametitle{Résultats Observés}
-\begin{itemize}
-    \setlength\itemsep{0.8em}
-    \item \textbf{Cohésion} : Agents restent groupés, structure maintenue
-    \item \textbf{Alignement} : Direction moyenne émerge rapidement
-    \item \textbf{Séparation} : Collisions évitées efficacement
-    \item \textbf{Patterns} : Tourbillons, colonnes, vagues observés
-    \item \textbf{Performance} : \textbf{60 FPS stable} avec 500 boids
-\end{itemize}
-\end{frame}
-
-
-
-
-% --- SLIDE 10 ---
-\begin{frame}
-\frametitle{Contributions de l'équipe}
-\begin{columns}[T]
-    \begin{column}{0.33\textwidth}
-        \textbf{Yohann} \\ (36 commits)
-        \footnotesize
-        \begin{itemize}
-            \item Vector2D
-            \item Architecture
-            \item Rapport
-            \item Doc Doxygen
-        \end{itemize}
-    \end{column}
-    \begin{column}{0.33\textwidth}
-        \textbf{Iram} \\ (38 commits)
-        \footnotesize
-        \begin{itemize}
-            \item Boid (Règles)
-            \item GUI SFML
-            \item Tests Boid
-            \item Benchmarks
-        \end{itemize}
-    \end{column}
-    \begin{column}{0.33\textwidth}
-        \textbf{Laurence} \\ (8 commits)
-        \footnotesize
-        \begin{itemize}
-            \item Flock
-            \item SpatialGrid
-            \item Optimisations
-        \end{itemize}
-    \end{column}
-\end{columns}
-\end{frame}
-
-% --- SLIDE 11 ---
 \begin{frame}
 \frametitle{Tests et Validation}
 \textbf{Tests Unitaires (Google Test) :}
@@ -365,6 +287,7 @@
     \item Tous les tests passent (100\% succès)
 \end{itemize}
 \end{frame}
+
 %%%%%%%%%%%%%
 
 \begin{frame}{Affichage du GUI}
@@ -441,7 +364,7 @@
     \begin{block}{Pourquoi OpenMP ?}
         \begin{itemize}
             \item \textbf{Simplicité d'utilisation} : directives simples
-            \item \textbf{Validation rapide} : tester scalabilité sur une macine
+            \item \textbf{Validation rapide} : tester scalabilité sur une machine
         \end{itemize}
     \end{block}
 
@@ -449,7 +372,7 @@
         \begin{enumerate}
             \item \textbf{Boucle principale}
             \begin{itemize}
-                \item Indépendance : chaque boid lit les ses voisins
+                \item Indépendance : chaque boid lit ses voisins
                 \item Race condition : écriture position/vitesse 
             \end{itemize}
             \item \textbf{SpatialGrid}
@@ -499,27 +422,27 @@
   
 \end{frame}
 
-\begin{frame}{Optimisations et Défis}
-\begin{enumerate}
-    \item \textbf{Load balancing}
-    \begin{itemize}
-        \item \textbf{Problème} : Distribution inégale des boids
-        \item \textbf{Détection} : Mesurer \# boids/processus chaque 100 frames
-        \item \textbf{Action} : Repartitionnement si écart $>$ 30\%
-        \item \textbf{Coût} : Communication vs gain calcul
-    \end{itemize}
-    
-    \vspace{0.3cm}
-
-    \item \textbf{Réduction Communications}
-    \begin{itemize}
-        \item \textbf{Ghost zone adaptative} : largeur = rayon\_max
-        \item \textbf{Communication asynchrone} : Envoi et réception par MPI
-        \item \textbf{Overlap} : calcul pendant transfert
-        \item \textbf{Gain attendu} : 20-30\% temps communication
-    \end{itemize}
-\end{enumerate}
-\end{frame}
+% \begin{frame}{Optimisations et Défis}
+% \begin{enumerate}
+%     \item \textbf{Load balancing}
+%     \begin{itemize}
+%         \item \textbf{Problème} : Distribution inégale des boids
+%         \item \textbf{Détection} : Mesurer le nombre de boids/processus chaque 100 frames
+%         \item \textbf{Action} : Repartitionnement si écart $>$ 30\%
+%         \item \textbf{Coût} : Communication vs gain calcul
+%     \end{itemize}
+%     
+%     \vspace{0.3cm}
+% 
+%     \item \textbf{Réduction Communications}
+%     \begin{itemize}
+%         \item \textbf{Ghost zone adaptative} : largeur = rayon\_max
+%         \item \textbf{Communication asynchrone} : Envoi et réception par MPI
+%         \item \textbf{Overlap} : calcul pendant transfert
+%         \item \textbf{Gain attendu} : 20-30\% temps communication
+%     \end{itemize}
+% \end{enumerate}
+% \end{frame}
 
 \begin{frame}{Limitations et Défis Techniques}
     \begin{alertblock}{Défi identifiés}
@@ -546,7 +469,7 @@
 \end{frame}
 
 \subsection{Planning et Livrables S2}
-\begin{frame}
+\begin{frame}{Planning et Librables S2}
     \begin{table}
         \centering
         \small
@@ -557,9 +480,9 @@
             Phase 1 & Jan - Fév & OpenMP + tests de performances \\
             Phase 2 & Fév - Mars & MPI + décomposition domaine \\
             Phase 3 & Mars - Avril & Hybride + optimisations \\
-            Phase 4 & Avril & Benchmarks + analyse \\
+            Phase 4 & Avril - Mai & Benchmarks + analyse \\
             \hline
-            \textbf{Rendu} & \textbf{$\sim$Avril 2025} & \textbf{Rapport} \\
+            \textbf{Rendu} & \textbf{$\sim$Avril - Mai 2026} & \textbf{Rapport} \\
             \hline
         \end{tabular}
     \end{table}
@@ -567,7 +490,7 @@
     \begin{block}{Outils et Environnement}
         \begin{itemize}
             \item OpenMP 5.0, MPI 4.0
-            \item Machines multi-coeurs locales
+            \item Machines multi-noeuds
             \item Profiling : gprof, perf, Intel VTune
         \end{itemize}
     \end{block}
@@ -579,7 +502,7 @@
     \begin{enumerate}
         \item \textbf{Speedup} : $S_p = \frac{T_1}{T_p}$ (temps séquentiel / temps parallèle)
         \item \textbf{Efficacité} : $E_p = \frac{S_p}{p}$ (speedup / nombre de processeurs)
-        \item \textbf{Strong scaling} : Nombre de boid constant, augmenter le nombre de processeurs
+        \item \textbf{Strong scaling} : Nombre de boids constant, augmenter le nombre de processeurs
         \item \textbf{Weak scaling} : Charge par processeur constante, augmenter la taille du problème
         \item \textbf{FPS maintenu} : Objectif 60 FPS avec 10000 boids
     \end{enumerate}
