@@ -37,7 +37,7 @@
     \item Modélisation d'un \textbf{système multi-agents} : un banc de poissons 2D.
     \item Aucun leader : chaque poisson suit uniquement ses voisins immédiats.
     \item Ordre global (\emph{flocking}) qui apparaît à partir de règles locales simples.
-    \item Applications : finance, trafic, jeux vidéo, robotique, etc.
+    \item Applications : trafic routier, jeux vidéo, robotique.
   \end{itemize}
   \vspace{0.4cm}
   \textbf{Référence} : modèle de flocking de Craig Reynolds (1987).
@@ -92,9 +92,6 @@
   \[
     \vec{F}_{coh} = \frac{1}{|N(b)|}\sum_{i \in N(b)} \vec{p}_i - \vec{p}_b
   \]
-
-  \small Mise à jour : on applique la force totale, on limite par \texttt{maxForce}, puis on met à jour
-  la vitesse (limitée par \texttt{maxSpeed}) et la position.
 \end{frame}
 
 \begin{frame}{Combinaison des 3 règles}
@@ -245,22 +242,6 @@
 \end{frame}
 
 \begin{frame}{Synthèse des benchmarks}
-  \begin{center}
-    \small
-    \begin{tabular}{|c|c|c|}
-      \hline
-      \textbf{Configuration} & \textbf{Naïf (ms/it)} & \textbf{Grid (ms/it)} \\
-      \hline
-      N = 100, rayon = 50 & 0.19 & 0.13 \\
-      N = 400, rayon = 50 & 2.84 & 0.84 \\
-      N = 800, rayon = 50 & 10.33 & 2.21 \\
-      \hline
-      N = 500, rayon = 10 & 4.01 & 0.43 \\
-      N = 500, rayon = 50 & 4.69 & 0.81 \\
-      N = 500, rayon = 100 & 6.29 & 2.69 \\
-      \hline
-    \end{tabular}
-  \end{center}
 
   \vspace{0.4cm}
   \textbf{Conclusion} :
@@ -283,7 +264,7 @@
 \vspace{0.5cm}
 \textbf{Validation :}
 \begin{itemize}
-    \item Validation visuelle des 3 règles émergentes
+    \item Validation visuelle des règles émergentes
     \item Tous les tests passent (100\% succès)
 \end{itemize}
 \end{frame}
@@ -313,7 +294,7 @@
 \begin{block}{2. Complexité algorithmique}
     \begin{itemize}
         \item Recherche de voisins : O(n * k) par frame (k = voisins/cellule)
-        \item Pour n = 10000 boids à 60 FPS : calculs intensifs
+        \item Pour n = 10000 boids à 60 FPS : presque impossible
         \item Limites du séquentiel : quelques centaines de boids max
     \end{itemize}
 \end{block}
@@ -403,7 +384,6 @@
     \end{block}
     \vspace{0.1cm}
     \small
-    \textbf{Défi :} Equilibrage de charge + minimiser communications
 \end{frame}
 
 \begin{frame}{Phase 3 : Approche Hybride MPI + OpenMP}
@@ -449,13 +429,12 @@
         \begin{enumerate}
             \item \textbf{Overhead communication} (MPI)
             \begin{itemize}
-                \item Latence réseau : 1-10 ms/message
+                \item Latence réseau
                 \item Impact si petit nombre de boids/processus
-                \item \textbf{Seuil minimal} : $\sim$1000 boids pour rentabilité
             \end{itemize}
             \item \textbf{Scalabilité limitée}
             \begin{itemize}
-                \item Loi d'Amdahl : partie séquentielle (init, render)
+                \item Parties séquentielle : init, render
                 \item \textbf{Efficacité} : 70-80\% attendue
             \end{itemize}
 
@@ -496,20 +475,20 @@
     \end{block}
 \end{frame}
 
-\begin{frame}{Métriques de Performance}
-    \textbf{Métriques importantes :}
-    \vspace{0.3cm}
-    \begin{enumerate}
-        \item \textbf{Speedup} : $S_p = \frac{T_1}{T_p}$ (temps séquentiel / temps parallèle)
-        \item \textbf{Efficacité} : $E_p = \frac{S_p}{p}$ (speedup / nombre de processeurs)
-        \item \textbf{Strong scaling} : Nombre de boids constant, augmenter le nombre de processeurs
-        \item \textbf{Weak scaling} : Charge par processeur constante, augmenter la taille du problème
-        \item \textbf{FPS maintenu} : Objectif 60 FPS avec 10000 boids
-    \end{enumerate}
-    \vspace{0.5cm}
-    \small
-    \textbf{Benchmarks comparatifs :} Séquentiel, OpenMP, MPI, Hybride
-\end{frame}
+% \begin{frame}{Métriques de Performance}
+%     \textbf{Métriques importantes :}
+%     \vspace{0.3cm}
+%     \begin{enumerate}
+%         \item \textbf{Speedup} : $S_p = \frac{T_1}{T_p}$ (temps séquentiel / temps parallèle)
+%         \item \textbf{Efficacité} : $E_p = \frac{S_p}{p}$ (speedup / nombre de processeurs)
+%         \item \textbf{Strong scaling} : Nombre de boids constant, augmenter le nombre de processeurs
+%         \item \textbf{Weak scaling} : Charge par processeur constante, augmenter la taille du problème
+%         \item \textbf{FPS maintenu} : Objectif 60 FPS avec 10000 boids
+%     \end{enumerate}
+%     \vspace{0.5cm}
+%     \small
+%     \textbf{Benchmarks comparatifs :} Séquentiel, OpenMP, MPI, Hybride
+% \end{frame}
 
 \begin{frame}
 \frametitle{Conclusion}
