@@ -92,9 +92,9 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 
 ## Fonctionnement et déroulement de l'implémentation 
 
-## Semestre 1 : Partie séquentielle (Terminée)
+## Phase 1 : Partie séquentielle (Terminée)
 
-### Phase 1 : Fondations (Terminée)
+### Etape 1 : Fondations (Terminée)
 
 **Classe `Vector2D.h`**
 - Gestion des positions, des vitesses et accélérations
@@ -108,7 +108,7 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - **Tests unitaires** : `tests/test_boid.cpp`
 - **Statut** : Terminé (22/11/2025)
 
-### **Phase 2 : Règles de Reynolds** (Terminée)
+### **Etape 2 : Règles de Reynolds** (Terminée)
 
 - **Séparation** : Les boids s'éloignent des voisins trop proches pour éviter les collisions. Chaque boid calcule un vecteur de répulsion basé sur la distance aux voisins dans sa zone de perception.
 
@@ -122,7 +122,7 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - **Test unitaires** : `tests/test_boid.cpp` (on créera sûrement un fichier à part pour améliorer la lisibilité)
 - **Statut** : Terminé (22/11/2025)
 
-### Phase 3 : Gestion collective (Terminée)
+### Etape 3 : Gestion collective (Terminée)
 
 **Classe `Flock`**
 - Gestion d'une collection de boids avec ajout et suppression dynamique
@@ -131,7 +131,7 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - **Tests unitaires** : `tests/test_flock.cpp`
 - **Statut** : Terminé (05/12/2025)
 
-### **Phase 4 : Simulation visuelle**(Terminée)
+### **Etape 4 : Simulation visuelle**(Terminée)
 
 **Interface SFML complète**
 - Boucle de simulation temps réel à 60 FPS (500 boids stables)
@@ -140,7 +140,7 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - Affichage FPS en temps réel
 - **Statut** : Terminé (16/12/2025)
 
-### Phase 5 : Benchmarks et optimisations (Terminée)
+### Etape 5 : Benchmarks et optimisations (Terminée)
 **Mesure des performances**
 - Comparaison algorithme naïf vs SpatialGrid : **gain de x5** (500 boids)
 - Benchmarks temps vs rayon de voisinage et temps vs nombre de boids
@@ -148,68 +148,72 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - Script de benchmark automatisé : `experiments/benchmark.cpp`
 - **Statut** : Terminé (16/12/2025)
 
-## Semestre 2 : Parallélisation et optimisations (en cours)
+## Phase 2 : Parallélisation et optimisations (en cours)
 
-### Phase 1 : Analyse et profilage (Janvier 2026)
+### Etape 1 : Analyse de performance de la version séquentielle (01 février - 15 février 2026)
 
-**Identification des goulots d'étranglement**
-- Profilage avec `gprof`, `perf` ou `Valgrind` de la version séquentielle
-- Mesure du temps passé dans chaque fonction (calcul voisins, règles, affichage)
+**Comprendre le coût algorithmique et identifier les sections critiquess**
+- Analyse de la compléxité théorique en fonction du nombre d'agents
+- Profilage expérimental : temps de calcul par itération, coût du calcul de voisinage, impact de l'affichage, coût des allocations mémoire
 - Identation des hot spots : boucle principale, recherche de voisins
-- **Objectif** : Déterminer les parties du code à paralléliser en priorité
+- **Objectif** : Liste priorisée des optimisations possibles
 - **Statut** : A faire
 
-### Phase 2 : Parallélisation OpenMP (Janvier - Février 2026)
+### Etape 2 : Choix et conception de la stratégie de parallélisation/distribution (15 février 2026 - 01 mars 2026)
 
-**Approche mémoire partagée (multi-threads)**
-- Parallélisation de la boucle principale de mise à jour des boids (`#pragma omp parallel for`)
-- Parallélisation de la construction du SpatialGrid
-- Gestion des race conditions et sections critiques
-- **Tests de scalabilité** : Mesurer le speedup avec 2, 4, 8, 16 threads
-- **Objectif** : Atteindre 4000-5000 boids @ 60 FPS sur 8 threads
+**Définition d'une stratégie cohérente de parallélisation/distribution**
+- Parallélisation par agents
+- Parallélisation spatiale et passage en quadtree
+- Mini-batches d'agents pour dérduitre les dépendances et structurer le calcul
+- Implémentation prévue : Hybride (Kokkos + MPI)
+- **Objectif** : Comparer les approches; Justifier l'architecture; Définir les invariants
 - **Statut** : A faire
 
-### Phase 3 : Parallélisation MPI (Février - Mars 2026)
+### Etape 3 : Implémentation de la version parallèle/distribuée (01 mars 2026 - 22 mars 2026)
 
-**Approche mémoire distribuée (multi-processus)**
-- Décomposition de domaine : partitionnement spatial de la zone de simulation
-- Communication des ghost zones (boids aux frontières entre processus)
-- Gestion de la migration des boids entre régions
-- Load balancing dynamique pour équilibrer la charge
-- **Tests de scalabilité** : Strong scaling et weak scaling sur 2, 4, 8, 16 processus
-- **Objectif** : Atteindre 10000+ boids @ 60 FPS en distribué
+**Implémentation de la parallélisation/distribution choisi en gardant la cohérence des interactions locales**
+- Parallélisation descalculs des forces locales et de l'intégration
+- Gestion des accès concurrents
+- Méchanismes de synchronisation
+- **Validation** : Comparaison systématique avec la version séquentielle + Tests
+- **Objectif** : Code paralléliser suivant les résultats de l'étape 2
 - **Statut** : A faire
 
-### Phase 4 : Approche hybride (optionnel) (Mars 2026)
+### Etape 4 : Evaluation des perfomances et scalabilité (22 mars 2026 - 29 mars 2026 )
 
-**Combinaison OpenMP + MPI**
-- MPI entre noeuds + OpenMP au sein de chaque noeud
-- Optimisation de la communication inter-processus (communication asynchrone)
-- Réduction de l'overhead de communication
+**Quantification des gains, mesure de la scalabilité et identification des limites**
+- **Métriques à mesurer** : 
+    - Speed-up : $S(p) = \frac{T(1)}{T(p)}$
+    - Efficacité : $E(p) = \frac{S(p)}{p}$
+    - Strong scaling
+    - Weak scaling
+    - Overhead de communication et de synchronisation
+- Campagnes d'expérimentation systématiques
+- Etude de sensibilité
+- Analyse critique
+- **Objectif** : Graphiques de $T(p)$, $S(p)$, $E(p)$, temps de communication vs calcul, scalabilité
 - **Statut** : A faire
 
-### Phase 5 : Benchmarks et analyse de performances (Mars - Avril 2026)
+### Etape 5 : Enrichissement du modèle (29 mars 2026 - 1 à 2 semaine avant le rendu final)
 
-**Mesure comparatives**
-- **Speedup** : $S_p = \frac{T_{seq}}{T_{par}}$ (séquentiel vs parallèle)
-- **Efficacité** : $E_p = \frac{S_p}{p}$ (utilisation des ressources)
-- **Strong scaling** : Temps de calcul vs nombre de processeurs (problème fixe)
-- **Weak scaling** : Efficacité vs taille du problème (charge par processeur fixe)
-- Graphique de scalabilité et tableaux de comparatifs
+**Amélioration du réalisme et de la richesse de la simulation**
+- **Extensions possibles** :
+    - Obstacles fixes ou mobiles, environnements constraints, zones attractives et répulsives
+    - Prédateurs et comportements d'évitement
+    - Variabilité inter-individuelle (vitesses, temps de réaction, bruit)
+    - Courants ou champs externes influençant la dynamique
+    - Multi-bancs
+- **Objectifs** : Implémentation des extensions choisies + Analyse d'impact
 - **Statut** : A faire
 
-### Phase 6 : Extensions et amélioration du réalisme (Avril 2026)
+### Etape 6 : Synthèse et valorisation (1 à 2 semaine avant rendu final - Date de rendu final)
 
-**Comportements avancés**
-- Ajout d'obstacles statiques (éviterment de murs)
-- Intégration de prédateurs (comportement de fuite)
-- Environnement dynamique (courants, zone d'attraction/répulsion)
-- Visualisation 3D avec OpenGL (si temps disponible)
+**Finalisation et formalisation du travail**
 - **Statut** : A faire 
 
-## Livrables finaux (Mai 2026)
+## Livrables finaux (A déterminer)
 
-- **Code source** : Version séquentielle + version parallèles (OpenMP, MPI, hybride)
+- **Code source** : Version séquentielle + version parallèles
 - **Rapport final** : Analyse complète des performances, graphiques, conclusions
 - **Documentation** : Doxygen complète avec guide d'utilisation
 - **Présentation** : Soutenance avec démonstration en direct
@@ -227,7 +231,7 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - [Doxygen](https://www.doxygen.nl/)
 
 **Parallélisation**
-- [OpenMP Documentation](https://www.openmp.org/)
+- [Kokkos](https://kokkos.org/kokkos-core-wiki/)
 - [MPI Standard](https://www.mpi-forum.org/)
 
 ## Remarques
@@ -235,4 +239,4 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - Chaque fonction important est testée pour garantir la robustesse de la modélisation.
 - Les extensions et benchmarks seront détaillés dans la documentation et le rapport final
 
-**Dernière mise à jour : 12/01/2026** (Bonne année !)
+**Dernière mise à jour : 29/01/2026**
