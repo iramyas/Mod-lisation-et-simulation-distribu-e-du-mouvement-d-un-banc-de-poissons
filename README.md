@@ -209,6 +209,10 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 ### Etape 6 : Synthèse et valorisation (1 à 2 semaine avant rendu final - Date de rendu final)
 
 **Finalisation et formalisation du travail**
+- Création du rapport final
+- Discussion sur les compromis
+- Perspectives
+- **Objectif** : Faire le rapport final + readme complet
 - **Statut** : A faire 
 
 ## Livrables finaux (A déterminer)
