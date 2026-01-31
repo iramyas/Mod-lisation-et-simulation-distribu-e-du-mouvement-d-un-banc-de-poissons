@@ -209,6 +209,10 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 ### Etape 6 : Synthèse et valorisation (1 à 2 semaine avant rendu final - Date de rendu final)
 
 **Finalisation et formalisation du travail**
+- Création du rapport final
+- Discussion sur les compromis
+- Perspectives
+- **Objectif** : Faire le rapport final + readme complet
 - **Statut** : A faire 
 
 ## Livrables finaux (A déterminer)
@@ -239,4 +243,4 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - Chaque fonction important est testée pour garantir la robustesse de la modélisation.
 - Les extensions et benchmarks seront détaillés dans la documentation et le rapport final
 
-**Dernière mise à jour : 29/01/2026**
+**Dernière mise à jour : 31/01/2026**
