@@ -10,13 +10,13 @@ METHODOLOGIE
 
 HOTSPOTS IDENTIFIÉS (80% CPU total)
 -----------------------------------
-Rang | Fonction                    | % CPU | Cause principale          
-----+----+---------------------------+-------+--------------------------
- 1  | Boid::separate()           | 24.3% | Vector2D::magnitude() xN
- 2  | Flock::getNeighbors()      | 21.4% | std::vector::push_back()
- 3  | Vector2D::magnitude()      | 19.7% | sqrtf() systématique    
- 4  | Boid::align()              | 16.6% | Vector2D::magnitude()   
- 5  | Boid::cohesion()           | 16.4% | Vector2D::magnitude()   
+|Rang | Fonction                    | % CPU | Cause principale        |  
+|----+----+---------------------------+-------+------------------------|
+|1  | Boid::separate()           | 24.3% | Vector2D::magnitude() xN    |
+|2  | Flock::getNeighbors()      | 21.4% | std::vector::push_back()    |
+|3  | Vector2D::magnitude()      | 19.7% | sqrtf() systématique        |
+|4  | Boid::align()              | 16.6% | Vector2D::magnitude()       |
+|5  | Boid::cohesion()           | 16.4% | Vector2D::magnitude()        |
 
 ANALYSE CAUSES RACINES (callgraph.txt)
 --------------------------------------
@@ -45,16 +45,16 @@ PLAN OPTIMISATION PRIORITAIRE
 
 IMPACT ATTENDU
 --------------
-Optimisation       | % CPU ciblé | Gain estimé
-------------------+-------------+------------
-Grille + reserve() | 21%         | x2        
-Distance²         | 20%         | x1.8      
-OpenMP            | 57%         | x4        
-TOTAL             | 80%         | x10 perf  
+|Optimisation       | % CPU ciblé | Gain estimé|
+|------------------+-------------+------------|
+|Grille + reserve() | 21%         | x2       | 
+|Distance²         | 20%         | x1.8      |
+|OpenMP            | 57%         | x4        |
+|TOTAL             | 80%         | x10 perf  |
 
 VALIDATION
 ----------
-- Hotspots cohérents 2 fichiers profiling [file:1][file:4]
+- Hotspots cohérents 2 fichiers profiling 
 - 80/20 Pareto respecté (80% CPU → 5 fonctions)
 - Solutions techniques concrètes et faisables
 - Cohérent algo Boids O(n²) naïf
