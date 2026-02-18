@@ -10,15 +10,19 @@
 
 int main() {
     // Paramètres fenêtre
-    const unsigned int WIDTH  = 1100;
-    const unsigned int HEIGHT = 700;
+    const unsigned int WIDTH  = 1920;
+    const unsigned int HEIGHT = 1080;
 
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Banc de poissons");
     window.setFramerateLimit(60);
 
     // Création du banc
     const int initialN = 20;
+
+    
     simulation::Flock flock(static_cast<float>(WIDTH), static_cast<float>(HEIGHT), 40.f);
+
+    /*
     for (int i = 0; i < initialN; ++i) {
         float x = static_cast<float>(std::rand() % WIDTH);
         float y = static_cast<float>(std::rand() % HEIGHT);
@@ -27,6 +31,9 @@ int main() {
         b.velocity = simulation::Vector2D(std::cos(angle) * 50.f, std::sin(angle) * 50.f);
         flock.addBoid(b);
     }
+    */
+
+    flock.populateRandom(initialN);
 
     // UI: contrôles
     sf::Font font;
