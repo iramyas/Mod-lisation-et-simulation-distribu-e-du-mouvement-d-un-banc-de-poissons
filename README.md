@@ -5,8 +5,6 @@ Projet M1 chps - Université de Versailles Saint-Quentin-en-Yvelines
 ## Membres du projet
 - Yohann FRONT-REIGNIER
 - Iram MADANI-FOUATIH
-- Laurence HUANG
-
 
 ## Description
 
@@ -150,14 +148,14 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 
 ## Phase 2 : Parallélisation et optimisations (en cours)
 
-### Etape 1 : Analyse de performance de la version séquentielle (01 février - 15 février 2026)
+### Etape 1 : Analyse de performance de la version séquentielle (Terminée)
 
 **Comprendre le coût algorithmique et identifier les sections critiquess**
 - Analyse de la compléxité théorique en fonction du nombre d'agents
 - Profilage expérimental : temps de calcul par itération, coût du calcul de voisinage, impact de l'affichage, coût des allocations mémoire
 - Identation des hot spots : boucle principale, recherche de voisins
 - **Objectif** : Liste priorisée des optimisations possibles
-- **Statut** : A faire
+- **Statut** : Terminée(15/02/2025)
 
 ### Etape 2 : Choix et conception de la stratégie de parallélisation/distribution (15 février 2026 - 01 mars 2026)
 
