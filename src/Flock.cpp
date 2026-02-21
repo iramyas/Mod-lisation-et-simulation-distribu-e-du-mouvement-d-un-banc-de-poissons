@@ -88,6 +88,7 @@ namespace simulation{
     std::vector<Boid*> Flock::getNeighbors(Boid* boid){
 
         std::vector<Boid*> result;
+        result.reserve(32);
 
         // Parcours des cellules dans un voisinage suffisamment large pour couvrir neighborRadius.
         const int cx = static_cast<int>(boid->position.x / grid.cellSize);
@@ -106,38 +107,48 @@ namespace simulation{
                                         + static_cast<std::size_t>(nx);
                 const auto &cell = grid.cells[index];
 
-                for(Boid* b : cell){
-                    if(b == boid) continue;
-
-                    const float dxp = b->position.x - boid->position.x;
-                    const float dyp = b->position.y - boid->position.y;
-                    if(dxp*dxp + dyp*dyp <= r2){
-                        result.push_back(b);
+                for (Boid* b_ptr : cell) { 
+                    Boid& b = *b_ptr;
+                    float dx = b.position.x - boid->position.x;
+                    float dy = b.position.y - boid->position.y;
+                    if (dx*dx + dy*dy < r2) {
+                        result.push_back(b_ptr);
                     }
                 }
             }
         }
-
         return result;
 
     }
 
     void Flock::updateAll(float deltaTime){
+        // PHASE 1 Construire grille 
         grid.clear();
-        for(Boid &b : boids){ grid.addBoid(&b); }
-        for(Boid &b : boids){
-            // Synchronise le rayon utilisé par les forces de Reynolds (Boid) avec le rayon de voisinage (Flock)
+        for (Boid& b : boids) {
+            grid.addBoid(&b);
+        }
+    
+        // PHASE 2 Paralléliser calcul forces
+        #pragma omp parallel for schedule(static)
+        for (size_t i = 0; i < boids.size(); ++i) {
+            Boid& b = boids[i];
             b.perceptionRadius = neighborRadius;
-
             auto neighbors = getNeighbors(&b);
-
-            // Appliquer règles pondérées
+        
             b.applyForce(b.separate(neighbors) * sepWeight);
             b.applyForce(b.align(neighbors)    * aliWeight);
             b.applyForce(b.cohesion(neighbors) * cohWeight);
-            b.update(deltaTime);
+        }
+    
+        // PHASE 3 Mise à jour positions et wrap around
+        #pragma omp parallel for schedule(static)
+        for (size_t i = 0; i < boids.size(); ++i) {
+            boids[i].update(deltaTime);
+            boids[i].wrapAround(grid.gridWidth * grid.cellSize, 
+                               grid.gridHeight * grid.cellSize);  
         }
     }
+
 
     void Flock::setWeights(float sep, float ali, float coh){
         sepWeight = sep; aliWeight = ali; cohWeight = coh;
@@ -146,6 +157,7 @@ namespace simulation{
     void Flock::setNeighborRadius(float r){
         neighborRadius = r;
     }
+
 
     void Flock::render(sf::RenderWindow &window){
         for(auto &b : boids){
@@ -157,14 +169,9 @@ namespace simulation{
             fish.setFillColor(sf::Color(80, 200, 255));
 
             float deg = std::atan2(b.velocity.y, b.velocity.x) * 180.f / 3.14159f;
-#if defined(SFML_VERSION_MAJOR) && (SFML_VERSION_MAJOR >= 3)
-            fish.setRotation(sf::degrees(deg));
-#else
             fish.setRotation(deg);
-#endif
             fish.setPosition(sf::Vector2f(b.position.x, b.position.y));
-        window.draw(fish);
-
+            window.draw(fish);
         }
     }
 
