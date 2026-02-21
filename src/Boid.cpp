@@ -21,7 +21,7 @@ simulation::Boid::Boid(float x, float y)
       mass(1.0f),
       maxSpeed(30.0f),
       maxForce(2.5f),
-      perceptionRadius(50.0f) {}
+      perceptionRadius(30.0f) {}
 //constructeur avec position et velocity
 simulation::Boid::Boid(Vector2D pos, Vector2D vel)
     : position(pos),
@@ -67,6 +67,21 @@ std::vector<simulation::Boid*> simulation::Boid::getNeighbors(const std::vector<
     }
   }
   return neighbors;
+}
+
+void simulation::Boid::wrapAround(float width, float height) {
+  
+  if (position.x > width) {
+    position.x = 0.f;
+  } else if (position.x < 0.f) {
+    position.x = width;
+  }
+
+  if (position.y > height) {
+    position.y = 0.f;
+  } else if (position.y < 0.f) {
+    position.y = height;
+  }
 }
 
 simulation::Vector2D simulation::Boid::separate(const std::vector<Boid*>& boids){
