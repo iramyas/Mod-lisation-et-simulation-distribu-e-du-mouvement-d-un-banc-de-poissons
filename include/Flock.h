@@ -1,6 +1,7 @@
 #pragma once
 #include "boid.h"
 #include <vector>
+#include <Kokkos_Core.hpp>
 
 
 namespace sf { class RenderWindow; }
@@ -15,6 +16,7 @@ namespace simulation{
      * @brief Classe gérant un ensemble de boids et leur organisation spatiale
      * 
      * Cette classe maintient la liste des boids, ainsi qu'une grille spatiale permettant d'optimiser la recherche de voisins dans la simulation.
+     * La parallélisation Kokkos est utilisée pour accélérer le calcul des forces et la mise à jour des positions.
      * 
     */
     class Flock{

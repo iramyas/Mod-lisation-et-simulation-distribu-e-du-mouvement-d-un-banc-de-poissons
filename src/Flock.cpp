@@ -122,31 +122,44 @@ namespace simulation{
     }
 
     void Flock::updateAll(float deltaTime){
-        // PHASE 1 Construire grille 
+        // PHASE 1: Reconstruire grille spatiale
         grid.clear();
         for (Boid& b : boids) {
             grid.addBoid(&b);
         }
     
-        // PHASE 2 Paralléliser calcul forces
-        #pragma omp parallel for schedule(static)
-        for (size_t i = 0; i < boids.size(); ++i) {
-            Boid& b = boids[i];
-            b.perceptionRadius = neighborRadius;
-            auto neighbors = getNeighbors(&b);
+        // PHASE 2: Parallélisation Kokkos - Calcul des forces
+        // Utilisation de Kokkos::parallel_for pour paralléliser sur tous les cores disponibles
+        int numBoids = static_cast<int>(boids.size());
         
-            b.applyForce(b.separate(neighbors) * sepWeight);
-            b.applyForce(b.align(neighbors)    * aliWeight);
-            b.applyForce(b.cohesion(neighbors) * cohWeight);
-        }
+        Kokkos::parallel_for("ComputeFlockForces", 
+            Kokkos::RangePolicy<>(0, numBoids),
+            [this, deltaTime](const int i) {
+                Boid& b = boids[i];
+                b.perceptionRadius = neighborRadius;
+                auto neighbors = getNeighbors(&b);
+            
+                b.applyForce(b.separate(neighbors) * sepWeight);
+                b.applyForce(b.align(neighbors)    * aliWeight);
+                b.applyForce(b.cohesion(neighbors) * cohWeight);
+            }
+        );
+        
+        // Synchronisation des threads Kokkos
+        Kokkos::fence();
     
-        // PHASE 3 Mise à jour positions et wrap around
-        #pragma omp parallel for schedule(static)
-        for (size_t i = 0; i < boids.size(); ++i) {
-            boids[i].update(deltaTime);
-            boids[i].wrapAround(grid.gridWidth * grid.cellSize, 
-                               grid.gridHeight * grid.cellSize);  
-        }
+        // PHASE 3: Parallélisation Kokkos - Mise à jour positions et wrap around
+        Kokkos::parallel_for("UpdateFlockPositions",
+            Kokkos::RangePolicy<>(0, numBoids),
+            [this, deltaTime](const int i) {
+                boids[i].update(deltaTime);
+                boids[i].wrapAround(grid.gridWidth * grid.cellSize, 
+                                   grid.gridHeight * grid.cellSize);  
+            }
+        );
+        
+        // Synchronisation finale
+        Kokkos::fence();
     }
 
 

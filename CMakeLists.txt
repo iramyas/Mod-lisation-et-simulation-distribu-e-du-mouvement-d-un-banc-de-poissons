@@ -7,13 +7,23 @@ project(Modelisation-et-Simulation-distribuee-du-mouvement-d'un-banc-de-poissons
 
 find_package(GTest REQUIRED)
 
+# Options Kokkos
+message(STATUS "Configuration Kokkos...")
+option(ENABLE_KOKKOS "Activer la parallélisation Kokkos" ON)
+if(ENABLE_KOKKOS)
+    find_package(Kokkos REQUIRED)
+    message(STATUS "Kokkos trouvé et activé")
+else()
+    message(STATUS "Kokkos désactivé (OpenMP sera utilisé à la place)")
+endif()
+
 # Récupération de SFML pour l'interface graphique
 set(SFML_BUILD_AUDIO OFF)
 set(SFML_BUILD_NETWORK OFF)
 include(FetchContent)
 FetchContent_Declare(SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG 2.6.1
+    GIT_TAG 3.0.0
     GIT_SHALLOW ON
     EXCLUDE_FROM_ALL
     SYSTEM)
@@ -57,7 +67,7 @@ target_include_directories(test_flock      SYSTEM BEFORE PRIVATE ${SFML_SOURCE_D
 target_include_directories(test_ui         SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
 target_include_directories(benchmark       SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
 
-target_link_libraries(main_simulation PRIVATE sfml-graphics sfml-window sfml-system)
+target_link_libraries(main_simulation PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos)
 target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main)
 target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main)
 target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system)

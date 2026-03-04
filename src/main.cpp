@@ -3,6 +3,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <sstream>
+#include <Kokkos_Core.hpp>
 #include "boid.h"
 #include "vector2D.h"
 #include "Flock.h"
@@ -12,32 +13,37 @@ const int WIDTH = 1200;
 const int HEIGHT = 800;
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode({WIDTH, HEIGHT}), "Banc de poissons");
-    window.setFramerateLimit(60);
-
-    simulation::Flock flock(WIDTH, HEIGHT, 50.f);
-    sf::Clock clock;
-
-    sf::Font font;
-    const char* fontPaths[] = {
-        "/System/Library/Fonts/Helvetica.ttc",
-        "/System/Library/Fonts/Courier.ttc",
-        "/System/Library/Fonts/Times.ttc",
-        "/Library/Fonts/Arial Unicode.ttf"
-    };
+    // Initialiser Kokkos
+    Kokkos::initialize();
     
-    bool fontLoaded = false;
-    for (const auto& path : fontPaths) {
-        if (font.loadFromFile(path)) {
-            fontLoaded = true;
-            break;
+    {
+        sf::RenderWindow window(sf::VideoMode({WIDTH, HEIGHT}), "Banc de poissons");
+        window.setFramerateLimit(60);
+
+        simulation::Flock flock(WIDTH, HEIGHT, 50.f);
+        sf::Clock clock;
+
+        sf::Font font;
+        const char* fontPaths[] = {
+            "/System/Library/Fonts/Helvetica.ttc",
+            "/System/Library/Fonts/Courier.ttc",
+            "/System/Library/Fonts/Times.ttc",
+            "/Library/Fonts/Arial Unicode.ttf"
+        };
+        
+        bool fontLoaded = false;
+        for (const auto& path : fontPaths) {
+            if (font.loadFromFile(path)) {
+                fontLoaded = true;
+                break;
+            }
         }
-    }
-    
-    if (!fontLoaded) {
-        std::cerr << "Erreur : impossible de charger une police" << std::endl;
-        return -1;
-    }
+        
+        if (!fontLoaded) {
+            std::cerr << "Erreur : impossible de charger une police" << std::endl;
+            Kokkos::finalize();
+            return -1;
+        }
 
     
     Slider sepSlider(font, "Separation", 10.f, 50.f, 150.f, 0.f, 10.f, 1.f);
@@ -168,5 +174,8 @@ int main() {
         window.display();
     }
 
+    // Finaliser Kokkos
+    Kokkos::finalize();
+    
     return 0;
 }

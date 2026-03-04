@@ -58,6 +58,7 @@ namespace simulation
          */
         void applyForce(const Vector2D &force);
 
+        void wrapAround(float width, float height);
         // les 3 regles de reynolds
         /**
          * @brief Calcule la force de répulsion pour éviter les collisions
