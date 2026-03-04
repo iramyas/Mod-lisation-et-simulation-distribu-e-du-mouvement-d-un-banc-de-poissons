@@ -132,9 +132,9 @@ namespace simulation{
         // Utilisation de Kokkos::parallel_for pour paralléliser sur tous les cores disponibles
         int numBoids = static_cast<int>(boids.size());
         
-        Kokkos::parallel_for("ComputeFlockForces", 
+        Kokkos::parallel_for("ComputeFlockForces",
             Kokkos::RangePolicy<>(0, numBoids),
-            [this, deltaTime](const int i) {
+            [this](const int i) {
                 Boid& b = boids[i];
                 b.perceptionRadius = neighborRadius;
                 auto neighbors = getNeighbors(&b);
@@ -181,8 +181,8 @@ namespace simulation{
             fish.setPoint(2, sf::Vector2f(-12.f, -5.f));
             fish.setFillColor(sf::Color(80, 200, 255));
 
-            float deg = std::atan2(b.velocity.y, b.velocity.x) * 180.f / 3.14159f;
-            fish.setRotation(deg);
+            float angle_rad = std::atan2(b.velocity.y, b.velocity.x);
+            fish.setRotation(sf::radians(angle_rad));
             fish.setPosition(sf::Vector2f(b.position.x, b.position.y));
             window.draw(fish);
         }

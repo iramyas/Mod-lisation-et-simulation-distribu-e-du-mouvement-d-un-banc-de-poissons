@@ -5,7 +5,7 @@
 
 // Implementation du Slider
 Slider::Slider(const sf::Font& font, const std::string& label, float x, float y, float w, float min, float max, float value)
-    : labelText("", font), valueText("", font), 
+    : labelText(font, ""), valueText(font, ""), 
       bar({w, 8.f}), handle({12.f, 12.f}),
       minValue(min), maxValue(max), value(value)
 {
