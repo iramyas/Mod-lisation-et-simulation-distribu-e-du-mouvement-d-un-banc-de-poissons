@@ -5,11 +5,29 @@ project(Modelisation-et-Simulation-distribuee-du-mouvement-d'un-banc-de-poissons
         HOMEPAGE_URL "https://github.com/iramyas/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons"
         LANGUAGES CXX)
 
+# Policies pour dépendances
+cmake_policy(SET CMP0048 NEW)
+set(CMAKE_POLICY_DEFAULT_CMP0048 NEW)
+
 find_package(GTest REQUIRED)
 
-# Options Kokkos
+# Configuration OpenMP pour macOS
+if(APPLE)
+    set(OpenMP_CXX_FLAGS "-Xclang -fopenmp")
+    set(OpenMP_CXX_LIB_NAMES "omp")
+    set(OpenMP_omp_LIBRARY "/opt/homebrew/opt/libomp/lib/libomp.dylib")
+    set(OpenMP_CXX_INCLUDE_DIR "/opt/homebrew/opt/libomp/include")
+endif()
+
+
 message(STATUS "Configuration Kokkos...")
+
+
+find_package(OpenMP REQUIRED)
+message(STATUS "OpenMP found: ${OpenMP_CXX_LIBRARY}")
+
 option(ENABLE_KOKKOS "Activer la parallélisation Kokkos" ON)
+
 if(ENABLE_KOKKOS)
     find_package(Kokkos REQUIRED)
     message(STATUS "Kokkos trouvé et activé")
@@ -40,10 +58,10 @@ set(COMMON_COMPILE_FLAGS
 )
 
 add_executable(main_simulation src/main.cpp src/Boid.cpp src/Flock.cpp src/GUI.cpp)
-add_executable(test_vector tests/test_vector.cpp)
-add_executable(test_boid tests/test_boid.cpp src/Boid.cpp)
-add_executable(test_flock tests/test_flock.cpp src/Flock.cpp src/Boid.cpp)
-add_executable(test_ui tests/test_ui.cpp src/Flock.cpp src/Boid.cpp)
+add_executable(test_vector tests/test_vector.cpp tests/kokkos_init.cpp)
+add_executable(test_boid tests/test_boid.cpp src/Boid.cpp tests/kokkos_init.cpp)
+add_executable(test_flock tests/test_flock.cpp src/Flock.cpp src/Boid.cpp tests/kokkos_init.cpp)
+add_executable(test_ui tests/test_ui.cpp src/Flock.cpp src/Boid.cpp tests/kokkos_init.cpp)
 add_executable(benchmark experiments/benchmark.cpp src/Flock.cpp src/Boid.cpp)
 
 target_include_directories(main_simulation PRIVATE include/)
@@ -60,6 +78,10 @@ target_compile_options(test_flock PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(test_ui PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(benchmark PRIVATE ${COMMON_COMPILE_FLAGS})
 
+# Ajouter flag KOKKOS_ENABLED pour les targets qui utilisent Kokkos
+target_compile_definitions(test_flock PRIVATE KOKKOS_ENABLED)
+target_compile_definitions(test_ui PRIVATE KOKKOS_ENABLED)
+
 # Force l'utilisation des headers SFML de FetchContent (SFML 2.6.1) même si SFML est installé sur la machine.
 # Sinon, on peut compiler avec des headers SFML 3 (Angle) mais lier avec les libs SFML 2 => erreurs de link.
 target_include_directories(main_simulation SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
@@ -70,9 +92,9 @@ target_include_directories(benchmark       SYSTEM BEFORE PRIVATE ${SFML_SOURCE_D
 target_link_libraries(main_simulation PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos)
 target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main)
 target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main)
-target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system)
-target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system)
-target_link_libraries(benchmark PRIVATE sfml-graphics sfml-window sfml-system)
+target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
+target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
+target_link_libraries(benchmark PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos)
 
 set_target_properties(main_simulation PROPERTIES 
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
