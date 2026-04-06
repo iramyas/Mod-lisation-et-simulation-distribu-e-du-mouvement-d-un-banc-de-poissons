@@ -5,13 +5,13 @@ project(Modelisation-et-Simulation-distribuee-du-mouvement-d'un-banc-de-poissons
         HOMEPAGE_URL "https://github.com/iramyas/Mod-lisation-et-simulation-distribu-e-du-mouvement-d-un-banc-de-poissons"
         LANGUAGES CXX)
 
-# Policies pour dépendances
 cmake_policy(SET CMP0048 NEW)
 set(CMAKE_POLICY_DEFAULT_CMP0048 NEW)
 
 find_package(GTest REQUIRED)
+find_package(MPI REQUIRED)
+message(STATUS "MPI found: ${MPI_CXX_LIBRARY}")
 
-# Configuration OpenMP pour macOS
 if(APPLE)
     set(OpenMP_CXX_FLAGS "-Xclang -fopenmp")
     set(OpenMP_CXX_LIB_NAMES "omp")
@@ -19,10 +19,7 @@ if(APPLE)
     set(OpenMP_CXX_INCLUDE_DIR "/opt/homebrew/opt/libomp/include")
 endif()
 
-
 message(STATUS "Configuration Kokkos...")
-
-
 find_package(OpenMP REQUIRED)
 message(STATUS "OpenMP found: ${OpenMP_CXX_LIBRARY}")
 
@@ -35,17 +32,21 @@ else()
     message(STATUS "Kokkos désactivé (OpenMP sera utilisé à la place)")
 endif()
 
-# Récupération de SFML pour l'interface graphique
-set(SFML_BUILD_AUDIO OFF)
-set(SFML_BUILD_NETWORK OFF)
-include(FetchContent)
-FetchContent_Declare(SFML
-    GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG 3.0.0
-    GIT_SHALLOW ON
-    EXCLUDE_FROM_ALL
-    SYSTEM)
-FetchContent_MakeAvailable(SFML)
+# DÉSACTIVER SFML PAR DÉFAUT
+option(USE_SFML "Fetch and build SFML via FetchContent" OFF)
+
+if(USE_SFML)
+    set(SFML_BUILD_AUDIO OFF)
+    set(SFML_BUILD_NETWORK OFF)
+    include(FetchContent)
+    FetchContent_Declare(SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG 3.0.0
+        GIT_SHALLOW ON
+        EXCLUDE_FROM_ALL
+        SYSTEM)
+    FetchContent_MakeAvailable(SFML)
+endif()
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -57,44 +58,67 @@ set(COMMON_COMPILE_FLAGS
         $<$<CONFIG:Release>:-Wall;-Wextra;-O3;-DNDEBUG;-march=native;-flto>
 )
 
-add_executable(main_simulation src/main.cpp src/Boid.cpp src/Flock.cpp src/GUI.cpp)
+add_executable(main_simulation src/main.cpp src/Boid.cpp src/Flock.cpp src/GUI.cpp src/MPIManager.cpp src/DistributedFlock.cpp)
 add_executable(test_vector tests/test_vector.cpp tests/kokkos_init.cpp)
 add_executable(test_boid tests/test_boid.cpp src/Boid.cpp tests/kokkos_init.cpp)
 add_executable(test_flock tests/test_flock.cpp src/Flock.cpp src/Boid.cpp tests/kokkos_init.cpp)
 add_executable(test_ui tests/test_ui.cpp src/Flock.cpp src/Boid.cpp tests/kokkos_init.cpp)
+
+set(TEST_MPI_SRC "")
+if(EXISTS "${PROJECT_SOURCE_DIR}/tests/test.mpi.cpp")
+    set(TEST_MPI_SRC "${PROJECT_SOURCE_DIR}/tests/test.mpi.cpp")
+elseif(EXISTS "${PROJECT_SOURCE_DIR}/tests/test_mpi.cpp")
+    set(TEST_MPI_SRC "${PROJECT_SOURCE_DIR}/tests/test_mpi.cpp")
+endif()
+
+if(TEST_MPI_SRC)
+    add_executable(test_mpi ${TEST_MPI_SRC} src/Boid.cpp src/Flock.cpp src/MPIManager.cpp src/DistributedFlock.cpp tests/kokkos_init.cpp)
+endif()
+
 add_executable(benchmark experiments/benchmark.cpp src/Flock.cpp src/Boid.cpp)
+add_executable(benchmark_mpi experiments/benchmark.cpp src/Flock.cpp src/Boid.cpp src/MPIManager.cpp src/DistributedFlock.cpp)
 
 target_include_directories(main_simulation PRIVATE include/)
 target_include_directories(test_vector PRIVATE include/)
 target_include_directories(test_boid PRIVATE include/) 
 target_include_directories(test_flock PRIVATE include/)
 target_include_directories(test_ui PRIVATE include/)
+target_include_directories(test_mpi PRIVATE include/)
 target_include_directories(benchmark PRIVATE include/)
+target_include_directories(benchmark_mpi PRIVATE include/)
 
 target_compile_options(main_simulation PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(test_vector PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(test_boid PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(test_flock PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(test_ui PRIVATE ${COMMON_COMPILE_FLAGS})
+target_compile_options(test_mpi PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(benchmark PRIVATE ${COMMON_COMPILE_FLAGS})
+target_compile_options(benchmark_mpi PRIVATE ${COMMON_COMPILE_FLAGS})
 
 # Ajouter flag KOKKOS_ENABLED pour les targets qui utilisent Kokkos
 target_compile_definitions(test_flock PRIVATE KOKKOS_ENABLED)
 target_compile_definitions(test_ui PRIVATE KOKKOS_ENABLED)
+target_compile_definitions(test_mpi PRIVATE KOKKOS_ENABLED MPI_ENABLED)
 
 # Force l'utilisation des headers SFML de FetchContent (SFML 2.6.1) même si SFML est installé sur la machine.
 # Sinon, on peut compiler avec des headers SFML 3 (Angle) mais lier avec les libs SFML 2 => erreurs de link.
-target_include_directories(main_simulation SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
-target_include_directories(test_flock      SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
-target_include_directories(test_ui         SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
-target_include_directories(benchmark       SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
+if(USE_SFML)
+    target_include_directories(main_simulation SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
+    target_include_directories(test_flock      SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
+    target_include_directories(test_ui         SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
+    target_include_directories(benchmark       SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
 
-target_link_libraries(main_simulation PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos)
-target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main)
-target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main)
-target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
-target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
-target_link_libraries(benchmark PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos)
+    target_link_libraries(main_simulation PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos MPI::MPI_CXX)
+    target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
+    target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
+    target_link_libraries(benchmark PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos)
+    target_link_libraries(benchmark_mpi PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos MPI::MPI_CXX)
+else()
+    # fallback link lines when SFML disabled
+    target_link_libraries(main_simulation PRIVATE Kokkos::kokkos MPI::MPI_CXX)
+    target_link_libraries(benchmark_mpi PRIVATE Kokkos::kokkos MPI::MPI_CXX)
+endif()
 
 set_target_properties(main_simulation PROPERTIES 
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
@@ -120,10 +144,27 @@ set_target_properties(benchmark PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
         OUTPUT_NAME "benchmark.bin"
 )
+set_target_properties(benchmark_mpi PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        OUTPUT_NAME "benchmark_mpi.bin"
+)
 
 enable_testing()
 gtest_discover_tests(test_vector)
 gtest_discover_tests(test_boid)
 gtest_discover_tests(test_flock)
 gtest_discover_tests(test_ui)
+
+# GUARD ALL test_mpi operations inside if(TARGET test_mpi)
+if(TARGET test_mpi)
+    target_include_directories(test_mpi PRIVATE include/)
+    target_compile_options(test_mpi PRIVATE ${COMMON_COMPILE_FLAGS})
+    target_compile_definitions(test_mpi PRIVATE KOKKOS_ENABLED MPI_ENABLED)
+    target_link_libraries(test_mpi PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos MPI::MPI_CXX)
+    set_target_properties(test_mpi PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        OUTPUT_NAME "test_mpi.bin"
+    )
+    gtest_discover_tests(test_mpi)
+endif()
 
