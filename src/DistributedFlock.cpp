@@ -61,17 +61,4 @@ void DistributedFlock::rebuildSpatialGrid() {
     // Spatial grid rebuild logic
     // spatialGrid operations would go here if spatialGrid member is defined
 }
-
-int DistributedFlock::getGlobalBoidCount() const {
-    return globalBoidCount;
-}
-
-const std::vector<Boid>& DistributedFlock::getHaloBoids() const {
-    return haloBoids;
-}
-
-const MPIManager& DistributedFlock::getMPIManager() const {
-    return mpiManager;
-}
-
 } // namespace simulation
