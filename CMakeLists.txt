@@ -10,6 +10,7 @@ set(CMAKE_POLICY_DEFAULT_CMP0048 NEW)
 
 find_package(GTest REQUIRED)
 find_package(MPI REQUIRED)
+include(FetchContent)
 message(STATUS "MPI found: ${MPI_CXX_LIBRARY}")
 
 if(APPLE)
@@ -19,26 +20,12 @@ if(APPLE)
     set(OpenMP_CXX_INCLUDE_DIR "/opt/homebrew/opt/libomp/include")
 endif()
 
-message(STATUS "Configuration Kokkos...")
-find_package(OpenMP REQUIRED)
-message(STATUS "OpenMP found: ${OpenMP_CXX_LIBRARY}")
-
-option(ENABLE_KOKKOS "Activer la parallélisation Kokkos" ON)
-
-if(ENABLE_KOKKOS)
-    find_package(Kokkos REQUIRED)
-    message(STATUS "Kokkos trouvé et activé")
-else()
-    message(STATUS "Kokkos désactivé (OpenMP sera utilisé à la place)")
-endif()
-
 # DÉSACTIVER SFML PAR DÉFAUT
 option(USE_SFML "Fetch and build SFML via FetchContent" OFF)
 
 if(USE_SFML)
     set(SFML_BUILD_AUDIO OFF)
     set(SFML_BUILD_NETWORK OFF)
-    include(FetchContent)
     FetchContent_Declare(SFML
         GIT_REPOSITORY https://github.com/SFML/SFML.git
         GIT_TAG 3.0.0
@@ -73,6 +60,26 @@ endif()
 
 if(TEST_MPI_SRC)
     add_executable(test_mpi ${TEST_MPI_SRC} src/Boid.cpp src/Flock.cpp src/MPIManager.cpp src/DistributedFlock.cpp tests/kokkos_init.cpp)
+endif()
+
+message(STATUS "Configuration Kokkos...")
+find_package(OpenMP REQUIRED)
+message(STATUS "OpenMP found: ${OpenMP_CXX_LIBRARY}")
+
+option(ENABLE_KOKKOS "Activer la parallélisation Kokkos" ON)
+
+if(ENABLE_KOKKOS)
+  FetchContent_Declare(
+    kokkos
+    GIT_REPOSITORY https://github.com/kokkos/kokkos.git
+    GIT_TAG master
+  )
+  FetchContent_GetProperties(kokkos)
+  if(NOT kokkos_POPULATED)
+    FetchContent_Populate(kokkos)
+    add_subdirectory(${kokkos_SOURCE_DIR} ${kokkos_BINARY_DIR} EXCLUDE_FROM_ALL)
+  endif()
+  target_link_libraries(main_simulation PRIVATE Kokkos::kokkos)
 endif()
 
 add_executable(benchmark experiments/benchmark.cpp src/Flock.cpp src/Boid.cpp)
