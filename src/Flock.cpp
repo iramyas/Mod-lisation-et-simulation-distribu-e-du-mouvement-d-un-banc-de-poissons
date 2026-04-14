@@ -173,6 +173,7 @@ namespace simulation{
 
 
     void Flock::render(sf::RenderWindow &window){
+#ifdef USE_SFML
         for(auto &b : boids){
             sf::ConvexShape fish;
             fish.setPointCount(3);
@@ -182,10 +183,10 @@ namespace simulation{
             fish.setFillColor(sf::Color(80, 200, 255));
 
             float angle_rad = std::atan2(b.velocity.y, b.velocity.x);
-            fish.setRotation(sf::radians(angle_rad));
+            fish.setRotation(angle_rad * 180.0f / M_PI);
             fish.setPosition(sf::Vector2f(b.position.x, b.position.y));
             window.draw(fish);
         }
+#endif
     }
-
 }

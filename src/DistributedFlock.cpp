@@ -4,7 +4,7 @@
 namespace simulation {
 
 DistributedFlock::DistributedFlock(float width, float height, float cellSize)
-    : Flock(width, height, cellSize), globalBoidCount(0) {
+    : Flock(width, height, cellSize),mpiManager(width, height), globalBoidCount(0) {
 }
 
 void DistributedFlock::performHaloExchange() {
@@ -57,8 +57,13 @@ void DistributedFlock::updateAllDistributed(float deltaTime) {
     syncGlobalBoidCount();
 }
 
-void DistributedFlock::rebuildSpatialGrid() {
-    // Spatial grid rebuild logic
-    // spatialGrid operations would go here if spatialGrid member is defined
-}
+    void DistributedFlock::rebuildSpatialGrid() {
+        grid.clear();
+        for (Boid& b : boids) {
+            grid.addBoid(&b);
+        }
+        for (Boid& b : haloBoids) {
+            grid.addBoid(&b);
+        }
+    }
 } // namespace simulation
