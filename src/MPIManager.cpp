@@ -106,14 +106,59 @@ void MPIManager::migrateBoidsAllToAll(const std::vector<Boid>& localBoids,
     remaining.clear();
     incoming.clear();
     
+    std::vector<std::vector<Boid>> sendBuf(size);
+    for (int r = 0; r < size; ++r) sendBuf[r].clear();
+    
     for (const auto& boid : localBoids) {
+        int tx = static_cast<int>(std::floor(boid.position.x / (simWidth / procGridX)));
+        int ty = static_cast<int>(std::floor(boid.position.y / (simHeight / procGridY)));
+        if(tx < 0) tx = 0;
+        if(ty < 0) ty = 0;
+        if(tx >= procGridX) tx = procGridX - 1;
+        if(ty >= procGridY) ty = procGridY - 1;
+        int targetRank = ty * procGridX + tx;
         if (localDomain.contains(boid)) {
             remaining.push_back(boid);
         } else {
-            // Boid a migré dans un autre domaine
-            // À implémenter : envoyer au domaine approprié
+            sendBuf[targetRank].push_back(boid);
         }
     }
+    // On compte le nombre d'échanges
+    std::vector<int> sendCounts(size, 0), recvCounts(size,0);
+    for (int r = 0; r < size; ++r) sendCounts[r] = static_cast<int>(sendBuf[r].size());
+    MPI_Alltoall(sendCounts.data(), 1, MPI_INT, recvCounts.data(), 1, MPI_INT, MPI_COMM_WORLD);
+
+    // On construit un buffer d'envoi continue et on calcule le déplacement
+    std::vector<int> sdispls(size, 0), rdispls(size, 0);
+    int sTotal = 0, rTotal = 0;
+    for (int i = 0; i < size; ++i) { 
+        sdispls[i] = sTotal * static_cast<int>(sizeof(Boid));
+        rdispls[i] = rTotal * static_cast<int>(sizeof(Boid));
+        sTotal += sendCounts[i];
+        rTotal += recvCounts[i];
+    }
+
+    std::vector<Boid> sdata;
+    sdata.reserve(sTotal);
+    for (int i = 0; i < size; ++i) {
+        for (const auto& b : sendBuf[i]) sdata.push_back(b);
+    }
+    std::vector<Boid> rdata;
+    if(rTotal > 0) rdata.resize(rTotal);
+
+    // On convertie les compteurs en bytes pour utiliser MPI_BYTE
+    std::vector<int> sendCountsBytes(size, 0), recvCountsBytes(size, 0);
+    for(int i = 0; i < size; ++i) {
+        sendCountsBytes[i] = sendCounts[i] * static_cast<int>(sizeof(Boid));
+        recvCountsBytes[i] = recvCounts[i] * static_cast<int>(sizeof(Boid));
+    }
+
+    MPI_Alltoallv(sdata.data(), sendCountsBytes.data(), sdispls.data(), MPI_BYTE,
+                    rdata.data(), recvCountsBytes.data(), rdispls.data(), MPI_BYTE,
+                    MPI_COMM_WORLD);
+    
+    // Déplace les données reçues dans le tableau incoming
+    if (rTotal > 0) incoming = std::move(rdata);
 }
 
 int MPIManager::syncGlobalCount(int localCount) {
