@@ -52,6 +52,18 @@ public:
     void scatterBoids(const std::vector<Boid>& globalBoids,
                      std::vector<Boid>& localBoids);
 
+    /**
+     * @brief Rassemble tous les boids de tous les processus (MPI_Allgatherv)
+     * 
+     * Chaque processus reçoit les boids de TOUS les autres processus.
+     * Utile pour les tests et comparaisons.
+     * 
+     * @param localBoids Boids du processus courant
+     * @param allBoids [OUT] Tous les boids fusionnés
+     */
+    void allGatherBoids(const std::vector<Boid>& localBoids,
+                       std::vector<Boid>& allBoids);
+
     // Getters
     const Domain& getLocalDomain() const { return localDomain; }
     int getRank() const { return rank; }
