@@ -132,6 +132,8 @@ if(USE_SFML)
     target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
     target_link_libraries(benchmark PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos)
     target_link_libraries(benchmark_mpi PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos MPI::MPI_CXX)
+    target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
+    target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
 else()
     # fallback link lines when SFML disabled
     target_link_libraries(main_simulation PRIVATE Kokkos::kokkos MPI::MPI_CXX)
@@ -206,3 +208,19 @@ if(TARGET test_mpi)
     gtest_discover_tests(test_mpi)
 endif()
 
+
+# Test de cohérence (séquentiel vs distribué)
+set(TEST_COHERENCE_SRC "${PROJECT_SOURCE_DIR}/tests/test_coherence.cpp")
+if(EXISTS "${TEST_COHERENCE_SRC}")
+    add_executable(test_coherence ${TEST_COHERENCE_SRC} src/Boid.cpp src/Flock.cpp src/MPIManager.cpp src/DistributedFlock.cpp tests/kokkos_init.cpp)
+    target_include_directories(test_coherence PRIVATE include/)
+    target_compile_options(test_coherence PRIVATE ${COMMON_COMPILE_FLAGS})
+    if(ENABLE_KOKKOS)
+        target_link_libraries(test_coherence PRIVATE Kokkos::kokkos)
+    endif()
+    target_link_libraries(test_coherence PRIVATE MPI::MPI_CXX OpenMP::OpenMP_CXX)
+    set_target_properties(test_coherence PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        OUTPUT_NAME "test_coherence.bin"
+    )
+endif()
