@@ -25,6 +25,11 @@ int main() {
 
         sf::Font font;
         const char* fontPaths[] = {
+            // Linux paths
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+            "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
+            // Apple paths
             "/System/Library/Fonts/Helvetica.ttc",
             "/System/Library/Fonts/Courier.ttc",
             "/System/Library/Fonts/Times.ttc",
