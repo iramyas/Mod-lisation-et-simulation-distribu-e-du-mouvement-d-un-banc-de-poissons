@@ -1,7 +1,9 @@
 #include "Flock.h"
 #include <cmath>
 #include <cstdlib>
+#ifdef USE_SFML
 #include <SFML/Graphics.hpp>
+#endif
 
 namespace simulation {
 
