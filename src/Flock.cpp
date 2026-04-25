@@ -179,6 +179,7 @@ std::vector<Boid*> Flock::getNeighbors(Boid* boid) {
 
             // Vérifier chaque boid dans la cellule
             for (Boid* b_ptr : cell) {
+                if (b_ptr == boid) continue;
                 Boid& b = *b_ptr;
                 float dx = b.position.x - boid->position.x;
                 float dy = b.position.y - boid->position.y;

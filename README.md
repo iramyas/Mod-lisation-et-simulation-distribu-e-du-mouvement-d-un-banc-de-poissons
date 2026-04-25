@@ -46,8 +46,9 @@ sudo apt install \
 
 ### Compilation
 ```bash
-mkdir -p build && cd build
-cmake --build .
+./scripts/build.sh              # Build en Release
+./scripts/build.sh Debug        # Build en Debug
+./scripts/build.sh Clean        # Clean et rebuild
 ```
 
 ## Utilisation
@@ -63,12 +64,6 @@ cmake --build .
 - Contrôles : glisser-déposer les **sliders** pour ajuster les poids et le rayon ; **Apply** réinitialise la population selon `Count`. Appuyer sur **Échap** ferme la fenêtre.
 
 ### Lancer les tests
-
-**Tous les tests :**
-```bash
-cd build
-ctest --output-on-failure
-```
 
 **Tests individuels :**
 ```bash
@@ -241,4 +236,4 @@ firefox "$(realpath docs/html/index.html)" # Ouvrir dans le navigateur
 - Chaque fonction important est testée pour garantir la robustesse de la modélisation.
 - Les extensions et benchmarks seront détaillés dans la documentation et le rapport final
 
-**Dernière mise à jour : 31/01/2026**
+**Dernière mise à jour : 22/04/2026**
