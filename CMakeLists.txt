@@ -84,6 +84,7 @@ endif()
 
 add_executable(benchmark experiments/benchmark.cpp src/Flock.cpp src/Boid.cpp)
 add_executable(benchmark_mpi experiments/benchmark.cpp src/Flock.cpp src/Boid.cpp src/MPIManager.cpp src/DistributedFlock.cpp)
+add_executable(benchmark_mpi_comparison experiments/benchmark_mpi_comparison.cpp src/Flock.cpp src/Boid.cpp src/MPIManager.cpp src/DistributedFlock.cpp)
 
 target_include_directories(main_simulation PRIVATE include/)
 target_include_directories(test_vector PRIVATE include/)
@@ -92,6 +93,7 @@ target_include_directories(test_flock PRIVATE include/)
 target_include_directories(test_ui PRIVATE include/)
 target_include_directories(benchmark PRIVATE include/)
 target_include_directories(benchmark_mpi PRIVATE include/)
+target_include_directories(benchmark_mpi_comparison PRIVATE include/)
 
 if(TARGET test_mpi)
     target_include_directories(test_mpi PRIVATE include/)
@@ -104,6 +106,7 @@ target_compile_options(test_flock PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(test_ui PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(benchmark PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(benchmark_mpi PRIVATE ${COMMON_COMPILE_FLAGS})
+target_compile_options(benchmark_mpi_comparison PRIVATE ${COMMON_COMPILE_FLAGS})
 
 if(TARGET test_mpi)
     target_compile_options(test_mpi PRIVATE ${COMMON_COMPILE_FLAGS})
@@ -132,6 +135,7 @@ if(USE_SFML)
     target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
     target_link_libraries(benchmark PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos)
     target_link_libraries(benchmark_mpi PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos MPI::MPI_CXX)
+    target_link_libraries(benchmark_mpi_comparison PRIVATE Kokkos::kokkos MPI::MPI_CXX)
     target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
     target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
 else()
@@ -143,6 +147,7 @@ else()
     target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
     target_link_libraries(benchmark PRIVATE Kokkos::kokkos)
     target_link_libraries(benchmark_mpi PRIVATE Kokkos::kokkos MPI::MPI_CXX)
+    target_link_libraries(benchmark_mpi_comparison PRIVATE Kokkos::kokkos MPI::MPI_CXX)
     
     if(TARGET test_mpi)
         target_link_libraries(test_mpi PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos MPI::MPI_CXX)
@@ -176,6 +181,11 @@ set_target_properties(benchmark PROPERTIES
 set_target_properties(benchmark_mpi PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
         OUTPUT_NAME "benchmark_mpi.bin"
+)
+
+set_target_properties(benchmark_mpi_comparison PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        OUTPUT_NAME "benchmark_mpi_comparison.bin"
 )
 
 if(TARGET test_mpi)
