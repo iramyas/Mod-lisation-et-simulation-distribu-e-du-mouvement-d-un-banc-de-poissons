@@ -146,7 +146,10 @@ void DistributedFlock::populateRandomDistributed(int totalN) {
     for (int i = 0; i < localN; ++i) {
         float x = disX(gen);
         float y = disY(gen);
-        boids.emplace_back(x, y);
+        Boid b(x, y);
+        float angle = std::uniform_real_distribution<float>(0.f, 2.f * 3.14159f)(gen);
+        b.velocity = Vector2D(std::cos(angle) * 50.f, std::sin(angle) * 50.f);
+        boids.emplace_back(b);
     }
 }
 
@@ -177,10 +180,39 @@ void DistributedFlock::updateAllDistributed(float deltaTime) {
     // 2. Reconstruire la grille spatiale (avec boids locaux + halo)
     rebuildSpatialGrid();
     
-    // 3. Effectuer la migration des boids sortis du domaine local
+    // 3. Calcul des forces (Kokkos) — MANQUAIT ENTIÈREMENT
+    int numBoids = static_cast<int>(boids.size());
+
+    Kokkos::parallel_for("ComputeFlockForces_Distributed",
+        Kokkos::RangePolicy<>(0, numBoids),
+        [this](const int i) {
+            Boid& b = boids[i];
+            b.perceptionRadius = neighborRadius;
+            auto neighbors = getNeighbors(&b);  // inclut les boids halo via la grille
+            b.applyForce(b.separate(neighbors) * sepWeight);
+            b.applyForce(b.align(neighbors)    * aliWeight);
+            b.applyForce(b.cohesion(neighbors) * cohWeight);
+        }
+    );
+    Kokkos::fence();
+
+    // 4. Intégration des positions (Kokkos)
+    float worldW = grid.gridWidth  * grid.cellSize;
+    float worldH = grid.gridHeight * grid.cellSize;
+
+    Kokkos::parallel_for("IntegratePositions_Distributed",
+        Kokkos::RangePolicy<>(0, numBoids),
+        [this, deltaTime, worldW, worldH](const int i) {
+            boids[i].update(deltaTime);
+            boids[i].wrapAround(worldW, worldH);
+        }
+    );
+    Kokkos::fence();
+
+    // 5. Effectuer la migration des boids sortis du domaine local
     performMigration();
     
-    // 4. Synchroniser le comptage global
+    // 6. Synchroniser le comptage global
     syncGlobalBoidCount();
 }
 

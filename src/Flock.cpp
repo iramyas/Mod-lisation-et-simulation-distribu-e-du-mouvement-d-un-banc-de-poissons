@@ -240,6 +240,7 @@ void Flock::updateAll(float deltaTime) {
             auto neighbors = getNeighbors(&b);
         
             // Appliquer les 3 règles de Reynolds avec leurs poids respectifs
+            // Chaque thread lit et écrit sur le même boid donc pas de race condition
             b.applyForce(b.separate(neighbors) * sepWeight);   // Séparation
             b.applyForce(b.align(neighbors)    * aliWeight);   // Alignement
             b.applyForce(b.cohesion(neighbors) * cohWeight);   // Cohésion
