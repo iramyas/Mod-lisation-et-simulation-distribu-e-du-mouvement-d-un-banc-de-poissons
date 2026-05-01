@@ -123,17 +123,17 @@ simulation::Vector2D simulation::Boid::align(const std::vector<Boid*>& boids){
       ++count; 
     }
   }
-  if (count>0) {
-    steering= steering /static_cast<float>(count);
-
-    if (steering.magnitude()>0.0f) {
-      steering= steering.normalized()*maxSpeed;
-    }
-    steering -= velocity;     
-    if (steering.magnitude() > maxForce){ 
-      steering =steering.normalized() * maxForce; 
-    }
+  if (count == 0) return Vector2D(0.0f, 0.0f);
+  
+  steering= steering / static_cast<float>(count);
+  if (steering.magnitude() > 0.0f) {
+    steering= steering.normalized() * maxSpeed;
   }
+  steering -= velocity;     
+  if (steering.magnitude() > maxForce){ 
+    steering =steering.normalized() * maxForce; 
+  }
+  
   return steering;  
 }
 
@@ -144,7 +144,7 @@ simulation::Vector2D simulation::Boid::cohesion(const std::vector<Boid*>& boids)
   Vector2D center(0.0f,0.0f);
   int count = 0;
    
-  for (Boid* other :boids) {
+  for (Boid* other : boids) {
     if (other == this) continue;
     float distance = (other->position - position).magnitude();
     if (distance >0.0f && distance < perceptionRadius) {
@@ -152,10 +152,9 @@ simulation::Vector2D simulation::Boid::cohesion(const std::vector<Boid*>& boids)
       ++count;
     }
   }
-  if (count==0){
-    return Vector2D(0.0f, 0.0f);
-  }
-  center= center /static_cast<float>(count);
+  if (count == 0) return Vector2D(0.0f, 0.0f);
+
+  center = center /static_cast<float>(count);
 
   return seek(center);     
 }
