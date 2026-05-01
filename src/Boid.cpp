@@ -52,8 +52,6 @@ void simulation::Boid::applyForce(const Vector2D& force){
   acceleration += f * (1.0f / mass); 
 }
 
-
-
 //get neighbors 
 std::vector<simulation::Boid*> simulation::Boid::getNeighbors(const std::vector<Boid*>& boids) {
   std::vector<Boid*> neighbors;
@@ -89,19 +87,21 @@ simulation::Vector2D simulation::Boid::separate(const std::vector<Boid*>& boids)
   int count=0;   
   for (Boid* other :boids){  
     if (other == this) continue; 
-    Vector2D diff= position -other->position;         
-    float d= diff.magnitude();      
-    if (d> 0.0f && d < perceptionRadius){  
-      diff= diff / d ;   
-      steering += diff;
+    Vector2D diff= position - other->position;         
+    float d = diff.magnitude();      
+    if (d > 0.0f && d < perceptionRadius){
+      // les voisins très proches repoussent plus fort
+      steering += diff.normalized() * (1.0f / d);
       count++;
     }
   }
-  if (count > 0){steering = steering /static_cast<float>(count);}
-  else { return Vector2D(0.0f, 0.0f);}
+
+  if (count == 0) return Vector2D(0.0f, 0.0f);
+  steering = steering /static_cast<float>(count);
+  
   if (steering.magnitude() > 0.0f){
-    steering = steering.normalized() *maxSpeed;
-    steering -=velocity;
+    steering = steering.normalized() * maxSpeed;
+    steering -= velocity;
     if (steering.magnitude() > maxForce) {
       steering = steering.normalized() *maxForce;
     }
@@ -114,11 +114,12 @@ simulation::Vector2D simulation::Boid::separate(const std::vector<Boid*>& boids)
 simulation::Vector2D simulation::Boid::align(const std::vector<Boid*>& boids){
   Vector2D steering(0.0f, 0.0f);
   int count=0;
-  for (Boid*other :boids) {
-    if(other==this) continue;
-    float distance =(other->position -position).magnitude();
+
+  for (Boid*other : boids) {
+    if(other == this) continue;
+    float distance =(other->position - position).magnitude();
     if(distance >0.0f &&distance < perceptionRadius){
-      steering +=other->velocity;
+      steering += other->velocity;
       ++count; 
     }
   }
