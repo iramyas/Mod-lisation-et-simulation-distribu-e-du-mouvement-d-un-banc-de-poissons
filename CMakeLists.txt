@@ -88,7 +88,7 @@ add_executable(benchmark_mpi_comparison experiments/benchmark_mpi_comparison.cpp
 
 target_include_directories(main_simulation PRIVATE include/)
 target_include_directories(test_vector PRIVATE include/)
-target_include_directories(test_boid PRIVATE include/) 
+target_include_directories(test_boid PRIVATE include/)
 target_include_directories(test_flock PRIVATE include/)
 target_include_directories(test_ui PRIVATE include/)
 target_include_directories(benchmark PRIVATE include/)
@@ -117,6 +117,8 @@ target_compile_definitions(test_vector PRIVATE KOKKOS_ENABLED)
 target_compile_definitions(test_boid PRIVATE KOKKOS_ENABLED)
 target_compile_definitions(test_flock PRIVATE KOKKOS_ENABLED)
 target_compile_definitions(test_ui PRIVATE KOKKOS_ENABLED)
+target_compile_definitions(benchmark_mpi PRIVATE MPI_ENABLED)
+target_compile_definitions(benchmark_mpi_comparison PRIVATE MPI_ENABLED)
 
 if(TARGET test_mpi)
     target_compile_definitions(test_mpi PRIVATE KOKKOS_ENABLED MPI_ENABLED)
@@ -125,6 +127,8 @@ endif()
 # Force l'utilisation des headers SFML de FetchContent (SFML 2.6.1) même si SFML est installé sur la machine.
 # Sinon, on peut compiler avec des headers SFML 3 (Angle) mais lier avec les libs SFML 2 => erreurs de link.
 if(USE_SFML)
+    # Définir USE_SFML comme macro préprocesseur pour que #ifdef USE_SFML soit vrai dans le code
+    target_compile_definitions(main_simulation PRIVATE USE_SFML)
     target_include_directories(main_simulation SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
     target_include_directories(test_flock      SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
     target_include_directories(test_ui         SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
@@ -138,6 +142,9 @@ if(USE_SFML)
     target_link_libraries(benchmark_mpi_comparison PRIVATE Kokkos::kokkos MPI::MPI_CXX)
     target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
     target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
+    if(TARGET test_mpi)
+        target_link_libraries(test_mpi PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos MPI::MPI_CXX)
+    endif()
 else()
     # fallback link lines when SFML disabled
     target_link_libraries(main_simulation PRIVATE Kokkos::kokkos MPI::MPI_CXX)
@@ -148,30 +155,30 @@ else()
     target_link_libraries(benchmark PRIVATE Kokkos::kokkos)
     target_link_libraries(benchmark_mpi PRIVATE Kokkos::kokkos MPI::MPI_CXX)
     target_link_libraries(benchmark_mpi_comparison PRIVATE Kokkos::kokkos MPI::MPI_CXX)
-    
+
     if(TARGET test_mpi)
         target_link_libraries(test_mpi PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos MPI::MPI_CXX)
     endif()
 endif()
 
-set_target_properties(main_simulation PROPERTIES 
+set_target_properties(main_simulation PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
         OUTPUT_NAME "main_simulation.bin"
 )
 set_target_properties(test_vector PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-        OUTPUT_NAME "test_vector.bin"  
+        OUTPUT_NAME "test_vector.bin"
 )
-set_target_properties(test_boid PROPERTIES  
+set_target_properties(test_boid PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
         OUTPUT_NAME "test_boid.bin"
 )
 set_target_properties(test_flock PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin 
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
         OUTPUT_NAME "test_flock.bin"
 )
 set_target_properties(test_ui PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin 
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
         OUTPUT_NAME "test_ui.bin"
 )
 set_target_properties(benchmark PROPERTIES
@@ -205,18 +212,7 @@ if(TARGET test_mpi)
     gtest_discover_tests(test_mpi)
 endif()
 
-# GUARD ALL test_mpi operations inside if(TARGET test_mpi)
-if(TARGET test_mpi)
-    target_include_directories(test_mpi PRIVATE include/)
-    target_compile_options(test_mpi PRIVATE ${COMMON_COMPILE_FLAGS})
-    target_compile_definitions(test_mpi PRIVATE KOKKOS_ENABLED MPI_ENABLED)
-    target_link_libraries(test_mpi PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos MPI::MPI_CXX)
-    set_target_properties(test_mpi PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-        OUTPUT_NAME "test_mpi.bin"
-    )
-    gtest_discover_tests(test_mpi)
-endif()
+# (propriétés test_mpi déjà définies dans les blocs précédents)
 
 
 # Test de cohérence (séquentiel vs distribué)

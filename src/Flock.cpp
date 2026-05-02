@@ -1,7 +1,9 @@
 #include "Flock.h"
 #include <cmath>
 #include <cstdlib>
+#ifdef USE_SFML
 #include <SFML/Graphics.hpp>
+#endif
 
 namespace simulation {
 
@@ -312,7 +314,7 @@ void Flock::render(sf::RenderWindow& window) {
         fish.setFillColor(sf::Color(80, 200, 255));
 
         float angle_rad = std::atan2(b.velocity.y, b.velocity.x);
-        fish.setRotation(angle_rad * 180.0f / M_PI);
+        fish.setRotation(sf::radians(angle_rad));
         fish.setPosition(sf::Vector2f(b.position.x, b.position.y));
         window.draw(fish);
     }
