@@ -1,0 +1,193 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[utf-8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{hyperref}
+
+\begin{document}
+
+% ############################################################################
+% FRONTMATTER: Title, Authors, Abstract
+% ############################################################################
+
+
+\title{Modélisation et simulation distribuée du mouvement d'un banc de poissons}
+\author{Yohann Front-Reignier, Iram Madani-Fouatih}
+
+\markboth{Projet de Programmation Numérique Master CHPS, Mai 2026}%
+{Front-Reignier, Madani-Fouatih: Simulation Distribuée d'un Banc de pPoissons}
+
+\maketitle
+\pagestyle{plain}
+\pagenumbering{arabic}
+\thispagestyle{plain}
+
+\begin{abstract}
+	Ce rapport synthétise l'ensemble du travail de conception ainsi que d'implémentation d'une simulation distribuée du mouvement d'un banc de poisson. Nous avons réalisé une implémentation utilisant trois stratégies : une approche séquentielle, une parallélisation distribuée via MPI de la grille spatiale et une parallélisation à mémoire partagée utilisant Kokkos.
+	% A compléter à la fin du rapport
+\end{abstract}
+
+\section{Introduction}
+
+Le mouvement d'un banc de poissons ou d'un vol groupé d'oiseaux sont des phénomènes très importants à étudier. En effet, cette étude peut mener à la création de nouveaux algorithmes bio-inspirés pour les modéliser et les simuler afin de mieux comprendre certains de leurs fonctionnements et ainsi pouvoir les répliquer dans l'industrie, notamment l'aéronautique.
+
+Le contrôle à distance de plusieurs drones ou d'essaims de drones sans contrôle humain est aujourd'hui assez répandu. De plus, il existe aussi des zones sans tour de contrôle, où les avions doivent être capables de s'auto-gérer. C'est pour répondre à ce genre de problèmes que nous nous intéressons à la simulation de systèmes existant dans le monde animal afin de pouvoir les répliquer et les utiliser.
+
+L'étude de ces systèmes d'auto-organisation et de flocking a mené à la création du modèle des “Boids” par C. Reynolds en 1987, qui permet de simuler informatiquement ces comportements. Les boids suivent trois règles simples que nous détaillerons plus tard dans ce rapport.
+
+En respectant ces trois règles, le boid calcule sa direction et sa vitesse. Chaque boid réalise ce calcul, ce qui crée des comportements dits émergents, c'est-à-dire que certains boids vont agir de sorte à créer des motifs sans avoir de contrôle central leur demandant de les produire. Il est donc difficile de prévoir le comportement d'un boid en le regardant individuellement. C'est ce qu'on appelle un système complexe.
+
+Une grande partie des travaux actuels consiste donc à essayer d'améliorer cette simulation afin de pouvoir gérer un plus grand nombre de boids sans trop augmenter le temps de calcul. En effet, comme chaque boid doit prendre en compte ses voisins pour déterminer son comportement, le calcul peut vite devenir très coûteux lorsque la taille du banc augmente.
+
+C'est pourquoi plusieurs approches ont été proposées pour accélérer ce genre de simulation. Certaines utilisent le calcul parallèle sur GPU, tandis que d'autres reposent sur une répartition du calcul sur plusieurs cœurs ou sur plusieurs machines. L'idée est alors de diviser l'espace de simulation en plusieurs parties afin que chaque unité de calcul puisse traiter une portion du banc de poissons.
+
+Cependant, cette répartition du calcul pose plusieurs difficultés. Il faut notamment gérer les interactions entre boids situés dans des zones différentes, ainsi que les échanges d'informations lorsque les individus se déplacent d'un sous-domaine à un autre. Il faut aussi conserver un comportement réaliste, sans trop dégrader la qualité de la simulation.
+
+Dans ce travail, nous allons donc nous intéresser à la modélisation d’un banc de poissons à l’aide du modèle des boids, puis à sa simulation distribuée. L’objectif est de comprendre comment ce modèle peut être adapté à une architecture parallèle afin d’améliorer les performances de calcul tout en gardant un comportement collectif cohérent.
+
+Pour cela, le rapport sera organisé de la manière suivante : fondements théoriques, implémentations, comparative, défis, benchmarking, puis conclusion.
+
+\section{Fondements Théoriques}
+Nous formalisons le modèle mathématique des boids, sa complexité algorithmique et les défis liés au parallélisme.
+
+Afin de représenter au mieux les différents comportements du banc de poissons, nous avons utilisé des formules mathématiques associées aux règles de flocking. Pour chaque boid, le calcul repose sur les interactions avec ses voisins proches, ce qui permet de déterminer sa nouvelle direction et sa nouvelle vitesse.
+
+\begin{enumerate}
+	\item Règle 1 : Séparation\\
+	      Le calcul de la séparation est nécessaire pour trouver notre vecteur de répulsion afin d’éviter les collisions. Nous avons utilisé la formule suivante :
+	      \begin{equation}
+		      \vec{s} = \frac{1}{N}\sum_{i = 1}^{N} \frac{\vec{p} - \vec{p}{i}}{|\vec{p} - \vec{p}{i}|}
+	      \end{equation}
+	      où :
+	      \begin{itemize}
+		      \item $\vec{p}$ : position du boid courant,
+		      \item $\vec{p}_{i}$ : position du voisin $i$,
+		      \item $N$ : nombre de voisins dans le rayon de perception,
+		      \item la force de steering finale : $\vec{F}{s} = (\hat{s} \cdot v{max} - \vec{v})$, limitée à $F_{max}$ la force maximale.
+	      \end{itemize}
+
+	\item Règle 2 : Alignement\\
+	      On calcule la vitesse moyenne des voisins afin de suivre leur direction et pouvoir ajuster la vitesse. Nous avons utilisé la formule suivante :
+	      \begin{equation}
+		      \vec{a} = \frac{1}{N}\sum_{i = 1}^{N}\vec{v}_{i}
+	      \end{equation}
+	      où :
+	      \begin{itemize}
+		      \item $\vec{v}_{i}$ : vélocité du voisin $i$,
+		      \item $N$ : nombre de voisins,
+		      \item force de steering : $\vec{F}{a} = (\hat{a} \cdot v{max} - \vec{v})$, limitée à $F_{max}$ la force maximale.
+	      \end{itemize}
+
+	\item Règle 3 : Cohésion\\
+	      On calcule le centre de masse des voisins afin de faire en sorte de diriger l’agent vers ce centre de masse.
+	      \begin{equation}
+		      \vec{c} = \frac{1}{N}\sum_{i = 1}^{N}\vec{p}_{i}
+	      \end{equation}
+	      où :
+	      \begin{itemize}
+		      \item $\vec{c}$ : centre de masse des voisins,
+		      \item $\vec{p}_{i}$ : position du boid voisin $i$,
+		      \item $N$ : nombre de voisins dans le rayon de perception,
+		      \item la force de steering finale : $\vec{F}{c} = (\widehat{\vec{c} - \vec{p}} \cdot v{max} - \vec{v})$, limitée à $F_{max}$ la force maximale.
+	      \end{itemize}
+\end{enumerate}
+
+Paramètres clés :
+
+\begin{itemize}
+	\item perceptionRadius : rayon de détection des voisins,
+	\item maxSpeed : vitesse maximale du boid,
+	\item maxForce : force maximale applicable,
+	\item separationWeight : poids de la règle de séparation,
+	\item alignementWeight : poids de la règle d’alignement,
+	\item cohesionWeight : poids de la règle de cohésion.
+\end{itemize}
+
+Pour la simulation temporelle, nous utilisons une intégration d’Euler explicite afin de mettre à jour la position et la vitesse de chaque boid à chaque pas de temps :
+
+\begin{align}
+	\mathbf{x}_i(t+\Delta t) & = \mathbf{x}_i(t) + \mathbf{v}_i(t)\cdot \Delta t \\
+	\mathbf{v}_i(t+\Delta t) & = \mathbf{v}_i(t) + \mathbf{a}_i(t)\cdot \Delta t
+\end{align}
+
+Du point de vue algorithmique, la version naïve de cette simulation a une complexité en $O(N^2)$, car chaque boid doit comparer sa position avec tous les autres boids. Afin de réduire ce coût, on peut utiliser une grille spatiale ou une autre structure de partition de l’espace, ce qui permet en moyenne d’obtenir une complexité plus proche de $O(N)$ selon la densité de répartition des agents.
+
+Enfin, la parallélisation de ce type de simulation pose plusieurs défis. Il faut trouver un bon compromis entre communication et calcul, gérer la synchronisation entre les différentes unités de calcul, et choisir une topologie de décomposition adaptée. En effet, si la partition de l’espace est mal choisie, les échanges entre sous-domaines peuvent devenir trop fréquents et ralentir fortement la simulation.
+
+\section{Architecture et Implémentation}
+\subsection{Version séquentielle}
+
+\subsection{Version Parallèle}
+
+\section{Analyse Comparative}
+Cette partie compare les performances des trois approches à partir des métriques de temps, speedup et efficacité.
+
+\section{Défis Rencontrés et Résolutions}
+Nous détaillons les principaux problèmes techniques rencontrés, les corrections appliquées et les points restant ouverts.
+
+\section{Benchmarking Complet}
+Nous présentons la méthodologie expérimentale, les résultats statistiques et leur interprétation via les lois de scalabilité.
+
+\section{Discussion}
+Cette section analyse les résultats, explicite les limites du projet et propose des pistes d'amélioration.
+
+\section{Conclusion}
+Nous synthétisons les contributions du projet et répondons aux questions centrales sur l'efficacité des approches parallèles.
+
+\section{Références bibliographiques}
+Cette section liste les sources scientifiques et techniques ayant servi de base au projet.
+\bibliographystyle{IEEEtran}
+
+\begin{thebibliography}{99}
+
+	\bibitem{Reynolds1987}
+	C.~W. Reynolds, ``Flocks, herds and schools: A distributed behavioral model,'' in \emph{Proc. SIGGRAPH}, 1987.
+
+	\bibitem{Reynolds1999}
+	C.~W. Reynolds, ``Steering behaviors for autonomous characters,'' in \emph{Proc. Game Developers Conf.}, 1999.
+
+	\bibitem{Kokkos2014}
+	D.~S. Hollman \emph{et al.}, ``Kokkos: Enabling manycore performance portability through polymorphic memory access patterns,'' \emph{J. Parallel Distrib. Comput.}, vol. 74, no. 12, pp. 3202--3216, 2014.
+
+	\bibitem{MPI1998}
+	W.~Gropp, E.~Lusk, and A.~Skjellum, \emph{Using MPI: Portable Parallel Programming with the Message-Passing Interface}. MIT Press, 1998.
+
+	\bibitem{OpenMP2023}
+	OpenMP Architecture Review Board, ``OpenMP Application Program Interface,'' Version 5.2, 2023. [Online]. Available: https://www.openmp.org/
+
+	\bibitem{SFML2024}
+	L.~Gomila, ``SFML - Simple and Fast Multimedia Library,'' 2024. [Online]. Available: https://www.sfml-dev.org
+
+	\bibitem{GTest2024}
+	Google, ``GoogleTest User's Guide,'' 2024. [Online]. Available: https://google.github.io/googletest/
+
+	\bibitem{Amdahl1967}
+	G.~M. Amdahl, ``Validity of the single processor approach to achieving large scale computing capabilities,'' in \emph{Proc. AFIPS Spring Joint Comput. Conf.}, 1967, pp. 483--485.
+
+	\bibitem{Buckland2004}
+	M.~Buckland, \emph{Programming Game AI by Example}. Course Technology, 2004.
+
+	\bibitem{Shiffman2012}
+	D.~Shiffman, \emph{The Nature of Code: Simulating Natural Systems with Processing}. 2012. [Online]. Available: https://natureofcode.com/
+
+	\bibitem{CMake2024}
+	Kitware, ``CMake Build System,'' 2024. [Online]. Available: https://cmake.org/
+
+\end{thebibliography}
+
+
+
+\begin{IEEEbiographynophoto}{Yohann Front-Reignier}
+	Étudiant en Calcul Haute Performance.
+\end{IEEEbiographynophoto}
+
+\begin{IEEEbiographynophoto}{Iram Madani-Fouatih}
+	Étudiante en Calcul Hate Performance.
+\end{IEEEbiographynophoto}
+
+\end{document}
