@@ -22,48 +22,48 @@
 %\markboth{Projet de Programmation Numérique Master CHPS, Mai 2026}%
 %{Front-Reignier, Madani-Fouatih: Simulation Distribuée d'un Banc de pPoissons}
 
-% sinon 
+% sinon
 \begin{titlepage}
-    \centering
+	\centering
 
-    {\scshape\Large Master 1 CHPS \par}
-    {\scshape\large ISTY -- UVSQ -- Paris Saclay \par}
-    {\scshape\large Année universitaire 2025--2026 \par}
+	{\scshape\Large Master 1 CHPS \par}
+	{\scshape\large ISTY -- UVSQ -- Paris Saclay \par}
+	{\scshape\large Année universitaire 2025--2026 \par}
 
-    \vspace{1.5cm}
+	\vspace{1.5cm}
 
-    \rule{\linewidth}{0.5mm} \\[0.4cm]
-    {\huge \bfseries Modélisation et simulation distribuée\\
-    du mouvement d'un banc de poissons \par}
-    \\[0.4cm]
-    \rule{\linewidth}{0.5mm}
+	\rule{\linewidth}{0.5mm} \\[0.4cm]
+	{\huge \bfseries Modélisation et simulation distribuée\\
+	du mouvement d'un banc de poissons \par}
+	\\[0.4cm]
+	\rule{\linewidth}{0.5mm}
 
-    \vspace{1.5cm}
+	\vspace{1.5cm}
 
-    {\large Projet de Programmation Numérique Master CHPS -- Sujet 7 \par}
+	{\large Projet de Programmation Numérique Master CHPS -- Sujet 7 \par}
 
-    \vspace{2cm}
+	\vspace{2cm}
 
-    \begin{minipage}{0.45\textwidth}
-        \begin{flushleft} \large
-            \emph{Etudiants :} \\
-            Yohann \textsc{Front-Reignier} \\
-            Iram \textsc{Madani-Fouatih}
-        \end{flushleft}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.45\textwidth}
-        \begin{flushright} \large
-            \emph{Encadrants :} \\
-            S. \textsc{Ben-Amor}\\
-            H. \textsc{Bolores} 
-            
-        \end{flushright}
-    \end{minipage}
+	\begin{minipage}{0.45\textwidth}
+		\begin{flushleft} \large
+			\emph{Etudiants :} \\
+			Yohann \textsc{Front-Reignier} \\
+			Iram \textsc{Madani-Fouatih}
+		\end{flushleft}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+		\begin{flushright} \large
+			\emph{Encadrants :} \\
+			S. \textsc{BEN-AMOR}\\
+			H. \textsc{BOLLORE}
 
-    \vfill
+		\end{flushright}
+	\end{minipage}
 
-    {\large Mai 2026 \par}
+	\vfill
+
+	{\large Mai 2026 \par}
 
 \end{titlepage}
 
@@ -72,9 +72,9 @@
 
 \vspace*{\fill}
 \begin{center}
-\begin{minipage}{0.6\textwidth}
-    \tableofcontents
-\end{minipage}
+	\begin{minipage}{0.6\textwidth}
+		\tableofcontents
+	\end{minipage}
 \end{center}
 \vspace*{\fill}
 
@@ -87,8 +87,7 @@
 \thispagestyle{plain}
 
 \begin{abstract}
-	Ce rapport synthétise l'ensemble du travail de conception ainsi que d'implémentation d'une simulation distribuée du mouvement d'un banc de poisson. Nous avons réalisé une implémentation utilisant trois stratégies : une approche séquentielle, une parallélisation distribuée via MPI de la grille spatiale et une parallélisation à mémoire partagée utilisant Kokkos.
-	% A compléter à la fin du rapport
+	Ce rapport présente la conception et l'implémentation d'une simulation distribuée du mouvement d'un banc de poissons, basée sur le modèle des Boids de Reynolds (1987). Trois stratégies sont comparées : une version séquentielle servant de référence, une parallélisation distribuée via MPI avec échange de halos et migration inter-rangs, et un parallélisme à mémoire partagée reposant sur Kokkos. Une grille spatiale est introduite dès la version séquentielle afin de ramener la complexité de voisinage de $O(N^2)$ à un comportement proche de $O(N)$ en moyenne, produisant un gain de $4{,}68\times$ à $N=800$. La version MPI atteint un speedup de $3{,}89\times$ à quatre processus pour $N=5000$ boids, et le sweep global montre que ce gain progresse de $2{,}32\times$ pour 500 boids jusqu'à $8{,}99\times$ pour 5000 boids, confirmant que l'approche distribuée devient d'autant plus avantageuse que la charge de calcul est élevée. L'ensemble des expériences a été conduit sur cluster HPC, et les défis rencontrés — compatibilité binaire, surcoût d'initialisation, contraintes d'allocation — sont analysés et discutés.
 \end{abstract}
 
 \section{Introduction}
@@ -207,19 +206,19 @@ Cette partie compare les performances des approches les plus importantes du proj
 Les mesures locales ont été réalisées avec un rayon de perception fixé à 50 et une taille de cellule de 40. Elles montrent que la grille spatiale devient rapidement plus rentable que la recherche exhaustive.
 
 \begin{table}[h]
-\centering
-\caption{Comparaison entre recherche naïve et grille spatiale}
-\begin{tabular}{|r|r|r|r|}
-\hline
-\textbf{N} & \textbf{Naïf (ms/step)} & \textbf{SpatialGrid (ms/step)} & \textbf{Speedup} \\
-\hline
-100  & 0.194 & 0.130 & 1.50x \\
-200  & 0.702 & 0.335 & 2.10x \\
-400  & 2.843 & 0.835 & 3.40x \\
-800  & 10.326 & 2.209 & 4.68x \\
-\hline
-\end{tabular}
-\label{tab:perf_naif_grid}
+	\centering
+	\caption{Comparaison entre recherche naïve et grille spatiale}
+	\begin{tabular}{|r|r|r|r|}
+		\hline
+		\textbf{N} & \textbf{Naïf (ms/step)} & \textbf{SpatialGrid (ms/step)} & \textbf{Speedup} \\
+		\hline
+		100        & 0.194                   & 0.130                          & 1.50x            \\
+		200        & 0.702                   & 0.335                          & 2.10x            \\
+		400        & 2.843                   & 0.835                          & 3.40x            \\
+		800        & 10.326                  & 2.209                          & 4.68x            \\
+		\hline
+	\end{tabular}
+	\label{tab:perf_naif_grid}
 \end{table}
 
 La méthode naïve valide correctement le modèle, mais elle devient rapidement coûteuse dès que $N$ augmente. SpatialGrid réduit fortement le nombre de comparaisons, et l'écart devient très visible à $N=800$, où la version optimisée est presque cinq fois plus rapide.
@@ -228,18 +227,18 @@ La méthode naïve valide correctement le modèle, mais elle devient rapidement 
 Les mesures de strong scaling ont été exécutées avec $N = 5000$ boids et 30 étapes. Elles mettent en évidence un gain net lorsque le calcul est réparti sur plusieurs processus.
 
 \begin{table}[h]
-\centering
-\caption{Strong scaling de la version MPI ($N=5000$, 30 étapes)}
-\begin{tabular}{|r|r|r|r|}
-\hline
-\textbf{Processus} & \textbf{Séquentiel (ms)} & \textbf{MPI (ms)} & \textbf{Speedup} \\
-\hline
-1 & 1291.104 & 1441.998 & 0.90x \\
-2 & 1291.104 & 688.455  & 1.91x \\
-4 & 1291.104 & 348.516  & 3.89x \\
-\hline
-\end{tabular}
-\label{tab:perf_mpi}
+	\centering
+	\caption{Strong scaling de la version MPI ($N=5000$, 30 étapes)}
+	\begin{tabular}{|r|r|r|r|}
+		\hline
+		\textbf{Processus} & \textbf{Séquentiel (ms)} & \textbf{MPI (ms)} & \textbf{Speedup} \\
+		\hline
+		1                  & 1291.104                 & 1441.998          & 0.90x            \\
+		2                  & 1291.104                 & 688.455           & 1.91x            \\
+		4                  & 1291.104                 & 348.516           & 3.89x            \\
+		\hline
+	\end{tabular}
+	\label{tab:perf_mpi}
 \end{table}
 
 Le résultat le plus important est obtenu à 4 processus : le temps MPI tombe à 348.516 ms, soit 3.89x plus rapide que la référence séquentielle mesurée dans le même scénario. Le cas à 1 processus reste légèrement plus lent que le séquentiel pur, ce qui correspond au coût d'infrastructure MPI.
@@ -268,6 +267,62 @@ Les mesures de weak scaling sur une seule étape restaient dominées par le coû
 Les mesures ont été collectées à partir de trois fichiers principaux : \texttt{bench.csv} pour la comparaison naïf / grille spatiale, \texttt{summary.csv} pour le strong scaling MPI, et \texttt{scalability\_results.csv} pour la montée en charge sur plusieurs tailles de problème.
 
 Les tendances observées sont cohérentes sur l'ensemble des campagnes. La grille spatiale réduit nettement le coût de voisinage, tandis que la version distribuée devient de plus en plus rentable lorsque le nombre de boids augmente. Sur le sweep global, le temps distribué passe de 39.310 ms pour 500 boids à 375.477 ms pour 5000 boids, avec un temps par step qui reste bien inférieur à la version séquentielle correspondante.
+
+\subsection{Visualisation des runs exploitables}
+Les figures suivantes ont été générées à partir des fichiers de sortie exploitables collectés sur le cluster (tests smoke et run multi-nœud final).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.92\linewidth]{../results/plots/exploitable_ms_mean.png}
+	\caption{Temps moyen par step (séquentiel vs distribué) sur les runs exploitables}
+	\label{fig:exploitable_ms_mean}
+\end{figure}
+
+La Figure~\ref{fig:exploitable_ms_mean} montre le comportement attendu : sur petite taille ($N=1000$), le coût d'infrastructure MPI domine encore ; sur une taille plus grande ($N=12000$), la version distribuée devient plus rapide que la version séquentielle.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.90\linewidth]{../results/plots/exploitable_speedup.png}
+	\caption{Speedup MPI (\textit{Sequential / Distributed})}
+	\label{fig:exploitable_speedup}
+\end{figure}
+
+La Figure~\ref{fig:exploitable_speedup} confirme ce point : le speedup passe d'environ $0.85\times$ à $N=1000$ (pas de gain) à environ $1.44\times$ à $N=12000$ (gain net). Cette transition valide l'intérêt de la distribution lorsque la charge de calcul est suffisante pour amortir les surcoûts de communication et de lancement.
+
+\section{Planification des campagnes sur cluster}
+Conformément aux contraintes de la plateforme Zen, chaque campagne est planifiée en heures-cœurs avant soumission à l'encadrant. Le budget total du groupe est de 10000 heures-cœurs, et un nœud complet (2 sockets $\times$ 64 cœurs) consomme 128 heures-cœurs par heure de walltime.
+
+\subsection{Méthode d'estimation du coût}
+Le coût prévisionnel d'un run est calculé par :
+\begin{equation}
+	H_{\text{coeurs}} = T_h \times N_{\text{nodes}} \times N_{\text{tasks/node}} \times N_{\text{cpus/task}}
+\end{equation}
+où $T_h$ est la durée en heures.
+
+\subsection{Planning prévisionnel validable}
+La stratégie retenue est progressive : calibration mono-nœud (1 cœur), puis runs de scaling mono-nœud (1/2/4 processus), puis un run multi-nœud final.
+
+\begin{table}[h]
+	\centering
+	\caption{Planning prévisionnel et coût estimé}
+	\begin{tabular}{|l|c|c|c|}
+		\hline
+		\textbf{Run}   & \textbf{Configuration}       & \textbf{Durée}    & \textbf{Coût total}    \\
+		\hline
+		RUN 1          & 1 nœud, 1 task, 1 CPU        & 3 $\times$ 5 min  & 0.25 h-cœurs           \\
+		RUN 2          & 1 nœud, 1 task, 1 CPU        & 3 $\times$ 20 min & 1.00 h-cœurs           \\
+		RUN 3          & 1 nœud, 4 tasks, 1 CPU       & 3 $\times$ 25 min & 5.00 h-cœurs           \\
+		RUN 4          & 1 nœud, 4 tasks, 1 CPU       & 4 $\times$ 10 min & 2.67 h-cœurs           \\
+		RUN 5          & 2 nœuds, 2 tasks/nœud, 1 CPU & 1 $\times$ 30 min & 2.00 h-cœurs           \\
+		\hline
+		\textbf{Total} & --                           & --                & \textbf{10.92 h-cœurs} \\
+		\hline
+	\end{tabular}
+	\label{tab:planning_cluster}
+\end{table}
+
+\subsection{Suivi de consommation}
+Le suivi est effectué avec \texttt{sreport user TopUsage} (fenêtre temporelle explicite), afin de comparer la consommation réelle au plan prévisionnel et d'ajuster les campagnes avant le run multi-nœud final.
 
 \section{Discussion}
 Les résultats montrent que les gains de performance ne dépendent pas seulement du nombre de processus, mais aussi de la taille du problème, du nombre d'étapes simulées et du coût d'initialisation. En pratique, la structure spatiale apporte déjà un premier gain algorithmique important, puis MPI permet de franchir un second palier lorsque la charge devient suffisante pour amortir les communications.
