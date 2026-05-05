@@ -142,19 +142,83 @@ Une itération complète suit la séquence suivante : échange de halos, reconst
 
 
 \section{Analyse Comparative}
-Cette partie compare les performances des trois approches à partir des métriques de temps, speedup et efficacité.
+Cette partie compare les performances des approches les plus importantes du projet à partir des mesures réellement enregistrées dans les fichiers CSV du dossier \texttt{experiments/}.
+
+\subsection{Recherche naïve vs SpatialGrid}
+Les mesures locales ont été réalisées avec un rayon de perception fixé à 50 et une taille de cellule de 40. Elles montrent que la grille spatiale devient rapidement plus rentable que la recherche exhaustive.
+
+\begin{table}[h]
+\centering
+\caption{Comparaison entre recherche naïve et grille spatiale}
+\begin{tabular}{|r|r|r|r|}
+\hline
+\textbf{N} & \textbf{Naïf (ms/step)} & \textbf{SpatialGrid (ms/step)} & \textbf{Speedup} \\
+\hline
+100  & 0.194 & 0.130 & 1.50x \\
+200  & 0.702 & 0.335 & 2.10x \\
+400  & 2.843 & 0.835 & 3.40x \\
+800  & 10.326 & 2.209 & 4.68x \\
+\hline
+\end{tabular}
+\label{tab:perf_naif_grid}
+\end{table}
+
+La méthode naïve valide correctement le modèle, mais elle devient rapidement coûteuse dès que $N$ augmente. SpatialGrid réduit fortement le nombre de comparaisons, et l'écart devient très visible à $N=800$, où la version optimisée est presque cinq fois plus rapide.
+
+\subsection{MPI et montée en charge}
+Les mesures de strong scaling ont été exécutées avec $N = 5000$ boids et 30 étapes. Elles mettent en évidence un gain net lorsque le calcul est réparti sur plusieurs processus.
+
+\begin{table}[h]
+\centering
+\caption{Strong scaling de la version MPI ($N=5000$, 30 étapes)}
+\begin{tabular}{|r|r|r|r|}
+\hline
+\textbf{Processus} & \textbf{Séquentiel (ms)} & \textbf{MPI (ms)} & \textbf{Speedup} \\
+\hline
+1 & 1291.104 & 1441.998 & 0.90x \\
+2 & 1317.285 & 688.455  & 1.91x \\
+4 & 1456.537 & 348.516  & 4.18x \\
+\hline
+\end{tabular}
+\label{tab:perf_mpi}
+\end{table}
+
+Le résultat le plus important est obtenu à 4 processus : le temps MPI tombe à 348.516 ms, soit 4.18x plus rapide que la référence séquentielle mesurée dans le même scénario. Le cas à 1 processus reste légèrement plus lent que le séquentiel pur, ce qui correspond au coût d'infrastructure MPI.
+
+Les résultats agrégés du fichier \texttt{scalability\_results.csv} confirment cette tendance sur plusieurs tailles de problème : le passage de 500 à 5000 boids fait monter le speedup de 2.32x à 8.99x, ce qui montre que la version distribuée devient de plus en plus intéressante lorsque la charge augmente.
 
 \section{Défis Rencontrés et Résolutions}
-Nous détaillons les principaux problèmes techniques rencontrés, les corrections appliquées et les points restant ouverts.
+Nous avons rencontré plusieurs problèmes concrets pendant la mise au point et les campagnes de mesures.
+
+\subsection{Lancement MPI sur le cluster}
+Le premier blocage venait de l'utilisation de \textit{srun}, qui provoquait des erreurs de type \textit{timeout waiting for task launch}. La solution retenue a été d'utiliser \textit{mpirun} directement dans les scripts SLURM, ce qui a stabilisé le lancement des exécutions distribuées.
+
+\subsection{Compatibilité binaire / environnement}
+Un incident de compatibilité \textit{GLIBCXX} entre le binaire compilé localement et l'environnement du cluster a également été rencontré. Une recompilation complète avec les modules GCC et OpenMPI du cluster a résolu le problème et a permis d'obtenir des mesures reproductibles.
+
+\subsection{Coût artificiellement doublé}
+Le benchmark MPI lançait au départ une phase séquentielle puis une phase distribuée même lorsque plusieurs processus étaient utilisés. Cette logique doublait artificiellement le coût des runs parallèles. Elle a été corrigée en ne lançant la partie séquentielle que pour le cas $P = 1$.
+
+\subsection{Contraintes d'allocation}
+Certains tests à plusieurs processus ne disposaient pas d'assez de slots MPI lorsque SLURM ne réservait qu'une petite allocation. Pour les essais à deux processus, \textit{--oversubscribe} a permis de valider le pipeline expérimental, mais les tests à quatre processus sont restés plus sensibles aux contraintes d'exécution et aux délais d'initialisation.
+
+\subsection{Benchmarks trop courts}
+Les mesures de weak scaling sur une seule étape restaient dominées par le coût d'initialisation du runtime Kokkos / MPI. Ce point explique la chute d'efficacité observée sur les tests très courts et justifie l'utilisation future de runs plus longs (10 à 100 étapes) pour lisser ce surcoût.
 
 \section{Benchmarking Complet}
-Nous présentons la méthodologie expérimentale, les résultats statistiques et leur interprétation via les lois de scalabilité.
+Les mesures ont été collectées à partir de trois fichiers principaux : \texttt{bench.csv} pour la comparaison naïf / grille spatiale, \texttt{summary.csv} pour le strong scaling MPI, et \texttt{scalability\_results.csv} pour la montée en charge sur plusieurs tailles de problème.
+
+Les tendances observées sont cohérentes sur l'ensemble des campagnes. La grille spatiale réduit nettement le coût de voisinage, tandis que la version distribuée devient de plus en plus rentable lorsque le nombre de boids augmente. Sur le sweep global, le temps distribué passe de 39.310 ms pour 500 boids à 375.477 ms pour 5000 boids, avec un temps par step qui reste bien inférieur à la version séquentielle correspondante.
 
 \section{Discussion}
-Cette section analyse les résultats, explicite les limites du projet et propose des pistes d'amélioration.
+Les résultats montrent que les gains de performance ne dépendent pas seulement du nombre de processus, mais aussi de la taille du problème, du nombre d'étapes simulées et du coût d'initialisation. En pratique, la structure spatiale apporte déjà un premier gain algorithmique important, puis MPI permet de franchir un second palier lorsque la charge devient suffisante pour amortir les communications.
+
+La principale limite des mesures actuelles reste leur fragilité sur les très petits runs. Les benchmarks courts capturent surtout le coût de lancement et d'initialisation, ce qui peut masquer le gain réel de la parallélisation. Pour une analyse finale plus robuste, il faudra répéter chaque expérience plusieurs fois et augmenter la durée des runs les plus courts.
 
 \section{Conclusion}
-Nous synthétisons les contributions du projet et répondons aux questions centrales sur l'efficacité des approches parallèles.
+Ce travail montre que la simulation reste correcte fonctionnellement et que les optimisations apportent des gains mesurables. La recherche naïve sert de base de validation, SpatialGrid améliore déjà fortement les temps de calcul, et la version MPI devient la plus intéressante dès que la taille du problème augmente.
+
+Les résultats obtenus constituent donc une base solide pour la suite du projet. Les prochaines étapes naturelles sont d'allonger les campagnes de mesures, de consolider les tests multi-processus et d'étudier des partitionnements plus fins pour réduire encore les échanges inter-rangs.
 
 \section{Références bibliographiques}
 Cette section liste les sources scientifiques et techniques ayant servi de base au projet.
