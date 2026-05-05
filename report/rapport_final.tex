@@ -102,7 +102,7 @@ En respectant ces trois règles, le boid calcule sa direction et sa vitesse. Cha
 
 Une grande partie des travaux actuels consiste donc à essayer d'améliorer cette simulation afin de pouvoir gérer un plus grand nombre de boids sans trop augmenter le temps de calcul. En effet, comme chaque boid doit prendre en compte ses voisins pour déterminer son comportement, le calcul peut vite devenir très coûteux lorsque la taille du banc augmente.
 
-C'est pourquoi plusieurs approches ont été proposées pour accélérer ce genre de simulation. Certaines utilisent le calcul parallèle sur GPU, tandis que d'autres reposent sur une répartition du calcul sur plusieurs cœurs ou sur plusieurs machines. L'idée est alors de diviser l'espace de simulation en plusieurs parties afin que chaque unité de calcul puisse traiter une portion du banc de poissons.
+C'est pourquoi plusieurs approches ont été proposées pour accélérer ce genre de simulation. Certaines utilisent le calcul parallèle sur GPU, tandis que d'autres reposent sur une répartition du calcul sur plusieurs coeurs ou sur plusieurs machines. L'idée est alors de diviser l'espace de simulation en plusieurs parties afin que chaque unité de calcul puisse traiter une portion du banc de poissons.
 
 Cependant, cette répartition du calcul pose plusieurs difficultés. Il faut notamment gérer les interactions entre boids situés dans des zones différentes, ainsi que les échanges d'informations lorsque les individus se déplacent d'un sous-domaine à un autre. Il faut aussi conserver un comportement réaliste, sans trop dégrader la qualité de la simulation.
 
@@ -269,7 +269,7 @@ Les mesures ont été collectées à partir de trois fichiers principaux : \text
 Les tendances observées sont cohérentes sur l'ensemble des campagnes. La grille spatiale réduit nettement le coût de voisinage, tandis que la version distribuée devient de plus en plus rentable lorsque le nombre de boids augmente. Sur le sweep global, le temps distribué passe de 39.310 ms pour 500 boids à 375.477 ms pour 5000 boids, avec un temps par step qui reste bien inférieur à la version séquentielle correspondante.
 
 \subsection{Visualisation des runs exploitables}
-Les figures suivantes ont été générées à partir des fichiers de sortie exploitables collectés sur le cluster (tests smoke et run multi-nœud final).
+Les figures suivantes ont été générées à partir des fichiers de sortie exploitables collectés sur le cluster (tests smoke et run multi-noeud final).
 
 \begin{figure}[h]
 	\centering
@@ -290,7 +290,7 @@ La Figure~\ref{fig:exploitable_ms_mean} montre le comportement attendu : sur pet
 La Figure~\ref{fig:exploitable_speedup} confirme ce point : le speedup passe d'environ $0.85\times$ à $N=1000$ (pas de gain) à environ $1.44\times$ à $N=12000$ (gain net). Cette transition valide l'intérêt de la distribution lorsque la charge de calcul est suffisante pour amortir les surcoûts de communication et de lancement.
 
 \section{Planification des campagnes sur cluster}
-Conformément aux contraintes de la plateforme Zen, chaque campagne est planifiée en heures-cœurs avant soumission à l'encadrant. Le budget total du groupe est de 10000 heures-cœurs, et un nœud complet (2 sockets $\times$ 64 cœurs) consomme 128 heures-cœurs par heure de walltime.
+Conformément aux contraintes de la plateforme Zen, chaque campagne est planifiée en heures-coeurs avant soumission à l'encadrant. Le budget total du groupe est de 10000 heures-coeurs, et un noeud complet (2 sockets $\times$ 64 coeurs) consomme 128 heures-coeurs par heure de walltime.
 
 \subsection{Méthode d'estimation du coût}
 Le coût prévisionnel d'un run est calculé par :
@@ -300,29 +300,29 @@ Le coût prévisionnel d'un run est calculé par :
 où $T_h$ est la durée en heures.
 
 \subsection{Planning prévisionnel validable}
-La stratégie retenue est progressive : calibration mono-nœud (1 cœur), puis runs de scaling mono-nœud (1/2/4 processus), puis un run multi-nœud final.
+La stratégie retenue est progressive : calibration mono-noeud (1 coeur), puis runs de scaling mono-noeud (1/2/4 processus), puis un run multi-noeud final.
 
 \begin{table}[h]
 	\centering
 	\caption{Planning prévisionnel et coût estimé}
 	\begin{tabular}{|l|c|c|c|}
 		\hline
-		\textbf{Run}   & \textbf{Configuration}       & \textbf{Durée}    & \textbf{Coût total}    \\
+		\textbf{Run}   & \textbf{Configuration}         & \textbf{Durée}    & \textbf{Coût total}     \\
 		\hline
-		RUN 1          & 1 nœud, 1 task, 1 CPU        & 3 $\times$ 5 min  & 0.25 h-cœurs           \\
-		RUN 2          & 1 nœud, 1 task, 1 CPU        & 3 $\times$ 20 min & 1.00 h-cœurs           \\
-		RUN 3          & 1 nœud, 4 tasks, 1 CPU       & 3 $\times$ 25 min & 5.00 h-cœurs           \\
-		RUN 4          & 1 nœud, 4 tasks, 1 CPU       & 4 $\times$ 10 min & 2.67 h-cœurs           \\
-		RUN 5          & 2 nœuds, 2 tasks/nœud, 1 CPU & 1 $\times$ 30 min & 2.00 h-cœurs           \\
+		RUN 1          & 1 noeud, 1 task, 1 CPU         & 3 $\times$ 5 min  & 0.25 h-coeurs           \\
+		RUN 2          & 1 noeud, 1 task, 1 CPU         & 3 $\times$ 20 min & 1.00 h-coeurs           \\
+		RUN 3          & 1 noeud, 4 tasks, 1 CPU        & 3 $\times$ 25 min & 5.00 h-coeurs           \\
+		RUN 4          & 1 noeud, 4 tasks, 1 CPU        & 4 $\times$ 10 min & 2.67 h-coeurs           \\
+		RUN 5          & 2 noeuds, 2 tasks/noeud, 1 CPU & 1 $\times$ 30 min & 2.00 h-coeurs           \\
 		\hline
-		\textbf{Total} & --                           & --                & \textbf{10.92 h-cœurs} \\
+		\textbf{Total} & --                             & --                & \textbf{10.92 h-coeurs} \\
 		\hline
 	\end{tabular}
 	\label{tab:planning_cluster}
 \end{table}
 
 \subsection{Suivi de consommation}
-Le suivi est effectué avec \texttt{sreport user TopUsage} (fenêtre temporelle explicite), afin de comparer la consommation réelle au plan prévisionnel et d'ajuster les campagnes avant le run multi-nœud final.
+Le suivi est effectué avec \texttt{sreport user TopUsage} (fenêtre temporelle explicite), afin de comparer la consommation réelle au plan prévisionnel et d'ajuster les campagnes avant le run multi-noeud final.
 
 \section{Discussion}
 Les résultats montrent que les gains de performance ne dépendent pas seulement du nombre de processus, mais aussi de la taille du problème, du nombre d'étapes simulées et du coût d'initialisation. En pratique, la structure spatiale apporte déjà un premier gain algorithmique important, puis MPI permet de franchir un second palier lorsque la charge devient suffisante pour amortir les communications.
