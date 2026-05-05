@@ -176,14 +176,14 @@ Les mesures de strong scaling ont été exécutées avec $N = 5000$ boids et 30 
 \textbf{Processus} & \textbf{Séquentiel (ms)} & \textbf{MPI (ms)} & \textbf{Speedup} \\
 \hline
 1 & 1291.104 & 1441.998 & 0.90x \\
-2 & 1317.285 & 688.455  & 1.91x \\
-4 & 1456.537 & 348.516  & 4.18x \\
+2 & 1291.104 & 688.455  & 1.91x \\
+4 & 1291.104 & 348.516  & 3.89x \\
 \hline
 \end{tabular}
 \label{tab:perf_mpi}
 \end{table}
 
-Le résultat le plus important est obtenu à 4 processus : le temps MPI tombe à 348.516 ms, soit 4.18x plus rapide que la référence séquentielle mesurée dans le même scénario. Le cas à 1 processus reste légèrement plus lent que le séquentiel pur, ce qui correspond au coût d'infrastructure MPI.
+Le résultat le plus important est obtenu à 4 processus : le temps MPI tombe à 348.516 ms, soit 3.89x plus rapide que la référence séquentielle mesurée dans le même scénario. Le cas à 1 processus reste légèrement plus lent que le séquentiel pur, ce qui correspond au coût d'infrastructure MPI.
 
 Les résultats agrégés du fichier \texttt{scalability\_results.csv} confirment cette tendance sur plusieurs tailles de problème : le passage de 500 à 5000 boids fait monter le speedup de 2.32x à 8.99x, ce qui montre que la version distribuée devient de plus en plus intéressante lorsque la charge augmente.
 
