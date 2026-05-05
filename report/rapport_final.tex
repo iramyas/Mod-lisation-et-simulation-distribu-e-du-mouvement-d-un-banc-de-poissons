@@ -15,12 +15,71 @@
 % FRONTMATTER: Title, Authors, Abstract
 % ############################################################################
 
+%si tu voulais l'ancienne version sans pg de garde
+%\title{Modélisation et simulation distribuée du mouvement d'un banc de poissons}
+%\author{Yohann Front-Reignier, Iram Madani-Fouatih}
 
-\title{Modélisation et simulation distribuée du mouvement d'un banc de poissons}
-\author{Yohann Front-Reignier, Iram Madani-Fouatih}
+%\markboth{Projet de Programmation Numérique Master CHPS, Mai 2026}%
+%{Front-Reignier, Madani-Fouatih: Simulation Distribuée d'un Banc de pPoissons}
 
-\markboth{Projet de Programmation Numérique Master CHPS, Mai 2026}%
-{Front-Reignier, Madani-Fouatih: Simulation Distribuée d'un Banc de pPoissons}
+% sinon 
+\begin{titlepage}
+    \centering
+
+    {\scshape\Large Master 1 CHPS \par}
+    {\scshape\large ISTY -- UVSQ -- Paris Saclay \par}
+    {\scshape\large Année universitaire 2025--2026 \par}
+
+    \vspace{1.5cm}
+
+    \rule{\linewidth}{0.5mm} \\[0.4cm]
+    {\huge \bfseries Modélisation et simulation distribuée\\
+    du mouvement d'un banc de poissons \par}
+    \\[0.4cm]
+    \rule{\linewidth}{0.5mm}
+
+    \vspace{1.5cm}
+
+    {\large Projet de Programmation Numérique Master CHPS -- Sujet 7 \par}
+
+    \vspace{2cm}
+
+    \begin{minipage}{0.45\textwidth}
+        \begin{flushleft} \large
+            \emph{Etudiants :} \\
+            Yohann \textsc{Front-Reignier} \\
+            Iram \textsc{Madani-Fouatih}
+        \end{flushleft}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \begin{flushright} \large
+            \emph{Encadrants :} \\
+            S. \textsc{Ben-Amor}\\
+            H. \textsc{Bolores} 
+            
+        \end{flushright}
+    \end{minipage}
+
+    \vfill
+
+    {\large Mai 2026 \par}
+
+\end{titlepage}
+
+\clearpage
+\thispagestyle{empty}
+
+\vspace*{\fill}
+\begin{center}
+\begin{minipage}{0.6\textwidth}
+    \tableofcontents
+\end{minipage}
+\end{center}
+\vspace*{\fill}
+
+\clearpage
+
 
 \maketitle
 \pagestyle{plain}
@@ -216,9 +275,69 @@ Les résultats montrent que les gains de performance ne dépendent pas seulement
 La principale limite des mesures actuelles reste leur fragilité sur les très petits runs. Les benchmarks courts capturent surtout le coût de lancement et d'initialisation, ce qui peut masquer le gain réel de la parallélisation. Pour une analyse finale plus robuste, il faudra répéter chaque expérience plusieurs fois et augmenter la durée des runs les plus courts.
 
 \section{Conclusion}
-Ce travail montre que la simulation reste correcte fonctionnellement et que les optimisations apportent des gains mesurables. La recherche naïve sert de base de validation, SpatialGrid améliore déjà fortement les temps de calcul, et la version MPI devient la plus intéressante dès que la taille du problème augmente.
 
-Les résultats obtenus constituent donc une base solide pour la suite du projet. Les prochaines étapes naturelles sont d'allonger les campagnes de mesures, de consolider les tests multi-processus et d'étudier des partitionnements plus fins pour réduire encore les échanges inter-rangs.
+Les résultats obtenus confirment la pertinence des approches retenues.
+La version MPI atteint un speedup de $3{,}89\times$ à quatre processus
+pour $N = 5000$ boids, avec un surcoût mono-processus limité par rapport
+au séquentiel pur — coût imputable à l'infrastructure MPI et non à une
+dégradation du modèle. Sur le sweep global, le speedup progresse de
+$2{,}32\times$ pour 500 boids jusqu'à $8{,}99\times$ pour 5000 boids,
+confirmant que l'approche distribuée devient de plus en plus avantageuse
+à mesure que la charge augmente. La grille spatiale, déjà introduite au
+premier semestre, reste le premier levier d'optimisation : elle réduit
+la complexité de voisinage de $O(N^2)$ à un comportement proche de
+$O(N)$ en moyenne, et produit à elle seule un gain de $4{,}68\times$
+à $N = 800$.
+
+
+\subsection*{Bilan global}
+
+Pris ensemble, les deux semestres forment un projet cohérent et progressif.
+Le premier semestre a posé les fondations : implémentation fidèle des trois
+règles de Reynolds, architecture modulaire séparant \texttt{Boid},
+\texttt{Flock} et \texttt{SpatialGrid}, suite de tests unitaires
+GoogleTest, et interface SFML permettant la validation visuelle des
+comportements émergents. Cette base propre a directement rendu possible
+la parallélisation du second semestre, aussi bien sur le plan architectural
+— la décomposition de domaine s'appuie naturellement sur la grille spatiale
+existante — que sur le plan méthodologique, les benchmarks locaux servant
+de référence aux mesures distribuées.
+
+Au terme de ces deux semestres, le projet livre trois implémentations
+opérationnelles et comparées : séquentielle, MPI avec échange de halos
+et migration inter-rangs, et Kokkos pour le parallélisme à mémoire
+partagée. La cohérence physique du modèle est préservée dans chacune
+d'elles : le wrapping toroïdal et la migration des boids aux frontières
+garantissent la continuité du comportement collectif quelle que soit la
+répartition des agents entre processus.
+
+\subsection*{Réflexion sur le travail et son apport pédagogique}
+
+Ce projet illustre bien pourquoi la simulation de systèmes naturels
+constitue un terrain particulièrement riche pour aborder le calcul haute
+performance. La dynamique d'un banc de poissons est, de prime abord, un
+sujet accessible et intuitif ; c'est précisément ce qui en fait un bon
+vecteur pédagogique. Derrière la simplicité apparente des trois règles
+de Reynolds se cachent des problèmes algorithmiques et architecturaux
+concrets : gestion des dépendances de données entre agents, compromis
+entre granularité de la décomposition et fréquence des communications,
+sensibilité des mesures de performance aux conditions d'exécution.
+
+Ce second semestre a été dense à gérer, entre les cours, les autres
+projets et les contraintes techniques liées à l'environnement distribué.
+Nous n'avons pas pleinement exploité les ressources du cluster autant
+que nous l'aurions souhaité, et nous en assumons la responsabilité. Ces difficultés font partie intégrante de la réalité du HPC en conditions
+réelles, et les avoir traversées reste formateur, même si elles ont
+parfois limité l'ampleur des campagnes de mesures que nous aurions
+souhaité conduire.
+
+En définitive, ce sujet a bien rempli son rôle pédagogique. Il a permis
+de relier des concepts théoriques — complexité algorithmique, loi
+d'Amdahl, scalabilité faible et forte — à une réalité pratique souvent
+plus complexe que les modèles ne le laissent supposer. L'intérêt du
+sujet n'a jamais fait défaut ; c'est peut-être ce qui a rendu d'autant
+plus frustrant de ne pas avoir pu le mener aussi loin qu'envisagé.
+\newpage
 
 \section{Références bibliographiques}
 Cette section liste les sources scientifiques et techniques ayant servi de base au projet.
