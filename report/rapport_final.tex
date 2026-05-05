@@ -122,7 +122,24 @@ Enfin, la parallélisation de ce type de simulation pose plusieurs défis. Il fa
 \section{Architecture et Implémentation}
 \subsection{Version séquentielle}
 
+La version séquentielle constitue notre baseline de référence : toute la simulation est exécutée dans un seul processus, sans communication réseau. Cette version permet de valider le modèle de Reynolds et de mesurer un temps de référence avant parallélisation distribuée.
+
+L'architecture repose sur trois classes principales : \texttt{Vector2D} pour les opérations géométriques, \texttt{Boid} pour le comportement individuel, et \texttt{Flock} pour la gestion collective. La classe \texttt{Flock} maintient la liste des boids ainsi qu'une grille spatiale (\texttt{SpatialGrid}) utilisée pour accélérer la recherche de voisins.
+
+À chaque pas de temps, l'algorithme suit trois étapes : (1) reconstruction de la grille spatiale, (2) calcul des forces de séparation, alignement et cohésion, puis (3) intégration des positions/vitesses avec un schéma d'Euler explicite. Le wrapping toroïdal est ensuite appliqué aux frontières pour conserver les boids dans le domaine de simulation.
+
+Cette organisation permet de réduire fortement le coût du voisinage : au lieu d'une recherche naïve en $O(N^2)$, la grille limite les comparaisons aux cellules proches, ce qui donne en pratique un comportement proche de $O(N \cdot k)$, où $k$ est le nombre moyen de voisins pertinents.
+
 \subsection{Version Parallèle}
+
+La version parallèle combine un parallélisme distribué (MPI) entre processus et un parallélisme local (Kokkos/OpenMP) à l'intérieur de chaque processus. L'objectif est de conserver la cohérence physique du modèle tout en améliorant les performances quand le nombre de boids augmente.
+
+L'espace 2D est découpé en sous-domaines, chacun géré par un rang MPI. Chaque rang ne met à jour que ses boids locaux, mais doit tenir compte des boids proches des frontières. Pour cela, un échange de halos est effectué entre rangs voisins via \texttt{MPI\_Sendrecv}. Les boids qui traversent une frontière de sous-domaine sont ensuite transférés au bon rang par migration (\texttt{MPI\_Alltoallv}).
+
+Sur chaque rang, le calcul des forces et l'intégration des positions sont parallélisés avec \texttt{Kokkos::parallel\_for}. Ce choix permet d'exploiter la mémoire partagée (backend OpenMP) sans modifier la logique métier des boids.
+
+Une itération complète suit la séquence suivante : échange de halos, reconstruction de la grille locale (boids locaux + halo), calcul des forces, intégration des positions, migration inter-domaines, puis synchronisation du nombre global de boids (\texttt{MPI\_Allreduce}). Cette chaîne garantit que chaque rang dispose des informations nécessaires pour calculer des interactions locales cohérentes.
+
 
 \section{Analyse Comparative}
 Cette partie compare les performances des trois approches à partir des métriques de temps, speedup et efficacité.
