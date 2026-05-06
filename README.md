@@ -46,16 +46,50 @@ sudo apt install \
 
 ### Compilation
 ```bash
-./scripts/build.sh              # Build en Release
+./scripts/build.sh              # Build en Release (headless, sans SFML)
 ./scripts/build.sh Debug        # Build en Debug
 ./scripts/build.sh Clean        # Clean et rebuild
+USE_SFML_CMAKE=ON ./scripts/build.sh Release  # Build avec visualisation SFML
 ```
 
 ## Utilisation
 
 ### Lancer la simulation
 ```bash
-./bin/main_simulation.bin
+./scripts/run_visual.sh       # 4 processus MPI (par défaut)
+./scripts/run_visual.sh 8     # 8 processus MPI
+```
+
+### Lancer via SLURM
+```bash
+sbatch ./scripts/run_simulation.slurm
+squeue -u "$USER"
+scancel <job_id>
+```
+
+Session interactive (si besoin) :
+```bash
+srun --nodes=1 --ntasks-per-node=1 --time=01:00:00 --pty bash -i
+```
+
+### Test scaling 1/2/4 processus (strong + weak)
+```bash
+sbatch ./scripts/run_scaling_1_2_4.slurm
+```
+
+Sorties :
+- `results/scaling_1_2_4_<jobid>_<timestamp>/scaling_samples.csv`
+- `results/scaling_1_2_4_<jobid>_<timestamp>/scaling_summary.csv`
+
+### Mesurer la latence de perf sur 10 minutes
+```bash
+./scripts/measure_latency_10min.sh        # 4 processus MPI (defaut), 600s
+./scripts/measure_latency_10min.sh 8      # 8 processus MPI
+```
+
+Variables utiles (optionnelles) :
+```bash
+DURATION_SEC=600 N_BOIDS=5000 STEPS_PER_SAMPLE=200 ./scripts/measure_latency_10min.sh 4
 ```
 
 ### Interface interactive (nouveau)

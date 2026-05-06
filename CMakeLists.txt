@@ -8,7 +8,17 @@ project(Modelisation-et-Simulation-distribuee-du-mouvement-d'un-banc-de-poissons
 cmake_policy(SET CMP0048 NEW)
 set(CMAKE_POLICY_DEFAULT_CMP0048 NEW)
 
-find_package(GTest REQUIRED)
+include(CTest)
+set(ENABLE_UNIT_TESTS OFF)
+if(BUILD_TESTING)
+    find_package(GTest QUIET)
+    if(GTest_FOUND)
+        include(GoogleTest)
+        set(ENABLE_UNIT_TESTS ON)
+    else()
+        message(WARNING "GTest non trouvé: les tests unitaires ne seront pas construits.")
+    endif()
+endif()
 find_package(MPI REQUIRED)
 include(FetchContent)
 message(STATUS "MPI found: ${MPI_CXX_LIBRARY}")
@@ -45,21 +55,34 @@ set(COMMON_COMPILE_FLAGS
         $<$<CONFIG:Release>:-Wall;-Wextra;-O3;-DNDEBUG;-march=native;-flto>
 )
 
-add_executable(main_simulation src/main.cpp src/Boid.cpp src/Flock.cpp src/GUI.cpp src/MPIManager.cpp src/DistributedFlock.cpp)
-add_executable(test_vector tests/test_vector.cpp tests/kokkos_init.cpp)
-add_executable(test_boid tests/test_boid.cpp src/Boid.cpp tests/kokkos_init.cpp)
-add_executable(test_flock tests/test_flock.cpp src/Flock.cpp src/Boid.cpp tests/kokkos_init.cpp)
-add_executable(test_ui tests/test_ui.cpp src/Flock.cpp src/Boid.cpp tests/kokkos_init.cpp)
-
-set(TEST_MPI_SRC "")
-if(EXISTS "${PROJECT_SOURCE_DIR}/tests/test.mpi.cpp")
-    set(TEST_MPI_SRC "${PROJECT_SOURCE_DIR}/tests/test.mpi.cpp")
-elseif(EXISTS "${PROJECT_SOURCE_DIR}/tests/test_mpi.cpp")
-    set(TEST_MPI_SRC "${PROJECT_SOURCE_DIR}/tests/test_mpi.cpp")
+set(MAIN_SIMULATION_SOURCES
+    src/main.cpp
+    src/Boid.cpp
+    src/Flock.cpp
+    src/MPIManager.cpp
+    src/DistributedFlock.cpp
+)
+if(USE_SFML)
+    list(APPEND MAIN_SIMULATION_SOURCES src/GUI.cpp)
 endif()
+add_executable(main_simulation ${MAIN_SIMULATION_SOURCES})
 
-if(TEST_MPI_SRC)
-    add_executable(test_mpi ${TEST_MPI_SRC} src/Boid.cpp src/Flock.cpp src/MPIManager.cpp src/DistributedFlock.cpp tests/kokkos_init.cpp)
+if(ENABLE_UNIT_TESTS)
+    add_executable(test_vector tests/test_vector.cpp tests/kokkos_init.cpp)
+    add_executable(test_boid tests/test_boid.cpp src/Boid.cpp tests/kokkos_init.cpp)
+    add_executable(test_flock tests/test_flock.cpp src/Flock.cpp src/Boid.cpp tests/kokkos_init.cpp)
+    add_executable(test_ui tests/test_ui.cpp src/Flock.cpp src/Boid.cpp tests/kokkos_init.cpp)
+
+    set(TEST_MPI_SRC "")
+    if(EXISTS "${PROJECT_SOURCE_DIR}/tests/test.mpi.cpp")
+        set(TEST_MPI_SRC "${PROJECT_SOURCE_DIR}/tests/test.mpi.cpp")
+    elseif(EXISTS "${PROJECT_SOURCE_DIR}/tests/test_mpi.cpp")
+        set(TEST_MPI_SRC "${PROJECT_SOURCE_DIR}/tests/test_mpi.cpp")
+    endif()
+
+    if(TEST_MPI_SRC)
+        add_executable(test_mpi ${TEST_MPI_SRC} src/Boid.cpp src/Flock.cpp src/MPIManager.cpp src/DistributedFlock.cpp tests/kokkos_init.cpp)
+    endif()
 endif()
 
 message(STATUS "Configuration Kokkos...")
@@ -87,41 +110,50 @@ add_executable(benchmark_mpi experiments/benchmark.cpp src/Flock.cpp src/Boid.cp
 add_executable(benchmark_mpi_comparison experiments/benchmark_mpi_comparison.cpp src/Flock.cpp src/Boid.cpp src/MPIManager.cpp src/DistributedFlock.cpp)
 
 target_include_directories(main_simulation PRIVATE include/)
-target_include_directories(test_vector PRIVATE include/)
-target_include_directories(test_boid PRIVATE include/)
-target_include_directories(test_flock PRIVATE include/)
-target_include_directories(test_ui PRIVATE include/)
 target_include_directories(benchmark PRIVATE include/)
 target_include_directories(benchmark_mpi PRIVATE include/)
 target_include_directories(benchmark_mpi_comparison PRIVATE include/)
 
-if(TARGET test_mpi)
-    target_include_directories(test_mpi PRIVATE include/)
+if(ENABLE_UNIT_TESTS)
+    target_include_directories(test_vector PRIVATE include/)
+    target_include_directories(test_boid PRIVATE include/)
+    target_include_directories(test_flock PRIVATE include/)
+    target_include_directories(test_ui PRIVATE include/)
+
+    if(TARGET test_mpi)
+        target_include_directories(test_mpi PRIVATE include/)
+    endif()
 endif()
 
 target_compile_options(main_simulation PRIVATE ${COMMON_COMPILE_FLAGS})
-target_compile_options(test_vector PRIVATE ${COMMON_COMPILE_FLAGS})
-target_compile_options(test_boid PRIVATE ${COMMON_COMPILE_FLAGS})
-target_compile_options(test_flock PRIVATE ${COMMON_COMPILE_FLAGS})
-target_compile_options(test_ui PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(benchmark PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(benchmark_mpi PRIVATE ${COMMON_COMPILE_FLAGS})
 target_compile_options(benchmark_mpi_comparison PRIVATE ${COMMON_COMPILE_FLAGS})
 
-if(TARGET test_mpi)
-    target_compile_options(test_mpi PRIVATE ${COMMON_COMPILE_FLAGS})
+if(ENABLE_UNIT_TESTS)
+    target_compile_options(test_vector PRIVATE ${COMMON_COMPILE_FLAGS})
+    target_compile_options(test_boid PRIVATE ${COMMON_COMPILE_FLAGS})
+    target_compile_options(test_flock PRIVATE ${COMMON_COMPILE_FLAGS})
+    target_compile_options(test_ui PRIVATE ${COMMON_COMPILE_FLAGS})
+
+    if(TARGET test_mpi)
+        target_compile_options(test_mpi PRIVATE ${COMMON_COMPILE_FLAGS})
+    endif()
 endif()
 
 # Ajouter flag KOKKOS_ENABLED pour les targets qui utilisent Kokkos
-target_compile_definitions(test_vector PRIVATE KOKKOS_ENABLED)
-target_compile_definitions(test_boid PRIVATE KOKKOS_ENABLED)
-target_compile_definitions(test_flock PRIVATE KOKKOS_ENABLED)
-target_compile_definitions(test_ui PRIVATE KOKKOS_ENABLED)
 target_compile_definitions(benchmark_mpi PRIVATE MPI_ENABLED)
 target_compile_definitions(benchmark_mpi_comparison PRIVATE MPI_ENABLED)
 
-if(TARGET test_mpi)
-    target_compile_definitions(test_mpi PRIVATE KOKKOS_ENABLED MPI_ENABLED)
+if(ENABLE_UNIT_TESTS)
+    target_compile_definitions(test_vector PRIVATE KOKKOS_ENABLED)
+    target_compile_definitions(test_boid PRIVATE KOKKOS_ENABLED)
+    target_compile_definitions(test_flock PRIVATE KOKKOS_ENABLED)
+    target_compile_definitions(test_ui PRIVATE KOKKOS_ENABLED)
+
+    if(TARGET test_mpi)
+        target_compile_definitions(test_mpi PRIVATE KOKKOS_ENABLED MPI_ENABLED)
+    endif()
 endif()
 
 # Force l'utilisation des headers SFML de FetchContent (SFML 2.6.1) même si SFML est installé sur la machine.
@@ -130,56 +162,45 @@ if(USE_SFML)
     # Définir USE_SFML comme macro préprocesseur pour que #ifdef USE_SFML soit vrai dans le code
     target_compile_definitions(main_simulation PRIVATE USE_SFML)
     target_include_directories(main_simulation SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
-    target_include_directories(test_flock      SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
-    target_include_directories(test_ui         SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
     target_include_directories(benchmark       SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
+    if(ENABLE_UNIT_TESTS)
+        target_include_directories(test_flock SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
+        target_include_directories(test_ui    SYSTEM BEFORE PRIVATE ${SFML_SOURCE_DIR}/include)
+    endif()
 
     target_link_libraries(main_simulation PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos MPI::MPI_CXX)
-    target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
-    target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
     target_link_libraries(benchmark PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos)
     target_link_libraries(benchmark_mpi PRIVATE sfml-graphics sfml-window sfml-system Kokkos::kokkos MPI::MPI_CXX)
     target_link_libraries(benchmark_mpi_comparison PRIVATE Kokkos::kokkos MPI::MPI_CXX)
-    target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
-    target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
-    if(TARGET test_mpi)
-        target_link_libraries(test_mpi PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos MPI::MPI_CXX)
+    if(ENABLE_UNIT_TESTS)
+        target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
+        target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
+        target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
+        target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main sfml-graphics sfml-window sfml-system Kokkos::kokkos)
+        if(TARGET test_mpi)
+            target_link_libraries(test_mpi PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos MPI::MPI_CXX)
+        endif()
     endif()
 else()
     # fallback link lines when SFML disabled
     target_link_libraries(main_simulation PRIVATE Kokkos::kokkos MPI::MPI_CXX)
-    target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
-    target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
-    target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
-    target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
     target_link_libraries(benchmark PRIVATE Kokkos::kokkos)
     target_link_libraries(benchmark_mpi PRIVATE Kokkos::kokkos MPI::MPI_CXX)
     target_link_libraries(benchmark_mpi_comparison PRIVATE Kokkos::kokkos MPI::MPI_CXX)
-
-    if(TARGET test_mpi)
-        target_link_libraries(test_mpi PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos MPI::MPI_CXX)
+    if(ENABLE_UNIT_TESTS)
+        target_link_libraries(test_vector PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
+        target_link_libraries(test_boid PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
+        target_link_libraries(test_flock PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
+        target_link_libraries(test_ui PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos)
+        if(TARGET test_mpi)
+            target_link_libraries(test_mpi PRIVATE GTest::gtest GTest::gtest_main Kokkos::kokkos MPI::MPI_CXX)
+        endif()
     endif()
 endif()
 
 set_target_properties(main_simulation PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
         OUTPUT_NAME "main_simulation.bin"
-)
-set_target_properties(test_vector PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-        OUTPUT_NAME "test_vector.bin"
-)
-set_target_properties(test_boid PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-        OUTPUT_NAME "test_boid.bin"
-)
-set_target_properties(test_flock PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-        OUTPUT_NAME "test_flock.bin"
-)
-set_target_properties(test_ui PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-        OUTPUT_NAME "test_ui.bin"
 )
 set_target_properties(benchmark PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
@@ -195,21 +216,42 @@ set_target_properties(benchmark_mpi_comparison PROPERTIES
         OUTPUT_NAME "benchmark_mpi_comparison.bin"
 )
 
-if(TARGET test_mpi)
-    set_target_properties(test_mpi PROPERTIES
+if(ENABLE_UNIT_TESTS)
+    set_target_properties(test_vector PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-        OUTPUT_NAME "test_mpi.bin"
+        OUTPUT_NAME "test_vector.bin"
     )
+    set_target_properties(test_boid PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        OUTPUT_NAME "test_boid.bin"
+    )
+    set_target_properties(test_flock PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        OUTPUT_NAME "test_flock.bin"
+    )
+    set_target_properties(test_ui PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+        OUTPUT_NAME "test_ui.bin"
+    )
+
+    if(TARGET test_mpi)
+        set_target_properties(test_mpi PROPERTIES
+            RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+            OUTPUT_NAME "test_mpi.bin"
+        )
+    endif()
 endif()
 
-enable_testing()
-gtest_discover_tests(test_vector)
-gtest_discover_tests(test_boid)
-gtest_discover_tests(test_flock)
-gtest_discover_tests(test_ui)
+if(ENABLE_UNIT_TESTS)
+    enable_testing()
+    gtest_discover_tests(test_vector)
+    gtest_discover_tests(test_boid)
+    gtest_discover_tests(test_flock)
+    gtest_discover_tests(test_ui)
 
-if(TARGET test_mpi)
-    gtest_discover_tests(test_mpi)
+    if(TARGET test_mpi)
+        gtest_discover_tests(test_mpi)
+    endif()
 endif()
 
 # (propriétés test_mpi déjà définies dans les blocs précédents)
@@ -217,7 +259,7 @@ endif()
 
 # Test de cohérence (séquentiel vs distribué)
 set(TEST_COHERENCE_SRC "${PROJECT_SOURCE_DIR}/tests/test_coherence.cpp")
-if(EXISTS "${TEST_COHERENCE_SRC}")
+if(BUILD_TESTING AND EXISTS "${TEST_COHERENCE_SRC}")
     add_executable(test_coherence ${TEST_COHERENCE_SRC} src/Boid.cpp src/Flock.cpp src/MPIManager.cpp src/DistributedFlock.cpp tests/kokkos_init.cpp)
     target_include_directories(test_coherence PRIVATE include/)
     target_compile_options(test_coherence PRIVATE ${COMMON_COMPILE_FLAGS})

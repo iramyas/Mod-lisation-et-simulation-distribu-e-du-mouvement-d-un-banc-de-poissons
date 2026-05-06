@@ -17,6 +17,20 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 BUILD_DIR="$PROJECT_ROOT/build"
 
 BUILD_TYPE="${1:-Release}"
+COMPILER_MODULE="${COMPILER_MODULE:-gcc/13.2.0}"
+MPI_MODULE="${MPI_MODULE:-openmpi/4.1.6}"
+USE_SFML_CMAKE="${USE_SFML_CMAKE:-OFF}"
+
+# Charge l'environnement modules si disponible (utile sur cluster)
+if [ -f /etc/profile.d/modules.sh ]; then
+    # shellcheck disable=SC1091
+    source /etc/profile.d/modules.sh
+fi
+if command -v module >/dev/null 2>&1; then
+    module purge
+    module load "$COMPILER_MODULE"
+    module load "$MPI_MODULE"
+fi
 
 echo "##############################################################"
 echo "#           Building Flocking Simulation Project             #"
@@ -25,6 +39,7 @@ echo ""
 echo "PROJECT ROOT: $PROJECT_ROOT"
 echo "BUILD DIR:    $BUILD_DIR"
 echo "BUILD TYPE:   $BUILD_TYPE"
+echo "USE_SFML:     $USE_SFML_CMAKE"
 echo ""
 
 # Clean if requested
@@ -47,7 +62,7 @@ echo "Building project with $BUILD_TYPE build..."
 cmake .. \
     -DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
     -DENABLE_KOKKOS=ON \
-    -DUSE_SFML=ON
+    -DUSE_SFML="$USE_SFML_CMAKE"
 cmake --build . -j$(nproc) --config "$BUILD_TYPE"
 
 echo ""
@@ -63,4 +78,3 @@ echo "  - ./bin/test_flock.bin           Flock unit tests"
 echo "  - ./bin/benchmark                Sequential benchmark"
 echo "  - ./bin/benchmark_mpi            Distributed benchmark"
 echo ""
-

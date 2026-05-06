@@ -308,6 +308,7 @@ La stratégie retenue est progressive : calibration mono-noeud (1 coeur), puis r
 	\resizebox{0.9\linewidth}{!}{
 	\begin{tabular}{|l|c|c|c|}
 		\hline
+<<<<<<< Updated upstream
 		\textbf{Run}   & \textbf{Configuration}         & \textbf{Durée}    & \textbf{Coût total}  \\
 		\hline
 		RUN 1          & 1 noeud, 1 task, 1 CPU         & 3 $\times$ 5 min  & 0.25 h-coeurs        \\
@@ -317,6 +318,17 @@ La stratégie retenue est progressive : calibration mono-noeud (1 coeur), puis r
 		RUN 5          & 2 noeuds, 2 tasks/noeud, 1 CPU & 1 $\times$ 30 min & 2.00 h-coeurs        \\
 		\hline
 		\textbf{Total} & --                            & --               & \textbf{10.92 h-coeurs} \\
+=======
+		\textbf{Run}   & \textbf{Configuration}         & \textbf{Durée}    & \textbf{Coût total} \\
+		\hline
+		RUN 1          & 1 noeud, 1 task, 1 CPU         & 3 $\times$ 5 min  & 0.25 h              \\
+		RUN 2          & 1 noeud, 1 task, 1 CPU         & 3 $\times$ 20 min & 1.00 h              \\
+		RUN 3          & 1 noeud, 4 tasks, 1 CPU        & 3 $\times$ 25 min & 5.00 h              \\
+		RUN 4          & 1 noeud, 4 tasks, 1 CPU        & 4 $\times$ 10 min & 2.67 h              \\
+		RUN 5          & 2 noeuds, 2 tasks/noeud, 1 CPU & 1 $\times$ 30 min & 2.00 h              \\
+		\hline
+		\textbf{Total} & --                             & --                & \textbf{10.92 h}    \\
+>>>>>>> Stashed changes
 		\hline
 	\end{tabular}
 	\label{tab:planning_cluster}
@@ -396,8 +408,6 @@ sujet n'a jamais fait défaut ; c'est peut-être ce qui a rendu d'autant
 plus frustrant de ne pas avoir pu le mener aussi loin qu'envisagé.
 \newpage
 
-\section{Références bibliographiques}
-Cette section liste les sources scientifiques et techniques ayant servi de base au projet.
 \bibliographystyle{IEEEtran}
 
 \begin{thebibliography}{99}
